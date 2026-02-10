@@ -8,35 +8,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="dashboard-container">
         <aside class="sidebar">
             <h2 class="logo">NomadByte</h2>
             <nav>
                 <button class="nav-item active"><i class="fas fa-th-large"></i> لوحة التحكم</button>
                 <button class="nav-item"><i class="fas fa-box"></i> الشحنات</button>
-                <button class="nav-item" id="track-btn"><i class="fas fa-search"></i> تتبع شحنتك</button>
-                <button class="nav-item"><i class="fas fa-truck-moving"></i> مقارنة الأسعار</button>
+                <button class="nav-item" onclick="toggleModal()"><i class="fas fa-plus"></i> إضافة شحنة</button>
             </nav>
-            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
         </aside>
 
         <main class="main-content">
             <header class="hero-section">
-                <h1>NomadByte</h1>
-                <p>مستقبلك في الشحن الذكي يبدأ من هنا. تتبع وإدار شحناتك بلمسة واحدة.</p>
-                <div class="track-input-group">
-                    <input type="text" placeholder="أدخل رقم الشحنة..." id="tracking-input">
-                    <button class="btn-primary">تتبع</button>
-                </div>
+                <h1>مرحباً بك في NomadByte</h1>
+                <p>إدارة وتتبع شحناتك بكل سهولة وبساطة.</p>
             </header>
 
-            <section class="features">
-                <div class="card"><i class="fas fa-ship"></i> <h3>شحن دولي</h3><p>تغطية شاملة لأكثر من 150 دولة.</p></div>
-                <div class="card"><i class="fas fa-shield-alt"></i> <h3>أمان تام</h3><p>نظام حماية متطور لسلامة شحناتك.</p></div>
-                <div class="card"><i class="fas fa-clock"></i> <h3>سرعة قياسية</h3><p>توصيل في مواعيد محددة بدقة.</p></div>
+            <section class="table-section">
+                <table class="shipment-table">
+                    <thead>
+                        <tr>
+                            <th>رقم الشحنة</th>
+                            <th>العميل</th>
+                            <th>الحالة</th>
+                            <th>التاريخ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shipmentTableBody">
+                        </tbody>
+                </table>
             </section>
         </main>
     </div>
-<script src="script.js"></script>
-  </body>
+
+    <div id="shipmentModal" class="modal" style="display:none;">
+        <h3>إضافة شحنة جديدة</h3>
+        <form id="shipmentForm">
+            <input type="text" id="shipmentID" placeholder="رقم الشحنة" required>
+            <input type="text" id="clientName" placeholder="اسم العميل" required>
+            <select id="status">
+                <option value="قيد المعالجة">قيد المعالجة</option>
+                <option value="في الطريق">في الطريق</option>
+                <option value="تم التسليم">تم التسليم</option>
+            </select>
+            <button type="button" class="btn-primary" onclick="saveShipment()">حفظ الشحنة</button>
+            <button type="button" onclick="toggleModal()">إلغاء</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
