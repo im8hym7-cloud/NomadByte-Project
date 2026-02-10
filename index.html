@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomadByte - نظام الشحن</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2 class="logo">NomadByte</h2>
+            <nav>
+                <button class="nav-item active"><i class="fas fa-th-large"></i> لوحة التحكم</button>
+                <button class="nav-item"><i class="fas fa-box"></i> الشحنات</button>
+                <button class="nav-item" id="track-btn"><i class="fas fa-search"></i> تتبع شحنتك</button>
+                <button class="nav-item"><i class="fas fa-truck-moving"></i> مقارنة الأسعار</button>
+            </nav>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+        </aside>
+
+        <main class="main-content">
+            <header class="hero-section">
+                <h1>NomadByte</h1>
+                <p>مستقبلك في الشحن الذكي يبدأ من هنا. تتبع وإدار شحناتك بلمسة واحدة.</p>
+                <div class="track-input-group">
+                    <input type="text" placeholder="أدخل رقم الشحنة..." id="tracking-input">
+                    <button class="btn-primary">تتبع</button>
+                </div>
+            </header>
+
+            <section class="features">
+                <div class="card"><i class="fas fa-ship"></i> <h3>شحن دولي</h3><p>تغطية شاملة لأكثر من 150 دولة.</p></div>
+                <div class="card"><i class="fas fa-shield-alt"></i> <h3>أمان تام</h3><p>نظام حماية متطور لسلامة شحناتك.</p></div>
+                <div class="card"><i class="fas fa-clock"></i> <h3>سرعة قياسية</h3><p>توصيل في مواعيد محددة بدقة.</p></div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
