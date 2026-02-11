@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | المنصة المتكاملة</title>
+    <title>Sh7na | شحنة</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
-        /* الهوية البصرية - المهمة 1 */
         :root {
             --primary-color: #27ae60;
             --dark-color: #2c3e50;
@@ -30,7 +29,6 @@
             max-width: 600px;
         }
 
-        /* تصميم الكروت - المهمة 2 و 3 */
         .card {
             background: white;
             padding: 25px;
@@ -40,7 +38,8 @@
             text-align: center;
         }
 
-        h2, h3 { color: var(--dark-color); margin-top: 0; }
+        h1 { color: var(--dark-color); margin-bottom: 30px; }
+        h3 { color: var(--dark-color); margin-top: 0; }
         
         input, select {
             width: 100%;
@@ -67,9 +66,7 @@
         .btn-green:hover { background-color: #219150; }
 
         .btn-dark { background-color: var(--dark-color); color: white; margin-top: 10px; }
-        .btn-dark:hover { background-color: #1a252f; }
 
-        /* منطقة النتائج */
         .result-box {
             display: none;
             margin-top: 20px;
@@ -78,103 +75,72 @@
             background: #f9f9f9;
             border-right: 5px solid var(--primary-color);
             text-align: right;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 style="text-align: center; color: var(--dark-color);">NomadByte 🚀</h1>
+        <h1 style="text-align: center;">🚀 Sh7na</h1>
 
         <div class="card">
             <h3>📦 نظام تتبع الشحنات</h3>
-            <p style="color: #666; font-size: 14px;">أدخل الرقم NB100 أو NB200 للتجربة</p>
-            <input type="text" id="trackInput" placeholder="أدخل رقم الشحنة هنا...">
-            <button class="btn-green" onclick="trackShipment()">تتبع الحالة الآن</button>
+            <input type="text" id="trackInput" placeholder="أدخل رقم الشحنة (مثلاً NB100)">
+            <button class="btn-green" onclick="trackShipment()">تتبع الآن</button>
             
             <div id="trackResult" class="result-box">
                 <h4 id="statusLabel" style="margin: 0; color: var(--primary-color);"></h4>
                 <p id="statusDesc" style="margin: 10px 0; font-size: 14px; color: #555;"></p>
-                <button class="btn-dark" onclick="downloadPolicy()">📥 تحميل بوليصة الشحن (PDF)</button>
+                <button class="btn-dark" onclick="downloadPolicy()">📥 تحميل البوليصة PDF</button>
             </div>
         </div>
 
         <div class="card">
             <h3>💰 حاسبة تكلفة الشحن</h3>
-            <input type="number" id="shipWeight" placeholder="وزن الشحنة (كجم)">
+            <input type="number" id="shipWeight" placeholder="الوزن بالكجم">
             <select id="shipDestination">
                 <option value="15">داخل المدينة (15 ريال)</option>
                 <option value="35">بين المدن (35 ريال)</option>
                 <option value="120">دولي (120 ريال)</option>
             </select>
-            <button class="btn-dark" style="background-color: var(--primary-color);" onclick="calculatePrice()">احسب السعر التقريبي</button>
+            <button class="btn-green" onclick="calculatePrice()">احسب التكلفة</button>
             
             <div id="calcResult" class="result-box" style="text-align: center; background: #e8f5e9; border: none;">
-                <span style="font-size: 18px;">التكلفة الإجمالية: </span>
                 <span id="finalPrice" style="font-size: 24px; font-weight: bold; color: var(--primary-color);">0</span> ريال
             </div>
         </div>
     </div>
 
     <script>
-        // بيانات محاكاة (تستخدم لحين ربط قاعدة البيانات في المهمة 10)
         const shipmentData = {
-            "NB100": { status: "جاري التوصيل 🚚", desc: "الشحنة خرجت من المستودع وفي طريقها للعميل." },
-            "NB200": { status: "تم التسليم ✅", desc: "وصلت الشحنة للوجهة النهائية وتم استلامها." }
+            "NB100": { status: "في الطريق 🚚", desc: "الشحنة غادرت المركز الرئيسي." },
+            "NB200": { status: "تم التسليم ✅", desc: "تم استلام الشحنة بنجاح." }
         };
 
-        // دالة التتبع
         function trackShipment() {
             const id = document.getElementById('trackInput').value.toUpperCase();
             const resultBox = document.getElementById('trackResult');
-            
             if (shipmentData[id]) {
                 resultBox.style.display = "block";
                 document.getElementById('statusLabel').innerText = shipmentData[id].status;
                 document.getElementById('statusDesc').innerText = shipmentData[id].desc;
-            } else {
-                alert("رقم الشحنة غير موجود، يرجى التأكد من الرقم.");
-                resultBox.style.display = "none";
-            }
+            } else { alert("الرقم غير موجود"); }
         }
 
-        // دالة تحميل PDF
         function downloadPolicy() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            const id = document.getElementById('trackInput').value.toUpperCase();
-            
-            doc.setFontSize(20);
-            doc.text("NomadByte Shipment Receipt", 20, 20);
-            doc.setFontSize(12);
-            doc.text(`Shipment ID: ${id}`, 20, 40);
-            doc.text(`Status: ${document.getElementById('statusLabel').innerText}`, 20, 50);
-            doc.text(`Date: ${new Date().toLocaleString()}`, 20, 60);
-            doc.text("-----------------------------------------", 20, 70);
-            doc.text("Thank you for choosing NomadByte.", 20, 80);
-            
-            doc.save(`NomadByte_${id}.pdf`);
+            doc.text("Sh7na Service - Receipt", 20, 20);
+            doc.text("ID: " + document.getElementById('trackInput').value, 20, 40);
+            doc.save("Sh7na_Policy.pdf");
         }
 
-        // دالة حاسبة الأسعار
         function calculatePrice() {
             const weight = parseFloat(document.getElementById('shipWeight').value);
-            const basePrice = parseFloat(document.getElementById('shipDestination').value);
-            const resultBox = document.getElementById('calcResult');
-
+            const base = parseFloat(document.getElementById('shipDestination').value);
             if (weight > 0) {
-                // الحسبة: السعر الأساسي + (2 ريال عن كل كيلو)
-                const total = basePrice + (weight * 2);
-                document.getElementById('finalPrice').innerText = total.toFixed(2);
-                resultBox.style.display = "block";
-            } else {
-                alert("لطفاً أدخل وزن الشحنة.");
+                document.getElementById('finalPrice').innerText = (base + (weight * 2)).toFixed(2);
+                document.getElementById('calcResult').style.display = "block";
             }
         }
     </script>
