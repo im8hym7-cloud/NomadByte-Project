@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomadByte | تتبع شحنتك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background: #05080f; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        .glass-container { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); width: 100%; max-width: 450px; padding: 2rem; border-radius: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .input-track { background: #0f172a !important; border: 2px solid #1e293b !important; transition: 0.3s; }
+        .input-track:focus { border-color: #3b82f6 !important; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        .status-card { background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); }
+        .pulse-icon { width: 12px; height: 12px; background: #3b82f6; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #3b82f6; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container text-center">
+        <div class="mb-8">
+            <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-500/30 mx-auto mb-4">
+                <span class="text-3xl font-black italic">NB</span>
+            </div>
+            <h1 class="text-2xl font-black tracking-widest">NOMADBYTE</h1>
+            <p class="text-gray-500 text-sm mt-1">بوابة تتبع الشحنات الذكية</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="relative">
+                <input id="track-input" type="text" placeholder="أدخل رقم الشحنة (NB-XXXXX)" 
+                       class="input-track w-full p-5 rounded-2xl outline-none text-center font-mono text-xl tracking-tighter text-white">
+            </div>
+            <button onclick="findShipment()" class="w-full bg-blue-600 hover:bg-blue-700 p-5 rounded-2xl font-bold text-lg transition-all active:scale-95 shadow-lg shadow-blue-600/20">
+                تتبع الآن 🛰️
+            </button>
+        </div>
+
+        <div id="result-area" class="hidden mt-10 text-right animate-fade-in">
+            <div class="status-card p-6 rounded-3xl relative overflow-hidden">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-xs font-bold uppercase tracking-tighter">الحالة الحالية</span>
+                    <div class="pulse-icon"></div>
+                </div>
+                <h2 id="shipment-status" class="text-3xl font-black text-white mb-2">--</h2>
+                <div class="h-[1px] bg-white/5 w-full my-4"></div>
+                <p class="text-gray-500 text-xs mb-1">معلومات الشحنة:</p>
+                <p id="shipment-detail" class="text-gray-300 font-medium font-sm italic">--</p>
+            </div>
+            <p class="text-center text-gray-600 text-xs mt-6 italic">شكراً لاختياركم NomadByte للحلول اللوجستية</p>
+        </div>
+
+        <div id="error-msg" class="hidden mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400 text-sm">
+            رقم الشحنة غير موجود، تأكد من الرقم وأعد المحاولة.
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com/"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.findShipment = () => {
+            const trackNum = document.getElementById('track-input').value.trim();
+            const resultArea = document.getElementById('result-area');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (!trackNum) return;
+
+            onValue(ref(db, 'shipments'), (snapshot) => {
+                const data = snapshot.val();
+                let found = false;
+
+                for (let id in data) {
+                    if (data[id].code === trackNum) {
+                        document.getElementById('shipment-status').innerText = data[id].status;
+                        document.getElementById('shipment-detail').innerText = `الوجهة: ${data[id].destination} | العميل: ${data[id].customer}`;
+                        resultArea.classList.remove('hidden');
+                        errorMsg.classList.add('hidden');
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    resultArea.classList.add('hidden');
+                    errorMsg.classList.remove('hidden');
+                }
+            }, { onlyOnce: true });
+        };
+    </script>
+</body>
+</html>
