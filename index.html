@@ -4,165 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sh7na | شحنة</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        /* تصميم Sh7na Slim - تركيز على الأناقة وتصغير الحجم */
-        :root {
-            --primary: #00d1b2;
-            --dark: #1a1a1a;
-            --soft-bg: #f5f7fa;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--soft-bg);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #333;
-        }
-
-        .container { 
-            width: 100%; 
-            max-width: 420px; /* تصغير عرض الحاوية ليكون ألملم */
-            margin-top: 10px;
-        }
-
-        .logo-area { text-align: center; margin-bottom: 25px; }
-        .logo-area h1 { font-size: 1.8rem; margin: 0; color: var(--dark); }
-        .logo-area p { font-size: 0.85rem; color: #888; margin: 5px 0 0; }
-
-        .card {
-            background: #fff;
-            padding: 20px; /* تقليل الحشوة الداخلية */
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            margin-bottom: 20px;
-            border: 1px solid #eee;
-        }
-
-        h3 { font-size: 1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; color: var(--dark); }
-
-        input, select {
-            width: 100%;
-            padding: 10px 14px; /* تصغير حجم الحقول */
-            margin: 8px 0;
-            border: 1.5px solid #eee;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        input:focus { border-color: var(--primary); }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .btn-track { background: var(--primary); color: white; }
-        .btn-calc { background: var(--dark); color: white; margin-top: 5px; }
-
-        .result-box {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 12px;
-            background: #fcfcfc;
-            border: 1px solid #f0f0f0;
-            font-size: 0.85rem;
-        }
-
-        .price-text { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        :root { --primary: #00d1b2; --dark: #1a1a1a; --soft-bg: #f5f7fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--soft-bg); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { width: 100%; max-width: 420px; }
+        .card { background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 20px; border: 1px solid #eee; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1.5px solid #eee; border-radius: 10px; box-sizing: border-box; outline: none; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; background: var(--primary); color: white; }
+        .admin-section { margin-top: 50px; border-top: 2px dashed #ccc; padding-top: 20px; opacity: 0.5; }
+        .admin-section:hover { opacity: 1; }
+        #trackResult { display: none; margin-top: 15px; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px solid var(--primary); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="logo-area">
+        <div style="text-align: center; margin-bottom: 20px;">
             <h1>🚀 Sh7na</h1>
             <p>مستقبل الشحن الذكي</p>
         </div>
 
         <div class="card">
-            <h3>📦 تتبع الشحنة</h3>
-            <input type="text" id="trackInput" placeholder="رقم التتبع (NB100)">
-            <button class="btn-track" onclick="trackShipment()">بحث عن شحنة</button>
-            <div id="trackResult" class="result-box">
-                <b id="statusLabel" style="color: var(--primary);"></b>
-                <p id="statusDesc" style="margin: 5px 0;"></p>
-                <button onclick="downloadPolicy()" style="background:none; color:#999; text-decoration:underline; font-size:0.75rem; padding:0;">تحميل البوليصة PDF</button>
+            <h3>📦 تتبع شحنتك</h3>
+            <input type="text" id="trackInput" placeholder="أدخل رقم الشحنة">
+            <button onclick="trackFromFirebase()">بحث في القاعدة السحابية</button>
+            <div id="trackResult">
+                <h4 id="resStatus" style="color: var(--primary); margin: 0;"></h4>
+                <p id="resDesc" style="font-size: 0.9rem; color: #555;"></p>
             </div>
         </div>
 
-        <div class="card">
-            <h3>💰 حاسبة التكلفة</h3>
-            <input type="number" id="shipWeight" placeholder="الوزن (كجم)">
-            <select id="shipDestination">
-                <option value="15">توصيل محلي (15 ريال)</option>
-                <option value="35">بين المدن (35 ريال)</option>
-                <option value="120">دولي (120 ريال)</option>
-            </select>
-            <button class="btn-calc" onclick="calculatePrice()">احسب السعر</button>
-            <div id="calcResult" class="result-box" style="text-align: center;">
-                <span class="price-text" id="finalPrice">0</span> <b>ريال</b>
-            </div>
+        <div class="card admin-section">
+            <h3 style="color: #666;">🛠 لوحة إضافة الشحنات</h3>
+            <input type="text" id="newID" placeholder="رقم الشحنة (مثلاً: NB500)">
+            <input type="text" id="newStatus" placeholder="الحالة (مثلاً: جاري التوصيل)">
+            <input type="text" id="newDesc" placeholder="التفاصيل (مثلاً: الشحنة في جدة)">
+            <button style="background: var(--dark);" onclick="saveToFirebase()">حفظ في السحابة ✅</button>
         </div>
     </div>
 
-    <script>
-        const shipmentData = {"NB100": {s:"في الطريق 🚚", d:"بين الرياض والدمام."}, "NB200": {s:"تم التسليم ✅", d:"وصلت الشحنة للوجهة."}};
-        function trackShipment() {
-            const id = document.getElementById('trackInput').value.toUpperCase();
-            const res = document.getElementById('trackResult');
-            if(shipmentData[id]) {
-                res.style.display="block";
-                document.getElementById('statusLabel').innerText = shipmentData[id].s;
-                document.getElementById('statusDesc').innerText = shipmentData[id].d;
-            } else { alert("غير موجود"); }
-        }
-        function downloadPolicy() {
-            const { jsPDF } = window.jspdf; const doc = new jsPDF();
-            doc.text("Sh7na Receipt", 20, 20); doc.text("ID: " + document.getElementById('trackInput').value, 20, 40);
-            doc.save("Sh7na.pdf");
-        }
-        function calculatePrice() {
-            const w = parseFloat(document.getElementById('weight').value || document.getElementById('shipWeight').value);
-            const b = parseFloat(document.getElementById('shipDestination').value);
-            if(w > 0) {
-                document.getElementById('finalPrice').innerText = (b + (w * 2)).toFixed(2);
-                document.getElementById('calcResult').style.display = "block";
-            }
-        }
-    </script>
     <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
-    authDomain: "sh7na-database.firebaseapp.com",
-    projectId: "sh7na-database",
-    storageBucket: "sh7na-database.firebasestorage.app",
-    messagingSenderId: "334773528813",
-    appId: "1:334773528813:web:e073758a89a87dc68dc4e4"
-  };
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
+            authDomain: "sh7na-database.firebaseapp.com",
+            databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com",
+            projectId: "sh7na-database",
+            storageBucket: "sh7na-database.appspot.com",
+            messagingSenderId: "334773528813",
+            appId: "1:334773528813:web:e073758a89a87dc68dc4e4"
+        };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // وظيفة الحفظ في القاعدة
+        window.saveToFirebase = function() {
+            const id = document.getElementById('newID').value.toUpperCase();
+            const status = document.getElementById('newStatus').value;
+            const desc = document.getElementById('newDesc').value;
+
+            if(id) {
+                set(ref(db, 'shipments/' + id), { status: status, desc: desc })
+                .then(() => { alert("تم الحفظ في السحابة بنجاح!"); })
+                .catch((error) => { alert("خطأ: " + error); });
+            }
+        };
+
+        // وظيفة التتبع من القاعدة
+        window.trackFromFirebase = function() {
+            const id = document.getElementById('trackInput').value.toUpperCase();
+            const dbRef = ref(getDatabase());
+            
+            get(child(dbRef, `shipments/${id}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    document.getElementById('trackResult').style.display = "block";
+                    document.getElementById('resStatus').innerText = data.status;
+                    document.getElementById('resDesc').innerText = data.desc;
+                } else {
+                    alert("رقم الشحنة غير موجود في السحابة!");
+                }
+            });
+        };
+    </script>
 </body>
 </html>
