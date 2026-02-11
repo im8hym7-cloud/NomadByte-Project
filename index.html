@@ -6,89 +6,84 @@
     <title>Sh7na | شحنة</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        /* تصميم عصري مستوحى من Replit وأنظمة الـ SaaS */
+        /* تصميم Sh7na Slim - تركيز على الأناقة وتصغير الحجم */
         :root {
-            --primary: #00d1b2; /* لون أخضر فيروزي مريح */
-            --dark: #121212;
-            --card-bg: #ffffff;
-            --soft-bg: #f8fafd;
-            --text-main: #2c3e50;
+            --primary: #00d1b2;
+            --dark: #1a1a1a;
+            --soft-bg: #f5f7fa;
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background-color: var(--soft-bg);
             margin: 0;
-            padding: 40px 20px;
-            color: var(--text-main);
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: #333;
         }
 
-        .container { width: 100%; max-width: 550px; }
+        .container { 
+            width: 100%; 
+            max-width: 420px; /* تصغير عرض الحاوية ليكون ألملم */
+            margin-top: 10px;
+        }
 
-        .logo-area { text-align: center; margin-bottom: 40px; }
-        .logo-area h1 { font-size: 2.5rem; letter-spacing: -1px; margin: 0; color: var(--dark); }
+        .logo-area { text-align: center; margin-bottom: 25px; }
+        .logo-area h1 { font-size: 1.8rem; margin: 0; color: var(--dark); }
+        .logo-area p { font-size: 0.85rem; color: #888; margin: 5px 0 0; }
 
         .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 24px; /* زوايا منحنية أكثر فخامة */
-            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
-            margin-bottom: 30px;
-            border: 1px solid rgba(0,0,0,0.02);
-            transition: transform 0.3s ease;
+            background: #fff;
+            padding: 20px; /* تقليل الحشوة الداخلية */
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+            border: 1px solid #eee;
         }
 
-        .card:hover { transform: translateY(-5px); }
-
-        h3 { margin-bottom: 20px; font-weight: 600; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        h3 { font-size: 1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; color: var(--dark); }
 
         input, select {
             width: 100%;
-            padding: 14px 18px;
-            margin: 10px 0;
-            border: 2px solid #f0f0f0;
-            border-radius: 12px;
-            font-size: 1rem;
-            background: #fafafa;
-            transition: all 0.3s;
+            padding: 10px 14px; /* تصغير حجم الحقول */
+            margin: 8px 0;
+            border: 1.5px solid #eee;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
             outline: none;
+            transition: 0.3s;
         }
 
-        input:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(0, 209, 178, 0.1); }
+        input:focus { border-color: var(--primary); }
 
         button {
             width: 100%;
-            padding: 16px;
+            padding: 12px;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: 700;
-            font-size: 1rem;
-            background: var(--dark);
-            color: white;
-            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
         .btn-track { background: var(--primary); color: white; }
-        .btn-track:hover { filter: brightness(1.1); box-shadow: 0 8px 20px rgba(0, 209, 178, 0.3); }
+        .btn-calc { background: var(--dark); color: white; margin-top: 5px; }
 
         .result-box {
             display: none;
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 16px;
-            background: #fdfdfd;
-            border: 1px dashed #ddd;
-            text-align: right;
-            animation: fadeIn 0.5s ease;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            font-size: 0.85rem;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .badge { display: inline-block; padding: 4px 12px; border-radius: 8px; background: #e0fffb; color: #008a75; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; }
+        .price-text { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -96,67 +91,55 @@
     <div class="container">
         <div class="logo-area">
             <h1>🚀 Sh7na</h1>
-            <p style="color: #888;">مستقبل الشحن الذكي</p>
+            <p>مستقبل الشحن الذكي</p>
         </div>
 
         <div class="card">
             <h3>📦 تتبع الشحنة</h3>
-            <input type="text" id="trackInput" placeholder="أدخل رقم التتبع (مثلاً NB100)">
-            <button class="btn-track" onclick="trackShipment()">البحث عن الشحنة</button>
-            
+            <input type="text" id="trackInput" placeholder="رقم التتبع (NB100)">
+            <button class="btn-track" onclick="trackShipment()">بحث عن شحنة</button>
             <div id="trackResult" class="result-box">
-                <div class="badge" id="statusLabel"></div>
-                <p id="statusDesc" style="margin: 5px 0; font-weight: 500;"></p>
-                <button onclick="downloadPolicy()" style="background: none; color: #666; font-size: 0.9rem; text-decoration: underline; margin-top: 15px;">تحميل المستند PDF</button>
+                <b id="statusLabel" style="color: var(--primary);"></b>
+                <p id="statusDesc" style="margin: 5px 0;"></p>
+                <button onclick="downloadPolicy()" style="background:none; color:#999; text-decoration:underline; font-size:0.75rem; padding:0;">تحميل البوليصة PDF</button>
             </div>
         </div>
 
         <div class="card">
             <h3>💰 حاسبة التكلفة</h3>
-            <input type="number" id="shipWeight" placeholder="وزن الشحنة (كجم)">
+            <input type="number" id="shipWeight" placeholder="الوزن (كجم)">
             <select id="shipDestination">
                 <option value="15">توصيل محلي (15 ريال)</option>
                 <option value="35">بين المدن (35 ريال)</option>
-                <option value="120">شحن دولي (120 ريال)</option>
+                <option value="120">دولي (120 ريال)</option>
             </select>
-            <button onclick="calculatePrice()">احسب السعر</button>
-            
-            <div id="calcResult" class="result-box" style="text-align: center; border: none; background: #f4fcfb;">
-                <p style="margin: 0; color: #666;">السعر التقديري:</p>
-                <span id="finalPrice" style="font-size: 2rem; font-weight: 800; color: var(--primary);">0</span> 
-                <span style="font-weight: bold;">ريال</span>
+            <button class="btn-calc" onclick="calculatePrice()">احسب السعر</button>
+            <div id="calcResult" class="result-box" style="text-align: center;">
+                <span class="price-text" id="finalPrice">0</span> <b>ريال</b>
             </div>
         </div>
     </div>
 
     <script>
-        const shipmentData = {
-            "NB100": { s: "في الطريق 🚚", d: "شحنتك الآن بين الرياض والدمام." },
-            "NB200": { s: "تم التسليم ✅", d: "تم توصيل الشحنة بنجاح." }
-        };
-
+        const shipmentData = {"NB100": {s:"في الطريق 🚚", d:"بين الرياض والدمام."}, "NB200": {s:"تم التسليم ✅", d:"وصلت الشحنة للوجهة."}};
         function trackShipment() {
             const id = document.getElementById('trackInput').value.toUpperCase();
             const res = document.getElementById('trackResult');
-            if (shipmentData[id]) {
-                res.style.display = "block";
+            if(shipmentData[id]) {
+                res.style.display="block";
                 document.getElementById('statusLabel').innerText = shipmentData[id].s;
                 document.getElementById('statusDesc').innerText = shipmentData[id].d;
-            } else { alert("عذراً، الرقم غير مسجل"); }
+            } else { alert("غير موجود"); }
         }
-
         function downloadPolicy() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            doc.text("Sh7na Digital Receipt", 20, 20);
-            doc.text("ID: " + document.getElementById('trackInput').value, 20, 40);
-            doc.save("Sh7na_Policy.pdf");
+            const { jsPDF } = window.jspdf; const doc = new jsPDF();
+            doc.text("Sh7na Receipt", 20, 20); doc.text("ID: " + document.getElementById('trackInput').value, 20, 40);
+            doc.save("Sh7na.pdf");
         }
-
         function calculatePrice() {
-            const w = parseFloat(document.getElementById('shipWeight').value);
+            const w = parseFloat(document.getElementById('weight').value || document.getElementById('shipWeight').value);
             const b = parseFloat(document.getElementById('shipDestination').value);
-            if (w > 0) {
+            if(w > 0) {
                 document.getElementById('finalPrice').innerText = (b + (w * 2)).toFixed(2);
                 document.getElementById('calcResult').style.display = "block";
             }
