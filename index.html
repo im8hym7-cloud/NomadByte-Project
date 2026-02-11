@@ -3,87 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | لوحة التحكم</title>
+    <title>NomadByte | نظام الشحن المتكامل</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #0a0e17; color: white; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .stat-card { border-left: 4px solid #3b82f6; transition: 0.3s; }
-        .stat-card:hover { transform: translateY(-5px); background: rgba(59, 130, 246, 0.1); }
-        input, select { background: #161b26 !important; border: 1px solid #2d3748 !important; color: white !important; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #05080f; color: white; overflow-x: hidden; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .stat-card { border-radius: 20px; border-left: 4px solid #3b82f6; transition: all 0.4s ease; }
+        .stat-card:hover { transform: translateY(-8px); background: rgba(59, 130, 246, 0.08); border-left-width: 8px; }
+        .btn-glow { transition: 0.3s; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+        .btn-glow:hover { box-shadow: 0 0 25px rgba(59, 130, 246, 0.6); transform: scale(1.02); }
+        input, select { background: #0f172a !important; border: 1px solid #1e293b !important; color: white !important; }
+        .status-badge { padding: 4px 12px; rounded-full; font-size: 0.75rem; font-weight: bold; }
     </style>
 </head>
-<body class="p-6">
+<body class="p-4 md:p-10">
 
-<header class="flex justify-between items-center mb-10">
-    <div class="flex items-center gap-4">
-        <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/50">
-            <span class="text-2xl font-bold italic">NB</span>
+    <header class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+        <div class="flex items-center gap-4">
+            <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-500/40">
+                <span class="text-3xl font-black italic">NB</span>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black tracking-[0.2em] text-white">NOMADBYTE</h1>
+                <p class="text-blue-500 text-xs font-bold">SECURE CLOUD V2.9 STABLE</p>
+            </div>
         </div>
-        <h1 class="text-2xl font-bold tracking-widest text-blue-400 uppercase">NomadByte</h1>
-    </div>
-    <div class="flex gap-4">
-        <button onclick="openTrackModal()" class="border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 py-2 rounded-full font-bold transition">
-            🔍 تتبع شحنة
-        </button>
-        <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full font-bold transition shadow-lg shadow-blue-600/30">
-            + تسجيل شحنة جديدة
-        </button>
-    </div>
-</header>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div class="glass-card stat-card p-6 rounded-2xl">
-            <p class="text-gray-400 text-sm mb-1">إجمالي الشحنات</p>
-            <h2 id="total-shipments" class="text-4xl font-bold text-white">0</h2>
+        <div class="flex gap-4">
+            <button onclick="openTrackModal()" class="border-2 border-blue-500/50 text-blue-400 hover:bg-blue-500 hover:text-white px-8 py-3 rounded-xl font-bold transition">
+                🔍 تتبع شحنة
+            </button>
+            <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-bold btn-glow transition">
+                + تسجيل شحنة جديدة
+            </button>
         </div>
-        <div class="glass-card stat-card p-6 rounded-2xl border-blue-400">
-            <p class="text-gray-400 text-sm mb-1">شحنات نشطة</p>
-            <h2 id="active-shipments" class="text-4xl font-bold text-blue-400">0</h2>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="glass-card stat-card p-8">
+            <p class="text-gray-500 text-sm mb-1 uppercase font-bold tracking-widest">إجمالي الشحنات</p>
+            <h2 id="total-shipments" class="text-5xl font-black text-white">0</h2>
         </div>
-        <div class="glass-card stat-card p-6 rounded-2xl border-green-400">
-            <p class="text-gray-400 text-sm mb-1">عملاء جدد</p>
-            <h2 class="text-4xl font-bold text-green-400">+5</h2>
+        <div class="glass-card stat-card p-8 border-blue-400">
+            <p class="text-gray-500 text-sm mb-1 uppercase font-bold tracking-widest text-blue-400">شحنات نشطة</p>
+            <h2 id="active-shipments" class="text-5xl font-black text-white">0</h2>
+        </div>
+        <div class="glass-card stat-card p-8 border-green-500">
+            <p class="text-gray-500 text-sm mb-1 uppercase font-bold tracking-widest text-green-500">عملاء جدد</p>
+            <h2 class="text-5xl font-black text-white">+5</h2>
         </div>
     </div>
 
-    <div class="glass-card rounded-2xl p-6">
-        <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-bold flex items-center gap-2">
-                <span class="text-blue-500">●</span> مراقبة الشحنات الحية
-            </h3>
+    <div class="glass-card rounded-[2rem] p-8 overflow-hidden">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+            <h3 class="text-xl font-bold">مراقبة الشحنات الحية</h3>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-right">
                 <thead>
-                    <tr class="text-gray-500 border-b border-gray-800">
-                        <th class="pb-4 font-medium">كود الشحن</th>
-                        <th class="pb-4 font-medium">العميل</th>
-                        <th class="pb-4 font-medium">الوجهة</th>
-                        <th class="pb-4 font-medium">الحالة</th>
+                    <tr class="text-gray-500 border-b border-white/5">
+                        <th class="pb-6 font-bold uppercase text-xs tracking-widest">كود الشحن</th>
+                        <th class="pb-6 font-bold uppercase text-xs tracking-widest">العميل</th>
+                        <th class="pb-6 font-bold uppercase text-xs tracking-widest">الوجهة</th>
+                        <th class="pb-6 font-bold uppercase text-xs tracking-widest">الحالة</th>
                     </tr>
                 </thead>
-                <tbody id="shipment-table-body">
+                <tbody id="shipment-table-body" class="divide-y divide-white/5">
                     </tbody>
             </table>
         </div>
     </div>
 
-    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-card w-full max-w-md p-8 rounded-3xl border border-blue-500/30">
-            <h2 class="text-2xl font-bold mb-6 text-center">إضافة شحنة للسحابة ☁️</h2>
-            <div class="space-y-4">
-                <input id="customer-name" type="text" placeholder="اسم العميل" class="w-full p-3 rounded-xl outline-none focus:ring-2 ring-blue-500">
-                <input id="destination" type="text" placeholder="الوجهة (مثلاً: الرياض)" class="w-full p-3 rounded-xl outline-none focus:ring-2 ring-blue-500">
-                <select id="status" class="w-full p-3 rounded-xl outline-none focus:ring-2 ring-blue-500">
-                    <option value="تحت المعالجة">تحت المعالجة</option>
-                    <option value="جاري التوصيل">جاري التوصيل</option>
-                    <option value="مكتمل">مكتمل</option>
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
+        <div class="glass-card w-full max-w-lg p-10 rounded-[2.5rem] border border-blue-500/20">
+            <h2 class="text-3xl font-black mb-8 text-center text-white">إضافة شحنة للسحابة ☁️</h2>
+            <div class="space-y-5">
+                <input id="customer-name" type="text" placeholder="اسم العميل الكامل" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500 transition-all">
+                <input id="destination" type="text" placeholder="الوجهة (مثلاً: الرياض، الدمام)" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500 transition-all">
+                <select id="status" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500 transition-all">
+                    <option value="تحت المعالجة">تحت المعالجة ⚙️</option>
+                    <option value="جاري التوصيل">جاري التوصيل 🚚</option>
+                    <option value="تم التوصيل">تم التوصيل ✅</option>
                 </select>
-                <div class="flex gap-2 pt-4">
-                    <button onclick="saveShipment()" class="flex-1 bg-blue-600 p-3 rounded-xl font-bold hover:bg-blue-700 transition">حفظ في السحابة</button>
-                    <button onclick="closeModal()" class="flex-1 bg-gray-800 p-3 rounded-xl font-bold hover:bg-gray-700 transition">إلغاء</button>
+                <div class="flex gap-4 pt-6">
+                    <button onclick="saveShipment()" class="flex-1 bg-blue-600 p-4 rounded-2xl font-bold hover:bg-blue-700 transition">حفظ في السحابة</button>
+                    <button onclick="closeModal()" class="flex-1 bg-white/5 p-4 rounded-2xl font-bold hover:bg-white/10 transition">إلغاء</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="track-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 z-50">
+        <div class="glass-card w-full max-w-md p-10 rounded-[2.5rem] border border-blue-500/40">
+            <h2 class="text-2xl font-black mb-6 text-center text-blue-400 underline underline-offset-8">نظام التتبع الذكي 🛰️</h2>
+            <div class="space-y-5 text-center">
+                <input id="track-number" type="text" placeholder="أدخل رقم الشحنة (NB-XXXXX)" class="w-full p-5 rounded-2xl outline-none border border-white/10 text-center font-mono text-xl tracking-widest focus:ring-2 ring-blue-500">
+                <button onclick="trackNow()" class="w-full bg-blue-600 p-5 rounded-2xl font-bold hover:bg-blue-700 btn-glow transition">ابحث في قاعدة البيانات</button>
+                
+                <div id="track-result" class="hidden mt-8 p-6 bg-white/5 rounded-3xl border border-white/10 text-right animate-pulse">
+                    <p class="text-gray-500 text-xs mb-2 uppercase">الحالة الحالية للشحنة:</p>
+                    <h3 id="res-status" class="text-2xl font-black text-green-400 mb-3">--</h3>
+                    <div class="h-[1px] bg-white/10 w-full mb-3"></div>
+                    <p id="res-info" class="text-sm text-gray-400">--</p>
+                </div>
+                <button onclick="closeTrackModal()" class="text-gray-500 text-sm mt-4 hover:text-white transition">إغلاق النافذة</button>
             </div>
         </div>
     </div>
@@ -92,7 +116,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        // إعدادات Firebase الخاصة بك (من الصورة التي أرفقتها)
+        // إعدادات قاعدة بياناتك من Firebase Console
         const firebaseConfig = {
             databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com/"
         };
@@ -100,11 +124,16 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // وظائف الواجهة
+        // وظائف النوافذ
         window.openModal = () => document.getElementById('modal').classList.remove('hidden');
         window.closeModal = () => document.getElementById('modal').classList.add('hidden');
+        window.openTrackModal = () => {
+            document.getElementById('track-modal').classList.remove('hidden');
+            document.getElementById('track-result').classList.add('hidden');
+        };
+        window.closeTrackModal = () => document.getElementById('track-modal').classList.add('hidden');
 
-        // حفظ الشحنة
+        // حفظ الشحنة الجديدة
         window.saveShipment = () => {
             const customer = document.getElementById('customer-name').value;
             const dest = document.getElementById('destination').value;
@@ -119,11 +148,36 @@
                     status: stat
                 });
                 closeModal();
-                alert("تم الحفظ في السحابة بنجاح! 🎉");
+                alert("تم الحفظ بنجاح في السحابة! 🚀");
+                document.getElementById('customer-name').value = "";
+                document.getElementById('destination').value = "";
+            } else {
+                alert("يرجى تعبئة جميع الحقول!");
             }
         };
 
-        // عرض البيانات حياً
+        // التتبع الذكي
+        window.trackNow = () => {
+            const num = document.getElementById('track-number').value;
+            const resultDiv = document.getElementById('track-result');
+            
+            onValue(ref(db, 'shipments'), (snapshot) => {
+                const data = snapshot.val();
+                let found = false;
+                for(let id in data) {
+                    if(data[id].code === num) {
+                        document.getElementById('res-status').innerText = data[id].status;
+                        document.getElementById('res-info').innerText = `العميل: ${data[id].customer} | الوجهة: ${data[id].destination}`;
+                        resultDiv.classList.remove('hidden');
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found) alert("عفواً، لم نجد شحنة بهذا الرقم!");
+            }, { onlyOnce: true });
+        };
+
+        // عرض البيانات حياً في الجدول
         onValue(ref(db, 'shipments'), (snapshot) => {
             const data = snapshot.val();
             const tbody = document.getElementById('shipment-table-body');
@@ -133,39 +187,21 @@
             for (let id in data) {
                 count++;
                 const s = data[id];
-                const statusColor = s.status === 'مكتمل' ? 'text-green-400 bg-green-400/10' : 'text-orange-400 bg-orange-400/10';
+                const statusColor = s.status === 'تم التوصيل' ? 'text-green-400 bg-green-400/10' : 'text-blue-400 bg-blue-400/10';
                 tbody.innerHTML += `
-                    <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
-                        <td class="py-4 text-blue-400 font-mono">${s.code}</td>
-                        <td class="py-4 font-bold">${s.customer}</td>
-                        <td class="py-4 text-gray-400">${s.destination}</td>
-                        <td class="py-4">
-                            <span class="px-3 py-1 rounded-full text-xs ${statusColor}">${s.status}</span>
+                    <tr class="hover:bg-white/[0.02] transition">
+                        <td class="py-6 text-blue-400 font-mono font-bold">${s.code}</td>
+                        <td class="py-6 font-bold text-white">${s.customer}</td>
+                        <td class="py-6 text-gray-400">${s.destination}</td>
+                        <td class="py-6">
+                            <span class="px-4 py-1.5 rounded-xl text-xs font-bold ${statusColor}">${s.status}</span>
                         </td>
                     </tr>
                 `;
             }
             document.getElementById('total-shipments').innerText = count;
-            document.getElementById('active-shipments').innerText = count; // تبسيطاً
+            document.getElementById('active-shipments').innerText = count;
         });
     </script>
-    <div id="track-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
-    <div class="glass-card w-full max-w-md p-8 rounded-3xl border border-blue-500/50 shadow-2xl shadow-blue-500/20">
-        <h2 class="text-2xl font-bold mb-6 text-center text-blue-400">نظام التتبع الذكي 🛰️</h2>
-        <div class="space-y-4">
-            <input id="track-number" type="text" placeholder="أدخل رقم الشحنة (مثلاً: NB-37736)" class="w-full p-4 rounded-xl outline-none border border-gray-700 focus:ring-2 ring-blue-500 text-center font-mono">
-            <button onclick="trackNow()" class="w-full bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700 transition">بحث في السحابة</button>
-            
-            <div id="track-result" class="hidden mt-6 p-4 bg-white/5 rounded-2xl border border-white/10">
-                <p class="text-gray-400 text-sm">حالة الشحنة الحالية:</p>
-                <h3 id="res-status" class="text-xl font-bold text-green-400 mt-1">--</h3>
-                <hr class="my-3 border-gray-800">
-                <p id="res-info" class="text-sm text-gray-300">--</p>
-            </div>
-
-            <button onclick="closeTrackModal()" class="w-full text-gray-500 text-sm mt-4 hover:text-white">إغلاق</button>
-        </div>
-    </div>
-</div>
 </body>
 </html>
