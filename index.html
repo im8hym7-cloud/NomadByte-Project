@@ -3,75 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحنة | Sh7na - منصة الشحن الذكية</title>
+    <title>شحنة | SH7NA - منصة الشحن الذكية</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
-        .hero-gradient { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
-        .btn-hover { transition: all 0.3s ease; }
-        .btn-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .hero-gradient { background: linear-gradient(135deg, var(--main-blue) 0%, var(--dark-blue) 100%); }
+        .input-style { border: 2px solid #e2e8f0 !important; padding: 15px; border-radius: 15px; width: 100%; outline: none; font-weight: bold; }
+        .input-style:focus { border-color: var(--main-blue) !important; }
     </style>
 </head>
 <body>
 
     <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg">NB</div>
-            <h1 class="text-2xl font-black text-blue-900 tracking-tighter italic">شحنة | SH7NA</h1>
+        <div class="flex items-center gap-4 group">
+            <div class="relative">
+                <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black shadow-xl transform group-hover:rotate-6 transition-all">
+                    <span class="text-2xl italic">NB</span>
+                </div>
+                <div class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-4 border-white"></div>
+            </div>
+            <div>
+                <h1 class="text-3xl font-black text-blue-900 leading-none">شحنة</h1>
+                <p class="text-[10px] font-bold text-blue-500 tracking-widest uppercase opacity-60">NomadByte Platform</p>
+            </div>
         </div>
-        <div class="flex gap-4">
-            <a href="admin.html" class="text-sm font-bold text-blue-600 border border-blue-600 px-5 py-2 rounded-xl hover:bg-blue-50">دخول الشركات</a>
-            <button class="bg-blue-600 text-white px-5 py-2 rounded-xl font-bold text-sm btn-hover">دخول الأفراد</button>
+        
+        <div class="flex gap-3">
+            <a href="admin.html" class="bg-white border-2 border-blue-600 text-blue-600 px-6 py-2 rounded-xl font-black text-sm hover:bg-blue-600 hover:text-white transition-all shadow-sm">دخول الشركات</a>
+            <button class="hidden md:block bg-slate-100 text-slate-600 px-6 py-2 rounded-xl font-black text-sm">دخول الأفراد</button>
         </div>
     </header>
 
     <section class="hero-gradient py-20 px-6 text-center text-white">
-        <h2 class="text-4xl md:text-6xl font-black mb-6">مستقبلك في الشحن يبدأ هنا 🚀</h2>
-        <p class="text-blue-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium">أهلاً بك في NomadByte (شحنة). قارن الأسعار، تتبع شحنتك، وأدر أعمالك من مكان واحد.</p>
+        <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">مستقبلك في الشحن يبدأ هنا 🚀</h2>
+        <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-medium">أهلاً بك في منصة شحنة. الحل الذكي لمقارنة الأسعار وتتبع الشحنات للأفراد والشركات.</p>
         
         <div class="max-w-xl mx-auto relative group">
-            <input type="text" id="main-track-input" placeholder="أدخل رقم الشحنة NB-XXXXX" class="w-full p-6 rounded-2xl text-slate-900 font-bold text-xl shadow-2xl focus:ring-4 focus:ring-blue-300 outline-none">
+            <input type="text" id="quick-track" placeholder="تتبع شحنتك الآن NB-XXXXX" class="w-full p-6 rounded-2xl text-slate-900 font-bold text-xl shadow-2xl outline-none">
             <button onclick="window.location.href='track.html'" class="absolute left-3 top-3 bg-blue-600 px-8 py-3 rounded-xl font-black hover:bg-blue-700 transition-all">تتبع</button>
         </div>
     </section>
 
-    <section class="max-w-6xl mx-auto -mt-16 px-6 pb-20">
+    <section class="max-w-6xl mx-auto -mt-12 px-6 pb-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            <div class="glass-card p-10 rounded-[40px] shadow-xl">
-                <h3 class="text-2xl font-black mb-6 text-blue-900">حاسبة الشحن الذكية ⚖️</h3>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-500 mb-2">نوع الوزن</label>
-                        <select id="weight-unit" class="w-full p-4 bg-slate-100 rounded-xl font-bold border-none outline-none">
-                            <option value="kg">كيلوجرام (kg)</option>
-                            <option value="g">جرام (g)</option>
-                        </select>
+            <div class="glass-card p-10 shadow-2xl">
+                <h3 class="text-2xl font-black mb-8 text-blue-900 flex items-center gap-3">
+                    <span>حاسبة الشحن الذكية</span>
+                    <span class="text-sm bg-blue-100 text-blue-600 px-3 py-1 rounded-full">جرام / كيلو</span>
+                </h3>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-black text-slate-400 mb-2 mr-2 text-right">وحدة الوزن</label>
+                            <select id="unit" class="input-style bg-slate-50 border-none">
+                                <option value="kg">كيلوجرام (KG)</option>
+                                <option value="g">جرام (G)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-black text-slate-400 mb-2 mr-2 text-right">الوزن الفعلي</label>
+                            <input type="number" id="weight" placeholder="0.00" class="input-style bg-slate-50 border-none">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-500 mb-2">أدخل الوزن</label>
-                        <input type="number" id="weight-val" placeholder="0.00" class="w-full p-4 bg-slate-100 rounded-xl font-bold border-none outline-none">
-                    </div>
-                    <button onclick="calculateRates()" class="w-full bg-slate-800 text-white p-5 rounded-2xl font-black text-xl mt-4 btn-hover">قارن الأسعار الآن</button>
+                    <button onclick="compareRates()" class="w-full btn-primary text-xl py-5 shadow-lg">قارن أفضل الأسعار 💰</button>
                 </div>
             </div>
 
-            <div id="results-box" class="glass-card p-10 rounded-[40px] shadow-xl flex flex-col justify-center border-dashed border-2 border-blue-200">
-                <div id="placeholder-text" class="text-center text-slate-400 font-bold">
-                    <p class="text-5xl mb-4">📊</p>
-                    <p>أدخل بيانات الوزن لتظهر لك مقارنة الأسعار بين الشركات</p>
+            <div id="res-box" class="glass-card p-10 flex flex-col justify-center border-dashed border-2 border-blue-200">
+                <div id="wait-msg" class="text-center text-slate-400">
+                    <p class="text-6xl mb-4">📊</p>
+                    <p class="font-bold">أدخل بيانات شحنتك لاستخراج عرض السعر</p>
                 </div>
-                <div id="rates-list" class="hidden space-y-4">
-                    <h4 class="font-black text-blue-900 mb-4">أفضل العروض المتاحة:</h4>
-                    <div class="flex justify-between items-center bg-blue-50 p-4 rounded-xl border border-blue-100">
-                        <span class="font-black">ارامكس (Aramex)</span>
-                        <span id="rate-aramex" class="text-blue-600 font-black text-xl">-- ر.س</span>
+                
+                <div id="rates" class="hidden space-y-5">
+                    <h4 class="font-black text-blue-900 text-lg mb-2">أسعار شركات الشحن المتاحة:</h4>
+                    <div class="flex justify-between items-center p-5 bg-blue-50 rounded-2xl border border-blue-100 hover:scale-[1.02] transition-transform">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center font-bold text-blue-600">A</div>
+                            <span class="font-black text-slate-700">ارامكس (Aramex)</span>
+                        </div>
+                        <span id="price-aramex" class="text-blue-600 font-black text-2xl tracking-tighter">--</span>
                     </div>
-                    <div class="flex justify-between items-center bg-orange-50 p-4 rounded-xl border border-orange-100">
-                        <span class="font-black">سمسا (SMSA)</span>
-                        <span id="rate-smsa" class="text-orange-600 font-black text-xl">-- ر.س</span>
+                    <div class="flex justify-between items-center p-5 bg-orange-50 rounded-2xl border border-orange-100 hover:scale-[1.02] transition-transform">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center font-bold text-orange-600">S</div>
+                            <span class="font-black text-slate-700">سمسا (SMSA)</span>
+                        </div>
+                        <span id="price-smsa" class="text-orange-600 font-black text-2xl tracking-tighter">--</span>
                     </div>
                 </div>
             </div>
@@ -79,32 +99,26 @@
         </div>
     </section>
 
-    <footer class="text-center py-10 border-t">
-        <p class="text-slate-400 font-bold">© 2026 جميع الحقوق محفوظة لـ NomadByte - شحنة</p>
+    <footer class="text-center py-10 border-t bg-white">
+        <p class="text-slate-400 font-bold">© 2026 جميع الحقوق محفوظة لـ شحنة | NomadByte Platform</p>
     </footer>
 
     <script>
-        function calculateRates() {
-            const weight = parseFloat(document.getElementById('weight-val').value);
-            const unit = document.getElementById('weight-unit').value;
+        function compareRates() {
+            const w = parseFloat(document.getElementById('weight').value);
+            const u = document.getElementById('unit').value;
             
-            if(!weight || weight <= 0) {
-                alert("يرجى إدخال وزن صحيح");
-                return;
-            }
+            if(!w || w <= 0) return alert("يرجى إدخال وزن الشحنة");
 
-            // تحويل كل شيء للكيلو للحساب
-            let weightInKg = unit === 'g' ? weight / 1000 : weight;
-
-            // معادلة افتراضية (يمكنك تعديلها لاحقاً حسب الاتفاقيات)
-            const aramexPrice = (weightInKg * 15 + 25).toFixed(2);
-            const smsaPrice = (weightInKg * 12 + 30).toFixed(2);
-
-            document.getElementById('placeholder-text').classList.add('hidden');
-            document.getElementById('rates-list').classList.remove('hidden');
+            let weightKg = u === 'g' ? w / 1000 : w;
             
-            document.getElementById('rate-aramex').innerText = aramexPrice + " ر.س";
-            document.getElementById('rate-smsa').innerText = smsaPrice + " ر.س";
+            document.getElementById('wait-msg').classList.add('hidden');
+            document.getElementById('rates').classList.remove('hidden');
+            document.getElementById('res-box').classList.remove('border-dashed');
+
+            // معادلة تسعير احترافية (أساسي + سعر الكيلو)
+            document.getElementById('price-aramex').innerText = (weightKg * 12 + 25).toFixed(2) + " ر.س";
+            document.getElementById('price-smsa').innerText = (weightKg * 10 + 32).toFixed(2) + " ر.س";
         }
     </script>
 </body>
