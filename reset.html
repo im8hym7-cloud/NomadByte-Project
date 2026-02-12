@@ -7,24 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="login-wrapper">
         <div class="login-card">
-            <h2>استعادة الوصول</h2>
-            <p class="subtitle">أدخل بريدك الإلكتروني المرتبط بحسابك في NomadByte_KSA</p>
+            <div class="header-text">
+                <h2>نسيت كلمة السر؟</h2>
+                <p class="subtitle">أدخل بريدك الإلكتروني المرتبط بحساب NomadByte_KSA وسنرسل لك رابط الاستعادة.</p>
+            </div>
 
-            <form>
+            <form id="resetForm">
                 <div class="input-group">
                     <label>البريد الإلكتروني</label>
                     <input type="email" placeholder="example@nomadbyte.com" required>
                 </div>
-                <button type="submit" class="login-btn-blue">إرسال كود التحقق</button>
+
+                <button type="submit" class="login-btn-blue">إرسال رابط التحقق</button>
             </form>
 
             <div class="footer-links">
-                <a href="login.html">العودة للدخول</a>
+                <a href="login.html">العودة لتسجيل الدخول</a>
                 <a href="index.html">الرئيسية</a>
             </div>
         </div>
     </div>
+
 </body>
 </html>
