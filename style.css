@@ -1,6 +1,6 @@
-/* الإعدادات العامة */
+/* --- 1. الإعدادات العامة للهوية البصرية --- */
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8fafc;
     margin: 0;
     display: flex;
@@ -10,26 +10,55 @@ body {
     direction: rtl;
 }
 
-/* البطاقة (الحجم النحيف المضبوط) */
-.login-wrapper { width: 100%; max-width: 360px; padding: 10px; }
+/* --- 2. تصميم البطاقة (النحيف والمضبوط) --- */
+.login-wrapper {
+    width: 100%;
+    max-width: 360px; /* العرض المصغر الذي تفضله */
+    padding: 10px;
+}
+
 .login-card {
-    background: #fff;
+    background: #ffffff;
     padding: 25px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; /* يمنع التداخل */
     text-align: center;
 }
 
-.main-logo { width: 65px; margin: 0 auto; }
-h2 { margin: 0; color: #1a2b3c; font-size: 19px; }
-.subtitle { margin: 0; color: #888; font-size: 12px; }
+.main-logo {
+    width: 65px;
+    margin: 0 auto;
+}
 
-/* الحقول */
-.input-group { display: flex; flex-direction: column; gap: 5px; text-align: right; }
-.input-group label { font-size: 12px; font-weight: 600; color: #444; }
+h2, h3 { 
+    margin: 0; 
+    color: #1a2b3c; 
+    font-size: 19px; 
+}
+
+.subtitle { 
+    margin: 0; 
+    color: #888; 
+    font-size: 12px; 
+}
+
+/* --- 3. تنسيق الحقول (Inputs) --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: right;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #444;
+}
+
 input, select {
     padding: 10px;
     border: 1px solid #e2e8f0;
@@ -37,35 +66,101 @@ input, select {
     background: #f9fafb;
     font-size: 14px;
     outline: none;
+    transition: 0.2s;
 }
 
-/* إصلاح تداخل الصفحة الرئيسية (خيار المدن) */
+input:focus, select:focus {
+    border-color: #ff8c00;
+    background: #fff;
+}
+
+/* --- 4. إصلاح تداخل خيارات المدن (الصفحة الرئيسية) --- */
 .calculator-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     margin-top: 15px;
 }
+
 .calc-item {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    min-width: 120px; /* يمنع التداخل */
+    min-width: 130px; /* يمنع تداخل "من مدينة" و "إلى مدينة" */
     text-align: right;
 }
 
-/* الأزرار */
-.login-btn { background: #1a2b3c; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-.login-btn-blue { background: #2563eb; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; }
-.nafath-btn {
-    background: #fff; border: 1px solid #edf2f7; padding: 10px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-weight: 600; font-size: 13px;
-}
-.nafath-logo { background: #10b981; color: #fff; padding: 1px 5px; border-radius: 4px; font-size: 10px; }
+/* --- 5. الأزرار (Buttons) --- */
 
-/* الروابط */
-.divider { font-size: 11px; color: #cbd5e0; margin: 5px 0; }
-.footer-links { display: flex; justify-content: space-between; font-size: 11px; margin-top: 10px; }
-.footer-links a { text-decoration: none; color: #3498db; cursor: pointer; }
+/* زر الأفراد (أسود/كحلي) */
+.login-btn {
+    background: #1a2b3c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* زر الشركات (أزرق) */
+.login-btn-blue {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+/* زر نفاذ (أخضر) */
+.nafath-btn {
+    background: white;
+    border: 1px solid #edf2f7;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nafath-logo {
+    background: #10b981;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+/* --- 6. الروابط والتذييل --- */
+.divider {
+    font-size: 11px;
+    color: #cbd5e0;
+    margin: 5px 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #3498db;
+    cursor: pointer;
+}
+
+.footer-links a:hover {
+    color: #ff8c00;
+}
