@@ -3,74 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحنة | الرئيسية</title>
+    <title>شحنة | الحاسبة المتطورة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* تصغير الواجهة العام لتقليل أثر الزووم الزائد */
-        html { zoom: 0.95; } 
-        body { background-color: #f8fafc; font-family: 'Tajawal', sans-serif; }
-        .nav-btn { @apply px-5 py-2 rounded-xl font-bold text-sm transition-all; }
-        .main-card { background: white; border-radius: 45px; box-shadow: 0 25px 60px rgba(0,0,0,0.03); border: 2px solid white; }
+        /* تصغير عام للعناصر لعمل Zoom Out طبيعي */
+        body { 
+            background-color: #f8fafc; 
+            font-family: 'Tajawal', sans-serif; 
+            transform: scale(0.9); /* تقليل الحجم الكلي بنسبة 10% */
+            transform-origin: top center;
+        }
+        .main-card { 
+            background: white; 
+            border-radius: 35px; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.02); 
+            border: 1px solid #f1f5f9; 
+        }
+        select, input { 
+            @apply w-full p-3 bg-slate-50 border-2 border-slate-50 rounded-xl font-bold text-sm text-center outline-none focus:border-blue-500 transition-all; 
+        }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <header class="p-8 flex justify-between items-center max-w-6xl mx-auto">
+    <header class="p-6 flex justify-between items-center max-w-5xl mx-auto">
         <div class="flex items-center gap-3">
-            <img src="icon.png" class="w-10 h-10 shadow-sm">
-            <h1 class="text-xl font-black text-blue-900">شحنة</h1>
+            <img src="icon.png" class="w-8 h-8 opacity-90">
+            <h1 class="text-lg font-black text-blue-900 tracking-tight">شحنة</h1>
         </div>
-        <div class="flex items-center gap-2 bg-white/60 p-1.5 rounded-2xl border border-white shadow-sm">
-            <a href="index.html" class="nav-btn bg-blue-600 text-white shadow-md shadow-blue-50">الرئيسية</a>
-            <a href="login.html" class="nav-btn text-slate-500 hover:bg-white">دخول الأفراد</a>
-            <a href="admin.html" class="nav-btn text-slate-500 hover:bg-white">دخول الشركات</a>
+        <div class="flex items-center gap-2 bg-white p-1 rounded-xl border border-slate-100 shadow-sm">
+            <a href="index.html" class="px-4 py-1.5 rounded-lg font-bold text-xs bg-blue-600 text-white shadow-md">الرئيسية</a>
+            <a href="login.html" class="px-4 py-1.5 rounded-lg font-bold text-xs text-slate-500 hover:bg-slate-50">دخول الأفراد</a>
+            <a href="admin.html" class="px-4 py-1.5 rounded-lg font-bold text-xs text-slate-500 hover:bg-slate-50">دخول الشركات</a>
         </div>
     </header>
 
-    <main class="py-10 flex flex-col items-center px-6">
-        <div class="text-center mb-10 max-w-2xl">
-            <h2 class="text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">احسب شحنتك <span class="text-blue-600">بذكاء</span> 🇸🇦</h2>
-            <p class="text-slate-400 font-bold text-base">نظام ذكي يربط المدن السعودية ومشاريع الرؤية بأفضل حلول الشحن.</p>
+    <main class="py-8 flex flex-col items-center px-6">
+        <div class="text-center mb-8 max-w-xl">
+            <h2 class="text-3xl font-black text-slate-800 mb-2 leading-snug">احسب شحنتك <span class="text-blue-600">بذكاء</span> 🇸🇦</h2>
+            <p class="text-slate-400 font-bold text-sm uppercase tracking-tighter">مستقبل اللوجستيات في المملكة يبدأ هنا</p>
         </div>
 
-        <div class="w-full max-w-5xl main-card p-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="space-y-2">
-                    <label class="text-[10px] font-black text-slate-400 mr-2 uppercase">من مدينة</label>
-                    <select class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 font-bold text-center focus:border-blue-500 outline-none transition-all city-list"></select>
+        <div class="w-full max-w-4xl main-card p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-slate-400 mr-2">من مدينة</label>
+                    <select class="city-list"></select>
                 </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-black text-slate-400 mr-2 uppercase">إلى مدينة / مشروع</label>
-                    <select class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 font-bold text-center focus:border-blue-500 outline-none transition-all city-list"></select>
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-slate-400 mr-2">إلى وجهة / مشروع</label>
+                    <select class="city-list"></select>
                 </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-black text-slate-400 mr-2 uppercase">الوزن (KG)</label>
-                    <input type="number" value="5" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 font-bold text-center focus:border-blue-500 outline-none">
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-slate-400 mr-2">الوزن (KG)</label>
+                    <input type="number" value="1">
                 </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-black text-slate-400 mr-2 uppercase">مبادرة الاستدامة</label>
-                    <div class="flex items-center justify-center gap-3 h-[58px] bg-emerald-50/50 rounded-2xl border-2 border-emerald-50 px-4">
-                        <span class="text-[10px] font-black text-emerald-700">نقل كهربائي 🍃</span>
-                        <input type="checkbox" checked class="w-4 h-4 accent-emerald-600">
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-slate-400 mr-2">نقل مستدام</label>
+                    <div class="flex items-center justify-between h-[46px] px-3 bg-emerald-50/30 rounded-xl border-2 border-emerald-50">
+                        <span class="text-[9px] font-black text-emerald-700">شحن كهربائي 🍃</span>
+                        <input type="checkbox" checked class="w-3.5 h-3.5 accent-emerald-600">
                     </div>
                 </div>
             </div>
 
-            <button class="w-full bg-blue-600 text-white py-5 rounded-3xl font-black text-lg shadow-2xl shadow-blue-100 hover:scale-[1.01] active:scale-95 transition-all">
-                استخراج عروض الأسعار اللوجستية 🔍
+            <button class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black text-base shadow-lg shadow-blue-100 hover:brightness-110 active:scale-[0.98] transition-all">
+                استخراج عروض الأسعار 🔍
             </button>
 
-            <div class="mt-10 text-center pt-8 border-t border-slate-50">
-                <a href="track.html" class="text-blue-500 font-black flex items-center justify-center gap-2 hover:underline decoration-2 underline-offset-8">
-                    📦 لديك رقم شحنة؟ تتبعها من هنا بدون تسجيل
+            <div class="mt-8 text-center pt-6 border-t border-slate-50">
+                <a href="track.html" class="text-blue-500 font-black text-xs flex items-center justify-center gap-2 hover:underline">
+                    📦 تتبع شحنة زائر (بدون تسجيل)
                 </a>
             </div>
         </div>
     </main>
 
     <script>
-        const cities = ["الرياض", "جدة", "الدمام", "نيوم", "مكة المكرمة", "المدينة المنورة", "العلا", "تبوك", "أبها", "ذا لاين", "تروجينا", "سندالة"];
+        const cities = ["الرياض", "جدة", "الدمام", "نيوم", "ذا لاين", "مكة المكرمة", "المدينة المنورة", "العلا", "تبوك", "الخبر", "أبها", "جازان", "نجران", "الجبيل"];
         window.onload = () => {
             document.querySelectorAll('.city-list').forEach(s => cities.forEach(c => {
                 let o = document.createElement('option'); o.textContent = c; s.add(o);
