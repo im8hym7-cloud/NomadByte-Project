@@ -12,52 +12,72 @@
     <div class="dash-container">
         <aside class="sidebar">
             <div class="logo-area">
-                <img src="icon.png" alt="Logo" width="40">
+                <img src="https://cdn-icons-png.flaticon.com/512/814/814587.png" alt="Logo" width="50">
                 <h3>NomadByte</h3>
             </div>
             <nav class="dash-nav">
-                <a href="#" class="active"><i class="fa fa-home"></i> الرئيسة</a>
+                <a href="#" class="active"><i class="fa fa-chart-pie"></i> الإحصائيات</a>
                 <a href="javascript:void(0)" onclick="toggleModal()"><i class="fa fa-plus-circle"></i> إضافة شحنة</a>
-                <a href="index.html" class="logout"><i class="fa fa-sign-out-alt"></i> خروج</a>
+                <a href="#"><i class="fa fa-boxes"></i> شحناتي</a>
+                <a href="index.html" class="logout"><i class="fa fa-sign-out-alt"></i> تسجيل الخروج</a>
             </nav>
         </aside>
 
         <main class="main-content">
             <header class="dash-header">
-                <h2>إحصائيات الشحنات الذكية</h2>
+                <h2>أهلاً بك، <span class="blue-text">NomadByte_KSA</span> 👋</h2>
+                <p class="subtitle">إليك ملخص عملياتك اللوجستية لليوم</p>
             </header>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <i class="fa fa-box"></i>
-                    <div class="stat-info"><span>الإجمالي</span><strong id="totalCount">1</strong></div>
+                    <i class="fa fa-truck-loading"></i>
+                    <div class="stat-info">
+                        <span>إجمالي الشحنات</span>
+                        <strong id="totalCount">1</strong>
+                    </div>
                 </div>
                 <div class="stat-card success">
-                    <i class="fa fa-check"></i>
-                    <div class="stat-info"><span>مكتملة</span><strong>1</strong></div>
+                    <i class="fa fa-check-double"></i>
+                    <div class="stat-info">
+                        <span>شحنات مكتملة</span>
+                        <strong>0</strong>
+                    </div>
+                </div>
+                <div class="stat-card" style="border-right: 4px solid #2563eb;">
+                    <i class="fa fa-route" style="color: #2563eb;"></i>
+                    <div class="stat-info">
+                        <span>تحت التنفيذ</span>
+                        <strong>1</strong>
+                    </div>
                 </div>
             </div>
 
             <section class="table-section">
-                <h3>سجل الشحنات</h3>
-                <table id="shipmentTable">
-                    <thead>
-                        <tr>
-                            <th>رقم الشحنة</th>
-                            <th>الوجهة</th>
-                            <th>الوزن</th>
-                            <th>الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>NB-1001</td>
-                            <td>الرياض - القدية</td>
-                            <td>5 KG</td>
-                            <td><span class="status-badge">مجدولة</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3>سجل الشحنات الأخيرة</h3>
+                    <button class="nav-btn" style="background: #2563eb; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;" onclick="toggleModal()">+ شحنة جديدة</button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="shipmentTable">
+                        <thead>
+                            <tr>
+                                <th>رقم الشحنة</th>
+                                <th>الوجهة</th>
+                                <th>الوزن</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NB-7700</td>
+                                <td>الرياض - مشروع القدية</td>
+                                <td>150 KG</td>
+                                <td><span class="status-badge">جاري المعالجة</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </main>
     </div>
@@ -65,47 +85,73 @@
     <div id="shipmentModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="toggleModal()">&times;</span>
-            <h3>إضافة شحنة جديدة</h3>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fa fa-file-invoice" style="font-size: 40px; color: #2563eb;"></i>
+                <h3 style="margin-top: 10px;">إنشاء بوليصة شحن</h3>
+            </div>
+            
             <form id="addShipmentForm">
                 <div class="input-group">
-                    <label>رقم الشحنة</label>
-                    <input type="text" id="shipId" placeholder="مثال: NB-2002" required>
+                    <label>رقم الشحنة (ID)</label>
+                    <input type="text" id="shipId" placeholder="مثال: NB-8800" required>
                 </div>
                 <div class="input-group">
-                    <label>الوجهة</label>
-                    <input type="text" id="shipDest" placeholder="إلى أين؟" required>
+                    <label>الوجهة النهائية</label>
+                    <input type="text" id="shipDest" placeholder="مثال: نيوم - المنطقة الشمالية" required>
                 </div>
                 <div class="input-group">
-                    <label>الوزن (KG)</label>
-                    <input type="number" id="shipWeight" required>
+                    <label>الوزن التقريبي (KG)</label>
+                    <input type="number" id="shipWeight" placeholder="0.00" required>
                 </div>
-                <button type="button" class="login-btn-blue" onclick="saveShipment()">حفظ الشحنة</button>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="login-btn-blue" onclick="saveShipment()">حفظ وتأكيد</button>
+                    <button type="button" class="login-btn" style="background: #eee; color: #333;" onclick="toggleModal()">إلغاء</button>
+                </div>
             </form>
         </div>
     </div>
 
     <script>
+        // إظهار وإخفاء النافذة
         function toggleModal() {
             const modal = document.getElementById('shipmentModal');
             modal.style.display = (modal.style.display === "flex") ? "none" : "flex";
         }
 
+        // حفظ الشحنة وإضافتها للجدول
         function saveShipment() {
             const id = document.getElementById('shipId').value;
             const dest = document.getElementById('shipDest').value;
             const weight = document.getElementById('shipWeight').value;
 
-            if(!id || !dest || !weight) return alert("اكمل البيانات");
+            // التحقق من الحقول
+            if(!id || !dest || !weight) {
+                alert("الرجاء تعبئة كافة البيانات المطلوبة ⚠️");
+                return;
+            }
 
-            // إضافة صف جديد للجدول (Task 7)
-            const table = document.getElementById('shipmentTable').getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-            newRow.innerHTML = `<td>${id}</td><td>${dest}</td><td>${weight} KG</td><td><span class="status-badge">جديدة</span></td>`;
+            // إضافة البيانات للجدول ديناميكياً
+            const tableBody = document.getElementById('shipmentTable').getElementsByTagName('tbody')[0];
+            const newRow = tableBody.insertRow(0); // إضافة في أول الصفوف
 
-            // إخفاء النافذة وتصفير الفورم
+            newRow.innerHTML = `
+                <td>${id}</td>
+                <td>${dest}</td>
+                <td>${weight} KG</td>
+                <td><span class="status-badge" style="background: #e6fffa; color: #00a389;">جديدة</span></td>
+            `;
+
+            // تحديث عداد الإحصائيات (بشكل بسيط)
+            const countElement = document.getElementById('totalCount');
+            countElement.innerText = parseInt(countElement.innerText) + 1;
+
+            // إغلاق النافذة وتنظيف الحقول
             toggleModal();
             document.getElementById('addShipmentForm').reset();
-            alert("تم حفظ الشحنة بنجاح! ✅");
+            
+            // رسالة نجاح
+            alert("تم تسجيل الشحنة بنجاح في نظام NomadByte! ✅");
         }
     </script>
 </body>
