@@ -3,82 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحنة | SH7NA</title>
+    <title>شحنة | SH7NA - الرئيسية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #f0f4f8; font-family: 'Tajawal', sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-        .nav-link { @apply px-5 py-2 rounded-xl font-bold transition-all text-sm; }
+        body { background-color: #f4f7fa; font-family: 'Tajawal', sans-serif; overflow-x: hidden; }
+        .main-card { background: white; border-radius: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border: 1px solid #edf2f7; }
+        .nav-btn { @apply px-6 py-2 rounded-xl font-bold transition-all text-sm; }
+        select, input { @apply bg-slate-50 border-2 border-slate-50 rounded-2xl p-4 font-bold text-center outline-none focus:border-blue-500 transition-all text-slate-700; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <header class="p-6 flex justify-between items-center max-w-7xl mx-auto w-full">
-        <div class="flex items-center gap-3">
-            <div class="bg-white p-2 rounded-2xl shadow-sm">
-                <img src="icon.png" class="w-12 h-12 object-contain">
-            </div>
+    <header class="p-8 flex justify-between items-center max-w-7xl mx-auto w-full">
+        <div class="flex items-center gap-4">
+            <img src="icon.png" class="w-12 h-12 object-contain shadow-sm rounded-xl">
             <div>
                 <h1 class="text-2xl font-black text-blue-900 leading-none">شحنة</h1>
-                <p class="text-[8px] font-bold text-blue-400 tracking-[0.2em] uppercase">NomadByte_KSA</p>
+                <p class="text-[9px] font-bold text-emerald-600 tracking-widest uppercase mt-1">Vision 2030 Sustainability</p>
             </div>
         </div>
 
-        <div class="flex items-center gap-2 bg-white/50 p-2 rounded-3xl border border-white">
-            <a href="index.html" class="nav-link bg-blue-600 text-white shadow-lg shadow-blue-100">الرئيسية</a>
-            <a href="index.html" class="nav-link text-slate-500 hover:bg-white">دخول الأفراد</a>
-            <a href="admin.html" class="nav-link text-slate-500 hover:bg-white border border-transparent hover:border-slate-100">دخول الشركات</a>
+        <div class="flex items-center gap-3 bg-white/80 backdrop-blur-md p-2 rounded-2xl border border-white shadow-sm">
+            <a href="index.html" class="nav-btn bg-blue-600 text-white shadow-md shadow-blue-100">الرئيسية</a>
+            <a href="user.html" class="nav-btn text-slate-500 hover:bg-slate-50">دخول الأفراد</a>
+            <a href="admin.html" class="nav-btn text-slate-500 hover:bg-slate-50">دخول الشركات</a>
         </div>
     </header>
 
-    <main class="flex-1 flex flex-col items-center justify-center px-6 py-10">
+    <main class="flex-1 flex flex-col items-center justify-center px-6 pb-20">
         <div class="text-center mb-10">
-            <h2 class="text-5xl font-black text-slate-800 mb-4 tracking-tight">احسب شحنتك <span class="text-blue-600">بذكاء</span> ⚡</h2>
-            <p class="text-slate-400 font-bold text-lg">أدخل الوزن وشاهد أفضل عروض شركات الشحن في ثوانٍ</p>
+            <h2 class="text-5xl font-black text-slate-800 mb-4 tracking-tight">احسب شحنتك <span class="text-blue-600 italic">بذكاء</span> 🇸🇦</h2>
+            <p class="text-slate-400 font-bold text-lg">أدخل التفاصيل وشاهد أفضل عروض شركات الشحن في المملكة</p>
         </div>
 
-        <div class="w-full max-w-5xl glass-card p-12 relative">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="space-y-3">
-                    <label class="block text-[11px] font-black text-slate-400 text-center uppercase">من مدينة</label>
-                    <select id="from-city" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 font-bold text-center focus:border-blue-500 outline-none transition-all"></select>
+        <div class="w-full max-w-6xl main-card p-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                <div class="flex flex-col gap-3">
+                    <label class="text-[10px] font-black text-slate-400 mr-2">من مدينة</label>
+                    <select id="from-city" class="city-list"></select>
                 </div>
-                <div class="space-y-3">
-                    <label class="block text-[11px] font-black text-slate-400 text-center uppercase">إلى مدينة / مشروع</label>
-                    <select id="to-city" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 font-bold text-center focus:border-blue-500 outline-none transition-all"></select>
+                <div class="flex flex-col gap-3">
+                    <label class="text-[10px] font-black text-slate-400 mr-2">إلى مدينة / مشروع</label>
+                    <select id="to-city" class="city-list"></select>
                 </div>
-                <div class="space-y-3">
-                    <label class="block text-[11px] font-black text-slate-400 text-center uppercase">الوزن (KG)</label>
-                    <input type="number" id="weight" value="5" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 font-bold text-center focus:border-blue-500 outline-none transition-all">
+                <div class="flex flex-col gap-3">
+                    <label class="text-[10px] font-black text-slate-400 mr-2">الوزن (KG)</label>
+                    <input type="number" id="weight" value="5">
                 </div>
-                <div class="space-y-3">
-                    <label class="block text-[11px] font-black text-slate-400 text-center uppercase">مبادرة الاستدامة</label>
-                    <div class="flex items-center justify-center gap-3 h-[60px] bg-emerald-50/50 rounded-2xl border-2 border-emerald-100 px-4">
-                        <span class="text-[11px] font-black text-emerald-700">نقل كهربائي 🍃</span>
+                <div class="flex flex-col gap-3">
+                    <label class="text-[10px] font-black text-slate-400 mr-2">مبادرة الاستدامة</label>
+                    <div class="flex items-center justify-center gap-3 bg-emerald-50/50 rounded-2xl border-2 border-emerald-50 h-[60px]">
+                        <span class="text-xs font-black text-emerald-700">نقل كهربائي 🍃</span>
                         <input type="checkbox" checked class="w-5 h-5 accent-emerald-600">
                     </div>
                 </div>
             </div>
 
-            <button class="w-full bg-blue-600 text-white mt-10 py-5 rounded-3xl font-black text-xl shadow-2xl shadow-blue-200 hover:scale-[1.02] active:scale-95 transition-all">
-                احسب وقارن الأسعار الآن 💰
+            <button class="w-full bg-blue-600 text-white py-5 rounded-[25px] font-black text-xl shadow-2xl shadow-blue-100 hover:scale-[1.01] transition-all active:scale-95">
+                استخراج عروض الأسعار اللوجستية 🔍
             </button>
 
-            <div class="mt-8 text-center pt-6 border-t border-slate-50">
-                <a href="track.html" class="text-blue-500 font-black flex items-center justify-center gap-2 hover:underline">
-                    📦 لديك رقم شحنة؟ تتبعها من هنا
+            <div class="mt-10 text-center pt-8 border-t border-slate-50">
+                <a href="track.html" class="text-blue-500 font-black flex items-center justify-center gap-2 hover:underline decoration-2 underline-offset-8">
+                    📦 لديك رقم شحنة؟ تتبعها من هنا بدون تسجيل
                 </a>
             </div>
         </div>
     </main>
 
     <script>
-        const cities = ["الرياض", "جدة", "الدمام", "نيوم (NEOM)", "مكة المكرمة", "المدينة المنورة", "العلا"];
+        const KSA_CITIES = [
+            "الرياض", "جدة", "الدمام", "مكة المكرمة", "المدينة المنورة", 
+            "نيوم (NEOM)", "ذا لاين", "تروجينا", "سندالة", "العلا", 
+            "تبوك", "الخبر", "أبها", "حائل", "جازان", "القصيم", "الجبيل"
+        ];
+        
         window.onload = () => {
-            document.querySelectorAll('select').forEach(s => {
-                cities.forEach(c => {
-                    let o = document.createElement('option'); o.text = c; s.add(o);
+            const selects = document.querySelectorAll('.city-list');
+            selects.forEach(s => {
+                KSA_CITIES.forEach(c => {
+                    let o = document.createElement('option');
+                    o.value = c; o.textContent = c;
+                    s.appendChild(o);
                 });
             });
         };
