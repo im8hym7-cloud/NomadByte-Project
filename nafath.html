@@ -9,22 +9,24 @@
 <body>
     <div class="login-wrapper">
         <div class="login-card" style="border-top: 5px solid #10b981;"> <div class="nafath-header">
-                <span style="background: #10b981; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">IAM</span>
+                <div style="background: #10b981; color: white; display: inline-block; padding: 5px 15px; border-radius: 8px; font-weight: bold; font-size: 20px;">IAM</div>
                 <h2 style="margin-top: 15px;">تسجيل الدخول</h2>
             </div>
             
-            <p class="subtitle">يرجى إدخال رقم الهوية الوطنية أو الإقامة</p>
+            <p class="subtitle">الرجاء إدخال رقم الهوية الوطنية أو الإقامة للتصديق عبر تطبيق نفاذ</p>
 
             <form>
                 <div class="input-group">
-                    <label>اسم المستخدم / بطاقة الأحوال</label>
-                    <input type="text" placeholder="1XXXXXXXXX" required>
+                    <label>رقم الهوية / الإقامة</label>
+                    <input type="text" placeholder="1XXXXXXXXX" maxlength="10" required>
                 </div>
-                <button type="submit" class="login-btn" style="background: #10b981;">تسجيل الدخول</button>
+                <button type="submit" class="login-btn" style="background: #10b981; margin-top: 10px;">دخول</button>
             </form>
 
-            <div class="footer-links">
-                <a href="index.html">← العودة للموقع</a>
+            <div class="divider">أو عبر بطاقة الأحوال الذكية</div>
+
+            <div class="footer-links" style="justify-content: center;">
+                <a href="index.html">← العودة للرئيسية</a>
             </div>
         </div>
     </div>
