@@ -4,197 +4,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NomadByte | لوحة التحكم الذكية</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #05080f; color: white; margin: 0; padding: 20px; min-height: 100vh; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; }
-        .btn-glow { transition: 0.3s; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); z-index: 10; position: relative; }
-        .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(59, 130, 246, 0.7); }
-        .modal-bg { z-index: 100; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); }
-        input, select { background: #0f172a !important; border: 1px solid #1e293b !important; color: white !important; }
+        :root {
+            --bg-dark: #050a10;
+            --card-bg: #0c141d;
+            --primary-blue: #007bff;
+            --success-green: #28a745;
+            --danger-red: #dc3545;
+            --text-light: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 10px; /* تقليل الهوامش */
+            font-size: 13px; /* تصغير الخط العام */
+        }
+
+        /* الهيدر العلوي - ملموم */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 10px; }
+        .logo-section img { height: 35px; } /* تصغير الشعار */
+
+        /* الأزرار العلوية */
+        .top-actions { display: flex; gap: 8px; }
+        .btn {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+        .btn-add { background: var(--primary-blue); color: white; }
+        .btn-track { background: transparent; border: 1px solid var(--primary-blue); color: white; }
+
+        /* البطاقات العلوية - أصغر بكثير */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #1a2533;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-card h3 { font-size: 11px; color: #888; margin: 0; }
+        .stat-card p { font-size: 24px; font-weight: bold; margin: 5px 0; color: white; }
+
+        .qr-card { border-color: var(--success-green); padding: 5px; }
+        #qrcode img { width: 60px !important; height: 60px !important; margin: 0 auto; }
+
+        /* حاوية الجدول */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #1a2533;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+        th {
+            color: #666;
+            font-size: 11px;
+            padding: 8px;
+            border-bottom: 1px solid #1a2533;
+        }
+
+        td {
+            padding: 10px 8px;
+            font-size: 12px;
+            border-bottom: 1px solid #1a2533;
+        }
+
+        /* أزرار الحالة والحذف */
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            background: rgba(0,123,255,0.1);
+            color: var(--primary-blue);
+        }
+
+        .btn-delete {
+            background: rgba(220,53,69,0.1);
+            color: var(--danger-red);
+            border: none;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <div class="max-w-7xl mx-auto relative">
-        <header class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 bg-[#05080f] py-4">
-            <div class="flex items-center gap-4">
-                <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-500/40">
-                    <span class="text-3xl font-black italic">NB</span>
-                </div>
-                <div>
-                    <h1 class="text-2xl font-black tracking-widest text-white uppercase">NomadByte</h1>
-                    <p class="text-blue-500 text-xs font-bold tracking-[0.3em]">ADMIN CENTER</p>
-                </div>
-            </div>
-            
-            <div class="flex gap-4 flex-wrap justify-center">
-                <button onclick="openTrackModal()" class="btn-glow border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-8 py-3 rounded-xl font-bold transition-all">
-                    🔍 تتبع شحنة
-                </button>
-                <button onclick="openModal()" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-blue-600/50">
-                    + تسجيل شحنة جديدة
-                </button>
-            </div>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="glass-card p-8 border-l-4 border-green-500 flex items-center justify-between">
-                <div class="text-right">
-                    <p class="text-gray-500 text-xs font-bold mb-1 uppercase tracking-widest">تتبع العميل</p>
-                    <p class="text-[10px] text-blue-400 mb-2 font-bold italic">رابط سريع للمشاركة</p>
-                </div>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://im8hym7-cloud.githubio/NomadByte-Project/track.html&color=3b82f6&bgcolor=05080f" class="rounded-lg shadow-lg border border-white/5 bg-[#05080f]">
-            </div>
-            <div class="glass-card p-8 border-l-4 border-blue-500">
-                <p class="text-gray-500 text-sm font-bold mb-1">شحنات نشطة</p>
-                <h2 id="active-shipments" class="text-5xl font-black">0</h2>
-            </div>
-            <div class="glass-card p-8 border-l-4 border-blue-600">
-                <p class="text-gray-500 text-sm font-bold mb-1">إجمالي الشحنات</p>
-                <h2 id="total-shipments" class="text-5xl font-black">0</h2>
-            </div>
-        </div>
-
-        <div class="glass-card p-8">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_#3b82f6]"></div>
-                <h3 class="text-xl font-bold tracking-tight">مراقبة الشحنات الحية</h3>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-right border-collapse">
-                    <thead>
-                        <tr class="text-gray-500 border-b border-white/5 text-xs font-bold tracking-widest uppercase">
-                            <th class="pb-6">كود الشحن</th>
-                            <th class="pb-6 text-center">العميل</th>
-                            <th class="pb-6 text-center">الوجهة</th>
-                            <th class="pb-6 text-center">الحالة</th>
-                            <th class="pb-6 text-left">الإجراء</th>
-                        </tr>
-                    </thead>
-                    <tbody id="shipment-table-body" class="divide-y divide-white/5">
-                        </tbody>
-                </table>
-            </div>
-        </div>
+<header>
+    <div class="top-actions">
+        <button class="btn btn-add">+ تسجيل شحنة جديدة</button>
+        <button class="btn btn-track">🔍 تتبع شحنة</button>
     </div>
-
-    <div id="modal" class="hidden fixed inset-0 modal-bg flex items-center justify-center p-4">
-        <div class="glass-card w-full max-w-lg p-10 border border-blue-500/30">
-            <h2 class="text-3xl font-black mb-8 text-center text-white">إضافة شحنة للسحابة ☁️</h2>
-            <div class="space-y-6">
-                <input id="customer-name" type="text" placeholder="اسم العميل الكامل" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500">
-                <input id="destination" type="text" placeholder="الوجهة (المدينة)" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500">
-                <select id="status" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500">
-                    <option value="تحت المعالجة ⚙️">تحت المعالجة ⚙️</option>
-                    <option value="جاري التوصيل 🚚">جاري التوصيل 🚚</option>
-                    <option value="تم التوصيل ✅">تم التوصيل ✅</option>
-                </select>
-                <div class="flex gap-4 pt-4">
-                    <button onclick="saveShipment()" class="flex-1 bg-blue-600 p-4 rounded-2xl font-bold hover:bg-blue-700 transition-all text-white">تأكيد الحفظ</button>
-                    <button onclick="closeModal()" class="flex-1 bg-white/10 p-4 rounded-2xl font-bold hover:bg-white/20 transition-all text-white">إلغاء</button>
-                </div>
-            </div>
+    <div class="logo-section">
+        <div style="text-align: left;">
+            <h2 style="margin:0; font-size: 18px; letter-spacing: 1px;">NOMADBYTE</h2>
+            <small style="color: #4a90e2; font-size: 9px;">ADMIN CENTER</small>
         </div>
+        <img src="https://i.imgur.com/vK6S8v2.png" alt="Logo"> </div>
+</header>
+
+<div class="stats-container">
+    <div class="stat-card">
+        <h3>إجمالي الشحنات</h3>
+        <p id="total-count">4</p>
     </div>
-
-    <div id="track-modal" class="hidden fixed inset-0 modal-bg flex items-center justify-center p-4">
-        <div class="glass-card w-full max-w-md p-10 border border-blue-500/30 text-center">
-            <h2 class="text-2xl font-black mb-6 text-blue-400 underline underline-offset-8 font-mono tracking-tighter">نظام التتبع الذكي 🛰️</h2>
-            <input id="track-number" type="text" placeholder="NB-XXXXX" class="w-full p-5 rounded-2xl text-center font-mono text-2xl tracking-widest mb-4">
-            <button onclick="trackNow()" class="w-full bg-blue-600 p-5 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 text-white">ابحث في قاعدة البيانات</button>
-            <div id="track-result" class="hidden mt-6 p-6 bg-white/5 rounded-3xl border border-white/10 text-right">
-                <h3 id="res-status" class="text-2xl font-black text-green-400"></h3>
-                <p id="res-info" class="text-sm text-gray-400 mt-2"></p>
-            </div>
-            <button onclick="closeTrackModal()" class="mt-8 text-gray-500 hover:text-white transition-colors text-sm">إغلاق النافذة</button>
-        </div>
+    <div class="stat-card">
+        <h3>شحنات نشطة</h3>
+        <p id="active-count">4</p>
     </div>
+    <div class="stat-card qr-card">
+        <div id="qrcode"></div>
+        <small style="font-size: 9px; margin-top: 5px;">تتبع العميل</small>
+    </div>
+</div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+<div class="table-container">
+    <div class="table-header">
+        <h3 style="font-size: 14px; margin: 0;">مراقبة الشحنات الحية <span style="color: var(--primary-blue);">●</span></h3>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>كود الشحن</th>
+                <th>العميل</th>
+                <th>الوجهة</th>
+                <th>الحالة</th>
+                <th>الإجراء</th>
+            </tr>
+        </thead>
+        <tbody id="shipment-table">
+            <tr>
+                <td style="font-weight: bold; color: var(--primary-blue);">NB-37736</td>
+                <td style="font-weight: bold;">محمد المطيري</td>
+                <td>الدمام</td>
+                <td><span class="status-badge">تحت المعالجة</span></td>
+                <td><button class="btn-delete">حذف</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-        const firebaseConfig = { databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com/" };
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        // وظائف الأزرار
-        window.openModal = () => document.getElementById('modal').classList.remove('hidden');
-        window.closeModal = () => document.getElementById('modal').classList.add('hidden');
-        window.openTrackModal = () => {
-            document.getElementById('track-modal').classList.remove('hidden');
-            document.getElementById('track-result').classList.add('hidden');
-        };
-        window.closeTrackModal = () => document.getElementById('track-modal').classList.add('hidden');
-
-        // حفظ الشحنة
-        window.saveShipment = () => {
-            const customer = document.getElementById('customer-name').value;
-            const dest = document.getElementById('destination').value;
-            const stat = document.getElementById('status').value;
-            const code = "NB-" + Math.floor(Math.random() * 90000 + 10000);
-
-            if(customer && dest) {
-                push(ref(db, 'shipments'), { code, customer, destination: dest, status: stat });
-                closeModal();
-                alert("تم الحفظ بنجاح! 🎉");
-                document.getElementById('customer-name').value = "";
-                document.getElementById('destination').value = "";
-            } else {
-                alert("يرجى ملء كافة الحقول!");
-            }
-        };
-
-        // حذف الشحنة
-        window.deleteShipment = (id) => {
-            if(confirm("هل تريد حذف الشحنة من النظام؟")) remove(ref(db, `shipments/${id}`));
-        };
-
-        // التتبع
-        window.trackNow = () => {
-            const num = document.getElementById('track-number').value.trim();
-            onValue(ref(db, 'shipments'), (snap) => {
-                const data = snap.val();
-                let found = false;
-                for(let id in data) {
-                    if(data[id].code === num) {
-                        document.getElementById('res-status').innerText = data[id].status;
-                        document.getElementById('res-info').innerText = `العميل: ${data[id].customer} | الوجهة: ${data[id].destination}`;
-                        document.getElementById('track-result').classList.remove('hidden');
-                        found = true; break;
-                    }
-                }
-                if(!found) alert("الرقم غير موجود!");
-            }, { onlyOnce: true });
-        };
-
-        // التحديث الحي
-        onValue(ref(db, 'shipments'), (snapshot) => {
-            const data = snapshot.val();
-            const tbody = document.getElementById('shipment-table-body');
-            tbody.innerHTML = "";
-            let count = 0;
-            for (let id in data) {
-                count++;
-                const s = data[id];
-                tbody.innerHTML += `
-                    <tr class="hover:bg-white/[0.03] transition-colors">
-                        <td class="py-6 text-blue-400 font-mono font-bold">${s.code}</td>
-                        <td class="py-6 text-center font-bold text-white">${s.customer}</td>
-                        <td class="py-6 text-center text-gray-400">${s.destination}</td>
-                        <td class="py-6 text-center">
-                            <span class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-lg text-xs font-bold">${s.status}</span>
-                        </td>
-                        <td class="py-6 text-left">
-                            <button onclick="deleteShipment('${id}')" class="text-red-500 hover:text-red-400 text-xs font-bold bg-red-500/10 px-3 py-1.5 rounded-xl transition-all">حذف</button>
-                        </td>
-                    </tr>`;
-            }
-            document.getElementById('total-shipments').innerText = count;
-            document.getElementById('active-shipments').innerText = count;
-        });
-    </script>
-</body>
-</html>
+<script src="https://cdnjs.cloudflare
