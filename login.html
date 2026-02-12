@@ -3,113 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول | شحنة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* تطبيق خاصية التصغير العام للواجهة (Zoom Out) */
-        body { 
-            background-color: #f8fafc; 
-            font-family: 'Tajawal', sans-serif; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            transform: scale(0.95); /* تصغير بسيط لتجنب الزوم الكبير */
-        }
-        .login-container {
-            width: 100%;
-            max-width: 380px; 
-            background: white;
-            padding: 35px;
-            border-radius: 35px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.03);
-            border: 1px solid #f1f5f9;
-            text-align: center;
-        }
-        input {
-            @apply w-full p-3.5 bg-slate-50 border-2 border-slate-50 rounded-xl font-bold text-xs text-center outline-none focus:border-blue-500 transition-all;
-        }
-        .btn-primary {
-            @apply w-full bg-blue-600 text-white py-4 rounded-xl font-black text-sm mt-8 shadow-lg shadow-blue-50 hover:brightness-110 active:scale-95 transition-all;
-        }
-        .btn-nafath {
-            @apply w-full bg-emerald-50 text-emerald-700 py-3.5 rounded-xl font-black text-[10px] border border-emerald-100 flex items-center justify-center gap-2 mt-4 hover:bg-emerald-100 transition-all;
-        }
-        .error-msg {
-            @apply text-[9px] font-bold text-red-500 mt-2 hidden;
-        }
-    </style>
+    <title>تسجيل الدخول - NomadByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <img src="icon.png" class="w-14 mx-auto mb-5 opacity-90">
-        
-        <h2 class="text-xl font-black text-slate-800 mb-1">مرحباً بك مجدداً</h2>
-        <p class="text-slate-400 font-bold text-[10px] mb-10 italic">سجل دخولك الآمن لـ NomadByte_KSA</p>
-
-        <div class="space-y-5">
-            <div class="text-right">
-                <label class="text-[9px] font-black text-slate-400 mr-3 uppercase">اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل اسم المستخدم">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="logo-container">
+                <img src="icon.png" alt="NomadByte Logo" class="main-logo">
             </div>
-            <div class="text-right">
-                <label class="text-[9px] font-black text-slate-400 mr-3 uppercase">كلمة السر</label>
-                <input type="password" id="password" placeholder="••••••••">
+            
+            <div class="header-text">
+                <h2>مرحباً بك مجدداً</h2>
+                <p class="subtitle">سجل دخولك الآمن لـ NomadByte_KSA</p>
             </div>
-        </div>
 
-        <p id="errorBox" class="error-msg">❌ البيانات غير صحيحة، حاول مجدداً</p>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
 
-        <button onclick="handleLogin()" class="btn-primary">
-            دخول 🚀
-        </button>
+                <div class="input-group">
+                    <label for="password">كلمة السر</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
 
-        <div class="mt-6">
-            <div class="flex items-center gap-2 mb-4">
-                <div class="h-[1px] bg-slate-100 flex-1"></div>
-                <span class="text-[8px] font-bold text-slate-300 italic">أو عبر الهوية الرقمية</span>
-                <div class="h-[1px] bg-slate-100 flex-1"></div>
-            </div>
-            <button class="btn-nafath">
-                <span class="text-sm">🇸🇦</span> الدخول عبر النفاذ الوطني
+                <div id="errorMessage" class="error-box">
+                    <span>❌ البيانات غير صحيحة، حاول مجدداً</span>
+                    <span class="rocket-icon">🚀</span>
+                </div>
+
+                <button type="submit" class="login-btn">دخول</button>
+            </form>
+
+            <div class="divider">أو عبر الهوية الرقمية</div>
+
+            <button class="nafath-btn">
+                <span class="nafath-logo">SA</span> 
+                الدخول عبر النفاذ الوطني
             </button>
-        </div>
 
-        <div class="mt-8 flex justify-between px-2">
-            <a href="index.html" class="text-[9px] font-bold text-slate-400 hover:text-blue-600 transition-colors">← العودة للرئيسية</a>
-            <a href="#" class="text-[9px] font-bold text-blue-500 hover:underline">نسيت كلمة السر؟</a>
+            <div class="footer-links">
+                <a href="#" class="forgot-pass">نسيت كلمة السر؟</a>
+                <a href="index.html" class="back-home">← العودة للرئيسية</a>
+            </div>
         </div>
     </div>
 
-    <script>
-        function handleLogin() {
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const errorBox = document.getElementById('errorBox');
-
-            // محاكاة لبيانات الدخول (يمكنك تغييرها)
-            // المستخدم: admin | كلمة السر: 123456
-            if (user === "admin" && pass === "123456") {
-                errorBox.classList.add('hidden');
-                // توجيه لصفحة لوحة تحكم الأفراد
-                window.location.href = "user.html";
-            } else {
-                // إظهار رسالة الخطأ إذا كانت البيانات غلط
-                errorBox.classList.remove('hidden');
-                document.getElementById('password').value = ""; // مسح كلمة السر
-            }
-        }
-
-        // تفعيل الدخول عند ضغط زر Enter
-        document.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                handleLogin();
-            }
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
