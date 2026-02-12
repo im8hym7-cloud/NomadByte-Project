@@ -3,90 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحنة | الحاسبة المتطورة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* تصغير عام للعناصر لعمل Zoom Out طبيعي */
-        body { 
-            background-color: #f8fafc; 
-            font-family: 'Tajawal', sans-serif; 
-            transform: scale(0.9); /* تقليل الحجم الكلي بنسبة 10% */
-            transform-origin: top center;
-        }
-        .main-card { 
-            background: white; 
-            border-radius: 35px; 
-            box-shadow: 0 15px 50px rgba(0,0,0,0.02); 
-            border: 1px solid #f1f5f9; 
-        }
-        select, input { 
-            @apply w-full p-3 bg-slate-50 border-2 border-slate-50 rounded-xl font-bold text-sm text-center outline-none focus:border-blue-500 transition-all; 
-        }
-    </style>
+    <title>NomadByte | مستقبل اللوجستيات</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-    <header class="p-6 flex justify-between items-center max-w-5xl mx-auto">
-        <div class="flex items-center gap-3">
-            <img src="icon.png" class="w-8 h-8 opacity-90">
-            <h1 class="text-lg font-black text-blue-900 tracking-tight">شحنة</h1>
-        </div>
-        <div class="flex items-center gap-2 bg-white p-1 rounded-xl border border-slate-100 shadow-sm">
-            <a href="index.html" class="px-4 py-1.5 rounded-lg font-bold text-xs bg-blue-600 text-white shadow-md">الرئيسية</a>
-            <a href="login.html" class="px-4 py-1.5 rounded-lg font-bold text-xs text-slate-500 hover:bg-slate-50">دخول الأفراد</a>
-            <a href="admin.html" class="px-4 py-1.5 rounded-lg font-bold text-xs text-slate-500 hover:bg-slate-50">دخول الشركات</a>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="icon.png" alt="Logo" width="40">
+                <span>NomadByte</span>
+            </div>
+            <nav>
+                <button class="nav-btn" onclick="window.location.href='login.html'">دخول الأفراد</button>
+                <button class="nav-btn-outline" onclick="window.location.href='admin.html'">بوابة الشركات</button>
+            </nav>
         </div>
     </header>
 
-    <main class="py-8 flex flex-col items-center px-6">
-        <div class="text-center mb-8 max-w-xl">
-            <h2 class="text-3xl font-black text-slate-800 mb-2 leading-snug">احسب شحنتك <span class="text-blue-600">بذكاء</span> 🇸🇦</h2>
-            <p class="text-slate-400 font-bold text-sm uppercase tracking-tighter">مستقبل اللوجستيات في المملكة يبدأ هنا</p>
-        </div>
+    <section class="hero">
+        <h1>احسب شحنتك <span class="blue-text">بذكاء</span> SA</h1>
+        <p class="hero-subtitle">مستقبل اللوجستيات في المملكة يبدأ هنا</p>
 
-        <div class="w-full max-w-4xl main-card p-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="space-y-1.5">
-                    <label class="text-[9px] font-black text-slate-400 mr-2">من مدينة</label>
-                    <select class="city-list"></select>
+        <div class="calculator-card">
+            <div class="calculator-row">
+                <div class="calc-item">
+                    <label>من مدينة</label>
+                    <select>
+                        <option>الرياض</option>
+                        <option>جدة</option>
+                        <option>الدمام</option>
+                    </select>
                 </div>
-                <div class="space-y-1.5">
-                    <label class="text-[9px] font-black text-slate-400 mr-2">إلى وجهة / مشروع</label>
-                    <select class="city-list"></select>
+                
+                <div class="calc-item">
+                    <label>إلى مدينة / مشروع</label>
+                    <select>
+                        <option>الرياض</option>
+                        <option>نيوم</option>
+                        <option>القدية</option>
+                    </select>
                 </div>
-                <div class="space-y-1.5">
-                    <label class="text-[9px] font-black text-slate-400 mr-2">الوزن (KG)</label>
-                    <input type="number" value="1">
+
+                <div class="calc-item">
+                    <label>الوزن (KG)</label>
+                    <input type="number" value="1" min="1">
                 </div>
-                <div class="space-y-1.5">
-                    <label class="text-[9px] font-black text-slate-400 mr-2">نقل مستدام</label>
-                    <div class="flex items-center justify-between h-[46px] px-3 bg-emerald-50/30 rounded-xl border-2 border-emerald-50">
-                        <span class="text-[9px] font-black text-emerald-700">شحن كهربائي 🍃</span>
-                        <input type="checkbox" checked class="w-3.5 h-3.5 accent-emerald-600">
+
+                <div class="calc-item">
+                    <label>نقل مستدام</label>
+                    <div class="eco-badge">
+                        <input type="checkbox" checked>
+                        <span>شحن كهربائي 🍃</span>
                     </div>
                 </div>
             </div>
 
-            <button class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black text-base shadow-lg shadow-blue-100 hover:brightness-110 active:scale-[0.98] transition-all">
-                استخراج عروض الأسعار 🔍
-            </button>
-
-            <div class="mt-8 text-center pt-6 border-t border-slate-50">
-                <a href="track.html" class="text-blue-500 font-black text-xs flex items-center justify-center gap-2 hover:underline">
-                    📦 تتبع شحنة زائر (بدون تسجيل)
-                </a>
+            <button class="main-action-btn">استخراج عروض الأسعار 🔍</button>
+            
+            <div class="track-promo">
+                <a href="track.html" class="track-link">📦 تتبع شحنة زائر (بدون تسجيل)</a>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script>
-        const cities = ["الرياض", "جدة", "الدمام", "نيوم", "ذا لاين", "مكة المكرمة", "المدينة المنورة", "العلا", "تبوك", "الخبر", "أبها", "جازان", "نجران", "الجبيل"];
-        window.onload = () => {
-            document.querySelectorAll('.city-list').forEach(s => cities.forEach(c => {
-                let o = document.createElement('option'); o.textContent = c; s.add(o);
-            }));
-        };
-    </script>
+    <footer>
+        <p>© 2026 NomadByte_KSA | جميع الحقوق محفوظة</p>
+    </footer>
+
 </body>
 </html>
