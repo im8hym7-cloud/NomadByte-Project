@@ -1,15 +1,7 @@
-/* --- إعدادات عامة للهوية البصرية (Task 1) --- */
-:root {
-    --primary-color: #1a2b3c;
-    --secondary-color: #ff8c00;
-    --error-color: #e74c3c;
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-}
-
+/* --- الإعدادات الأساسية --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
+    background-color: #f8fafc;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -18,142 +10,126 @@ body {
     direction: rtl;
 }
 
-/* --- حاوية البطاقة الرئيسية --- */
+/* --- تصميم البطاقة (نحيف ومصغر) --- */
 .login-wrapper {
     width: 100%;
-    max-width: 450px;
-    padding: 15px;
+    max-width: 360px; /* العرض الذي طلبته ليكون ملموماً */
+    padding: 10px;
 }
 
 .login-card {
-    background: var(--card-bg);
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    background: #ffffff;
+    padding: 25px; /* مساحة داخلية أقل لتصغير الحجم */
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
-    gap: 25px; /* هذا يمنع تداخل العناصر تماماً */
+    gap: 15px; /* مسافة متوازنة تمنع التداخل */
     text-align: center;
 }
 
-/* --- الشعار والنصوص --- */
 .main-logo {
-    width: 90px;
-    height: auto;
-    margin-bottom: 5px;
+    width: 70px; /* شعار أصغر */
+    margin: 0 auto;
 }
 
-h2 { margin: 0; color: var(--primary-color); font-size: 24px; }
-.subtitle { margin: 0; color: #7f8c8d; font-size: 14px; }
+h2 { 
+    margin: 0; 
+    color: #1a2b3c; 
+    font-size: 20px; /* خط أصغر */
+}
 
-/* --- تنسيق الحقول (حل مشكلة التداخل) --- */
+.subtitle { 
+    margin: 0; 
+    color: #888; 
+    font-size: 13px; 
+}
+
+/* --- تنسيق المدخلات --- */
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     text-align: right;
     margin-bottom: 5px;
 }
 
 .input-group label {
+    font-size: 13px;
     font-weight: 600;
-    font-size: 14px;
-    color: var(--primary-color);
+    color: #444;
 }
 
 input {
-    padding: 14px;
-    border: 1.5px solid #eaeeef;
-    border-radius: 12px;
-    background: #f9f9f9;
-    font-size: 16px;
-    transition: all 0.3s ease;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
 }
 
 input:focus {
-    border-color: var(--secondary-color);
+    border-color: #ff8c00;
     background: #fff;
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
-}
-
-/* --- رسالة الخطأ (الصاروخ) --- */
-.error-box {
-    background: #fff5f5;
-    border: 1px solid #fed7d7;
-    color: var(--error-color);
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    /* تأكد أنها تأخذ مساحتها ولا تضغط على ما حولها */
-    margin: 5px 0; 
-}
-
-.rocket-icon {
-    font-size: 18px;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
 }
 
 /* --- الأزرار --- */
 .login-btn {
-    background: var(--primary-color);
+    background: #1a2b3c;
     color: white;
     border: none;
-    padding: 15px;
-    border-radius: 12px;
+    padding: 12px;
+    border-radius: 8px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     transition: 0.3s;
+    margin-top: 5px;
 }
 
 .login-btn:hover {
     background: #2c3e50;
-    transform: translateY(-2px);
+}
+
+.divider {
+    font-size: 11px;
+    color: #cbd5e0;
+    margin: 5px 0;
 }
 
 .nafath-btn {
     background: white;
-    border: 1px solid #e2e8f0;
-    padding: 12px;
-    border-radius: 12px;
+    border: 1px solid #edf2f7;
+    padding: 10px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
+    font-size: 13px;
     font-weight: 600;
 }
 
 .nafath-logo {
     background: #10b981;
     color: white;
-    padding: 2px 6px;
+    padding: 1px 5px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 10px;
 }
 
-/* --- الروابط السفلية --- */
+/* --- الروابط --- */
 .footer-links {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 10px;
 }
 
 .footer-links a {
     text-decoration: none;
     color: #3498db;
-    transition: 0.2s;
 }
-
-.footer-links a:hover { color: var(--secondary-color); }
