@@ -8,71 +8,74 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        .hero-section { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); min-height: 100vh; }
-        .calc-container { max-width: 800px; margin: 0 auto; transition: all 0.5s ease; }
-        .price-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: translateY(20px); }
-        .price-card.show { opacity: 1; transform: translateY(0); }
-        .chat-bot { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        body { background-color: #f1f5f9; }
+        .hero-title { font-size: 3.5rem; letter-spacing: -2px; }
+        .calc-box { max-width: 900px; transition: all 0.4s ease; }
+        .price-card { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .price-card.reveal { opacity: 1; transform: translateY(0); }
+        .chat-widget { position: fixed; bottom: 30px; left: 30px; z-index: 1000; }
+        .bot-pop { bottom: 100px; left: 30px; width: 280px; display: none; }
     </style>
 </head>
-<body class="hero-section font-['Tajawal'] text-slate-800">
+<body class="font-['Tajawal'] text-slate-800">
 
-    <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex items-center gap-4 group">
-            <img src="icon.png" class="w-12 h-12 object-contain drop-shadow-md">
-            <div>
-                <h1 class="text-2xl font-black text-blue-900 leading-none">شحنة</h1>
-                <p class="text-[9px] font-bold text-blue-500 uppercase tracking-widest">NomadByte_KSA</p>
+    <header class="p-8 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center gap-4">
+            <img src="icon.png" class="w-14 h-14 object-contain drop-shadow-2xl">
+            <div class="text-right">
+                <h1 class="text-3xl font-black text-blue-900 leading-none">شحنة</h1>
+                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">NomadByte_KSA</p>
             </div>
         </div>
-        <div class="flex gap-3">
-            <button class="bg-slate-200 text-slate-700 px-5 py-2 rounded-xl font-bold text-sm hover:bg-slate-300 transition-all">دخول الأفراد</button>
-            <a href="admin.html" class="bg-blue-600 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all">دخول الشركات</a>
+        <div class="flex gap-4">
+            <button class="px-6 py-2.5 rounded-2xl font-bold text-slate-500 hover:bg-slate-200 transition-all">دخول الأفراد</button>
+            <a href="admin.html" class="bg-blue-600 text-white px-8 py-2.5 rounded-2xl font-black shadow-xl shadow-blue-200 hover:scale-105 transition-all">دخول الشركات</a>
         </div>
     </header>
 
-    <main class="pt-16 px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">احسب شحنتك بذكاء ⚡</h2>
-            <p class="text-slate-500 font-bold">أدخل الوزن وشاهد أفضل عروض شركات الشحن في ثوانٍ</p>
+    <main class="min-h-[70vh] flex flex-col items-center justify-center px-6">
+        <div class="text-center mb-10">
+            <h2 class="hero-title font-black text-slate-900 mb-4">احسب شحنتك <span class="text-blue-600">بذكاء</span> ⚡</h2>
+            <p class="text-lg font-bold text-slate-400 italic">أدخل الوزن وشاهد أفضل عروض شركات الشحن في ثوانٍ</p>
         </div>
 
-        <div class="calc-container glass-card p-10 bg-white/80 backdrop-blur-xl border-2 border-white shadow-2xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="text-right">
-                    <label class="block text-sm font-black text-slate-400 mb-2">نوع الوزن</label>
-                    <select id="unit" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold outline-none focus:border-blue-500">
+        <div class="calc-box w-full glass-card p-12 bg-white rounded-[40px] shadow-2xl border-4 border-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div class="space-y-3">
+                    <label class="block text-sm font-black text-slate-400 mr-2">وحدة الوزن</label>
+                    <select id="unit" class="w-full p-5 bg-slate-50 rounded-3xl border-2 border-slate-100 font-black text-lg outline-none focus:border-blue-500 transition-all">
                         <option value="kg">كيلوجرام (KG)</option>
                         <option value="g">جرام (G)</option>
                     </select>
                 </div>
-                <div class="text-right">
-                    <label class="block text-sm font-black text-slate-400 mb-2">الوزن الفعلي</label>
-                    <input type="number" id="weight" placeholder="مثلاً: 5" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold outline-none focus:border-blue-500">
+                <div class="space-y-3">
+                    <label class="block text-sm font-black text-slate-400 mr-2">الوزن الفعلي</label>
+                    <input type="number" id="weight" placeholder="مثلاً: 10" class="w-full p-5 bg-slate-50 rounded-3xl border-2 border-slate-100 font-black text-lg outline-none focus:border-blue-500 transition-all">
                 </div>
             </div>
-            <button onclick="calculate()" class="w-full btn-primary py-5 text-xl shadow-xl shadow-blue-200">احسب وقارن الأسعار الآن 💰</button>
+            
+            <button onclick="showRates()" class="w-full btn-primary py-6 text-2xl shadow-2xl shadow-blue-200 rounded-3xl">احسب وقارن الأسعار الآن 💰</button>
 
-            <div id="results" class="hidden mt-12 pt-8 border-t border-slate-100">
+            <div id="results-area" class="hidden mt-12 pt-10 border-t-2 border-slate-50">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="price-card p-6 bg-blue-50 rounded-3xl border border-blue-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-black text-blue-400 mb-1">ARAMEX</p>
-                            <h4 class="text-xl font-black text-slate-700">ارامكس</h4>
+                    <div class="price-card p-8 bg-gradient-to-br from-blue-50 to-white rounded-[35px] border-2 border-blue-100 flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-inner font-black text-blue-600">AR</div>
+                            <h4 class="text-2xl font-black text-slate-700">ارامكس</h4>
                         </div>
                         <div class="text-left">
-                            <span id="aramex-res" class="text-2xl font-black text-blue-600">--</span>
-                            <p class="text-[10px] font-bold text-slate-400">شامل الضريبة</p>
+                            <span id="aramex-val" class="text-3xl font-black text-blue-600">--</span>
+                            <p class="text-[10px] font-bold text-slate-400 tracking-tighter">سعر تقديري شامل الضريبة</p>
                         </div>
                     </div>
-                    <div class="price-card p-6 bg-orange-50 rounded-3xl border border-orange-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-black text-orange-400 mb-1">SMSA EXPRESS</p>
-                            <h4 class="text-xl font-black text-slate-700">سمسا</h4>
+                    <div class="price-card p-8 bg-gradient-to-br from-orange-50 to-white rounded-[35px] border-2 border-orange-100 flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-inner font-black text-orange-600">SM</div>
+                            <h4 class="text-2xl font-black text-slate-700">سمسا</h4>
                         </div>
                         <div class="text-left">
-                            <span id="smsa-res" class="text-2xl font-black text-orange-600">--</span>
-                            <p class="text-[10px] font-bold text-slate-400">شامل الضريبة</p>
+                            <span id="smsa-val" class="text-3xl font-black text-orange-600">--</span>
+                            <p class="text-[10px] font-bold text-slate-400 tracking-tighter">سعر تقديري شامل الضريبة</p>
                         </div>
                     </div>
                 </div>
@@ -80,37 +83,42 @@
         </div>
     </main>
 
-    <div class="chat-bot">
-        <div class="bg-blue-600 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:scale-110 transition-transform shadow-blue-400 border-4 border-white">
-            <span class="text-3xl">🤖</span>
+    <div class="chat-widget">
+        <div id="bot-msg" class="bot-pop fixed glass-card bg-white p-6 rounded-[30px] shadow-2xl border-2 border-blue-50">
+            <div class="flex items-center gap-3 mb-3 border-b pb-3">
+                <span class="text-2xl">🤖</span>
+                <h5 class="font-black text-blue-900">مساعد NomadByte</h5>
+            </div>
+            <p class="text-sm font-bold text-slate-600 leading-relaxed">أهلاً بك **NomadByte_KSA**! أنا هنا لمساعدتك في إدارة شحناتك ومراقبة البيانات اللحظية. هل تحتاج مساعدة في الحساب؟ 😊</p>
         </div>
-        <div class="absolute bottom-20 left-0 w-72 bg-white rounded-3xl shadow-2xl p-5 border border-slate-100 hidden group-hover:block">
-            <p class="text-sm font-bold text-slate-600">أهلاً NomadByte_KSA! كيف أقدر أساعدك اليوم؟ 😊</p>
+        <div onclick="toggleBot()" class="w-20 h-20 bg-blue-600 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:rotate-12 hover:scale-110 transition-all border-4 border-white">
+            <span class="text-4xl">🤖</span>
         </div>
     </div>
 
     <script>
-        function calculate() {
+        function showRates() {
             const w = document.getElementById('weight').value;
             const u = document.getElementById('unit').value;
-            
-            if(!w || w <= 0) return alert("يرجى إدخال وزن صحيح");
+            if(!w) return alert("أدخل الوزن أولاً");
 
             let weightKg = u === 'g' ? w / 1000 : w;
-            
-            // إظهار قسم النتائج
-            const resDiv = document.getElementById('results');
-            resDiv.classList.remove('hidden');
+            document.getElementById('results-area').classList.remove('hidden');
             
             // حساب الأسعار
-            document.getElementById('aramex-res').innerText = (weightKg * 14 + 26).toFixed(2) + " ر.س";
-            document.getElementById('smsa-res').innerText = (weightKg * 11 + 33).toFixed(2) + " ر.س";
+            document.getElementById('aramex-val').innerText = (weightKg * 14 + 28).toFixed(2) + " ر.س";
+            document.getElementById('smsa-val').innerText = (weightKg * 11 + 35).toFixed(2) + " ر.س";
 
-            // إضافة تأثير الظهور التدريجي للكروت
+            // انيميشن الظهور
             const cards = document.querySelectorAll('.price-card');
-            cards.forEach((c, index) => {
-                setTimeout(() => c.classList.add('show'), index * 200);
+            cards.forEach((c, i) => {
+                setTimeout(() => c.classList.add('reveal'), i * 200);
             });
+        }
+
+        function toggleBot() {
+            const msg = document.getElementById('bot-msg');
+            msg.style.display = (msg.style.display === 'block') ? 'none' : 'block';
         }
     </script>
 </body>
