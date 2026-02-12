@@ -10,9 +10,9 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">
+            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
                 <img src="icon.png" alt="Logo" width="40">
-                <span>NomadByte</span>
+                <span style="font-weight: bold; font-size: 20px;">NomadByte</span>
             </div>
             <nav>
                 <button class="nav-btn" onclick="window.location.href='login.html'">دخول الأفراد</button>
@@ -23,44 +23,24 @@
 
     <section class="hero">
         <h1>احسب شحنتك <span class="blue-text">بذكاء</span> SA</h1>
-        <p class="hero-subtitle">مستقبل اللوجستيات في المملكة يبدأ هنا</p>
+        <p>مستقبل اللوجستيات في المملكة يبدأ هنا</p>
 
         <div class="calculator-card">
             <div class="calculator-row">
                 <div class="calc-item">
                     <label>من مدينة</label>
-                    <select>
-                        <option>الرياض</option>
-                        <option>جدة</option>
-                        <option>الدمام</option>
-                    </select>
+                    <select><option>الرياض</option><option>جدة</option></select>
                 </div>
-                
                 <div class="calc-item">
                     <label>إلى مدينة / مشروع</label>
-                    <select>
-                        <option>الرياض</option>
-                        <option>نيوم</option>
-                        <option>القدية</option>
-                    </select>
+                    <select><option>القدية</option><option>نيوم</option></select>
                 </div>
-
                 <div class="calc-item">
                     <label>الوزن (KG)</label>
-                    <input type="number" value="1" min="1">
-                </div>
-
-                <div class="calc-item">
-                    <label>نقل مستدام</label>
-                    <div class="eco-badge">
-                        <input type="checkbox" checked>
-                        <span>شحن كهربائي 🍃</span>
-                    </div>
+                    <input type="number" value="1">
                 </div>
             </div>
-
             <button class="main-action-btn">استخراج عروض الأسعار 🔍</button>
-            
             <div class="track-promo">
                 <a href="track.html" class="track-link">📦 تتبع شحنة زائر (بدون تسجيل)</a>
             </div>
