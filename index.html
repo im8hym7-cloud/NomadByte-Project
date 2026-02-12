@@ -9,7 +9,7 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #f0f4f8; color: #1a202c; margin: 0; padding: 30px; }
         .white-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
-        /* تكبير الخطوط والمدخلات [cite: 2026-02-12] */
+        /* تكبير الخطوط والمدخلات */
         .btn-main { background: #2563eb; color: white; padding: 14px 28px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; transition: 0.3s; }
         .btn-main:hover { background: #1d4ed8; transform: scale(1.02); }
         input, select { background: #f8fafc !important; border: 2px solid #e2e8f0 !important; color: #1a202c !important; padding: 16px; border-radius: 14px; font-size: 1.1rem; width: 100%; outline: none; }
@@ -61,7 +61,7 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-right border-separate border-spacing-y-3">
                     <thead>
-                        <tr class="uppercase">
+                        <tr class="uppercase text-slate-500">
                             <th class="p-4">كود الشحن</th>
                             <th class="p-4 text-center">العميل</th>
                             <th class="p-4 text-center">الوجهة</th>
@@ -80,7 +80,7 @@
         <div class="bg-white w-full max-w-lg p-10 rounded-[30px] shadow-2xl border border-slate-100">
             <h2 class="text-2xl font-black mb-8 text-center text-slate-800">إضافة شحنة جديدة 📦</h2>
             <div class="space-y-5">
-                <input id="customer-name" type="text" placeholder="اسم العميل">
+                <input id="customer-name" type="text" placeholder="اسم العميل الكامل">
                 <input id="destination" type="text" placeholder="المدينة / الوجهة">
                 <select id="status">
                     <option value="تحت المعالجة ⚙️">تحت المعالجة ⚙️</option>
@@ -131,20 +131,4 @@
                 const s = data[id];
                 tbody.innerHTML += `
                     <tr class="bg-white hover:bg-blue-50 transition-all shadow-sm rounded-xl">
-                        <td class="p-5 font-mono font-black text-blue-600 border-r-4 border-blue-600">${s.code}</td>
-                        <td class="p-5 text-center font-bold text-slate-800">${s.customer || '---'}</td>
-                        <td class="p-5 text-center text-slate-500 font-medium">${s.destination || '---'}</td>
-                        <td class="p-5 text-center">
-                            <span class="px-5 py-2 bg-blue-100 text-blue-700 rounded-xl text-sm font-black">${s.status}</span>
-                        </td>
-                        <td class="p-5 text-left">
-                            <button onclick="deleteShipment('${id}')" class="text-red-500 hover:text-red-700 font-black bg-red-50 px-4 py-2 rounded-xl transition-all">حذف</button>
-                        </td>
-                    </tr>`;
-            }
-            document.getElementById('total-shipments').innerText = count;
-            document.getElementById('active-shipments').innerText = count;
-        });
-    </script>
-</body>
-</html>
+                        <td class="p-5 font-mono font-black text-blue-600 border-r-4 border-blue-600">${
