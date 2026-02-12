@@ -3,133 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحنة | SH7NA - منصة اللوجستيات الذكية</title>
+    <title>شحنة | SH7NA - منصة اللوجستيات السعودية الأولى</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #f8fafc; }
-        .eco-badge { background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: white; padding: 2px 8px; border-radius: 8px; font-size: 10px; font-weight: 900; }
-        .city-select { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="gray"><path d="M7 10l5 5 5-5z"/></svg>'); background-repeat: no-repeat; background-position: left 10px center; }
+        body { background-color: #f8fafc; font-family: 'Tajawal', sans-serif; }
+        .hero-gradient { background: radial-gradient(circle at top right, #eff6ff 0%, #f8fafc 100%); }
+        .calc-card { border-radius: 40px; border: 4px solid #ffffff; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05); }
+        .price-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: translateY(20px); }
+        .price-card.show { opacity: 1; transform: translateY(0); }
+        .city-select { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%2394a3b8"><path d="M7 10l5 5 5-5z"/></svg>'); background-repeat: no-repeat; background-position: left 12px center; }
+        .eco-active { border-color: #10b981 !important; background-color: #f0fdf4 !important; color: #065f46 !important; }
     </style>
 </head>
-<body class="font-['Tajawal'] text-slate-800">
+<body class="hero-gradient">
 
     <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
         <div class="flex items-center gap-4 group">
-            <img src="icon.png" class="w-14 h-14 object-contain drop-shadow-2xl">
+            <img src="icon.png" class="w-14 h-14 object-contain drop-shadow-2xl transition-transform group-hover:rotate-12">
             <div class="text-right">
                 <h1 class="text-3xl font-black text-blue-900 leading-none tracking-tighter">شحنة</h1>
-                <p class="text-[9px] font-bold text-emerald-600 uppercase tracking-widest mt-1 italic">Sustainability & Vision 2030</p>
+                <p class="text-[9px] font-bold text-emerald-600 uppercase tracking-widest mt-1">Vision 2030 & Sustainability</p>
             </div>
         </div>
         <div class="flex gap-4">
-            <button class="px-5 py-2 rounded-xl font-bold text-slate-500 hover:bg-slate-200 transition-all">دخول الأفراد</button>
-            <a href="admin.html" class="bg-blue-600 text-white px-6 py-2 rounded-xl font-black shadow-lg shadow-blue-200 hover:scale-105 transition-all">دخول الشركات</a>
+            <button class="px-6 py-2.5 rounded-2xl font-bold text-slate-500 hover:bg-slate-200 transition-all">دخول الأفراد</button>
+            <a href="admin.html" class="bg-blue-600 text-white px-8 py-2.5 rounded-2xl font-black shadow-xl shadow-blue-200 hover:scale-105 transition-all">دخول الشركات</a>
         </div>
     </header>
 
     <main class="py-12 flex flex-col items-center px-6">
-        <div class="text-center mb-10">
-            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">مستقبل الشحن في <span class="text-blue-600">المملكة</span> 🇸🇦</h2>
-            <p class="text-slate-500 font-bold max-w-2xl mx-auto">نغطي كافة مناطقنا ومشاريعنا العظيمة، مع حلول نقل مستدامة تقلل من الانبعاثات الكربونية.</p>
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-4 leading-tight">مستقبل الشحن <span class="text-blue-600">يبدأ هنا</span> 🇸🇦</h2>
+            <p class="text-slate-500 font-bold max-w-2xl mx-auto text-lg">نغطي كافة مدن المملكة ومشاريعها العظيمة بحلول نقل ذكية ومستدامة.</p>
         </div>
 
-        <div class="w-full max-w-5xl glass-card p-10 bg-white rounded-[40px] shadow-2xl border-4 border-white">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div class="space-y-2">
-                    <label class="block text-xs font-black text-slate-400 mr-2">من مدينة</label>
-                    <select id="from-city" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold city-select">
-                        <option>الرياض</option> <option>جدة</option> <option>الدمام</option> <option>نيوم</option> <option>العلا</option> <option>جازان</option>
-                    </select>
+        <div class="w-full max-w-6xl calc-card p-10 bg-white/80 backdrop-blur-xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">من مدينة</label>
+                    <select id="from-city" class="city-list w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold city-select outline-none focus:border-blue-500 transition-all text-slate-700"></select>
                 </div>
-                <div class="space-y-2">
-                    <label class="block text-xs font-black text-slate-400 mr-2">إلى مدينة / مشروع</label>
-                    <select id="to-city" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold city-select">
-                        <option>الرياض</option> <option>جدة</option> <option>الدمام</option> <option>الخبر</option> <option>مكة المكرمة</option> <option>المدينة المنورة</option>
-                        <option>نيوم (NEOM)</option> <option>ذا لاين</option> <option>العلا</option> <option>تبوك</option> <option>أبها</option> <option>خميس مشيط</option>
-                        <option>جازان</option> <option>سكاكا</option> <option>عرعر</option> <option>حائل</option> <option>القصيم</option> <option>ينبع</option>
-                    </select>
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">إلى مدينة / مشروع</label>
+                    <select id="to-city" class="city-list w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold city-select outline-none focus:border-blue-500 transition-all text-slate-700"></select>
                 </div>
-                <div class="space-y-2">
-                    <label class="block text-xs font-black text-slate-400 mr-2">الوزن (كيلو)</label>
-                    <input type="number" id="weight" placeholder="0" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold">
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">الوزن الفعلي (KG)</label>
+                    <input type="number" id="weight" placeholder="مثلاً: 10" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold outline-none focus:border-blue-500 transition-all">
                 </div>
-                <div class="space-y-2">
-                    <label class="block text-xs font-black text-slate-400 mr-2">خيار التوصيل الأخضر</label>
-                    <div class="flex items-center h-[58px] p-4 bg-emerald-50 rounded-2xl border-2 border-emerald-100">
-                        <input type="checkbox" id="eco-delivery" class="w-5 h-5 accent-emerald-600">
-                        <span class="mr-3 text-xs font-black text-emerald-700">نقل كهربائي 🍃</span>
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">مبادرة الاستدامة</label>
+                    <div id="eco-container" class="flex items-center h-[60px] p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 transition-all cursor-pointer hover:border-emerald-200">
+                        <input type="checkbox" id="eco-mode" class="w-6 h-6 accent-emerald-600 cursor-pointer" onchange="updateEcoUI()">
+                        <span class="mr-3 text-xs font-black text-slate-500 uppercase">نقل كهربائي 🍃</span>
                     </div>
                 </div>
             </div>
 
-            <button onclick="calculateVision()" class="w-full btn-primary py-5 text-xl shadow-2xl shadow-blue-200 rounded-3xl mb-12">استخراج عروض الأسعار اللوجستية 🔍</button>
+            <button onclick="calculateShipping()" class="w-full bg-blue-600 text-white py-6 text-2xl font-black shadow-2xl shadow-blue-200 rounded-[30px] hover:bg-blue-700 transition-all active:scale-95">استخراج عروض الأسعار اللوجستية 🔍</button>
 
-            <div id="results" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="price-card p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                    <span class="text-[10px] font-black text-red-600 mb-2">ARAMEX</span>
-                    <div id="p-aramex" class="text-2xl font-black text-slate-800">--</div>
-                    <div class="eco-tag mt-2 hidden" id="e-aramex"><span class="eco-badge">مستدام ✅</span></div>
-                </div>
-                <div class="price-card p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                    <span class="text-[10px] font-black text-emerald-600 mb-2">SPL (البريد السعودي)</span>
-                    <div id="p-spl" class="text-2xl font-black text-slate-800">--</div>
-                    <div class="eco-tag mt-2 hidden" id="e-spl"><span class="eco-badge">مستدام ✅</span></div>
-                </div>
-                <div class="price-card p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                    <span class="text-[10px] font-black text-yellow-600 mb-2">DHL INTERNATIONAL</span>
-                    <div id="p-dhl" class="text-2xl font-black text-slate-800">--</div>
-                    <div class="eco-tag mt-2 hidden" id="e-dhl"><span class="eco-badge">مستدام ✅</span></div>
-                </div>
-                <div class="price-card p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                    <span class="text-[10px] font-black text-orange-600 mb-2">SMSA EXPRESS</span>
-                    <div id="p-smsa" class="text-2xl font-black text-slate-800">--</div>
-                    <div class="eco-tag mt-2 hidden" id="e-smsa"><span class="eco-badge">مستدام ✅</span></div>
-                </div>
-                <div class="price-card p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                    <span class="text-[10px] font-black text-purple-600 mb-2">NAQEL</span>
-                    <div id="p-naqel" class="text-2xl font-black text-slate-800">--</div>
-                    <div class="eco-tag mt-2 hidden" id="e-naqel"><span class="eco-badge">مستدام ✅</span></div>
-                </div>
-                <div class="price-card p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                    <span class="text-[10px] font-black text-blue-500 mb-2">ZAJIL</span>
-                    <div id="p-zajil" class="text-2xl font-black text-slate-800">--</div>
-                    <div class="eco-tag mt-2 hidden" id="e-zajil"><span class="eco-badge">مستدام ✅</span></div>
+            <div id="results-section" class="hidden mt-16 pt-10 border-t-2 border-slate-50">
+                <h3 class="text-xl font-black text-slate-800 mb-8 text-center">أفضل عروض الشحن المتاحة الآن:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="price-card p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black text-red-500 tracking-tighter mb-2">ARAMEX</span>
+                        <div id="res-aramex" class="text-3xl font-black text-slate-800 tracking-tighter">--</div>
+                        <div class="eco-badge mt-3 hidden"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>
+                    </div>
+                    <div class="price-card p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black text-emerald-600 tracking-tighter mb-2">SPL POST</span>
+                        <div id="res-spl" class="text-3xl font-black text-slate-800 tracking-tighter">--</div>
+                        <div class="eco-badge mt-3 hidden"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>
+                    </div>
+                    <div class="price-card p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black text-orange-500 tracking-tighter mb-2">SMSA EXPRESS</span>
+                        <div id="res-smsa" class="text-3xl font-black text-slate-800 tracking-tighter">--</div>
+                        <div class="eco-badge mt-3 hidden"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>
+                    </div>
+                    <div class="price-card p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black text-yellow-600 tracking-tighter mb-2">DHL WORLDWIDE</span>
+                        <div id="res-dhl" class="text-3xl font-black text-slate-800 tracking-tighter">--</div>
+                        <div class="eco-badge mt-3 hidden"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>
+                    </div>
+                    <div class="price-card p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black text-purple-600 tracking-tighter mb-2">NAQEL</span>
+                        <div id="res-naqel" class="text-3xl font-black text-slate-800 tracking-tighter">--</div>
+                        <div class="eco-badge mt-3 hidden"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>
+                    </div>
+                    <div class="price-card p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black text-blue-500 tracking-tighter mb-2">ZAJIL</span>
+                        <div id="res-zajil" class="text-3xl font-black text-slate-800 tracking-tighter">--</div>
+                        <div class="eco-badge mt-3 hidden"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <div class="fixed bottom-8 left-8 z-50 group">
+        <div id="chat-pop" class="absolute bottom-24 left-0 w-72 bg-white p-6 rounded-[30px] shadow-2xl border border-blue-50 hidden group-hover:block transition-all">
+            <p class="text-sm font-bold text-slate-600 leading-relaxed">أهلاً بك يا بطل! أنا مساعد **NomadByte** الذكي. هل تريد معرفة المزيد عن خيارات الشحن الأخضر؟ 😊</p>
+        </div>
+        <div class="w-20 h-20 bg-blue-600 rounded-full shadow-2xl flex items-center justify-center cursor-pointer border-4 border-white hover:scale-110 transition-all shadow-blue-300">
+            <span class="text-4xl">🤖</span>
+        </div>
+    </div>
+
     <script>
-        function calculateVision() {
-            const w = document.getElementById('weight').value;
+        // قائمة المدن الشاملة واللوجستية
+        const KSA_CITIES = [
+            "الرياض", "جدة", "الدمام", "مكة المكرمة", "المدينة المنورة", "الخبر", "الظهران", 
+            "نيوم (NEOM)", "ذا لاين", "العلا", "القدية", "البحر الأحمر (مشروع)",
+            "الجبيل الصناعية", "ينبع الصناعية", "الخرج", "رابغ", "بريدة", "عنيزة", "الرس",
+            "تبوك", "حائل", "سكاكا (الجوف)", "عرعر", "القريات", "حفر الباطن", "الخفجي",
+            "أبها", "خميس مشيط", "جازان", "نجران", "الباحة", "القنفذة", "بيشة", "شرورة",
+            "الهفوف (الأحساء)", "القطيف", "النعيرية"
+        ];
+
+        // تعبئة القوائم برمجياً
+        window.onload = () => {
+            const lists = document.querySelectorAll('.city-list');
+            lists.forEach(list => {
+                KSA_CITIES.forEach(city => {
+                    let el = document.createElement('option');
+                    el.value = city;
+                    el.textContent = city;
+                    list.appendChild(el);
+                });
+            });
+        };
+
+        function updateEcoUI() {
+            const isEco = document.getElementById('eco-mode').checked;
+            document.getElementById('eco-container').className = isEco ? 
+                'flex items-center h-[60px] p-4 rounded-2xl border-2 transition-all cursor-pointer eco-active' : 
+                'flex items-center h-[60px] p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 transition-all cursor-pointer';
+        }
+
+        function calculateShipping() {
+            const weight = document.getElementById('weight').value;
             const from = document.getElementById('from-city').value;
             const to = document.getElementById('to-city').value;
-            const isEco = document.getElementById('eco-delivery').checked;
+            const isEco = document.getElementById('eco-mode').checked;
 
-            if(!w || w <= 0) return alert("أدخل الوزن يا بطل");
+            if(!weight || weight <= 0) return alert("يرجى إدخال وزن الشحنة");
 
-            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('results-section').classList.remove('hidden');
             
-            // معادلة ذكية: المدن البعيدة والمشاريع الكبرى تزيد السعر قليلاً
-            let distanceFee = (from !== to) ? 15 : 0;
-            let ecoBonus = isEco ? 5 : 0; // رسوم إضافية رمزية للنقل المستدام
+            // معادلة التسعير الذكي (رسوم مسافة + رسوم استدامة)
+            let distanceFee = (from !== to) ? 20 : 0;
+            let ecoFee = isEco ? 8 : 0;
 
-            const companies = {
-                aramex: w * 12 + 25 + distanceFee + ecoBonus,
-                spl: w * 7 + 18 + distanceFee + (ecoBonus * 0.5),
-                dhl: w * 30 + 55 + distanceFee + (ecoBonus * 2),
-                smsa: w * 10 + 30 + distanceFee + ecoBonus,
-                naqel: w * 9 + 28 + distanceFee + ecoBonus,
-                zajil: w * 8 + 20 + distanceFee + (ecoBonus * 0.5)
+            const results = {
+                aramex: (weight * 12 + 25 + distanceFee + ecoFee),
+                spl: (weight * 7 + 15 + distanceFee + (ecoFee * 0.5)),
+                smsa: (weight * 10 + 28 + distanceFee + ecoFee),
+                dhl: (weight * 30 + 50 + distanceFee + (ecoFee * 2)),
+                naqel: (weight * 9 + 30 + distanceFee + ecoFee),
+                zajil: (weight * 8 + 20 + distanceFee + (ecoFee * 0.5))
             };
 
-            for(let c in companies) {
-                document.getElementById(`p-${c}`).innerText = companies[c].toFixed(2) + " ر.س";
-                if(isEco) document.getElementById(`e-${c}`).classList.remove('hidden');
-                else document.getElementById(`e-${c}`).classList.add('hidden');
+            for(let key in results) {
+                document.getElementById(`res-${key}`).innerText = results[key].toFixed(2) + " ر.س";
+                const badges = document.querySelectorAll('.eco-badge');
+                badges.forEach(b => isEco ? b.classList.remove('hidden') : b.classList.add('hidden'));
             }
+
+            // انيميشن الظهور
+            const cards = document.querySelectorAll('.price-card');
+            cards.forEach((c, i) => setTimeout(() => c.classList.add('show'), i * 150));
         }
     </script>
 </body>
