@@ -1,19 +1,23 @@
-/* --- 1. الإعدادات العامة للهوية البصرية --- */
+/* --- 1. الإعدادات العامة --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8fafc;
     margin: 0;
+    direction: rtl;
+}
+
+/* التوسط فقط لصفحات الدخول */
+body:not(.dashboard-body) {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    direction: rtl;
 }
 
-/* --- 2. تصميم البطاقة (النحيف والمضبوط) --- */
+/* --- 2. تصميم البطاقة (Login & Reset) --- */
 .login-wrapper {
     width: 100%;
-    max-width: 360px; /* العرض المصغر الذي تفضله */
+    max-width: 360px;
     padding: 10px;
 }
 
@@ -24,28 +28,15 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
-    gap: 15px; /* يمنع التداخل */
+    gap: 15px;
     text-align: center;
 }
 
-.main-logo {
-    width: 65px;
-    margin: 0 auto;
-}
+.main-logo { width: 65px; margin: 0 auto; }
+h2 { margin: 0; color: #1a2b3c; font-size: 19px; }
+.subtitle { margin: 0; color: #888; font-size: 12px; }
 
-h2, h3 { 
-    margin: 0; 
-    color: #1a2b3c; 
-    font-size: 19px; 
-}
-
-.subtitle { 
-    margin: 0; 
-    color: #888; 
-    font-size: 12px; 
-}
-
-/* --- 3. تنسيق الحقول (Inputs) --- */
+/* --- 3. الحقول والمدخلات --- */
 .input-group {
     display: flex;
     flex-direction: column;
@@ -53,11 +44,7 @@ h2, h3 {
     text-align: right;
 }
 
-.input-group label {
-    font-size: 12px;
-    font-weight: 600;
-    color: #444;
-}
+.input-group label { font-size: 12px; font-weight: 600; color: #444; }
 
 input, select {
     padding: 10px;
@@ -66,15 +53,11 @@ input, select {
     background: #f9fafb;
     font-size: 14px;
     outline: none;
-    transition: 0.2s;
 }
 
-input:focus, select:focus {
-    border-color: #ff8c00;
-    background: #fff;
-}
+input:focus { border-color: #2563eb; background: #fff; }
 
-/* --- 4. إصلاح تداخل خيارات المدن (الصفحة الرئيسية) --- */
+/* --- 4. إصلاح تداخل الصفحة الرئيسية --- */
 .calculator-row {
     display: flex;
     flex-direction: row;
@@ -88,65 +71,13 @@ input:focus, select:focus {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    min-width: 130px; /* يمنع تداخل "من مدينة" و "إلى مدينة" */
+    min-width: 130px;
     text-align: right;
 }
 
-/* --- 5. الأزرار (Buttons) --- */
-
-/* زر الأفراد (أسود/كحلي) */
-.login-btn {
-    background: #1a2b3c;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* زر الشركات (أزرق) */
-.login-btn-blue {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 12px;
-    width: 100%;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-/* زر نفاذ (أخضر) */
-.nafath-btn {
-    background: white;
-    border: 1px solid #edf2f7;
-    padding: 10px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.nafath-logo {
-    background: #10b981;
-    color: white;
-    padding: 1px 5px;
-    border-radius: 4px;
-    font-size: 10px;
-}
-
-/* --- 6. الروابط والتذييل --- */
-.divider {
-    font-size: 11px;
-    color: #cbd5e0;
-    margin: 5px 0;
-}
+/* --- 5. الأزرار والروابط --- */
+.login-btn { background: #1a2b3c; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
+.login-btn-blue { background: #2563eb; color: white; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; }
 
 .footer-links {
     display: flex;
@@ -155,12 +86,24 @@ input:focus, select:focus {
     margin-top: 10px;
 }
 
-.footer-links a {
-    text-decoration: none;
-    color: #3498db;
-    cursor: pointer;
+.footer-links a { text-decoration: none; color: #3498db; }
+
+/* --- 6. لوحة التحكم (Dashboard) --- */
+.dash-container { display: flex; width: 100vw; height: 100vh; background: #f4f7fa; }
+.sidebar { width: 240px; background: #1a2b3c; color: white; padding: 20px; }
+.dash-nav a { display: block; color: #cbd5e0; text-decoration: none; padding: 12px; border-radius: 8px; margin-bottom: 5px; }
+.dash-nav a.active { background: #2563eb; color: white; }
+.main-content { flex: 1; padding: 30px; overflow-y: auto; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.footer-links a:hover {
-    color: #ff8c00;
+.stat-card {
+    background: white; padding: 20px; border-radius: 15px;
+    display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
+
+.stat-info strong { font-size: 20px; color: #1a2b3c; display: block; }
