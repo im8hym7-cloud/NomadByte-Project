@@ -7,17 +7,97 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background: #05080f; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .glass-container { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); width: 100%; max-width: 480px; padding: 2.5rem; border-radius: 3rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); }
-        .input-track { background: #0f172a !important; border: 2px solid #1e293b !important; transition: 0.3s; color: white !important; }
-        .input-track:focus { border-color: #3b82f6 !important; box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
-        .status-card { background: linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.02)); border: 1px solid rgba(59, 130, 246, 0.2); }
-        .pulse-icon { width: 10px; height: 10px; background: #3b82f6; border-radius: 50%; display: inline-block; box-shadow: 0 0 15px #3b82f6; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f0f4f8; color: #1a202c; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .track-card { background: white; width: 100%; max-width: 500px; border-radius: 30px; padding: 40px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0; }
+        .status-badge { display: inline-block; padding: 12px 25px; border-radius: 15px; font-weight: 900; font-size: 1.2rem; margin-top: 15px; }
+        input { border: 2px solid #e2e8f0 !important; padding: 18px; border-radius: 15px; font-size: 1.2rem; text-align: center; width: 100%; outline: none; transition: 0.3s; }
+        input:focus { border-color: #2563eb !important; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        .btn-track { background: #2563eb; color: white; width: 100%; padding: 16px; border-radius: 15px; font-weight: 800; font-size: 1.2rem; margin-top: 20px; transition: 0.3s; }
+        .btn-track:hover { background: #1d4ed8; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <div class="glass-container text-center">
-        <div class="mb-10">
-            <div class="w-20 h-20 bg-blue-600 rounded-3xl flex items-center justify-center shadow
+    <div class="track-card text-center">
+        <div class="flex flex-col items-center mb-8">
+            <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-200 mb-3">
+                <span class="text-white text-3xl font-black italic">NB</span>
+            </div>
+            <h1 class="text-2xl font-black text-slate-800 uppercase tracking-widest">NomadByte</h1>
+            <p class="text-slate-400 text-sm font-bold mt-1 uppercase">Shipment Tracking</p>
+        </div>
+
+        <div id="search-section">
+            <p class="text-slate-600 font-bold mb-4">أدخل رقم الشحنة للمتابعة</p>
+            <input type="text" id="track-input" placeholder="مثلاً: NB-12345">
+            <button onclick="trackShipment()" class="btn-track shadow-lg shadow-blue-100">تتبع الآن 🔍</button>
+        </div>
+
+        <div id="result-section" class="hidden animate-fade-in">
+            <div class="h-px bg-slate-100 my-8"></div>
+            <p class="text-slate-400 text-sm font-bold uppercase mb-2">حالة الشحنة الحالية</p>
+            <h2 id="res-customer" class="text-2xl font-black text-slate-800 mb-1">---</h2>
+            <p id="res-destination" class="text-slate-500 font-bold">---</p>
+            
+            <div id="res-status" class="status-badge bg-blue-50 text-blue-600 border border-blue-100">
+                جارٍ التحميل...
+            </div>
+
+            <button onclick="location.reload()" class="mt-8 text-blue-600 font-black text-sm block mx-auto hover:underline italic">← بحث عن شحنة أخرى</button>
+        </div>
+        
+        <p id="error-msg" class="hidden text-red-500 font-bold mt-4">رقم الشحنة غير صحيح، تأكد منه وحاول ثانية.</p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = { databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com/" };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.trackShipment = async () => {
+            const trackNum = document.getElementById('track-input').value.trim().toUpperCase();
+            const errorMsg = document.getElementById('error-msg');
+            const searchSec = document.getElementById('search-section');
+            const resultSec = document.getElementById('result-section');
+
+            if (!trackNum) return;
+
+            try {
+                const dbRef = ref(db);
+                const snapshot = await get(child(dbRef, `shipments`));
+                
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    let found = false;
+
+                    for (let id in data) {
+                        if (data[id].code === trackNum) {
+                            document.getElementById('res-customer').innerText = data[id].customer;
+                            document.getElementById('res-destination').innerText = "الوجهة: " + data[id].destination;
+                            document.getElementById('res-status').innerText = data[id].status;
+                            
+                            searchSec.classList.add('hidden');
+                            errorMsg.classList.add('hidden');
+                            resultSec.classList.remove('hidden');
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        errorMsg.classList.remove('hidden');
+                    }
+                } else {
+                    errorMsg.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error(error);
+                alert("حدث خطأ في الاتصال بالقاعدة");
+            }
+        };
+    </script>
+</body>
+</html>
