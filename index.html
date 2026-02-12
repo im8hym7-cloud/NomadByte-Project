@@ -3,73 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تتبع شحنتك | SH7NA</title>
+    <title>شحنة | SH7NA - الرئيسية</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { background-color: #f8fafc; font-family: 'Tajawal', sans-serif; }
-        .step-active { color: #2563eb; font-weight: 900; }
-        .line-active { background-color: #2563eb; }
+        .hero-gradient { background: radial-gradient(circle at top right, #eff6ff 0%, #f8fafc 100%); }
+        .calc-card { border-radius: 40px; border: 4px solid #ffffff; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05); }
+        .price-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: translateY(20px); }
+        .price-card.show { opacity: 1; transform: translateY(0); }
+        .city-select { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%2394a3b8"><path d="M7 10l5 5 5-5z"/></svg>'); background-repeat: no-repeat; background-position: left 12px center; }
+        .eco-active { border-color: #10b981 !important; background-color: #f0fdf4 !important; color: #065f46 !important; }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="hero-gradient">
 
     <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex items-center gap-4">
-            <img src="icon.png" class="w-12 h-12">
-            <h1 class="text-2xl font-black text-blue-900">شحنة | تتبع</h1>
+        <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+            <img src="icon.png" class="w-14 h-14 object-contain drop-shadow-2xl">
+            <div class="text-right">
+                <h1 class="text-3xl font-black text-blue-900 leading-none">شحنة</h1>
+                <p class="text-[9px] font-bold text-emerald-600 tracking-widest mt-1">Vision 2030 Sustainability</p>
+            </div>
         </div>
-        <a href="index.html" class="font-bold text-blue-600 hover:underline">← العودة للحاسبة</a>
+        <div class="flex gap-4">
+            <a href="index.html" class="px-6 py-2.5 rounded-2xl font-bold text-blue-600 bg-blue-50 transition-all text-center">الرئيسية</a>
+            <a href="admin.html" class="bg-blue-600 text-white px-8 py-2.5 rounded-2xl font-black shadow-xl hover:scale-105 transition-all text-center">دخول الشركات</a>
+        </div>
     </header>
 
-    <main class="flex flex-col items-center py-12 px-6">
-        <div class="w-full max-w-2xl bg-white p-8 rounded-[35px] shadow-2xl">
-            <h2 class="text-2xl font-black text-slate-800 mb-6 text-center">تتبع حالة شحنتك 📦</h2>
-            
-            <div class="flex gap-2 mb-8">
-                <input type="text" id="track-id" placeholder="أدخل رقم الشحنة (مثلاً: NB-2026)" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold outline-none focus:border-blue-500">
-                <button onclick="trackShipment()" class="bg-blue-600 text-white px-8 rounded-2xl font-black hover:bg-blue-700 transition-all">تتبع</button>
+    <main class="py-12 flex flex-col items-center px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-4">احسب شحنتك <span class="text-blue-600">بذكاء</span> 🇸🇦</h2>
+            <p class="text-slate-500 font-bold max-w-2xl mx-auto">نظام ذكي لربط كافة مدن ومشاريع المملكة لوجستياً.</p>
+        </div>
+
+        <div class="w-full max-w-6xl calc-card p-10 bg-white/80 backdrop-blur-xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">من مدينة</label>
+                    <select id="from-city" class="city-list w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold city-select outline-none focus:border-blue-500 transition-all text-slate-700"></select>
+                </div>
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">إلى مدينة / مشروع</label>
+                    <select id="to-city" class="city-list w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold city-select outline-none focus:border-blue-500 transition-all text-slate-700"></select>
+                </div>
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">الوزن (KG)</label>
+                    <input type="number" id="weight" placeholder="5" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold outline-none focus:border-blue-500 transition-all">
+                </div>
+                <div class="space-y-3">
+                    <label class="block text-xs font-black text-slate-400 mr-2 uppercase">مبادرة الاستدامة</label>
+                    <div id="eco-container" class="flex items-center h-[60px] p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 transition-all cursor-pointer hover:border-emerald-200">
+                        <input type="checkbox" id="eco-mode" class="w-6 h-6 accent-emerald-600 cursor-pointer" onchange="updateEcoUI()">
+                        <span class="mr-3 text-xs font-black text-slate-500 uppercase">نقل كهربائي 🍃</span>
+                    </div>
+                </div>
             </div>
 
-            <div id="track-result" class="hidden space-y-8 mt-10">
-                <div class="flex items-start gap-4">
-                    <div class="flex flex-col items-center">
-                        <div class="w-6 h-6 rounded-full bg-blue-600 border-4 border-blue-100"></div>
-                        <div class="w-1 h-16 bg-blue-600"></div>
+            <button onclick="calculateShipping()" class="w-full bg-blue-600 text-white py-6 text-2xl font-black shadow-2xl rounded-[30px] hover:bg-blue-700 transition-all text-center">استخراج عروض الأسعار 🔍</button>
+
+            <div class="mt-8 text-center">
+                <a href="track.html" class="text-blue-600 font-black hover:underline">لديك رقم شحنة؟ تتبعها من هنا 📦</a>
+            </div>
+
+            <div id="results-section" class="hidden mt-16 pt-10 border-t-2 border-slate-50">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="prices-grid">
                     </div>
-                    <div>
-                        <p class="font-black text-blue-600">تم استلام الشحنة</p>
-                        <p class="text-xs text-slate-400">الرياض - مستودع السلي</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4">
-                    <div class="flex flex-col items-center">
-                        <div class="w-6 h-6 rounded-full bg-blue-600 border-4 border-blue-100"></div>
-                        <div class="w-1 h-16 bg-blue-600"></div>
-                    </div>
-                    <div>
-                        <p class="font-black text-blue-600">جاري المعالجة (نقل أخضر 🍃)</p>
-                        <p class="text-xs text-slate-400">تم الفرز الآلي بنجاح</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4">
-                    <div class="flex flex-col items-center">
-                        <div class="w-6 h-6 rounded-full bg-slate-200"></div>
-                    </div>
-                    <div>
-                        <p class="font-black text-slate-400">خارج للتوصيل</p>
-                        <p class="text-xs text-slate-300">في الطريق إلى العميل</p>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 
     <script>
-        function trackShipment() {
-            const id = document.getElementById('track-id').value;
-            if(!id) return alert("يرجى إدخال رقم الشحنة");
-            document.getElementById('track-result').classList.remove('hidden');
+        const KSA_CITIES = ["الرياض", "جدة", "الدمام", "مكة المكرمة", "المدينة المنورة", "نيوم (NEOM)", "ذا لاين", "العلا", "تبوك", "الخبر", "أبها", "حائل", "جازان", "نجران", "سكاكا", "عرعر", "القصيم", "الجبيل", "ينبع", "الخرج"];
+        
+        window.onload = () => {
+            const lists = document.querySelectorAll('.city-list');
+            lists.forEach(list => {
+                KSA_CITIES.forEach(city => {
+                    let el = document.createElement('option');
+                    el.value = city; el.textContent = city;
+                    list.appendChild(el);
+                });
+            });
+        };
+
+        function updateEcoUI() {
+            const isEco = document.getElementById('eco-mode').checked;
+            document.getElementById('eco-container').className = isEco ? 'flex items-center h-[60px] p-4 rounded-2xl border-2 transition-all cursor-pointer eco-active' : 'flex items-center h-[60px] p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 transition-all cursor-pointer';
+        }
+
+        function calculateShipping() {
+            const weight = document.getElementById('weight').value;
+            if(!weight || weight <= 0) return alert("يرجى إدخال الوزن");
+
+            document.getElementById('results-section').classList.remove('hidden');
+            const grid = document.getElementById('prices-grid');
+            grid.innerHTML = ''; // مسح النتائج القديمة
+
+            const companies = [
+                { name: 'ARAMEX', color: 'text-red-500', base: 35 },
+                { name: 'SPL POST', color: 'text-emerald-600', base: 22 },
+                { name: 'SMSA', color: 'text-orange-500', base: 40 },
+                { name: 'DHL', color: 'text-yellow-600', base: 75 },
+                { name: 'NAQEL', color: 'text-purple-600', base: 30 },
+                { name: 'ZAJIL', color: 'text-blue-500', base: 25 }
+            ];
+
+            companies.forEach((co, i) => {
+                const price = (co.base + (weight * 5)).toFixed(2);
+                const isEco = document.getElementById('eco-mode').checked;
+                const card = `
+                    <div class="price-card show p-8 bg-white rounded-[35px] border-2 border-slate-50 shadow-sm flex flex-col items-center">
+                        <span class="text-[10px] font-black ${co.color} mb-2 uppercase">${co.name}</span>
+                        <div class="text-3xl font-black text-slate-800">${price} ر.س</div>
+                        ${isEco ? '<div class="mt-3"><span class="bg-emerald-100 text-emerald-700 text-[10px] px-3 py-1 rounded-full font-black">مستدام ✅</span></div>' : ''}
+                    </div>`;
+                grid.innerHTML += card;
+            });
         }
     </script>
 </body>
