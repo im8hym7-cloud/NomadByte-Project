@@ -3,29 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تتبع شحنتك | شحنة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
-    <style>body { background-color: #f8fafc; font-family: 'Tajawal', sans-serif; }</style>
+    <title>تتبع شحنتك - NomadByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <a href="index.html" class="text-blue-600 font-black flex items-center gap-2 hover:bg-blue-50 px-4 py-2 rounded-xl transition-all">
-            <span>🏠</span> العودة للصفحة الرئيسية
-        </a>
-        <div class="flex items-center gap-4">
-            <h1 class="text-2xl font-black text-blue-900">شحنة | تتبع</h1>
-            <img src="icon.png" class="w-12 h-12">
-        </div>
-    </header>
 
-    <main class="flex flex-col items-center py-24 px-6">
-        <div class="bg-white p-12 rounded-[45px] shadow-2xl w-full max-w-lg text-center border-4 border-white relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 bg-blue-600"></div>
-            <h2 class="text-3xl font-black text-slate-800 mb-8">تتبع حالة شحنتك 📦</h2>
-            <input type="text" placeholder="أدخل رقم الشحنة (NB-2026)" class="w-full p-5 bg-slate-50 rounded-2xl border-2 border-slate-100 mb-6 font-bold text-center outline-none focus:border-blue-600 transition-all">
-            <button class="w-full bg-blue-600 text-white py-5 rounded-[20px] font-black text-xl shadow-xl shadow-blue-100 hover:bg-blue-700 transition-all active:scale-95">تتبع الآن</button>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/649/649730.png" alt="Tracking" class="main-logo">
+            
+            <div class="header-text">
+                <h2>تتبع شحنتك</h2>
+                <p class="subtitle">أدخل رقم التتبع الخاص بك لمعرفة موقع الشحنة الحالي</p>
+            </div>
+
+            <div class="input-group">
+                <label>رقم التتبع (Tracking Number)</label>
+                <input type="text" id="trackInput" placeholder="مثال: NB-12345" required>
+            </div>
+
+            <button type="button" class="login-btn-blue" onclick="trackShipment()">تتبع الآن</button>
+
+            <div id="trackingResult" style="display: none; margin-top: 20px; padding: 15px; background: #f0f7ff; border-radius: 12px; border: 1px solid #d0e3ff;">
+                <p id="statusText" style="font-weight: bold; color: #2563eb; margin: 0;"></p>
+                <small id="locationText" style="color: #666;"></small>
+            </div>
+
+            <div class="footer-links" style="justify-content: center;">
+                <a href="index.html">← العودة للرئيسية</a>
+            </div>
         </div>
-    </main>
+    </div>
+
+    <script>
+        function trackShipment() {
+            const trackNum = document.getElementById('trackInput').value;
+            const resultDiv = document.getElementById('trackingResult');
+            const statusText = document.getElementById('statusText');
+            const locationText = document.getElementById('locationText');
+
+            if(trackNum.trim() === "") {
+                alert("الرجاء إدخال رقم الشحنة");
+                return;
+            }
+
+            // محاكاة عملية التتبع
+            resultDiv.style.display = "block";
+            statusText.innerText = "الحالة: قيد التوصيل 🚚";
+            locationText.innerText = "آخر تحديث: الشحنة غادرت مستودع الرياض";
+        }
+    </script>
+
 </body>
 </html>
