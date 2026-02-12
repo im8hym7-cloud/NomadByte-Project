@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحنة | SH7NA - منصة اللوجستيات السعودية الأولى</title>
+    <title>شحنة | SH7NA - منصة اللوجستيات السعودية</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
@@ -28,8 +28,8 @@
             </div>
         </div>
         <div class="flex gap-4">
-            <button class="px-6 py-2.5 rounded-2xl font-bold text-slate-500 hover:bg-slate-200 transition-all">دخول الأفراد</button>
-            <a href="admin.html" class="bg-blue-600 text-white px-8 py-2.5 rounded-2xl font-black shadow-xl shadow-blue-200 hover:scale-105 transition-all">دخول الشركات</a>
+            <a href="index.html" class="px-6 py-2.5 rounded-2xl font-bold text-slate-500 hover:bg-slate-200 transition-all text-center">دخول الأفراد</a>
+            <a href="admin.html" class="bg-blue-600 text-white px-8 py-2.5 rounded-2xl font-black shadow-xl shadow-blue-200 hover:scale-105 transition-all text-center">دخول الشركات</a>
         </div>
     </header>
 
@@ -51,7 +51,7 @@
                 </div>
                 <div class="space-y-3">
                     <label class="block text-xs font-black text-slate-400 mr-2 uppercase">الوزن الفعلي (KG)</label>
-                    <input type="number" id="weight" placeholder="مثلاً: 10" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold outline-none focus:border-blue-500 transition-all">
+                    <input type="number" id="weight" placeholder="مثلاً: 5" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 font-bold outline-none focus:border-blue-500 transition-all">
                 </div>
                 <div class="space-y-3">
                     <label class="block text-xs font-black text-slate-400 mr-2 uppercase">مبادرة الاستدامة</label>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <button onclick="calculateShipping()" class="w-full bg-blue-600 text-white py-6 text-2xl font-black shadow-2xl shadow-blue-200 rounded-[30px] hover:bg-blue-700 transition-all active:scale-95">استخراج عروض الأسعار اللوجستية 🔍</button>
+            <button onclick="calculateShipping()" class="w-full bg-blue-600 text-white py-6 text-2xl font-black shadow-2xl shadow-blue-200 rounded-[30px] hover:bg-blue-700 transition-all active:scale-95 text-center">استخراج عروض الأسعار اللوجستية 🔍</button>
 
             <div id="results-section" class="hidden mt-16 pt-10 border-t-2 border-slate-50">
                 <h3 class="text-xl font-black text-slate-800 mb-8 text-center">أفضل عروض الشحن المتاحة الآن:</h3>
@@ -104,7 +104,7 @@
 
     <div class="fixed bottom-8 left-8 z-50 group">
         <div id="chat-pop" class="absolute bottom-24 left-0 w-72 bg-white p-6 rounded-[30px] shadow-2xl border border-blue-50 hidden group-hover:block transition-all">
-            <p class="text-sm font-bold text-slate-600 leading-relaxed">أهلاً بك يا بطل! أنا مساعد **NomadByte** الذكي. هل تريد معرفة المزيد عن خيارات الشحن الأخضر؟ 😊</p>
+            <p class="text-sm font-bold text-slate-600 leading-relaxed">أهلاً NomadByte_KSA! المساعد جاهز لخدمتك 😊</p>
         </div>
         <div class="w-20 h-20 bg-blue-600 rounded-full shadow-2xl flex items-center justify-center cursor-pointer border-4 border-white hover:scale-110 transition-all shadow-blue-300">
             <span class="text-4xl">🤖</span>
@@ -112,7 +112,6 @@
     </div>
 
     <script>
-        // قائمة المدن الشاملة واللوجستية
         const KSA_CITIES = [
             "الرياض", "جدة", "الدمام", "مكة المكرمة", "المدينة المنورة", "الخبر", "الظهران", 
             "نيوم (NEOM)", "ذا لاين", "العلا", "القدية", "البحر الأحمر (مشروع)",
@@ -122,7 +121,6 @@
             "الهفوف (الأحساء)", "القطيف", "النعيرية"
         ];
 
-        // تعبئة القوائم برمجياً
         window.onload = () => {
             const lists = document.querySelectorAll('.city-list');
             lists.forEach(list => {
@@ -151,8 +149,6 @@
             if(!weight || weight <= 0) return alert("يرجى إدخال وزن الشحنة");
 
             document.getElementById('results-section').classList.remove('hidden');
-            
-            // معادلة التسعير الذكي (رسوم مسافة + رسوم استدامة)
             let distanceFee = (from !== to) ? 20 : 0;
             let ecoFee = isEco ? 8 : 0;
 
@@ -171,7 +167,6 @@
                 badges.forEach(b => isEco ? b.classList.remove('hidden') : b.classList.add('hidden'));
             }
 
-            // انيميشن الظهور
             const cards = document.querySelectorAll('.price-card');
             cards.forEach((c, i) => setTimeout(() => c.classList.add('show'), i * 150));
         }
