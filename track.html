@@ -3,56 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تتبع شحنتك | NomadByte</title>
+    <title>NomadByte | تتبع شحنتك وشات بوت</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f0f4f8; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
-        .track-card { background: white; width: 100%; max-width: 450px; border-radius: 30px; padding: 40px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; text-align: center; }
-        .btn-track { background: #2563eb; color: white; width: 100%; padding: 16px; border-radius: 15px; font-weight: 800; font-size: 1.2rem; margin-top: 20px; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f0f4f8; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; margin: 0; }
+        .track-card { background: white; width: 100%; max-width: 480px; border-radius: 35px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0; text-align: center; position: relative; z-index: 10; }
+        input { border: 2px solid #e2e8f0 !important; padding: 18px; border-radius: 18px; font-size: 1.2rem; text-align: center; width: 100%; outline: none; transition: 0.3s; }
+        input:focus { border-color: #2563eb !important; box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.1); }
+        .btn-track { background: #2563eb; color: white; width: 100%; padding: 18px; border-radius: 18px; font-weight: 900; font-size: 1.3rem; margin-top: 25px; transition: 0.3s; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
+        .btn-track:hover { background: #1d4ed8; transform: translateY(-3px); }
+        .status-display { background-color: #eff6ff; color: #1e40af; padding: 20px; border-radius: 20px; font-size: 1.5rem; font-weight: 900; margin-top: 20px; border: 2px dashed #bfdbfe; }
+        
+        /* شات بوت ستايل */
+        #chat-window { transition: all 0.3s ease-in-out; transform: translateY(20px); opacity: 0; pointer-events: none; }
+        #chat-window.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body>
+
     <div class="track-card">
-        <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl mx-auto mb-4"><span class="text-white text-3xl font-black italic">NB</span></div>
-        <h1 class="text-2xl font-black text-slate-800 uppercase">تتبع شحنتك</h1>
-        <div id="search-box" class="mt-8">
-            <input type="text" id="track-id" placeholder="أدخل رقم الشحنة (مثلاً NB-12345)" class="w-full border-2 border-slate-100 p-4 rounded-xl text-center text-lg outline-none focus:border-blue-500">
-            <button onclick="search()" class="btn-track shadow-lg">تتبع الآن 🔍</button>
+        <div class="flex flex-col items-center mb-10">
+            <div class="w-20 h-20 bg-blue-600 rounded-[22px] flex items-center justify-center shadow-2xl shadow-blue-200 mb-4">
+                <span class="text-white text-4xl font-black italic">NB</span>
+            </div>
+            <h1 class="text-3xl font-black text-slate-800 uppercase tracking-tighter">NomadByte</h1>
+            <div class="h-1 w-12 bg-blue-600 rounded-full mt-2"></div>
         </div>
-        <div id="result" class="hidden mt-8 border-t pt-8">
-            <p class="text-slate-400 text-xs font-bold uppercase">حالة الشحنة</p>
-            <h2 id="res-name" class="text-2xl font-black text-slate-800 mt-2">---</h2>
-            <div id="res-status" class="mt-4 bg-blue-50 text-blue-600 py-3 rounded-2xl font-black text-xl">---</div>
-            <button onclick="location.reload()" class="mt-6 text-blue-600 font-bold italic underline">بحث آخر</button>
+
+        <div id="search-area">
+            <p class="text-slate-500 font-bold mb-6 text-lg">أدخل رقم الشحنة الخاص بك</p>
+            <input type="text" id="track-id-input" placeholder="NB-XXXXX" class="uppercase">
+            <button onclick="performTracking()" class="btn-track">تتبع المسار 🔍</button>
         </div>
-        <p id="error" class="hidden text-red-500 font-bold mt-4 italic">الرقم غير صحيح!</p>
+
+        <div id="result-area" class="hidden">
+            <div class="h-px bg-slate-100 my-8"></div>
+            <p class="text-blue-600 font-black text-xs uppercase tracking-widest mb-2">مرحباً بك</p>
+            <h2 id="display-name" class="text-2xl font-black text-slate-900 mb-1">---</h2>
+            <p id="display-dest" class="text-slate-400 font-bold mb-6">---</p>
+            <p class="text-slate-500 text-sm font-bold mb-2 uppercase">حالة الشحنة الحالية</p>
+            <div id="display-status" class="status-display">---</div>
+            <button onclick="location.reload()" class="mt-10 text-slate-400 font-bold hover:text-blue-600 transition-colors italic text-sm">← بحث عن شحنة أخرى</button>
+        </div>
+
+        <p id="error-message" class="hidden text-red-500 font-black mt-6 bg-red-50 p-3 rounded-xl border border-red-100">رقم الشحنة غير موجود!</p>
     </div>
+
+    <div class="fixed bottom-6 left-6 z-50 flex flex-col items-end">
+        <div id="chat-window" class="w-80 bg-white rounded-3xl shadow-2xl border border-slate-200 mb-4 overflow-hidden flex flex-col">
+            <div class="bg-blue-600 p-4 text-white font-bold flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span>مساعد NomadByte 🤖</span>
+                </div>
+                <button onclick="toggleChat()" class="hover:rotate-90 transition-transform">✕</button>
+            </div>
+            <div id="chat-content" class="h-72 p-4 overflow-y-auto text-sm space-y-4 bg-slate-50 flex flex-col">
+                <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none self-start max-w-[80%] shadow-sm">
+                    أهلاً بك في NomadByte! كيف أقدر أساعدك اليوم؟ 😊
+                </div>
+            </div>
+            <div class="p-3 bg-white border-t flex gap-2">
+                <input id="chat-input" type="text" placeholder="اكتب سؤالك هنا..." class="flex-1 !text-sm !p-3 !border-none !bg-slate-100 !rounded-xl">
+                <button onclick="sendChatMessage()" class="bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 transition-colors">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <button onclick="toggleChat()" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
         const firebaseConfig = { databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com/" };
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        window.search = async () => {
-            const id = document.getElementById('track-id').value.trim().toUpperCase();
-            if (!id) return;
-            const snap = await get(child(ref(db), 'shipments'));
-            if (snap.exists()) {
-                const data = snap.val(); let found = false;
-                for (let k in data) {
-                    if (data[k].code === id) {
-                        document.getElementById('res-name').innerText = data[k].customer;
-                        document.getElementById('res-status').innerText = data[k].status;
-                        document.getElementById('search-box').classList.add('hidden');
-                        document.getElementById('result').classList.remove('hidden');
-                        document.getElementById('error').classList.add('hidden');
-                        found = true; break;
-                    }
+
+        // تتبع الشحنة
+        window.performTracking = async () => {
+            const trackId = document.getElementById('track-id-input').value.trim().toUpperCase();
+            if (!trackId) return;
+            try {
+                const snapshot = await get(child(ref(db), `shipments`));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    let found = Object.values(data).find(s => s.code === trackId);
+                    if (found) {
+                        document.getElementById('display-name').innerText = found.customer;
+                        document.getElementById('display-dest').innerText = "الوجهة: " + found.destination;
+                        document.getElementById('display-status').innerText = found.status;
+                        document.getElementById('search-area').classList.add('hidden');
+                        document.getElementById('result-area').classList.remove('hidden');
+                        document.getElementById('error-message').classList.add('hidden');
+                    } else { document.getElementById('error-message').classList.remove('hidden'); }
                 }
-                if(!found) document.getElementById('error').classList.remove('hidden');
-            }
-        }
+            } catch (e) { alert("خطأ في الاتصال"); }
+        };
+
+        // وظائف الشات بوت
+        window.toggleChat = () => document.getElementById('chat-window').classList.toggle('active');
+
+        window.sendChatMessage = () => {
+            const input = document.getElementById('chat-input');
+            const content = document.getElementById('chat-content');
+            if (!input.value.trim()) return;
+
+            content.innerHTML += `<div class="bg-white border text-slate-700 p-3 rounded-2xl rounded-tl-none self-end max-w-[80%] shadow-sm">${input.value}</div>`;
+            const msg = input.value.toLowerCase();
+            input.value = "";
+
+            setTimeout(() => {
+                let reply = "أهلاً بك! تقدر تستفسر عن شحنتك بكتابة 'تتبع' أو اسألني عن 'ساعات العمل'.";
+                if (msg.includes("تتبع")) reply = "اكتب رقم شحنتك في المربع الرئيسي فوق وراح تظهر لك الحالة فوراً! 📦";
+                if (msg.includes("شكرا")) reply = "ولو! NomadByte دائماً في خدمتك 💙";
+                if (msg.includes("عمل")) reply = "نحن نعمل على مدار الساعة لتوصيل شحناتكم بأفضل جودة 🚀";
+                
+                content.innerHTML += `<div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none self-start max-w-[80%] shadow-sm">${reply}</div>`;
+                content.scrollTop = content.scrollHeight;
+            }, 800);
+        };
     </script>
 </body>
 </html>
