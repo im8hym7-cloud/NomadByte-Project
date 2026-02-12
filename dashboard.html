@@ -13,72 +13,100 @@
         <aside class="sidebar">
             <div class="logo-area">
                 <img src="icon.png" alt="Logo" width="40">
-                <h3>نوماد بايت</h3>
+                <h3>NomadByte</h3>
             </div>
             <nav class="dash-nav">
                 <a href="#" class="active"><i class="fa fa-home"></i> الرئيسة</a>
-                <a href="#" onclick="openAddShipment()"><i class="fa fa-plus-circle"></i> إضافة شحنة</a>
-                <a href="#"><i class="fa fa-truck"></i> الشحنات النشطة</a>
-                <a href="#"><i class="fa fa-chart-line"></i> التقارير</a>
-                <hr>
+                <a href="javascript:void(0)" onclick="toggleModal()"><i class="fa fa-plus-circle"></i> إضافة شحنة</a>
                 <a href="index.html" class="logout"><i class="fa fa-sign-out-alt"></i> خروج</a>
             </nav>
         </aside>
 
         <main class="main-content">
             <header class="dash-header">
-                <h2>إحصائيات العمليات - <span class="blue-text">NomadByte_KSA</span></h2>
+                <h2>إحصائيات الشحنات الذكية</h2>
             </header>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <i class="fa fa-box-open"></i>
-                    <div class="stat-info">
-                        <span>إجمالي الشحنات</span>
-                        <strong>1,240</strong>
-                    </div>
+                    <i class="fa fa-box"></i>
+                    <div class="stat-info"><span>الإجمالي</span><strong id="totalCount">1</strong></div>
                 </div>
                 <div class="stat-card success">
-                    <i class="fa fa-check-circle"></i>
-                    <div class="stat-info">
-                        <span>تمت بنجاح</span>
-                        <strong>1,195</strong>
-                    </div>
-                </div>
-                <div class="stat-card warning">
-                    <i class="fa fa-clock"></i>
-                    <div class="stat-info">
-                        <span>قيد المعالجة</span>
-                        <strong>45</strong>
-                    </div>
+                    <i class="fa fa-check"></i>
+                    <div class="stat-info"><span>مكتملة</span><strong>1</strong></div>
                 </div>
             </div>
 
             <section class="table-section">
-                <h3>أحدث الشحنات</h3>
-                <div class="table-wrapper">
-                    <table id="shipmentTable">
-                        <thead>
-                            <tr>
-                                <th>رقم الشحنة</th>
-                                <th>العميل</th>
-                                <th>الوجهة</th>
-                                <th>الحالة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#NB-9901</td>
-                                <td>مؤسسة الأمل</td>
-                                <td>نيوم</td>
-                                <td class="status-badge">في الطريق</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h3>سجل الشحنات</h3>
+                <table id="shipmentTable">
+                    <thead>
+                        <tr>
+                            <th>رقم الشحنة</th>
+                            <th>الوجهة</th>
+                            <th>الوزن</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NB-1001</td>
+                            <td>الرياض - القدية</td>
+                            <td>5 KG</td>
+                            <td><span class="status-badge">مجدولة</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </main>
     </div>
 
+    <div id="shipmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal()">&times;</span>
+            <h3>إضافة شحنة جديدة</h3>
+            <form id="addShipmentForm">
+                <div class="input-group">
+                    <label>رقم الشحنة</label>
+                    <input type="text" id="shipId" placeholder="مثال: NB-2002" required>
+                </div>
+                <div class="input-group">
+                    <label>الوجهة</label>
+                    <input type="text" id="shipDest" placeholder="إلى أين؟" required>
+                </div>
+                <div class="input-group">
+                    <label>الوزن (KG)</label>
+                    <input type="number" id="shipWeight" required>
+                </div>
+                <button type="button" class="login-btn-blue" onclick="saveShipment()">حفظ الشحنة</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('shipmentModal');
+            modal.style.display = (modal.style.display === "flex") ? "none" : "flex";
+        }
+
+        function saveShipment() {
+            const id = document.getElementById('shipId').value;
+            const dest = document.getElementById('shipDest').value;
+            const weight = document.getElementById('shipWeight').value;
+
+            if(!id || !dest || !weight) return alert("اكمل البيانات");
+
+            // إضافة صف جديد للجدول (Task 7)
+            const table = document.getElementById('shipmentTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `<td>${id}</td><td>${dest}</td><td>${weight} KG</td><td><span class="status-badge">جديدة</span></td>`;
+
+            // إخفاء النافذة وتصفير الفورم
+            toggleModal();
+            document.getElementById('addShipmentForm').reset();
+            alert("تم حفظ الشحنة بنجاح! ✅");
+        }
+    </script>
 </body>
 </html>
