@@ -2,32 +2,52 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول | شحنة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f8fafc; font-family: 'Tajawal', sans-serif; }
+        .login-card { background: white; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.04); border: 4px solid white; }
+        input { @apply w-full p-4 bg-slate-50 border-2 border-slate-50 rounded-2xl font-bold outline-none focus:border-blue-500 transition-all text-center; }
+    </style>
 </head>
-<body class="bg-slate-50 font-['Tajawal'] flex items-center justify-center min-h-screen p-6">
-    <div class="bg-white p-12 rounded-[50px] shadow-2xl w-full max-w-md border-4 border-white text-center">
-        <img src="icon.png" class="w-20 mx-auto mb-6">
-        <h2 class="text-3xl font-black text-slate-800 mb-2">مرحباً بك مجدداً</h2>
-        <p class="text-slate-400 font-bold mb-8 italic">سجل دخولك لإدارة شحناتك</p>
-        
-        <div class="space-y-4 text-right">
-            <div>
-                <label class="text-xs font-black text-slate-400 mr-2 uppercase">اسم المستخدم</label>
-                <input type="text" placeholder="NomadByte_KSA" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 focus:border-blue-500 outline-none font-bold mt-2">
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+
+    <div class="w-full max-w-[450px] login-card p-10 text-center">
+        <img src="icon.png" class="w-16 mx-auto mb-6 drop-shadow-md">
+        <h2 class="text-2xl font-black text-slate-800 mb-2">مرحباً بك مجدداً</h2>
+        <p class="text-slate-400 font-bold text-sm mb-10 italic">سجل دخولك الآمن للوحة تحكم الأفراد</p>
+
+        <div class="space-y-5">
+            <div class="text-right">
+                <label class="text-[10px] font-black text-slate-400 mr-4 uppercase">اسم المستخدم / الهوية</label>
+                <input type="text" placeholder="NomadByte_KSA">
             </div>
-            <div>
-                <label class="text-xs font-black text-slate-400 mr-2 uppercase">كلمة السر</label>
-                <input type="password" placeholder="••••••••" class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-slate-50 focus:border-blue-500 outline-none font-bold mt-2">
+            <div class="text-right">
+                <label class="text-[10px] font-black text-slate-400 mr-4 uppercase">كلمة السر</label>
+                <input type="password" placeholder="••••••••">
             </div>
         </div>
 
-        <button onclick="window.location.href='user.html'" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl mt-8 shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all">دخول 🚀</button>
-        
-        <div class="mt-6 flex justify-between text-xs font-bold text-blue-500 px-2">
-            <a href="#" class="hover:underline">نسيت كلمة السر؟</a>
-            <a href="index.html" class="text-slate-400 hover:text-slate-600 italic">العودة للرئيسية</a>
+        <button onclick="window.location.href='user.html'" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg mt-8 shadow-xl shadow-blue-100 hover:scale-[1.02] active:scale-95 transition-all">
+            دخول 🚀
+        </button>
+
+        <div class="mt-6 flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+                <div class="h-[1px] bg-slate-100 flex-1"></div>
+                <span class="text-[10px] font-bold text-slate-300">أو عبر الهوية الرقمية</span>
+                <div class="h-[1px] bg-slate-100 flex-1"></div>
+            </div>
+            <button class="w-full bg-emerald-50 text-emerald-700 py-4 rounded-2xl font-black text-sm border-2 border-emerald-100 flex items-center justify-center gap-2 hover:bg-emerald-100 transition-all">
+                <span>🇸🇦</span> تسجيل الدخول عبر النفاذ الوطني
+            </button>
+        </div>
+
+        <div class="mt-8 flex justify-between px-2">
+            <a href="index.html" class="text-xs font-bold text-slate-400 hover:text-blue-600">← العودة للرئيسية</a>
+            <a href="#" class="text-xs font-bold text-blue-500">نسيت كلمة السر؟</a>
         </div>
     </div>
 </body>
