@@ -2,26 +2,25 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>بوابة الشركات | شحنة</title>
+    <title>بوابة الشركات | NomadByte</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: #0a2e5c; background-image: linear-gradient(rgba(10, 46, 92, 0.9), rgba(10, 46, 92, 0.9)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; width: 380px; text-align: center; color: white; border: 1px solid rgba(255,255,255,0.2); }
-        .icon-box { font-size: 60px; margin-bottom: 10px; }
-        .logo { height: 50px; margin-bottom: 20px; }
-        input { width: 100%; padding: 14px; margin: 10px 0; border: none; border-radius: 12px; background: rgba(255,255,255,0.2); color: white; box-sizing: border-box; }
-        button { width: 100%; padding: 14px; background: #2980b9; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; }
-        a { display: block; margin-top: 15px; color: #ddd; text-decoration: none; }
+        body { margin: 0; font-family: sans-serif; background: #0a2e5c; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .admin-box { background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); padding: 50px; border-radius: 30px; width: 400px; text-align: center; border: 1px solid rgba(255,255,255,0.2); color: white; }
+        .logo-img { height: 60px; margin-bottom: 30px; }
+        input { width: 100%; padding: 15px; margin: 12px 0; border: none; border-radius: 12px; background: rgba(255,255,255,0.15); color: white; box-sizing: border-box; }
+        input::placeholder { color: #ddd; }
+        button { width: 100%; padding: 15px; background: #2980b9; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; margin-top: 15px; }
+        .back { display: block; margin-top: 25px; color: #ccc; text-decoration: none; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" class="logo">
-        <div class="icon-box">🚛</div>
-        <h2 style="margin-top:0;">بوابة الشركاء</h2>
+    <div class="admin-box">
+        <img src="icon.png" class="logo-img">
+        <h2 style="margin-bottom: 30px;">دخول الشركاء</h2>
         <input type="text" placeholder="رقم السجل التجاري">
-        <input type="password" placeholder="كلمة المرور">
-        <button onclick="location.href='index.html'">دخول</button>
-        <a href="index.html">← الرجوع للرئيسية</a>
+        <input type="password" placeholder="كلمة السر المشفرة">
+        <button onclick="location.href='index.html'">دخول المنصة</button>
+        <a href="index.html" class="back">← العودة للرئيسية</a>
     </div>
 </body>
 </html>
