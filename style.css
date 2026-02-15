@@ -1,53 +1,149 @@
-/* NomadByte Core CSS - الإصلاح الشامل */
+:root {
+    --bg-black: #080808;
+    --card-bg: #121212;
+    --accent-neon: #A3FF00; /* لون الهبة */
+    --text-main: #FFFFFF;
+    --text-dim: #888888;
+}
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
 body {
-    margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f2f5; direction: rtl;
+    margin: 0;
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
-/* تنسيق الحاسبة في الصفحة الرئيسية لضمان عملها */
-.main-container {
-    text-align: center; padding: 50px;
+/* شريط الإعلانات */
+.announcement-bar {
+    background: var(--accent-neon);
+    color: black;
+    padding: 8px 0;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
-/* الحاوية الموحدة لصفحات الدخول والتتبع */
-.login-card {
-    background: white; width: 850px; max-width: 95%;
-    display: flex; flex-direction: row-reverse; 
-    margin: 50px auto; border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;
+.marquee {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-/* السيطرة على الصور - أهم جزء */
-.image-section {
-    flex: 1; background-color: #fdf2e9;
-    display: flex; justify-content: center; align-items: center; padding: 20px;
+/* واجهة الهيرو */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.image-section img {
-    max-width: 100%; max-height: 300px; /* حجم يمنع التغطية على الأزرار */
-    object-fit: contain;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    align-items: center;
 }
 
-/* قسم البيانات */
-.form-section {
-    flex: 1; padding: 40px; text-align: right;
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
 }
 
-.input-group { margin-bottom: 15px; }
-.input-group input, .input-group select {
-    width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
-.btn-action {
-    width: 100%; padding: 12px; background: #f39c12; color: white;
-    border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* تنسيق خاص للشركاء */
-.admin-variant .image-section { background-color: #e3f2fd; }
-.admin-variant .btn-action { background-color: #2980b9; }
+.hero-content h1 {
+    font-size: 8vw;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+}
 
-/* للهواتف */
-@media (max-width: 768px) {
-    .login-card { flex-direction: column; }
+.btn-primary {
+    background: white;
+    color: black;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: 900;
+    margin-top: 30px;
+    border-radius: 2px;
+}
+
+.btn-primary:hover {
+    background: var(--accent-neon);
+}
+
+/* شبكة المنتجات */
+.products-section { padding: 80px 50px; }
+.section-title { font-family: 'Orbitron'; margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.product-card {
+    background: var(--card-bg);
+    position: relative;
+    border: 1px solid #1a1a1a;
+}
+
+.product-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--accent-neon);
+    color: black;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.sold-out { background: #ff3e3e; color: white; }
+
+.product-img img { width: 100%; display: block; filter: grayscale(20%); }
+.product-card:hover .product-img img { filter: grayscale(0%); transform: scale(1.02); }
+
+.product-info { padding: 20px; text-align: center; }
+.price { color: var(--accent-neon); font-weight: bold; font-size: 1.2rem; }
+
+.add-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:hover:not(:disabled) {
+    background: white;
+    color: black;
 }
