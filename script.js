@@ -1,10 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. تشغيل وظيفة عرض المنتجات
+    displayProducts();
+    
+    // 2. تشغيل العداد التنازلي
+    startCountdown();
+});
+
+// وظيفة جلب وعرض المنتجات من لوحة الإدارة (Admin)
+function displayProducts() {
     const grid = document.querySelector('.products-grid');
+    if (!grid) return;
+
     let products = JSON.parse(localStorage.getItem('nomadProducts')) || [];
 
     if (products.length === 0) {
-        grid.innerHTML = '<p style="opacity:0.5;">لا يوجد قطع في Drop الحالي..</p>';
+        grid.innerHTML = '<p style="opacity:0.5; text-align:center; grid-column:1/-1;">لا يوجد قطع في Drop الحالي..</p>';
     } else {
+        grid.innerHTML = ''; // تنظيف الشبكة قبل العرض
         products.forEach(p => {
             grid.innerHTML += `
                 <div class="product-card">
@@ -20,4 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
     }
-});
+}
+
+// وظيفة العداد التنازلي (ليطابق النص في الصورة)
+function startCountdown() {
+    const timerElement = document.getElementById('timer');
+    if (!timerElement) return;
+
+    // تحديد وقت النهاية (مثلاً بعد يومين)
+    let time = 259190; // ثواني تقريبية تعادل 2D 23H 59M
+
+    const x = setInterval(() => {
+        time--;
+        
+        let days = Math.floor(time / (24 * 3600));
+        let hours = Math.floor((time % (24 * 3600)) / 3600);
+        let minutes = Math.floor((time % 3600) / 60);
+        let seconds = time % 60;
+
+        // تحديث النص في الشريط العلوي
+        timerElement.innerHTML = `${days}D ${hours}H ${minutes}M ${seconds}S`;
+
+        if (time <= 0) {
+            clearInterval(x);
+            timerElement.innerHTML = "DROP IS LIVE";
+        }
+    }, 1000);
+}
