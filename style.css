@@ -1,192 +1,105 @@
 :root {
     --cyan: #00f2ff;
-    --purple: #bc13fe;
-    --bg-dark: #050505;
-    --card-bg: #121212;
-    --glass: rgba(255, 255, 255, 0.03);
+    --bg-black: #050505;
+    --card-bg: #1a1a1a;
 }
 
-/* تنظيف الإعدادات الافتراضية */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    outline: none; 
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: var(--bg-dark);
+    background-color: var(--bg-black);
     color: white;
     font-family: 'Inter', sans-serif;
-    line-height: 1.5;
 }
 
-/* شريط التنبيهات العلوي المتحرك */
+/* الشريط العلوي */
 .announcement-bar {
-    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    background: var(--cyan);
     color: black;
-    padding: 12px 0;
+    padding: 12px;
     text-align: center;
     font-weight: 900;
     font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+    letter-spacing: 2px;
 }
 
-/* قسم الهيرو (روح التصميم) */
+/* واجهة الهيرو */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.85)), 
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), 
                 url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* تأثير التثبيت عند التمرير */
     display: flex;
     align-items: center;
     padding: 0 10%;
     position: relative;
 }
 
-.hero-label {
-    color: var(--cyan);
-    font-size: 0.8rem;
-    letter-spacing: 5px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px var(--cyan);
-}
+.hero-tag { color: var(--cyan); font-weight: bold; letter-spacing: 3px; display: block; margin-bottom: 10px; }
 
-/* العنوان الضخم وتأثير الخط المفرغ */
 .main-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-size: clamp(2rem, 5vw, 4.5rem);
     font-weight: 900;
-    letter-spacing: -2px;
     text-transform: uppercase;
-    line-height: 1;
+    display: flex;
+    gap: 15px;
 }
 
 .main-title .outline {
     color: transparent;
     -webkit-text-stroke: 1.5px var(--cyan);
-    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.4));
 }
 
-.hero-tagline {
-    font-size: 1.1rem;
-    letter-spacing: 8px;
-    color: #cccccc;
-    margin: 25px 0 45px;
-    text-transform: uppercase;
-}
+.tagline { font-size: 1.2rem; letter-spacing: 8px; margin: 20px 0 40px; color: #eee; }
 
-/* الزر النيون المشع */
-.btn-cyan {
-    display: inline-block;
-    padding: 18px 50px;
+.btn-main {
+    padding: 15px 40px;
     background: var(--cyan);
     color: black;
     text-decoration: none;
     font-weight: 900;
-    border-radius: 4px; /* زوايا حادة شوي تعطي فخامة أكثر */
+    border-radius: 50px;
     box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.btn-cyan:hover {
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 0 40px var(--cyan);
-    background: white; /* يقلب أبيض عند الحوم ليعطي تأثير فلاش */
-}
-
-/* قسم المنتجات */
-.products-section { padding: 100px 10%; }
-
-.section-title {
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: 60px;
-    font-size: 1.8rem;
-    letter-spacing: 4px;
-    color: white;
-    border-left: 4px solid var(--cyan);
-    padding-left: 20px;
-}
+/* ستايل الكروت (كما في الصورة تماماً) */
+.products-section { padding: 80px 10%; }
+.recent-title { font-family: 'Orbitron', sans-serif; margin-bottom: 40px; font-size: 1.4rem; }
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-/* كرت المنتج الاحترافي */
 .product-card {
-    background: var(--glass);
-    backdrop-filter: blur(10px); /* تأثير الزجاج الضبابي */
-    border-radius: 20px;
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: 0.4s;
-    position: relative;
-    overflow: hidden;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #333;
+    transition: 0.3s;
 }
 
-.product-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, transparent, rgba(0, 242, 255, 0.05));
-    pointer-events: none;
-}
-
-.product-card:hover {
-    border-color: var(--cyan);
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
+.product-card:hover { border-color: var(--cyan); transform: translateY(-5px); }
 
 .product-img-box {
     width: 100%;
     aspect-ratio: 1;
     background: #000;
-    border-radius: 12px;
-    margin-bottom: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
     overflow: hidden;
-    border: 1px solid #222;
 }
 
-.product-img-box img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    transition: 0.5s;
-}
-
-.product-card:hover img { transform: scale(1.1); }
-
-.product-card h3 { 
-    font-size: 1.3rem; 
-    margin-bottom: 12px; 
-    font-family: 'Orbitron', sans-serif;
-}
+.product-img-box img { width: 100%; height: 100%; object-fit: cover; }
 
 .price-tag {
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: 900;
     color: var(--cyan);
     display: block;
-    line-height: 1;
-}
-
-.currency { color: #666; font-size: 0.8rem; margin-top: 8px; text-transform: uppercase; }
-
-/* زر الإضافة للسلة داخل الكرت */
-.product-card .btn-cyan {
-    width: 100%;
-    margin-top: 25px;
-    padding: 12px;
-    font-size: 0.75rem;
+    margin: 10px 0;
 }
