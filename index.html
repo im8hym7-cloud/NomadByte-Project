@@ -5,45 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHIHNAH | المنصة الموحدة للنقل اللوجستي</title>
     <style>
-        :root { --navy: #0a2e5c; --gold: #f39c12; --bg-light: #f4f7f6; }
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--navy); color: white; overflow-x: hidden; }
+        :root { --navy: #0a2e5c; --gold: #f39c12; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--navy); color: white; }
         
-        /* الهيدر الموحد حسب الصور */
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .logo-area img { height: 45px; }
-        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        /* الهيدر الموحد */
+        header { padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 1000; }
+        .logo-area { display: flex; align-items: center; gap: 8px; }
+        .logo-area img { height: 38px; }
+        .nav-btns { display: flex; gap: 8px; }
         
-        /* تصميم الأزرار الموحد (بوابة الشركات ودخول الأفراد) */
-        .btn-action { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.3s; display: inline-block; }
-        .btn-outline { border: 1px solid white; color: white; }
-        .btn-outline:hover { background: white; color: var(--navy); }
+        /* الأزرار بالخط الأنيق الصغير */
+        .btn-action { padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
         .btn-gold { background: var(--gold); color: white; border: none; }
-        .btn-gold:hover { background: #e68a00; transform: translateY(-2px); }
+        .btn-outline { border: 1px solid white; color: white; }
 
         /* منطقة الهيرو */
-        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero { text-align: center; padding: 70px 20px; background: linear-gradient(rgba(10,46,92,0.75), rgba(10,46,92,0.75)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
+        .hero h1 { font-size: 2rem; margin-bottom: 8px; }
+        .hero p { font-size: 0.9rem; opacity: 0.9; }
 
-        /* صندوق البحث مع قائمة المدن الكاملة */
-        .search-box { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1100px; margin: -50px auto 40px; color: #333; box-shadow: 0 25px 50px rgba(0,0,0,0.4); align-items: flex-end; flex-wrap: wrap; }
-        .field { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 8px; text-align: right; }
-        label { font-weight: bold; color: var(--navy); font-size: 0.9rem; }
-        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; width: 100%; box-sizing: border-box; font-family: inherit; outline: none; }
-        
-        .btn-search { background: var(--gold); color: white; border: none; padding: 0 40px; border-radius: 10px; cursor: pointer; height: 50px; font-weight: bold; font-size: 1.1rem; flex-grow: 0.3; transition: 0.3s; }
+        /* صندوق البحث */
+        .search-box { background: white; padding: 22px; border-radius: 12px; display: flex; gap: 12px; max-width: 1050px; margin: -35px auto 40px; color: #333; box-shadow: 0 12px 25px rgba(0,0,0,0.3); align-items: flex-end; flex-wrap: wrap; }
+        .field { flex: 1; min-width: 130px; display: flex; flex-direction: column; gap: 4px; text-align: right; }
+        label { font-size: 0.8rem; font-weight: bold; color: var(--navy); }
+        select, input { padding: 9px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; font-family: inherit; outline: none; }
+        .btn-search { background: var(--gold); color: white; border: none; padding: 10px 25px; border-radius: 7px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
 
-        /* شبكة النتائج وتنسيق البطاقات */
-        .results { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 20px; }
-        .card { background: white; color: #333; padding: 25px; border-radius: 20px; text-align: center; display: none; border-bottom: 6px solid var(--gold); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        .price { font-size: 2rem; color: var(--navy); font-weight: 900; margin: 15px 0; }
-        .btn-book { width: 100%; padding: 12px; background: var(--navy); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
-
-        /* نافذة الحجز */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .modal-content { background: white; color: #333; padding: 35px; border-radius: 25px; width: 90%; max-width: 450px; text-align: right; position: relative; }
-        .close-btn { position: absolute; left: 20px; top: 15px; cursor: pointer; font-size: 1.8rem; color: #999; }
+        /* شبكة الشركات (البطاقات) */
+        .results { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; padding: 20px; }
+        .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-bottom: 4px solid var(--gold); transition: 0.3s; }
+        .card h3 { margin: 0; font-size: 1.1rem; color: var(--navy); }
+        .card p { font-size: 0.75rem; color: #777; margin: 5px 0; }
+        .price { font-size: 1.4rem; color: var(--navy); font-weight: 800; margin: 12px 0; }
+        .btn-book { width: 100%; padding: 9px; background: var(--navy); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -55,14 +49,14 @@
             <a href="login.html" class="btn-action btn-gold">دخول الأفراد</a>
         </div>
         <div class="logo-area">
-            <span style="font-size: 1.8rem; font-weight: 900; letter-spacing: 1px;">SHIHNAH</span>
+            <span style="font-size: 1.4rem; font-weight: 900;">SHIHNAH</span>
             <img src="icon.png" alt="Logo">
         </div>
     </header>
 
     <div class="hero">
-        <h1>المنصة الموحدة للنقل اللوجستي في المملكة</h1>
-        <p>نقل ذكي يربط كافة مدن المملكة بأفضل الأسعار</p>
+        <h1>المنصة الموحدة للنقل اللوجستي</h1>
+        <p>مستقبل النقل الذكي بين كافة مدن ومناطق المملكة</p>
     </div>
 
     <div class="search-box">
@@ -82,36 +76,21 @@
                 <optgroup label="أخرى"><option>تبوك</option><option>أبها</option><option>جازان</option><option>نيوم (NEOM)</option><option>القدية</option></optgroup>
             </select>
         </div>
-        <div class="field" style="flex: 0.4;"><label>الوزن:</label>
-            <input type="number" id="weight" value="1" min="0.01">
-        </div>
-        <div class="field" style="flex: 0.4;"><label>الوحدة:</label>
-            <select id="unit">
-                <option value="kg">كيلو (KG)</option>
-                <option value="g">جرام (g)</option>
-            </select>
+        <div class="field" style="flex:0.3"><label>الوزن:</label><input type="number" id="weight" value="1"></div>
+        <div class="field" style="flex:0.4"><label>الوحدة:</label>
+            <select id="unit"><option value="kg">كيلو (KG)</option><option value="g">جرام (g)</option></select>
         </div>
         <button class="btn-search" onclick="calculateResults()">بحث الأسعار</button>
     </div>
 
     <div class="results" id="resultsGrid">
-        <div class="card" data-rate="22"><h3>المجدوعي</h3><p>نقل ثقيل ولوجستي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card" data-rate="18"><h3>سبل (SPL)</h3><p>البريد السعودي الرسمي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card" data-rate="25"><h3>أرامكس</h3><p>توصيل سريع وموثوق</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="30"><h3>سمسا (SMSA)</h3><p>أوسع انتشار محلي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-rate="28"><h3>أرامكس</h3><p>توصيل سريع ومرن</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card" data-rate="20"><h3>المجدوعي</h3><p>حلول النقل الثقيل</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="15"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-rate="25"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card" data-rate="22"><h3>البسامي الدولية</h3><p>نقل المركبات والبضائع</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="60"><h3>DHL</h3><p>الخيار العالمي السريع</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-    </div>
-
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 style="color:var(--navy); margin-top:0;">تأكيد الحجز</h2>
-            <p>الشركة المختارة: <strong id="modalCompName" style="color:var(--gold);"></strong></p>
-            <input type="text" id="sName" placeholder="اسم المرسل">
-            <input type="tel" id="sPhone" placeholder="رقم الجوال">
-            <button class="btn-book" onclick="finishBooking()">تأكيد وإصدار رقم التتبع</button>
-        </div>
     </div>
 
     <script>
@@ -124,22 +103,8 @@
                 card.style.display = 'block';
                 let rate = parseFloat(card.getAttribute('data-rate'));
                 let total = (weightInKg * rate).toFixed(2);
-                card.querySelector('.price').innerText = (total < 15 ? 15 : total) + " ريال";
-                card.querySelector('button').onclick = () => openBooking(card.querySelector('h3').innerText);
+                card.querySelector('.price').innerText = (total < 10 ? 10 : total) + " ريال";
             });
-        }
-
-        function openBooking(company) {
-            document.getElementById('modalCompName').innerText = company;
-            document.getElementById('bookingModal').style.display = 'flex';
-        }
-
-        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
-
-        function finishBooking() {
-            let trackId = "SH-" + Math.floor(Math.random() * 9000 + 1000);
-            alert("تم بنجاح! رقم التتبع هو: " + trackId);
-            closeModal();
         }
     </script>
 </body>
