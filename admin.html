@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دخول الشركاء - NomadByte</title>
+    <title>NomadByte - بوابة الشركاء</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="login-wrapper">
-        <div class="login-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2761/2761008.png" alt="Partners" class="main-logo">
-            <div class="header-text">
-                <h2>دخول الشركاء اللوجستيين</h2>
-                <p class="subtitle">أهلاً بك في منصة أعمال NomadByte_KSA</p>
+    <div class="login-card admin-variant">
+        <div class="image-section admin-bg">
+            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/partners.png" alt="Partners">
+        </div>
+        <div class="form-section">
+            <h2 style="color: #2c3e50;">دخول الشركاء اللوجستيين</h2>
+            <p>أهلاً بك في منصة أعمال <strong>NomadByte</strong></p>
+            <div class="input-group">
+                <label>رقم السجل التجاري</label>
+                <input type="text" placeholder="CR Number">
             </div>
-
-            <form id="adminForm">
-                <div class="input-group">
-                    <label>رقم السجل التجاري</label>
-                    <input type="text" placeholder="أدخل رقم السجل" required>
-                </div>
-                <div class="input-group">
-                    <label>كلمة السر</label>
-                    <input type="password" placeholder="••••••••" required>
-                </div>
-                <button type="button" class="login-btn-blue" onclick="window.location.href='dashboard.html'">تسجيل الدخول</button>
-            </form>
-
+            <div class="input-group">
+                <label>كلمة السر</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <button class="btn-login admin-btn" onclick="window.location.href='dashboard.html'">دخول المنصة</button>
             <div class="footer-links">
-                <a href="reset.html">نسيت كلمة السر؟</a>
-                <a href="index.html">← العودة للرئيسية</a>
+                <a href="index.html">العودة للرئيسية ←</a>
             </div>
         </div>
     </div>
