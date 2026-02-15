@@ -9,121 +9,83 @@
         header { background: #000; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; }
         .nav-btns { display: flex; gap: 10px; }
         .btn { padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        .btn-black { border: 1px solid white; color: white; }
         .btn-gold { background: var(--gold); color: white; }
-        .btn-red { background: #e74c3c; color: white; border: none; }
-        .hero { text-align: center; padding: 40px 20px; background: linear-gradient(rgba(10,46,92,0.6), rgba(10,46,92,0.6)), url('bg.jpg'); background-size: cover; }
+        .btn-red { background: #e74c3c; color: white; }
         .search-container { background: white; border-radius: 15px; padding: 20px; max-width: 1050px; margin: -30px auto 30px; display: flex; gap: 15px; align-items: flex-end; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .fld { flex: 1; display: flex; flex-direction: column; gap: 5px; }
-        .fld label { font-size: 0.75rem; font-weight: bold; color: #0a2e5c; }
-        select, input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-family: inherit; }
+        select, input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%; }
         .btn-search { background: var(--gold); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
         .card { background: white; border-radius: 15px; padding: 25px; text-align: center; color: #0a2e5c; border-bottom: 5px solid var(--gold); position: relative; }
-        .eco-tag { position: absolute; top: 10px; right: 10px; font-size: 1.2rem; }
-        .price { font-size: 1.6rem; font-weight: 800; margin: 10px 0; color: #0a2e5c; }
-        .btn-book { background: #0a2e5c; color: white; border: none; width: 100%; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .eco-info { font-size: 0.65rem; color: #27ae60; font-weight: bold; display: block; margin-bottom: 10px; }
+        .price { font-size: 1.6rem; font-weight: 800; margin: 10px 0; }
+        .btn-book { background: #0a2e5c; color: white; border: none; width: 100%; padding: 10px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-btns">
-            <a href="track.html" class="btn btn-black">تتبع شحنة</a>
-            <a href="admin.html" class="btn btn-gold">بوابة الشركات</a>
-            <a href="user-dashboard.html" class="btn btn-gold">دخول الأفراد</a>
-            <a href="site-admin.html" class="btn btn-red">🛡️ إدارة المنصة</a>
+            <a href="login.html" class="btn btn-gold">تسجيل الدخول</a>
+            <a href="site-admin.html" class="btn btn-red">🛡️ الإدارة</a>
         </div>
-        <div style="font-weight: 900; font-size: 1.5rem;">SHIHNAH <img src="icon.png" width="30"></div>
+        <div style="font-weight: 900; font-size: 1.5rem;">SHIHNAH</div>
     </header>
 
-    <div class="hero">
+    <div style="text-align:center; padding: 40px;">
         <h1>المنصة الموحدة للنقل اللوجستي</h1>
-        <p>مستقبل النقل الذكي بين كافة مدن ومناطق المملكة</p>
     </div>
 
     <div class="search-container">
         <div class="fld"><label>من مدينة:</label>
             <select id="from_city">
                 <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
-                <optgroup label="المنطقة العربية (الغربية)"><option>جدة</option><option>مكة المكرمة</option></optgroup>
-                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option><option>الأحساء</option></optgroup>
-                <optgroup label="المشاريع الكبرى"><option>نيوم (NEOM)</option><option>القدية</option></optgroup>
+                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة</option></optgroup>
+                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option></optgroup>
+                <optgroup label="المشاريع"><option>نيوم</option></optgroup>
             </select>
         </div>
         <div class="fld"><label>إلى وجهة:</label>
             <select id="to_city">
-                <option>جدة</option><option>الرياض</option><option>الدمام</option><option>مكة المكرمة</option>
+                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
+                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة</option></optgroup>
+                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option></optgroup>
+                <optgroup label="المشاريع"><option>نيوم</option></optgroup>
             </select>
         </div>
-        <div class="fld" style="flex: 0.4;"><label>الوزن:</label><input type="number" id="weight_val" value="1"></div>
-        <div class="fld" style="flex: 0.6;"><label>الوحدة:</label>
-            <select id="unit_type">
-                <option value="kg">كيلو (KG)</option>
-                <option value="gm">جرام (Gram)</option>
-            </select>
-        </div>
+        <div class="fld" style="flex:0.4;"><label>الوزن:</label><input type="number" id="weight_val" value="1"></div>
         <button class="btn-search" onclick="updatePrices()">بحث الأسعار</button>
     </div>
 
-    <div class="results-grid" id="results-area">
-        <div class="card"><h3>المجدوعي</h3><p>نقل ثقيل ولوجستي</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><h3>سمسا (SMSA)</h3><p>أوسع انتشار محلي</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><span class="eco-tag">🌱</span><h3>أرامكس</h3><p>توصيل سريع ومرن</p><span class="eco-info">أسطول كهربائي متاح</span><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><span class="eco-tag">🌱</span><h3>سبل (SPL)</h3><p>البريد السعودي الرسمي</p><span class="eco-info">دعم مبادرة السعودية الخضراء</span><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><span class="eco-tag">🌱</span><h3>DHL</h3><p>الخيار العالمي السريع</p><span class="eco-info">خدمة GoGreen Zero Emissions</span><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+    <div class="results-grid">
+        <div class="card"><h3>المجدوعي</h3><div class="price" id="p1">-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>أرامكس</h3><div class="price" id="p2">-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>سمسا</h3><div class="price" id="p3">-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>زاجل</h3><div class="price" id="p4">-- ريال</div><button class="btn-book">حجز الآن</button></div>
     </div>
 
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
-      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
 
-      // مفاتيحك الخاصة
-      const firebaseConfig = {
-        apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
-        authDomain: "sh7na-database.firebaseapp.com",
-        databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com",
-        projectId: "sh7na-database",
-        storageBucket: "sh7na-database.firebasestorage.app",
-        messagingSenderId: "334773528813",
-        appId: "1:334773528813:web:7ff9c93d44b8d4ef8dc4e4"
-      };
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
+            authDomain: "sh7na-database.firebaseapp.com",
+            databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com",
+            projectId: "sh7na-database",
+            appId: "1:334773528813:web:7ff9c93d44b8d4ef8dc4e4"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
-
-      window.updatePrices = function() {
-        const weight = parseFloat(document.getElementById('weight_val').value) || 1;
-        const unit = document.getElementById('unit_type').value;
-        const factor = (unit === "gm") ? 0.001 : 1;
-
-        const ratesRef = ref(db, 'shipping_rates');
-        onValue(ratesRef, (snapshot) => {
-            const rates = snapshot.val();
-            if (!rates) { alert("تأكد من إضافة الأسعار في Firebase تحت shipping_rates"); return; }
-            
-            const mapping = {
-                "المجدوعي": rates.almajdouie,
-                "سمسا (SMSA)": rates.smsa,
-                "أرامكس": rates.aramex,
-                "زاجل": rates.zajel,
-                "سبل (SPL)": rates.spl,
-                "DHL": rates.dhl,
-                "البسامي الدولية": rates.albassami
-            };
-
-            document.querySelectorAll('.card').forEach(card => {
-                const name = card.querySelector('h3').innerText.trim();
-                const basePrice = mapping[name];
-                if (basePrice) {
-                    const finalPrice = basePrice * weight * factor;
-                    card.querySelector('.price').innerText = finalPrice.toFixed(2) + " ريال";
-                }
-            });
-        }, { onlyOnce: true });
-      };
+        window.updatePrices = function() {
+            const w = document.getElementById('weight_val').value;
+            onValue(ref(db, 'shipping_rates'), (snap) => {
+                const r = snap.val();
+                document.getElementById('p1').innerText = (r.almajdouie * w).toFixed(2) + " ريال";
+                document.getElementById('p2').innerText = (r.aramex * w).toFixed(2) + " ريال";
+                document.getElementById('p3').innerText = (r.smsa * w).toFixed(2) + " ريال";
+                document.getElementById('p4').innerText = (r.zajel * w).toFixed(2) + " ريال";
+            }, {onlyOnce: true});
+        }
     </script>
 </body>
 </html>
