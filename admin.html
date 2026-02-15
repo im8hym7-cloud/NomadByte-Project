@@ -2,33 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte - دخول الشركات</title>
     <link rel="stylesheet" href="style.css">
+    <title>بوابة الشركاء | NomadByte Business</title>
+    <style>
+        body { background: linear-gradient(135deg, #0a2e5c 0%, #000 100%); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; width: 450px; border: 1px solid rgba(255,255,255,0.1); text-align: center; color: white; }
+        .input-group { text-align: right; margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; border-radius: 12px; border: none; background: rgba(255,255,255,0.1); color: white; margin-top: 8px; box-sizing: border-box; }
+        .btn-admin { width: 100%; padding: 15px; background: #2980b9; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(41, 128, 185, 0.3); }
+        .eco-badge { color: #27ae60; font-size: 0.8rem; margin-top: 10px; display: block; }
+    </style>
 </head>
 <body>
-
-    <div class="login-card admin-variant">
-        <div class="image-section">
-            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/partners.png" alt="Partners">
+    <div class="glass-card">
+        <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" style="height: 60px; margin-bottom: 20px;">
+        <h2>بوابة كبار الشركاء</h2>
+        <p style="opacity: 0.7;">لوحة تحكم الشركات اللوجستية ورؤية 2030</p>
+        <div class="input-group">
+            <label>رقم السجل التجاري / المعرف الضريبي</label>
+            <input type="text" placeholder="CR Number">
         </div>
-        <div class="form-section">
-            <h2>بوابة الشركاء</h2>
-            <p>منصة الأعمال اللوجستية</p>
-            <div class="input-group">
-                <label>رقم السجل التجاري</label>
-                <input type="text" placeholder="CR Number">
-            </div>
-            <div class="input-group">
-                <label>كلمة السر</label>
-                <input type="password" placeholder="••••••••">
-            </div>
-            <button class="btn-action" onclick="window.location.href='dashboard.html'">دخول المنصة</button>
-            <div class="footer-links">
-                <a href="index.html">← العودة للرئيسية</a>
-            </div>
+        <div class="input-group">
+            <label>كلمة المرور المشفرة</label>
+            <input type="password" placeholder="••••••••">
         </div>
+        <button class="btn-admin" onclick="location.href='dashboard.html'">دخول المنصة الاحترافية</button>
+        <span class="eco-badge">♻️ شريك معتمد في النقل الأخضر</span>
     </div>
-
 </body>
 </html>
