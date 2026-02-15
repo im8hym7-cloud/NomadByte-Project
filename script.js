@@ -1,77 +1,48 @@
-// --- 1. إعداد العداد التنازلي (Countdown Timer) ---
-function startCountdown() {
-    // حدد موعد الـ Drop القادم (مثلاً بعد 3 أيام من الآن)
-    const countDownDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. تشغيل العداد
+    startCountdown();
+    
+    // 2. عرض المنتجات المضافة من الـ Admin
+    displayProducts();
+    
+    console.log("NomadByte Engine Active 🚀");
+});
 
-    const x = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = countDownDate - now;
+function displayProducts() {
+    const grid = document.querySelector('.products-grid');
+    if (!grid) return;
 
-        // حساب الأيام والساعات والدقائق والثواني
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // جلب المنتجات من التخزين
+    let products = JSON.parse(localStorage.getItem('nomadProducts')) || [];
 
-        // عرض النتيجة في العنصر الذي يحمل id="timer"
-        const timerElement = document.getElementById("timer");
-        if (timerElement) {
-            timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-        }
-
-        // إذا انتهى الوقت
-        if (distance < 0) {
-            clearInterval(x);
-            if (timerElement) timerElement.innerHTML = "DROP IS LIVE";
-        }
-    }, 1000);
-}
-
-// --- 2. التمرير الناعم (Smooth Scroll) ---
-function initSmoothScroll() {
-    const scrollButton = document.querySelector('.btn-primary');
-    if (scrollButton) {
-        scrollButton.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
-    }
-}
-
-// --- 3. نظام سلة المشتريات البسيط (Cart Feedback) ---
-function initCartSystem() {
-    const addButtons = document.querySelectorAll('.product-card .btn-primary');
-    addButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const productName = this.parentElement.querySelector('h3').innerText;
-            
-            // تغيير نص الزر مؤقتاً كنوع من التفاعل
-            const originalText = this.innerText;
-            this.innerText = "ADDED TO BAG ✓";
-            this.style.backgroundColor = "#ffffff";
-            this.style.color = "#000000";
-
-            setTimeout(() => {
-                this.innerText = originalText;
-                this.style.backgroundColor = "";
-                this.style.color = "";
-            }, 2000);
-
-            console.log(`Product added: ${productName}`);
-        });
+    // عرض كل منتج في الشبكة
+    products.forEach(p => {
+        const productHTML = `
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="${p.image}" alt="${p.name}">
+                </div>
+                <div class="product-info">
+                    <h3>${p.name}</h3>
+                    <p class="price">${p.price} SAR</p>
+                </div>
+            </div>
+        `;
+        grid.innerHTML += productHTML;
     });
 }
 
-// --- 4. تشغيل جميع الوظائف عند تحميل الصفحة ---
-document.addEventListener('DOMContentLoaded', function() {
-    startCountdown();
-    initSmoothScroll();
-    initCartSystem();
-    console.log("NomadByte Engine Active 🚀");
-});
+function startCountdown() {
+    const timerElement = document.getElementById("timer");
+    if (!timerElement) return;
+    
+    let time = 259200; // 3 أيام بالثواني
+    setInterval(() => {
+        time--;
+        let d = Math.floor(time / 86400);
+        let h = Math.floor((time % 86400) / 3600);
+        let m = Math.floor((time % 3600) / 60);
+        let s = time % 60;
+        timerElement.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+    }, 1000);
+}
