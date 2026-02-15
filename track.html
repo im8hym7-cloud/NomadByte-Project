@@ -2,87 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تتبع الشحنة | SHIHNAH</title>
     <style>
         :root { --navy: #0a2e5c; --gold: #f39c12; }
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; color: #333; }
-        
-        header { padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: var(--navy); color: white; }
-        .logo-area { display: flex; align-items: center; gap: 8px; font-weight: 900; }
-        .logo-area img { height: 35px; }
-        .back-btn { color: white; text-decoration: none; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 5px; }
-
-        .container { max-width: 500px; margin: 60px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; }
-        h2 { color: var(--navy); margin-bottom: 10px; font-size: 1.5rem; }
-        p.subtitle { color: #666; font-size: 0.9rem; margin-bottom: 25px; }
-
-        .search-group { display: flex; gap: 8px; margin-bottom: 30px; }
-        input { flex: 1; padding: 12px; border: 2px solid #eee; border-radius: 8px; font-size: 1rem; outline: none; transition: 0.3s; text-align: center; }
-        input:focus { border-color: var(--gold); }
-        .btn-track { background: var(--gold); color: white; border: none; padding: 0 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-
-        /* تفاصيل الشحنة */
-        #resultArea { display: none; text-align: right; border-top: 2px dashed #eee; pt-20px; margin-top: 20px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .status-card { background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px; }
-        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; }
-        .in-progress { background: #fff3cd; color: #856404; }
-        .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
-        .info-label { color: #888; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f4f7f6; text-align: center; }
+        header { background: var(--navy); padding: 15px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .container { max-width: 500px; margin: 80px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        input { width: 70%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 20px; background: var(--gold); border: none; color: white; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
-
-    <header>
-        <a href="index.html" class="back-btn">الرئيسية</a>
-        <div class="logo-area">
-            <span>SHIHNAH</span>
-            <img src="icon.png" alt="Logo">
-        </div>
-    </header>
-
+    <header><a href="index.html" style="color:white; text-decoration:none;">← الرئيسية</a><div>SHIHNAH</div></header>
     <div class="container">
-        <h2>تتبع بضائعك</h2>
-        <p class="subtitle">أدخل رقم الشحنة لمتابعة حالتها فوراً</p>
-
-        <div class="search-group">
-            <input type="text" id="trackInput" placeholder="SH-XXXX">
-            <button class="btn-track" onclick="findShipment()">تتبع</button>
-        </div>
-
-        <div id="resultArea">
-            <div class="status-badge in-progress" id="statusTxt">جاري التجهيز</div>
-            <div class="status-card">
-                <div class="info-row"><span class="info-label">رقم الشحنة:</span> <span id="resNum"></span></div>
-                <div class="info-row"><span class="info-label">الناقل:</span> <span id="resComp">سبل (SPL)</span></div>
-                <div class="info-row"><span class="info-label">الموقع الحالي:</span> <span>مستودع الفرز الرئيسي</span></div>
-            </div>
-            <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">آخر تحديث: منذ 15 دقيقة</p>
-        </div>
+        <h2>تتبع حالة بضائعك</h2>
+        <input type="text" placeholder="أدخل رقم الشحنة (مثلاً: SH-101)">
+        <button onclick="alert('جاري البحث...')">بحث</button>
     </div>
-
-    <script>
-        function findShipment() {
-            const input = document.getElementById('trackInput').value.trim();
-            if(!input) {
-                alert("يرجى إدخال رقم الشحنة");
-                return;
-            }
-
-            // إظهار النتائج
-            document.getElementById('resultArea').style.display = 'block';
-            document.getElementById('resNum').innerText = input;
-            
-            // محاكاة تغيير الحالات
-            const states = ["في انتظار الاستلام", "جاري التجهيز", "خرجت مع المندوب", "في الطريق للمستلم"];
-            const companies = ["سبل (SPL)", "أرامكس", "سمسا", "زاجل", "المجدوعي"];
-            
-            document.getElementById('statusTxt').innerText = states[Math.floor(Math.random() * states.length)];
-            document.getElementById('resComp').innerText = companies[Math.floor(Math.random() * companies.length)];
-        }
-    </script>
-
 </body>
 </html>
