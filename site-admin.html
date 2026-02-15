@@ -2,238 +2,51 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم الإدارية | SHIHNAH</title>
+    <title>لوحة الإدارة | SHIHNAH</title>
     <style>
-        :root {
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --gold: #f39c12;
-            --text-gray: #94a3b8;
-            --success: #10b981;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            display: flex;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 260px;
-            background-color: var(--card-bg);
-            height: 100vh;
-            position: fixed;
-            padding: 30px 20px;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-        }
-
-        .sidebar h2 {
-            color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            text-align: center;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 20px;
-        }
-
-        .nav-menu { list-style: none; padding: 0; }
-        .nav-menu li { padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-bottom: 5px; }
-        .nav-menu li:hover { background: #334155; color: var(--gold); }
-        .nav-menu li.active { background: var(--gold); color: white; }
-
-        /* Main Content */
-        .main-content {
-            margin-right: 260px;
-            padding: 40px;
-            width: 100%;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            border-top: 5px solid var(--gold);
-        }
-
-        .stat-card h3 { font-size: 0.9rem; color: var(--text-gray); margin: 0; }
-        .stat-card p { font-size: 2.5rem; font-weight: bold; margin: 15px 0; color: white; }
-
-        /* Price Management Table */
-        .section-box {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th { text-align: right; color: var(--gold); padding: 15px; border-bottom: 2px solid #334155; }
-        td { padding: 15px; border-bottom: 1px solid #334155; }
-
-        input[type="number"] {
-            background: #0f172a;
-            border: 1px solid #334155;
-            color: white;
-            padding: 8px;
-            border-radius: 5px;
-            width: 80px;
-        }
-
-        .btn-update {
-            background: var(--gold);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        body { background: #0f172a; color: white; font-family: sans-serif; margin: 0; display: flex; }
+        .sidebar { width: 250px; background: #1e293b; height: 100vh; padding: 20px; position: fixed; }
+        .content { margin-right: 250px; padding: 40px; width: 100%; }
+        .card-stat { background: #1e293b; padding: 20px; border-radius: 10px; border-top: 4px solid #f39c12; margin-bottom: 20px; }
+        table { width: 100%; background: #1e293b; border-radius: 10px; border-collapse: collapse; }
+        th, td { padding: 15px; text-align: right; border-bottom: 1px solid #334155; }
+        input { background: #0f172a; color: white; border: 1px solid #444; padding: 5px; width: 70px; }
+        .btn-upd { background: #f39c12; border: none; padding: 5px 10px; cursor: pointer; color: white; }
     </style>
 </head>
 <body>
-
-    <div class="sidebar">
-        <h2>SHIHNAH Admin</h2>
-        <ul class="nav-menu">
-            <li class="active">لوحة الإحصائيات</li>
-            <li>إدارة الأسعار</li>
-            <li>طلبات الشحن</li>
-            <li>إعدادات المنصة</li>
-        </ul>
-    </div>
-
-    <div class="main-content">
-        <div class="header-top">
-            <h1>مرحباً، المسؤول</h1>
-            <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card"><h3>إجمالي الشحنات</h3><p id="total-orders">1,204</p></div>
-            <div class="stat-card"><h3>الشركات النشطة</h3><p>7</p></div>
-            <div class="stat-card"><h3>المستخدمين</h3><p>542</p></div>
-        </div>
-
-        <div class="section-box">
-            <h3>إدارة أسعار الشركات (سعر الكيلو)</h3>
-            <table id="prices-table">
-                <thead>
-                    <tr>
-                        <th>اسم الشركة</th>
-                        <th>السعر الحالي (ريال)</th>
-                        <th>تعديل</th>
-                        <th>الإجراء</th>
-                    </tr>
-                </thead>
-                <tbody id="admin-panel">
-                    </tbody>
-            </table>
-        </div>
+    <div class="sidebar"><h2>SHIHNAH Admin</h2><hr><p>الإدارة العامة</p></div>
+    <div class="content">
+        <h1>إدارة الأسعار اللحظية</h1>
+        <div class="card-stat"><h3>إجمالي العمليات اليوم: 154</h3></div>
+        <table>
+            <thead><tr><th>الشركة</th><th>السعر الحالي</th><th>تعديل</th></tr></thead>
+            <tbody id="rows"></tbody>
+        </table>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
         import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
-
-        // إعدادات Firebase الخاصة بك
-        const firebaseConfig = {
-            apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
-            authDomain: "sh7na-database.firebaseapp.com",
-            databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com",
-            projectId: "sh7na-database",
-            storageBucket: "sh7na-database.firebasestorage.app",
-            messagingSenderId: "334773528813",
-            appId: "1:334773528813:web:7ff9c93d44b8d4ef8dc4e4"
-        };
-
+        
+        const firebaseConfig = { apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M", databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com", projectId: "sh7na-database" };
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        const auth = getAuth(app);
 
-        // حماية الصفحة: التأكد من تسجيل الدخول
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                // إذا لم يسجل دخول، ارجعه لصفحة اللوجن
-                window.location.href = "login.html";
-            }
-        });
+        const comps = ["almajdouie", "aramex", "smsa", "zajel"];
 
-        const companies = [
-            { id: "almajdouie", name: "المجدوعي" },
-            { id: "smsa", name: "سمسا (SMSA)" },
-            { id: "aramex", name: "أرامكس" },
-            { id: "zajel", name: "زاجل" },
-            { id: "spl", name: "سبل (SPL)" },
-            { id: "dhl", name: "DHL" },
-            { id: "albassami", name: "البسامي الدولية" }
-        ];
-
-        const panel = document.getElementById('admin-panel');
-
-        // جلب الأسعار من قاعدة البيانات
-        onValue(ref(db, 'shipping_rates'), (snapshot) => {
-            const rates = snapshot.val() || {};
-            panel.innerHTML = ""; 
-
-            companies.forEach(company => {
-                const price = rates[company.id] || 0;
-                panel.innerHTML += `
-                    <tr>
-                        <td>${company.name}</td>
-                        <td><strong style="color:var(--gold)">${price} ريال</strong></td>
-                        <td><input type="number" id="in-${company.id}" value="${price}"></td>
-                        <td><button class="btn-update" onclick="updatePrice('${company.id}')">تحديث</button></td>
-                    </tr>
-                `;
+        onValue(ref(db, 'shipping_rates'), (snap) => {
+            const r = snap.val();
+            const container = document.getElementById('rows');
+            container.innerHTML = "";
+            comps.forEach(c => {
+                container.innerHTML += `<tr><td>${c}</td><td>${r[c]} ريال</td><td><input id="in-${c}" value="${r[c]}"> <button class="btn-upd" onclick="upd('${c}')">تحديث</button></td></tr>`;
             });
         });
 
-        // وظيفة التحديث
-        window.updatePrice = function(id) {
-            const val = parseFloat(document.getElementById(`in-${id}`).value);
-            set(ref(db, 'shipping_rates/' + id), val)
-                .then(() => alert("تم تحديث السعر بنجاح"))
-                .catch(() => alert("فشل التحديث"));
-        }
-
-        window.logout = function() {
-            signOut(auth).then(() => window.location.href = "login.html");
+        window.upd = (id) => {
+            const val = parseFloat(document.getElementById('in-'+id).value);
+            set(ref(db, 'shipping_rates/'+id), val).then(() => alert("تم التحديث"));
         }
     </script>
 </body>
