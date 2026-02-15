@@ -7,38 +7,113 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .tracking-container { max-width: 600px; margin: 100px auto; padding: 40px; background: #111; border: 1px solid var(--cyan); border-radius: 15px; text-align: center; }
-        .track-input { width: 100%; padding: 15px; margin: 20px 0; background: #000; border: 1px solid #333; color: white; border-radius: 5px; font-family: 'Orbitron'; }
-        .status-box { margin-top: 30px; padding: 20px; border-radius: 10px; display: none; background: #1a1a1a; border-left: 5px solid var(--cyan); text-align: right; }
-        .status-text { color: var(--cyan); font-weight: bold; font-size: 1.2rem; }
+        body {
+            background-color: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .tracking-container { 
+            max-width: 500px; 
+            width: 90%;
+            padding: 50px; 
+            background: #111; 
+            border: 1px solid var(--cyan); 
+            border-radius: 20px; 
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+        }
+        .tracking-container h2 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .track-input { 
+            width: 100%; 
+            padding: 18px; 
+            margin: 20px 0; 
+            background: #000; 
+            border: 1px solid #333; 
+            color: var(--cyan); 
+            border-radius: 10px; 
+            font-family: 'Orbitron'; 
+            text-align: center;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .track-input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            outline: none;
+        }
+        .status-box { 
+            margin-top: 35px; 
+            padding: 25px; 
+            border-radius: 12px; 
+            display: none; 
+            background: #1a1a1a; 
+            border-right: 5px solid var(--cyan); 
+            text-align: right; 
+            animation: fadeIn 0.5s ease;
+        }
+        .status-text { 
+            color: var(--cyan); 
+            font-weight: 900; 
+            font-size: 1.3rem; 
+            display: block;
+            margin-top: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
+
     <div class="tracking-container">
-        <h2 style="font-family:'Orbitron';">// TRACK YOUR DROP</h2>
-        <p style="color: gray; margin-top: 10px;">أدخل رقم الشحنة لمتابعة الحالة</p>
-        <input type="text" id="shipmentID" class="track-input" placeholder="مثال: NB-1001">
-        <button onclick="trackOrder()" class="glow-button" style="width: 100%;">تتبع الآن</button>
+        <h2>// TRACK YOUR DROP</h2>
+        <p style="color: #666; font-size: 0.9rem;">أدخل رقم التتبع الخاص بطلبيتك</p>
+        
+        <input type="text" id="shipmentID" class="track-input" placeholder="NB-XXXX">
+        
+        <button onclick="trackOrder()" class="btn-cyan" style="width: 100%; border: none; cursor: pointer;">
+            تتبع الآن
+        </button>
         
         <div id="statusResult" class="status-box">
-            <p>حالة الشحنة: <span id="statusLabel" class="status-text"></span></p>
-            <p id="customerName" style="margin-top:10px; font-size:0.9rem;"></p>
+            <p style="color: #aaa; font-size: 0.8rem; margin: 0;">حالة الشحنة:</p>
+            <span id="statusLabel" class="status-text"></span>
+            <p id="customerName" style="margin-top:15px; font-size:1rem; color: white;"></p>
         </div>
     </div>
 
     <script>
         function trackOrder() {
-            const id = document.getElementById('shipmentID').value;
+            const idInput = document.getElementById('shipmentID').value.trim();
             const resultBox = document.getElementById('statusResult');
             const statusLabel = document.getElementById('statusLabel');
-            
-            // محاكاة لقاعدة البيانات (سنربطها لاحقاً بالـ Admin)
-            if(id === "NB-1001") {
+            const customerDisp = document.getElementById('customerName');
+
+            // جلب البيانات الفعلية من الذاكرة (التي يتم تخزينها من Admin)
+            const savedShipments = JSON.parse(localStorage.getItem('nomadShipments')) || [];
+
+            // البحث عن الشحنة
+            const found = savedShipments.find(s => s.id === idInput);
+
+            if (found) {
                 resultBox.style.display = "block";
-                statusLabel.innerText = "قيد التوصيل 🚚";
-                document.getElementById('customerName').innerText = "العميل: NomadByte_KSA";
+                statusLabel.innerText = found.status;
+                customerDisp.innerText = "العميل: " + found.customer;
+                
+                // تأثير بصري للنجاح
+                resultBox.style.boxShadow = "0 0 20px rgba(0, 242, 255, 0.2)";
             } else {
-                alert("رقم الشحنة غير صحيح أو غير موجود.");
+                alert("رقم الشحنة [" + idInput + "] غير مسجل في نظامنا.");
                 resultBox.style.display = "none";
             }
         }
