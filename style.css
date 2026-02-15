@@ -1,149 +1,87 @@
 :root {
-    --bg-black: #080808;
-    --card-bg: #121212;
-    --accent-neon: #A3FF00; /* لون الهبة */
+    --bg-black: #000000;
+    --accent-color: #FF4D00; /* برتقالي رياضي قوي وفخم */
     --text-main: #FFFFFF;
-    --text-dim: #888888;
-}
-
-* {
-    box-sizing: border-box;
-    transition: all 0.3s ease;
+    --card-bg: #0D0D0D;
 }
 
 body {
-    margin: 0;
     background-color: var(--bg-black);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    letter-spacing: -0.5px; /* تقريب الحروف لبعض يعطي شكل عصري */
 }
 
-/* شريط الإعلانات */
+/* شريط التنبيهات عريض وجذاب */
 .announcement-bar {
-    background: var(--accent-neon);
-    color: black;
-    padding: 8px 0;
+    background: var(--accent-color);
+    padding: 15px 0; /* زيادة العرض */
     font-weight: 900;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+/* الهيرو سكشن (الواجهة) - جعلنا الخط عريض جداً */
+.hero-content h1 {
+    font-size: 10vw; /* حجم ضخم */
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900; /* عريض جداً */
+    line-height: 0.8;
+    margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-.marquee {
-    display: block;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-/* واجهة الهيرو */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 50px;
-    align-items: center;
-}
-
-.logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 4px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    margin-left: 30px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.hero-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 8vw;
-    font-family: 'Orbitron', sans-serif;
-    margin: 0;
-}
-
+/* الأزرار صارت أعرض وأقوى */
 .btn-primary {
-    background: white;
-    color: black;
-    padding: 15px 40px;
-    text-decoration: none;
+    background: var(--accent-color);
+    color: white;
+    padding: 25px 60px; /* زيادة الحجم */
+    font-size: 1.2rem;
     font-weight: 900;
-    margin-top: 30px;
-    border-radius: 2px;
+    text-transform: uppercase;
+    border-radius: 0; /* زوايا حادة لستايل ستريت وير */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 77, 0, 0.4); /* توهج خفيف */
 }
 
 .btn-primary:hover {
-    background: var(--accent-neon);
-}
-
-/* شبكة المنتجات */
-.products-section { padding: 80px 50px; }
-.section-title { font-family: 'Orbitron'; margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-}
-
-.product-card {
-    background: var(--card-bg);
-    position: relative;
-    border: 1px solid #1a1a1a;
-}
-
-.product-tag {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--accent-neon);
-    color: black;
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    z-index: 2;
-}
-
-.sold-out { background: #ff3e3e; color: white; }
-
-.product-img img { width: 100%; display: block; filter: grayscale(20%); }
-.product-card:hover .product-img img { filter: grayscale(0%); transform: scale(1.02); }
-
-.product-info { padding: 20px; text-align: center; }
-.price { color: var(--accent-neon); font-weight: bold; font-size: 1.2rem; }
-
-.add-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 12px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.add-btn:hover:not(:disabled) {
     background: white;
     color: black;
+    transform: scale(1.05);
+}
+
+/* كروت المنتجات - تصميم "Minimalist" فخم */
+.product-card {
+    background: var(--card-bg);
+    border: none;
+    padding: 0; /* إزالة الحواف الداخلية لتركيز العين على الصورة */
+}
+
+.product-info {
+    padding: 25px;
+    text-align: left; /* المحاذاة لليسار تعطي طابع براندات عالمية */
+}
+
+.product-info h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* تعديل القوائم العلوية */
+.navbar {
+    padding: 40px 60px;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--accent-color);
 }
