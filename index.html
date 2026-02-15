@@ -2,95 +2,67 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>منصة شحنة | SHIHNAH - الحلول اللوجستية</title>
+    <title>SHIHNAH | المنصة الموحدة للنقل</title>
     <style>
-        :root { --primary: #0a2e5c; --accent: #f39c12; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--primary); color: white; }
-        
-        /* الهيدر */
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); }
-        .logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: bold; }
-        .logo-area img { height: 45px; }
-
-        /* منطقة الهيرو والخلفية */
-        .hero { text-align: center; padding: 100px 20px; 
-                background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), 
-                url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1350&q=80'); 
-                background-size: cover; background-position: center; }
-
-        /* منطقة البحث */
-        .search-container { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1100px; margin: -50px auto 40px; color: #333; box-shadow: 0 15px 30px rgba(0,0,0,0.3); align-items: flex-end; }
-        .field { flex: 1; display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; }
-        .btn-search { background: var(--accent); color: white; border: none; padding: 0 30px; border-radius: 8px; cursor: pointer; height: 45px; font-weight: bold; }
-
-        /* شبكة النتائج */
-        .results-grid { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 0 20px; }
-        .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .price { font-size: 1.8rem; color: var(--primary); font-weight: bold; margin: 10px 0; }
-        .company-name { font-weight: bold; color: #555; }
+        :root { --navy: #0a2e5c; --gold: #f39c12; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--navy); color: white; }
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); }
+        .logo-box { display: flex; align-items: center; gap: 10px; }
+        .logo-box img { height: 50px; }
+        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
+        .search-section { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1050px; margin: -50px auto 40px; color: #333; box-shadow: 0 20px 40px rgba(0,0,0,0.3); align-items: flex-end; }
+        .input-f { flex: 1; display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .btn-go { background: var(--gold); color: white; border: none; padding: 0 30px; border-radius: 8px; cursor: pointer; height: 46px; font-weight: bold; }
+        .results { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
+        .card { background: white; color: #333; padding: 25px; border-radius: 15px; text-align: center; display: none; border-bottom: 5px solid var(--gold); }
+        .price { font-size: 1.8rem; color: var(--navy); font-weight: 800; margin: 10px 0; }
     </style>
 </head>
 <body>
     <header>
-        <div class="nav-btns">
-            <a href="admin.html" style="color:var(--accent); text-decoration:none; margin-left:15px; font-weight:bold;">بوابة الشركات</a>
-            <a href="login.html" style="background:var(--accent); color:white; padding:8px 15px; border-radius:8px; text-decoration:none;">دخول الأفراد</a>
+        <div class="nav">
+            <a href="admin.html" style="color:var(--gold); text-decoration:none; margin-left:15px; font-weight:bold;">بوابة الشركات</a>
+            <a href="login.html" style="background:var(--gold); color:white; padding:8px 16px; border-radius:8px; text-decoration:none;">دخول الأفراد</a>
         </div>
-        <div class="logo-area">
-            <span>شحنة</span>
+        <div class="logo-box">
+            <span style="font-size: 1.8rem; font-weight: 900;">SHIHNAH</span>
             <img src="icon.png" alt="Logo">
         </div>
     </header>
 
     <div class="hero">
-        <h1>منصة "شحنة" اللوجستية</h1>
-        <p>نقل ذكي يربط كافة مدن المملكة</p>
+        <h1>شحن بضائعك لجميع مدن المملكة</h1>
+        <p>ربط مباشر مع الشركات الأكثر موثوقية في السعودية</p>
     </div>
 
-    <div class="search-container">
-        <div class="field">
-            <label>من مدينة:</label>
-            <select id="fromCity">
-                <option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option><option>المدينة</option>
-                <option>تبوك</option><option>أبها</option><option>بريدة</option><option>الخبر</option><option>جازان</option>
-            </select>
+    <div class="search-section">
+        <div class="input-f"><label>من مدينة:</label>
+            <select id="from"><option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option><option>المدينة</option><option>القصيم</option><option>تبوك</option><option>أبها</option></select>
         </div>
-        <div class="field">
-            <label>إلى وجهة:</label>
-            <select id="toCity">
-                <option>نيوم (NEOM)</option><option>القدية</option><option>ذا لاين</option><option>الرياض</option><option>جدة</option>
-                <option>الدمام</option><option>حائل</option><option>الجبيل</option><option>الهفوف</option><option>نجران</option>
-            </select>
+        <div class="input-f"><label>إلى وجهة:</label>
+            <select id="to"><option>نيوم (NEOM)</option><option>القدية</option><option>الرياض</option><option>جدة</option><option>الدمام</option><option>جازان</option><option>حائل</option></select>
         </div>
-        <div class="field">
-            <label>الوزن (KG):</label>
-            <input type="number" id="weight" value="1">
-        </div>
-        <button class="btn-search" onclick="calculatePrices()">بحث الأسعار</button>
+        <div class="input-f"><label>الوزن (KG):</label><input type="number" id="weight" value="1"></div>
+        <button class="btn-go" onclick="show()">بحث الأسعار</button>
     </div>
 
-    <div class="results-grid" id="results">
-        <div class="card"><h3>المجدوعي</h3><p class="company-name">نقل ثقيل ولوجستي</p><div class="price">--</div></div>
-        <div class="card"><h3>البسامي</h3><p class="company-name">نقل مركبات وبضائع</p><div class="price">--</div></div>
-        <div class="card"><h3>سمسا (SMSA)</h3><p class="company-name">شحن سريع</p><div class="price">--</div></div>
-        <div class="card"><h3>أرامكس</h3><p class="company-name">توصيل اقتصادي</p><div class="price">--</div></div>
-        <div class="card"><h3>زاجل</h3><p class="company-name">شحن بري سريع</p><div class="price">--</div></div>
-        <div class="card"><h3>المستقبل</h3><p class="company-name">حلول نقليات متكاملة</p><div class="price">--</div></div>
-        <div class="card"><h3>شركة المزيد</h3><p class="company-name">خدمات لوجستية</p><div class="price">--</div></div>
-        <div class="card"><h3>DHL</h3><p class="company-name">شحن دولي/محلي</p><div class="price">--</div></div>
+    <div class="results" id="results">
+        <div class="card"><h3>المجدوعي للوجستيات</h3><p>تغطية شاملة - نقل ثقيل</p><div class="price">--</div></div>
+        <div class="card"><h3>سمسا (SMSA)</h3><p>شحن سريع - كافة القرى</p><div class="price">--</div></div>
+        <div class="card"><h3>أرامكس</h3><p>توصيل محلي ودولي</p><div class="price">--</div></div>
+        <div class="card"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price">--</div></div>
+        <div class="card"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--</div></div>
+        <div class="card"><h3>DHL</h3><p>شحن سريع عالمي</p><div class="price">--</div></div>
     </div>
 
     <script>
-        function calculatePrices() {
+        function show() {
             let w = document.getElementById('weight').value;
-            let prices = [22, 25, 30, 28, 15, 40, 35, 60];
-            let cards = document.querySelectorAll('.card');
-            
-            cards.forEach((card, index) => {
-                card.style.display = 'block';
-                card.querySelector('.price').innerText = (w * prices[index]).toFixed(2) + " ريال";
+            let p = [25, 30, 28, 22, 15, 60];
+            document.querySelectorAll('.card').forEach((c, i) => {
+                c.style.display = 'block';
+                c.querySelector('.price').innerText = (w * p[i]).toFixed(2) + " ريال";
             });
         }
     </script>
