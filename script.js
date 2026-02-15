@@ -1,49 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // تشغيل العداد التنازلي
-    startCountdown();
-    // عرض المنتجات من الـ LocalStorage
     displayProducts();
+    startCountdown();
 });
 
-// وظيفة جلب وعرض المنتجات
+// عرض المنتجات من الذاكرة المحلية
 function displayProducts() {
     const grid = document.querySelector('.products-grid');
     if (!grid) return;
 
-    // نمسح المحتوى القديم عشان ما يتكرر
-    grid.innerHTML = '';
-
-    // جلب البيانات المخزنة
     let products = JSON.parse(localStorage.getItem('nomadProducts')) || [];
+    grid.innerHTML = ''; 
 
-    // إذا ما فيه منتجات، نعرض منتج تجريبي
     if (products.length === 0) {
-        grid.innerHTML = '<p style="color:#666; text-align:center; grid-column: 1/-1;">لا توجد قطع معروضة حالياً..</p>';
+        grid.innerHTML = '<p style="color:#666; grid-column: 1/-1; text-align:center;">المتجر فارغ حالياً. أضف منتجات من صفحة الإدارة.</p>';
         return;
     }
 
-    // بناء كروت المنتجات
-    products.forEach((p, index) => {
+    products.forEach(p => {
         grid.innerHTML += `
             <div class="product-card">
-                <div class="product-img">
-                    <img src="${p.image}" alt="${p.name}">
-                </div>
-                <div class="product-info">
-                    <h3>${p.name}</h3>
-                    <p class="price">${p.price} SAR</p>
-                    <button class="btn-primary" style="width:100%; padding:10px; margin-top:10px; font-size:0.7rem;">ADD TO BAG</button>
-                </div>
+                <img src="${p.image}" alt="${p.name}">
+                <h3>${p.name}</h3>
+                <p class="price">${p.price} SAR</p>
+                <button class="btn-primary" style="width:100%; margin-top:15px; padding:12px; font-size:0.8rem;">ADD TO BAG</button>
             </div>
         `;
     });
 }
 
-// وظيفة العداد التنازلي
+// العداد التنازلي
 function startCountdown() {
     const timer = document.getElementById("timer");
     if (!timer) return;
-    let time = 259200; // 3 أيام
+    let time = 259200; 
     setInterval(() => {
         time--;
         let d = Math.floor(time / 86400);
