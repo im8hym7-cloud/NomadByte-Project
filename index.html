@@ -2,90 +2,67 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>SHIHNAH | المنصة الموحدة</title>
-    <style>
-        :root { --navy: #0a192f; --gold: #f39c12; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #0a2e5c; color: white; }
-        header { background: #000; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-btns { display: flex; gap: 10px; }
-        .btn { padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        .btn-gold { background: var(--gold); color: white; }
-        .btn-red { background: #e74c3c; color: white; }
-        .search-container { background: white; border-radius: 15px; padding: 20px; max-width: 1050px; margin: -30px auto 30px; display: flex; gap: 15px; align-items: flex-end; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .fld { flex: 1; display: flex; flex-direction: column; gap: 5px; }
-        select, input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%; }
-        .btn-search { background: var(--gold); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .card { background: white; border-radius: 15px; padding: 25px; text-align: center; color: #0a2e5c; border-bottom: 5px solid var(--gold); position: relative; }
-        .price { font-size: 1.6rem; font-weight: 800; margin: 10px 0; }
-        .btn-book { background: #0a2e5c; color: white; border: none; width: 100%; padding: 10px; border-radius: 5px; cursor: pointer; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMADBYTE | THE DROP 01</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="nav-btns">
-            <a href="login.html" class="btn btn-gold">تسجيل الدخول</a>
-            <a href="site-admin.html" class="btn btn-red">🛡️ الإدارة</a>
+
+    <div class="announcement-bar">
+        <div class="marquee">
+            <span> 🔥 NEXT DROP IN: <span id="timer">00:00:00:00</span> — FREE SHIPPING OVER 500 SAR — LIMITED QUANTITIES 🔥 </span>
         </div>
-        <div style="font-weight: 900; font-size: 1.5rem;">SHIHNAH</div>
+    </div>
+
+    <header class="hero">
+        <nav class="navbar">
+            <div class="logo">NOMADBYTE</div>
+            <div class="nav-links">
+                <a href="#">SHOP</a>
+                <a href="#">LOOKBOOK</a>
+                <a href="#">CART (0)</a>
+            </div>
+        </nav>
+        
+        <div class="hero-content">
+            <h1>NOMADBYTE</h1>
+            <p>DEFINING THE STREETS. LIMITED DROPS ONLY.</p>
+            <a href="#collection" class="btn-primary">EXPLORE THE DROP</a>
+        </div>
     </header>
 
-    <div style="text-align:center; padding: 40px;">
-        <h1>المنصة الموحدة للنقل اللوجستي</h1>
-    </div>
+    <main id="collection" class="products-section">
+        <h2 class="section-title">DROP 01 // CORE COLLECTION</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-tag">NEW</div>
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/400x500/121212/A3FF00?text=CYBER+HOODIE" alt="Hoodie">
+                </div>
+                <div class="product-info">
+                    <h3>Nomad "Cyber" Hoodie</h3>
+                    <p class="price">299 SAR</p>
+                    <button class="add-btn">ADD TO BAG</button>
+                </div>
+            </div>
 
-    <div class="search-container">
-        <div class="fld"><label>من مدينة:</label>
-            <select id="from_city">
-                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
-                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة</option></optgroup>
-                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option></optgroup>
-                <optgroup label="المشاريع"><option>نيوم</option></optgroup>
-            </select>
+            <div class="product-card">
+                <div class="product-tag sold-out">SOLD OUT</div>
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/400x500/121212/A3FF00?text=REFLECTIVE+TEE" alt="T-shirt">
+                </div>
+                <div class="product-info">
+                    <h3>Byte Reflective Tee</h3>
+                    <p class="price">185 SAR</p>
+                    <button class="add-btn" disabled>OUT OF STOCK</button>
+                </div>
+            </div>
+
         </div>
-        <div class="fld"><label>إلى وجهة:</label>
-            <select id="to_city">
-                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
-                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة</option></optgroup>
-                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option></optgroup>
-                <optgroup label="المشاريع"><option>نيوم</option></optgroup>
-            </select>
-        </div>
-        <div class="fld" style="flex:0.4;"><label>الوزن:</label><input type="number" id="weight_val" value="1"></div>
-        <button class="btn-search" onclick="updatePrices()">بحث الأسعار</button>
-    </div>
+    </main>
 
-    <div class="results-grid">
-        <div class="card"><h3>المجدوعي</h3><div class="price" id="p1">-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><h3>أرامكس</h3><div class="price" id="p2">-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><h3>سمسا</h3><div class="price" id="p3">-- ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card"><h3>زاجل</h3><div class="price" id="p4">-- ريال</div><button class="btn-book">حجز الآن</button></div>
-    </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
-            authDomain: "sh7na-database.firebaseapp.com",
-            databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com",
-            projectId: "sh7na-database",
-            appId: "1:334773528813:web:7ff9c93d44b8d4ef8dc4e4"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        window.updatePrices = function() {
-            const w = document.getElementById('weight_val').value;
-            onValue(ref(db, 'shipping_rates'), (snap) => {
-                const r = snap.val();
-                document.getElementById('p1').innerText = (r.almajdouie * w).toFixed(2) + " ريال";
-                document.getElementById('p2').innerText = (r.aramex * w).toFixed(2) + " ريال";
-                document.getElementById('p3').innerText = (r.smsa * w).toFixed(2) + " ريال";
-                document.getElementById('p4').innerText = (r.zajel * w).toFixed(2) + " ريال";
-            }, {onlyOnce: true});
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
