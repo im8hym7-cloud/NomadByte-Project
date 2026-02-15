@@ -3,56 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تتبع شحنتك - NomadByte</title>
+    <title>NomadByte - تتبع شحنتك</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-wrapper">
-        <div class="login-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/649/649730.png" alt="Tracking" class="main-logo">
-            
-            <div class="header-text">
-                <h2>تتبع شحنتك</h2>
-                <p class="subtitle">أدخل رقم التتبع الخاص بك لمعرفة موقع الشحنة الحالي</p>
-            </div>
-
+    <div class="login-card">
+        <div class="image-section">
+            <img src="https://cdn-icons-png.flaticon.com/512/754/754848.png" alt="Tracking">
+        </div>
+        <div class="form-section">
+            <h2>تتبع شحنتك</h2>
+            <p>أدخل رقم الشحنة لمعرفة مكانها الآن</p>
             <div class="input-group">
                 <label>رقم التتبع (Tracking Number)</label>
-                <input type="text" id="trackInput" placeholder="مثال: NB-12345" required>
+                <input type="text" placeholder="مثال: NB-2026-01">
             </div>
-
-            <button type="button" class="login-btn-blue" onclick="trackShipment()">تتبع الآن</button>
-
-            <div id="trackingResult" style="display: none; margin-top: 20px; padding: 15px; background: #f0f7ff; border-radius: 12px; border: 1px solid #d0e3ff;">
-                <p id="statusText" style="font-weight: bold; color: #2563eb; margin: 0;"></p>
-                <small id="locationText" style="color: #666;"></small>
-            </div>
-
-            <div class="footer-links" style="justify-content: center;">
+            <button class="btn-action" onclick="alert('جاري جلب بيانات الشحنة...')">تتبع الآن</button>
+            <div class="footer-links">
                 <a href="index.html">← العودة للرئيسية</a>
             </div>
         </div>
     </div>
-
-    <script>
-        function trackShipment() {
-            const trackNum = document.getElementById('trackInput').value;
-            const resultDiv = document.getElementById('trackingResult');
-            const statusText = document.getElementById('statusText');
-            const locationText = document.getElementById('locationText');
-
-            if(trackNum.trim() === "") {
-                alert("الرجاء إدخال رقم الشحنة");
-                return;
-            }
-
-            // محاكاة عملية التتبع
-            resultDiv.style.display = "block";
-            statusText.innerText = "الحالة: قيد التوصيل 🚚";
-            locationText.innerText = "آخر تحديث: الشحنة غادرت مستودع الرياض";
-        }
-    </script>
 
 </body>
 </html>
