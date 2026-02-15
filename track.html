@@ -5,19 +5,23 @@
     <title>تتبع الشحنة | SHIHNAH</title>
     <style>
         body { margin: 0; font-family: sans-serif; background: #f0f2f5; }
-        header { background: #0a2e5c; padding: 12px; display: flex; justify-content: space-between; align-items: center; color: white; }
+        header { background: #0a2e5c; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; color: white; }
         .card { max-width: 500px; margin: 100px auto; background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        input { width: 70%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin: 10px; }
-        .btn { background: #f39c12; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .search-group { display: flex; justify-content: center; align-items: center; gap: 0; margin-top: 20px; }
+        input { padding: 12px; border: 1px solid #ddd; border-radius: 0 8px 8px 0; width: 60%; outline: none; }
+        .btn { background: #f39c12; color: white; border: none; padding: 12px 25px; border-radius: 8px 0 0 8px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
-    <header><div style="font-weight:900">SHIHNAH</div><a href="index.html" style="color:white; text-decoration:none; font-size:0.8rem; border:1px solid white; padding:4px 10px; border-radius:5px;">الرئيسية</a></header>
+    <header>
+        <div style="font-weight:900; font-size:1.4rem;">SHIHNAH</div>
+        <a href="index.html" style="color:white; text-decoration:none; border:1px solid white; padding:5px 12px; border-radius:5px; font-size:0.8rem;">الرئيسية</a>
+    </header>
     <div class="card">
-        <h2 style="color:#0a2e5c">تتبع بضائعك</h2>
-        <p style="color:#666; font-size:0.9rem;">أدخل رقم الشحنة لمتابعة حالتها فوراً</p>
-        <div style="display:flex; justify-content:center; align-items:center;">
-            <button class="btn" onclick="alert('شحنتك في الطريق!')">تتبع</button>
+        <h2 style="color:#0a2e5c; margin:0;">تتبع بضائعك</h2>
+        <p style="color:#666; font-size:0.9rem; margin:10px 0 30px;">أدخل رقم الشحنة لمتابعة حالتها فوراً</p>
+        <div class="search-group">
+            <button class="btn" onclick="alert('جاري البحث عن شحنتك...')">تتبع</button>
             <input type="text" placeholder="SH-XXXX">
         </div>
     </div>
