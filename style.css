@@ -83,3 +83,15 @@ body {
     .image-section { padding: 20px; }
     .image-section img { max-width: 150px; }
 }
+
+/* الألوان الخاصة بصفحة الشركاء */
+.admin-bg { background-color: #e3f2fd !important; } /* لون أزرق خفيف */
+.admin-btn { background-color: #2980b9 !important; } /* زر أزرق للشركات */
+.admin-btn:hover { background-color: #21618c !important; }
+
+/* تأثير بسيط عند وضع الماوس على الحقول */
+input:focus {
+    border-color: #f39c12;
+    outline: none;
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.2);
+}
