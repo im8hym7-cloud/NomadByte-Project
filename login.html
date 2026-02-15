@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - NomadByte</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <title>NomadByte - تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
-    <div class="login-wrapper">
-        <div class="login-card">
-            <img src="icon.png" alt="Logo" class="main-logo">
-            <div class="header-text">
-                <h2>مرحباً بك مجدداً</h2>
-                <p class="subtitle">سجل دخولك الآمن لـ NomadByte_KSA</p>
-            </div>
 
-            <form id="userForm">
+<div class="login-page">
+    <div class="login-card">
+        <div class="image-section">
+            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" alt="NomadByte Logo">
+        </div>
+
+        <div class="form-section">
+            <h2>مرحباً بك مجدداً</h2>
+            <p>سجل دخولك الآمن لـ <strong>NomadByte_KSA</strong></p>
+            
+            <form id="loginForm">
                 <div class="input-group">
                     <label>اسم المستخدم</label>
                     <input type="text" placeholder="أدخل اسم المستخدم" required>
                 </div>
+
                 <div class="input-group">
                     <label>كلمة السر</label>
                     <input type="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="login-btn">دخول</button>
+
+                <button type="submit" class="btn-login">دخول</button>
             </form>
 
             <div class="footer-links">
-                <a href="reset.html">نسيت كلمة السر؟</a>
-                <a href="index.html">← العودة للرئيسية</a>
+                <a href="#">نسيت كلمة السر؟</a>
+                <span> | </span>
+                <a href="index.html">العودة للرئيسية ←</a>
             </div>
         </div>
     </div>
+</div>
+
 </body>
 </html>
