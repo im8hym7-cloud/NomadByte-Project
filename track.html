@@ -3,107 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOMADBYTE | TRACK YOUR DROP</title>
+    <title>تتبع الشحنة | NOMADBYTE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        .track-container {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .track-box {
-            background: #121212;
-            padding: 40px;
-            border: 1px solid #222;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-        }
-
-        .track-box h2 { font-family: 'Orbitron'; margin-bottom: 20px; }
-
-        .input-track {
-            width: 100%;
-            padding: 15px;
-            background: #080808;
-            border: 1px solid #333;
-            color: var(--accent-neon);
-            text-align: center;
-            font-family: 'Orbitron';
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .track-btn {
-            width: 100%;
-            padding: 15px;
-            background: white;
-            color: black;
-            font-weight: 900;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* حالة الطلب (تظهر بعد البحث) */
-        .status-display {
-            margin-top: 30px;
-            display: none; /* مخفي حتى يتم البحث */
-            text-align: right;
-        }
-
-        .status-step {
-            padding: 15px;
-            border-right: 2px solid #222;
-            position: relative;
-            margin-bottom: 10px;
-            color: #555;
-        }
-
-        .status-step.active {
-            border-right-color: var(--accent-neon);
-            color: white;
-        }
-
-        .status-step.active::after {
-            content: '●';
-            position: absolute;
-            right: -7px;
-            top: 15px;
-            color: var(--accent-neon);
-        }
+        .tracking-container { max-width: 600px; margin: 100px auto; padding: 40px; background: #111; border: 1px solid var(--cyan); border-radius: 15px; text-align: center; }
+        .track-input { width: 100%; padding: 15px; margin: 20px 0; background: #000; border: 1px solid #333; color: white; border-radius: 5px; font-family: 'Orbitron'; }
+        .status-box { margin-top: 30px; padding: 20px; border-radius: 10px; display: none; background: #1a1a1a; border-left: 5px solid var(--cyan); text-align: right; }
+        .status-text { color: var(--cyan); font-weight: bold; font-size: 1.2rem; }
     </style>
 </head>
 <body>
-
-    <div class="track-container">
-        <div class="track-box">
-            <h2>TRACK ORDER</h2>
-            <p style="color: #888; font-size: 0.8rem; margin-bottom: 20px;">أدخل رقم الطلب المرسل لك عبر الرسائل النصية</p>
-            
-            <input type="text" class="input-track" placeholder="#NB-0000" id="orderNumber">
-            <button class="track-btn" onclick="trackOrder()">LOCATE PACKAGE</button>
-
-            <div id="statusDisplay" class="status-display">
-                <div class="status-step active">تم تأكيد الطلب - Confirmed</div>
-                <div class="status-step active">جاري التجهيز - Processing</div>
-                <div class="status-step">خرج للتوصيل - Out for Delivery</div>
-                <div class="status-step">تم الاستلام - Delivered</div>
-            </div>
+    <div class="tracking-container">
+        <h2 style="font-family:'Orbitron';">// TRACK YOUR DROP</h2>
+        <p style="color: gray; margin-top: 10px;">أدخل رقم الشحنة لمتابعة الحالة</p>
+        <input type="text" id="shipmentID" class="track-input" placeholder="مثال: NB-1001">
+        <button onclick="trackOrder()" class="glow-button" style="width: 100%;">تتبع الآن</button>
+        
+        <div id="statusResult" class="status-box">
+            <p>حالة الشحنة: <span id="statusLabel" class="status-text"></span></p>
+            <p id="customerName" style="margin-top:10px; font-size:0.9rem;"></p>
         </div>
     </div>
 
     <script>
         function trackOrder() {
-            const order = document.getElementById('orderNumber').value;
-            if(order) {
-                document.getElementById('statusDisplay').style.display = 'block';
+            const id = document.getElementById('shipmentID').value;
+            const resultBox = document.getElementById('statusResult');
+            const statusLabel = document.getElementById('statusLabel');
+            
+            // محاكاة لقاعدة البيانات (سنربطها لاحقاً بالـ Admin)
+            if(id === "NB-1001") {
+                resultBox.style.display = "block";
+                statusLabel.innerText = "قيد التوصيل 🚚";
+                document.getElementById('customerName').innerText = "العميل: NomadByte_KSA";
             } else {
-                alert("يرجى إدخال رقم الطلب");
+                alert("رقم الشحنة غير صحيح أو غير موجود.");
+                resultBox.style.display = "none";
             }
         }
     </script>
