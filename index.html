@@ -8,48 +8,72 @@
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
-                <img src="icon.png" alt="Logo" width="40">
-                <span style="font-weight: bold; font-size: 20px;">NomadByte</span>
-            </div>
-            <nav>
-                <button class="nav-btn" onclick="window.location.href='login.html'">دخول الأفراد</button>
-                <button class="nav-btn-outline" onclick="window.location.href='admin.html'">بوابة الشركات</button>
-            </nav>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" alt="Logo" style="height: 40px;">
+            <span style="font-weight: bold; font-size: 1.2rem; color: #333;">NomadByte</span>
         </div>
+        <nav>
+            <button onclick="location.href='login.html'" style="padding: 8px 15px; border: none; background: #f39c12; color: white; border-radius: 5px; cursor: pointer; margin-left: 10px;">دخول الأفراد</button>
+            <button onclick="location.href='admin.html'" style="padding: 8px 15px; border: 1px solid #2980b9; background: white; color: #2980b9; border-radius: 5px; cursor: pointer;">بوابة الشركات</button>
+        </nav>
     </header>
 
-    <section class="hero">
-        <h1>احسب شحنتك <span class="blue-text">بذكاء</span> SA</h1>
-        <p>مستقبل اللوجستيات في المملكة يبدأ هنا</p>
+    <main style="max-width: 800px; margin: 60px auto; padding: 20px; text-align: center; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <h1 style="color: #2c3e50; margin-bottom: 10px;">احسب شحنتك بذكاء SA</h1>
+        <p style="color: #7f8c8d; margin-bottom: 30px;">مستقبل اللوجستيات في المملكة يبدأ هنا</p>
 
-        <div class="calculator-card">
-            <div class="calculator-row">
-                <div class="calc-item">
-                    <label>من مدينة</label>
-                    <select><option>الرياض</option><option>جدة</option></select>
-                </div>
-                <div class="calc-item">
-                    <label>إلى مدينة / مشروع</label>
-                    <select><option>القدية</option><option>نيوم</option></select>
-                </div>
-                <div class="calc-item">
-                    <label>الوزن (KG)</label>
-                    <input type="number" value="1">
-                </div>
+        <div class="calculator-box" style="display: grid; gap: 15px; max-width: 500px; margin: 0 auto;">
+            
+            <div style="text-align: right;">
+                <label>من مدينة:</label>
+                <select id="fromCity" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                    <option>الرياض</option>
+                    <option>جدة</option>
+                    <option>الدمام</option>
+                </select>
             </div>
-            <button class="main-action-btn">استخراج عروض الأسعار 🔍</button>
-            <div class="track-promo">
-                <a href="track.html" class="track-link">📦 تتبع شحنة زائر (بدون تسجيل)</a>
+
+            <div style="text-align: right;">
+                <label>إلى مدينة / مشروع:</label>
+                <select id="toCity" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                    <option>القدية</option>
+                    <option>نيوم</option>
+                    <option>ذا لاين</option>
+                </select>
             </div>
+
+            <div style="text-align: right;">
+                <label>الوزن (KG):</label>
+                <input type="number" id="weight" value="1" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+            </div>
+
+            <button id="calcBtn" onclick="calculatePrice()" style="width: 100%; padding: 15px; background: #f39c12; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;">
+                استخراج عروض الأسعار 🔍
+            </button>
+
+            <div id="result" style="margin-top: 20px; font-weight: bold; color: #27ae60; font-size: 1.2rem;"></div>
+            
+            <a href="track.html" style="color: #e67e22; text-decoration: none; font-size: 0.9rem; margin-top: 15px; display: block;">📦 تتبع شحنة زائر (بدون تسجيل)</a>
         </div>
-    </section>
+    </main>
 
-    <footer>
-        <p>© 2026 NomadByte_KSA | جميع الحقوق محفوظة</p>
+    <footer style="text-align: center; color: #95a5a6; font-size: 0.8rem; margin-top: 40px;">
+        © NomadByte_KSA 2026 | جميع الحقوق محفوظة
     </footer>
+
+    <script>
+        function calculatePrice() {
+            const weight = document.getElementById('weight').value;
+            const from = document.getElementById('fromCity').value;
+            const to = document.getElementById('toCity').value;
+            
+            // معادلة بسيطة للتجربة
+            const price = weight * 15.5; 
+            
+            document.getElementById('result').innerText = `السعر التقديري من ${from} إلى ${to}: ${price.toFixed(2)} ريال`;
+        }
+    </script>
 
 </body>
 </html>
