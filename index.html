@@ -2,68 +2,105 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>SHIHNAH | المنصة الموحدة للنقل</title>
+    <title>SHIHNAH | المنصة الموحدة للنقل اللوجستي</title>
     <style>
-        :root { --navy: #0a2e5c; --gold: #f39c12; }
+        :root { --navy: #0a2e5c; --gold: #f39c12; --eco: #27ae60; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--navy); color: white; }
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); }
-        .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-box img { height: 50px; }
-        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
-        .search-section { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1050px; margin: -50px auto 40px; color: #333; box-shadow: 0 20px 40px rgba(0,0,0,0.3); align-items: flex-end; }
-        .input-f { flex: 1; display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .btn-go { background: var(--gold); color: white; border: none; padding: 0 30px; border-radius: 8px; cursor: pointer; height: 46px; font-weight: bold; }
-        .results { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
-        .card { background: white; color: #333; padding: 25px; border-radius: 15px; text-align: center; display: none; border-bottom: 5px solid var(--gold); }
-        .price { font-size: 1.8rem; color: var(--navy); font-weight: 800; margin: 10px 0; }
+        
+        /* الهيدر */
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-area img { height: 50px; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .btn { padding: 8px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-track { border: 1px solid white; color: white; }
+        .btn-gold { background: var(--gold); color: white; }
+
+        /* منطقة الهيرو */
+        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; }
+        
+        /* صندوق البحث */
+        .search-container { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1100px; margin: -60px auto 40px; color: #333; box-shadow: 0 20px 40px rgba(0,0,0,0.4); align-items: flex-end; }
+        .field { flex: 1; display: flex; flex-direction: column; gap: 8px; text-align: right; }
+        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
+        .btn-search { background: var(--gold); color: white; border: none; padding: 0 40px; border-radius: 10px; cursor: pointer; height: 50px; font-weight: bold; }
+
+        /* شبكة النتائج */
+        .results-grid { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 20px; }
+        .card { background: white; color: #333; padding: 25px; border-radius: 20px; text-align: center; display: none; border-bottom: 6px solid var(--gold); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card.eco { border-color: var(--eco); background: #f0fff4; }
+        .price { font-size: 2rem; color: var(--navy); font-weight: 900; margin: 15px 0; }
+        .eco-badge { background: var(--eco); color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.8rem; margin-bottom: 10px; display: inline-block; }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="nav">
-            <a href="admin.html" style="color:var(--gold); text-decoration:none; margin-left:15px; font-weight:bold;">بوابة الشركات</a>
-            <a href="login.html" style="background:var(--gold); color:white; padding:8px 16px; border-radius:8px; text-decoration:none;">دخول الأفراد</a>
+        <div class="nav-links">
+            <a href="track.html" class="btn btn-track">تتبع شحنة</a>
+            <a href="admin.html" style="color:var(--gold); text-decoration:none; font-weight:bold;">بوابة الشركات</a>
+            <a href="login.html" class="btn btn-gold">دخول الأفراد</a>
         </div>
-        <div class="logo-box">
-            <span style="font-size: 1.8rem; font-weight: 900;">SHIHNAH</span>
+        <div class="logo-area">
+            <span style="font-size: 2rem; font-weight: 900; letter-spacing: 1px;">SHIHNAH</span>
             <img src="icon.png" alt="Logo">
         </div>
     </header>
 
     <div class="hero">
-        <h1>شحن بضائعك لجميع مدن المملكة</h1>
-        <p>ربط مباشر مع الشركات الأكثر موثوقية في السعودية</p>
+        <h1>مستقبل النقل اللوجستي في المملكة</h1>
+        <p>منصة موحدة تربطك بأكبر شركات الشحن الموثوقة</p>
     </div>
 
-    <div class="search-section">
-        <div class="input-f"><label>من مدينة:</label>
-            <select id="from"><option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option><option>المدينة</option><option>القصيم</option><option>تبوك</option><option>أبها</option></select>
+    <div class="search-container">
+        <div class="field">
+            <label>من مدينة:</label>
+            <select id="from">
+                <option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option>
+                <option>المدينة</option><option>تبوك</option><option>أبها</option><option>بريدة</option>
+            </select>
         </div>
-        <div class="input-f"><label>إلى وجهة:</label>
-            <select id="to"><option>نيوم (NEOM)</option><option>القدية</option><option>الرياض</option><option>جدة</option><option>الدمام</option><option>جازان</option><option>حائل</option></select>
+        <div class="field">
+            <label>إلى وجهة:</label>
+            <select id="to">
+                <option>نيوم (NEOM)</option><option>القدية</option><option>ذا لاين</option><option>الخبر</option>
+                <option>حائل</option><option>جازان</option><option>الجبيل</option><option>الهفوف</option>
+            </select>
         </div>
-        <div class="input-f"><label>الوزن (KG):</label><input type="number" id="weight" value="1"></div>
-        <button class="btn-go" onclick="show()">بحث الأسعار</button>
+        <div class="field">
+            <label>الوزن (KG):</label>
+            <input type="number" id="weight" value="1" min="1">
+        </div>
+        <button class="btn-search" onclick="calculate()">بحث الأسعار</button>
     </div>
 
-    <div class="results" id="results">
-        <div class="card"><h3>المجدوعي للوجستيات</h3><p>تغطية شاملة - نقل ثقيل</p><div class="price">--</div></div>
-        <div class="card"><h3>سمسا (SMSA)</h3><p>شحن سريع - كافة القرى</p><div class="price">--</div></div>
-        <div class="card"><h3>أرامكس</h3><p>توصيل محلي ودولي</p><div class="price">--</div></div>
-        <div class="card"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price">--</div></div>
-        <div class="card"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--</div></div>
-        <div class="card"><h3>DHL</h3><p>شحن سريع عالمي</p><div class="price">--</div></div>
+    <div class="results-grid" id="results">
+        <div class="card eco">
+            <span class="eco-badge">🍃 نقل أخضر مستدام</span>
+            <h3>SHIHNAH Eco-Fleet</h3>
+            <p>شاحنات كهربائية - صفر انبعاثات</p>
+            <div class="price" id="p_eco">--</div>
+            <button style="width:100%; padding:10px; background:var(--eco); color:white; border:none; border-radius:8px; cursor:pointer;">حجز مستدام</button>
+        </div>
+        <div class="card"><h3>المجدوعي للوجستيات</h3><p>نقل ثقيل وحلول متكاملة</p><div class="price" id="p1">--</div><button style="width:100%; padding:10px; background:var(--navy); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button></div>
+        <div class="card"><h3>أرامكس</h3><p>توصيل سريع - محلي ودولي</p><div class="price" id="p2">--</div><button style="width:100%; padding:10px; background:var(--navy); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button></div>
+        <div class="card"><h3>سمسا (SMSA)</h3><p>أكبر تغطية لمدن المملكة</p><div class="price" id="p3">--</div><button style="width:100%; padding:10px; background:var(--navy); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button></div>
+        <div class="card"><h3>زاجل</h3><p>شحن بري اقتصادي وموثوق</p><div class="price" id="p4">--</div><button style="width:100%; padding:10px; background:var(--navy); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button></div>
+        <div class="card"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price" id="p5">--</div><button style="width:100%; padding:10px; background:var(--navy); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button></div>
     </div>
 
     <script>
-        function show() {
+        function calculate() {
             let w = document.getElementById('weight').value;
-            let p = [25, 30, 28, 22, 15, 60];
-            document.querySelectorAll('.card').forEach((c, i) => {
-                c.style.display = 'block';
-                c.querySelector('.price').innerText = (w * p[i]).toFixed(2) + " ريال";
-            });
+            let rates = [15, 25, 28, 30, 18, 22]; // أسعار تقديرية لكل شركة
+            document.getElementById('p_eco').innerText = (w * rates[0]).toFixed(2) + " ريال";
+            document.getElementById('p1').innerText = (w * rates[1]).toFixed(2) + " ريال";
+            document.getElementById('p2').innerText = (w * rates[2]).toFixed(2) + " ريال";
+            document.getElementById('p3').innerText = (w * rates[3]).toFixed(2) + " ريال";
+            document.getElementById('p4').innerText = (w * rates[4]).toFixed(2) + " ريال";
+            document.getElementById('p5').innerText = (w * rates[5]).toFixed(2) + " ريال";
+            document.querySelectorAll('.card').forEach(c => c.style.display = 'block');
         }
     </script>
 </body>
