@@ -1,141 +1,97 @@
 :root {
-    --bg-dark: #080808;
-    --neon-blue: #00f2ff;
+    --neon-cyan: #00f2ff;
     --neon-purple: #bc13fe;
-    --main-gradient: linear-gradient(45deg, #00f2ff, #bc13fe);
-    --card-bg: #121212;
+    --bg-overlay: rgba(0, 0, 0, 0.7);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: var(--bg-dark);
+    background-color: #050505;
     color: white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
-/* شريط تنبيهات ملون ومتحرك */
-.announcement-bar {
-    background: var(--main-gradient);
-    color: #000;
-    padding: 15px 0;
-    text-align: center;
-    font-weight: 900;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    box-shadow: 0 5px 20px rgba(0, 242, 255, 0.3);
-}
-
-/* واجهة الهيرو مع خلفية حيوية */
+/* خلفية الهيرو مع الصورة والروح */
 .hero {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
-    position: relative;
-}
-
-/* حركة الضوء في الخلفية */
-.hero::before {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: var(--neon-blue);
-    filter: blur(150px);
-    opacity: 0.2;
-    z-index: 0;
+    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+                url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* حركة تثبيت الخلفية تعطي فخامة */
+    text-align: center;
 }
 
 .main-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(4rem, 12vw, 8rem);
+    font-size: clamp(3rem, 10vw, 8rem);
     font-weight: 900;
     text-transform: uppercase;
-    background: var(--main-gradient);
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #fff, var(--neon-cyan));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* العنوان ملون بالكامل */
-    line-height: 1;
-    z-index: 1;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.5));
 }
 
 .hero-tagline {
     font-size: 1rem;
-    letter-spacing: 8px;
-    color: #fff;
-    margin-top: 20px;
-    opacity: 0.8;
-    z-index: 1;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    margin-bottom: 30px;
 }
 
-/* زر جذاب ينبض بالحياة */
+/* الزر المضيء */
 .btn-primary {
-    margin-top: 40px;
-    padding: 20px 50px;
+    padding: 18px 50px;
     background: transparent;
     color: white;
-    border: 2px solid var(--neon-blue);
+    border: 2px solid var(--neon-cyan);
     text-decoration: none;
     font-weight: 900;
-    border-radius: 50px;
-    text-transform: uppercase;
-    transition: 0.3s;
-    box-shadow: 0 0 15px var(--neon-blue);
-    z-index: 1;
+    border-radius: 4px;
+    transition: 0.4s;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
 }
 
 .btn-primary:hover {
-    background: var(--neon-blue);
-    color: #000;
-    box-shadow: 0 0 30px var(--neon-blue);
-    transform: scale(1.05);
+    background: var(--neon-cyan);
+    color: black;
+    box-shadow: 0 0 40px var(--neon-cyan);
 }
 
-/* قسم المنتجات */
-.products-section { padding: 100px 10%; }
-
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 50px;
-    text-align: center;
-    color: var(--neon-blue);
-    text-shadow: 0 0 10px var(--neon-blue);
-}
+/* شبكة المنتجات بشكل عصري */
+.products-section { padding: 100px 10%; background: #080808; }
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
 }
 
 .product-card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px); /* تأثير الزجاج */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
     transition: 0.4s;
-    border: 1px solid #222;
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
     border-color: var(--neon-purple);
+    transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(188, 19, 254, 0.2);
 }
 
-.product-card img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 15px;
-}
+.product-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-.price {
-    font-size: 1.3rem;
-    font-weight: 900;
-    background: var(--main-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+.price { color: var(--neon-cyan); font-weight: bold; font-size: 1.2rem; }
