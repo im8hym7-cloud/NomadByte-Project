@@ -11,20 +11,21 @@
         .logo-area { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 1.5rem; }
         .nav-btns { display: flex; gap: 8px; }
         .btn-action { padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; }
-        .btn-gold { background: var(--gold); color: white; }
+        .btn-gold { background: var(--gold); color: white; border: none; }
         .btn-outline { border: 1px solid white; color: white; }
         .hero { text-align: center; padding: 70px 20px; background: linear-gradient(rgba(10,46,92,0.7), rgba(10,46,92,0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
-        .search-box { background: white; padding: 22px; border-radius: 12px; display: flex; gap: 12px; max-width: 1000px; margin: -35px auto 40px; color: #333; align-items: flex-end; flex-wrap: wrap; }
+        .search-box { background: white; padding: 22px; border-radius: 12px; display: flex; gap: 12px; max-width: 1000px; margin: -35px auto 40px; color: #333; align-items: flex-end; flex-wrap: wrap; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .field { flex: 1; min-width: 140px; display: flex; flex-direction: column; gap: 4px; text-align: right; }
         label { font-size: 0.8rem; font-weight: bold; color: var(--navy); }
-        select, input { padding: 9px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; font-family: inherit; }
+        select, input { padding: 9px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; }
         .btn-search { background: var(--gold); color: white; border: none; padding: 10px 25px; border-radius: 7px; cursor: pointer; font-weight: bold; }
         .results { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; padding: 20px; }
         .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; border-bottom: 4px solid var(--gold); }
         .price { font-size: 1.4rem; color: var(--navy); font-weight: 800; margin: 10px 0; }
         .btn-book { width: 100%; padding: 9px; background: var(--navy); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
-        /* الشات بوت */
-        #chat-btn { position: fixed; bottom: 20px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 24px; z-index: 2000; }
+        
+        /* شات بوت */
+        #chat-btn { position: fixed; bottom: 20px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 24px; z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         #chat-box { display: none; position: fixed; bottom: 80px; left: 20px; width: 280px; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000; color: #333; overflow: hidden; }
     </style>
 </head>
@@ -61,7 +62,7 @@
     <div id="chat-btn" onclick="document.getElementById('chat-box').style.display='block'">💬</div>
     <div id="chat-box">
         <div style="background:var(--navy); color:white; padding:10px;">مساعد شحنة <span onclick="this.parentElement.parentElement.style.display='none'" style="float:left; cursor:pointer;">✖</span></div>
-        <div style="height:200px; padding:10px; font-size:0.8rem;">أهلاً بك! كيف نخدمك؟</div>
+        <div style="height:200px; padding:10px; font-size:0.8rem; background:#f9f9f9;">أهلاً بك! كيف نخدمك؟</div>
     </div>
 
     <script>
@@ -72,7 +73,7 @@
                 c.querySelector('.price').innerText = (c.getAttribute('data-rate') * w).toFixed(2) + " ريال";
             });
         }
-        function book() { alert('تم الحجز! رقم شحنتك: SH-' + Math.floor(Math.random()*9000+1000)); }
+        function book() { alert('تم الحجز بنجاح! رقم التتبع الخاص بك هو: SH-' + Math.floor(Math.random()*9000+1000)); }
     </script>
 </body>
 </html>
