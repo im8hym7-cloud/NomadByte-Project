@@ -3,143 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | القمة في اللوجستيات</title>
+    <title>NomadByte | نقل ذكي ومستدام 2030</title>
     <style>
         :root {
-            --royal-blue: #0a2e5c; /* كحلي فاخر */
-            --neon-orange: #f39c12; /* برتقالي الهوية */
-            --glass: rgba(255, 255, 255, 0.95);
+            --primary: #0a2e5c; --accent: #f39c12; --green-eco: #27ae60;
         }
-
         body {
-            margin: 0; font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a2e5c 0%, #1a508b 100%); /* خلفية متدرجة فخمة */
-            color: #fff; min-height: 100vh; display: flex; flex-direction: column;
+            margin: 0; font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a2e5c 0%, #154360 100%);
+            color: white; min-height: 100vh;
         }
-
-        /* هيدر عصري شفاف */
         header {
             padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
         }
-
-        .logo-box { display: flex; align-items: center; gap: 15px; }
-        .logo-box img { height: 50px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)); }
-        .logo-text { font-size: 1.6rem; font-weight: 800; letter-spacing: 1px; color: #fff; }
-
-        /* منطقة المحتوى الرئيسية */
-        .hero {
-            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 40px 20px; text-align: center;
-        }
-
-        h1 { font-size: 2.8rem; margin-bottom: 10px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .tagline { font-size: 1.1rem; color: #cbd5e0; margin-bottom: 40px; }
-
-        /* حاوية الحاسبة الفاخرة */
         .glass-card {
-            background: var(--glass); color: #2d3748; padding: 40px;
-            border-radius: 30px; width: 100%; max-width: 550px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.95); color: #333;
+            padding: 40px; border-radius: 25px; width: 600px; max-width: 90%;
+            margin: 50px auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
-
-        .input-row { margin-bottom: 25px; text-align: right; }
-        label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--royal-blue); }
-
+        .input-group { margin-bottom: 20px; text-align: right; }
         select, input {
-            width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px;
-            font-size: 1rem; transition: 0.3s; box-sizing: border-box;
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin-top: 5px;
         }
-        select:focus, input:focus { border-color: var(--neon-orange); outline: none; box-shadow: 0 0 15px rgba(243, 156, 18, 0.2); }
-
-        /* الزر الجبار */
+        /* تمييز الخيار الأخضر */
+        .eco-option { color: var(--green-eco); font-weight: bold; }
         .btn-main {
-            width: 100%; padding: 18px; background: linear-gradient(90deg, #f39c12, #e67e22);
-            color: white; border: none; border-radius: 15px; font-size: 1.2rem; font-weight: bold;
-            cursor: pointer; transition: 0.4s; box-shadow: 0 10px 20px rgba(230, 126, 34, 0.4);
+            width: 100%; padding: 15px; background: var(--accent); color: white;
+            border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1rem;
         }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(230, 126, 34, 0.6); }
-
-        /* روابط التنقل */
-        .nav-pills { display: flex; gap: 15px; }
-        .pill { padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .pill-orange { background: var(--neon-orange); color: white; }
-        .pill-outline { border: 2px solid rgba(255,255,255,0.3); color: white; }
-        .pill:hover { background: white; color: var(--royal-blue); }
-
-        #priceResult {
-            margin-top: 30px; padding: 20px; border-radius: 15px; background: #fffaf0;
-            border: 2px dashed var(--neon-orange); display: none;
+        .results-table {
+            width: 100%; margin-top: 20px; border-collapse: collapse; display: none;
         }
+        .results-table th, .results-table td {
+            padding: 12px; border: 1px solid #eee; text-align: center;
+        }
+        .eco-row { background-color: #e8f5e9; color: var(--green-eco); }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-box">
-            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" alt="NomadByte Logo">
-            <span class="logo-text">NomadByte</span>
-        </div>
-        <div class="nav-pills">
-            <a href="login.html" class="pill pill-orange">دخول الأفراد</a>
-            <a href="admin.html" class="pill pill-outline">بوابة الشركات</a>
-        </div>
-    </header>
+<header>
+    <div style="font-size: 1.5rem; font-weight: bold;">NomadByte <span style="color: var(--green-eco);">♻️</span></div>
+    <div>
+        <a href="login.html" style="color:white; text-decoration:none; margin-left:15px;">دخول الأفراد</a>
+        <a href="admin.html" style="color:var(--accent); text-decoration:none; border:1px solid var(--accent); padding:5px 15px; border-radius:5px;">بوابة الشركات</a>
+    </div>
+</header>
 
-    <main class="hero">
-        <h1>احسب شحنتك بذكاء SA</h1>
-        <p class="tagline">نربط مشاريع الرؤية بأحدث الحلول اللوجستية</p>
+<div class="glass-card">
+    <h2 style="text-align:center; color: var(--primary);">حاسبة النقل اللوجستي الذكي</h2>
+    
+    <div class="input-group">
+        <label>من مدينة:</label>
+        <select id="fromCity">
+            <option>الرياض</option><option>جدة</option><option>الدمام</option><option>نيوم</option>
+        </select>
+    </div>
 
-        <div class="glass-card">
-            <div class="input-row">
-                <label>نقطة الانطلاق (من):</label>
-                <select id="fromCity">
-                    <option>الرياض (العاصمة)</option>
-                    <option>جدة (عروس البحر)</option>
-                    <option>الدمام (بوابة الشرق)</option>
-                </select>
-            </div>
+    <div class="input-group">
+        <label>إلى وجهة / مشروع الرؤية:</label>
+        <select id="toCity">
+            <option>نيوم (NEOM)</option><option>القدية</option><option>ذا لاين</option><option>البحر الأحمر</option>
+        </select>
+    </div>
 
-            <div class="input-row">
-                <label>الوجهة (إلى):</label>
-                <select id="toCity">
-                    <option>نيوم (NEOM)</option>
-                    <option>القدية (Qiddiya)</option>
-                    <option>ذا لاين (The Line)</option>
-                    <option>مشروع البحر الأحمر</option>
-                </select>
-            </div>
+    <div class="input-group">
+        <label>نوع النقل المفضل:</label>
+        <select id="transportType">
+            <option value="standard">نقل سريع قياسي</option>
+            <option value="eco" class="eco-option">🍀 نقل أخضر (كهربائي - صفر انبعاثات)</option>
+        </select>
+    </div>
 
-            <div class="input-row">
-                <label>الوزن التقريبي للطلب (KG):</label>
-                <input type="number" id="weight" value="1" min="0.5">
-            </div>
+    <button class="btn-main" onclick="showQuotes()">استخراج عروض أسعار الشركات 🔍</button>
 
-            <button class="btn-main" onclick="calc()">استخراج عرض السعر الفوري 🔍</button>
+    <table class="results-table" id="resultsTable">
+        <thead>
+            <tr style="background: #f8f9fa;">
+                <th>الشركة</th>
+                <th>المدة</th>
+                <th>التكلفة</th>
+            </tr>
+        </thead>
+        <tbody id="quotesBody"></tbody>
+    </table>
+</div>
 
-            <div id="priceResult"></div>
-            
-            <div style="margin-top: 25px;">
-                <a href="track.html" style="color: #718096; text-decoration: none; font-size: 0.9rem;">📦 تتبع شحنة زائر</a>
-            </div>
-        </div>
-    </main>
-
-    <footer style="padding: 30px; opacity: 0.6; font-size: 0.8rem;">
-        NomadByte_KSA 2026 | شريكك اللوجستي الموثوق في رؤية 2030
-    </footer>
-
-    <script>
-        function calc() {
-            const w = document.getElementById('weight').value;
-            const f = document.getElementById('fromCity').value;
-            const t = document.getElementById('toCity').value;
-            const res = document.getElementById('priceResult');
-
-            const total = w * 18.75; // تسعيرة 2026 الفاخرة
-            res.style.display = 'block';
-            res.innerHTML = `<strong style="color:#2d3748">السعر لـ ${t}:</strong> <br> <span style="font-size: 1.8rem; color:#e67e22;">${total.toFixed(2)} ريال</span>`;
+<script>
+    function showQuotes() {
+        const type = document.getElementById('transportType').value;
+        const table = document.getElementById('resultsTable');
+        const body = document.getElementById('quotesBody');
+        table.style.display = 'table';
+        
+        let quotes = '';
+        if(type === 'eco') {
+            quotes = `<tr class="eco-row"><td>Nomad Eco-Truck</td><td>12 ساعة</td><td>120 ريال (مدعوم)</td></tr>
+                      <tr class="eco-row"><td>Green Saudi Express</td><td>18 ساعة</td><td>145 ريال</td></tr>`;
+        } else {
+            quotes = `<tr><td>Aramex</td><td>24 ساعة</td><td>180 ريال</td></tr>
+                      <tr><td>SMSA</td><td>20 ساعة</td><td>210 ريال</td></tr>`;
         }
-    </script>
+        body.innerHTML = quotes;
+    }
+</script>
 </body>
 </html>
