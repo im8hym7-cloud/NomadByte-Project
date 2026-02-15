@@ -3,109 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHIHNAH | المنصة الموحدة للنقل اللوجستي</title>
+    <title>SHIHNAH | الرئيسية</title>
     <style>
         :root { --navy: #0a2e5c; --gold: #f39c12; }
         body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--navy); color: white; }
-        
-        /* الهيدر الموحد */
         header { padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 1000; }
         .logo-area { display: flex; align-items: center; gap: 8px; }
         .logo-area img { height: 38px; }
         .nav-btns { display: flex; gap: 8px; }
-        
-        /* الأزرار بالخط الأنيق الصغير */
         .btn-action { padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
         .btn-gold { background: var(--gold); color: white; border: none; }
         .btn-outline { border: 1px solid white; color: white; }
-
-        /* منطقة الهيرو */
         .hero { text-align: center; padding: 70px 20px; background: linear-gradient(rgba(10,46,92,0.75), rgba(10,46,92,0.75)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
-        .hero h1 { font-size: 2rem; margin-bottom: 8px; }
-        .hero p { font-size: 0.9rem; opacity: 0.9; }
-
-        /* صندوق البحث */
         .search-box { background: white; padding: 22px; border-radius: 12px; display: flex; gap: 12px; max-width: 1050px; margin: -35px auto 40px; color: #333; box-shadow: 0 12px 25px rgba(0,0,0,0.3); align-items: flex-end; flex-wrap: wrap; }
         .field { flex: 1; min-width: 130px; display: flex; flex-direction: column; gap: 4px; text-align: right; }
         label { font-size: 0.8rem; font-weight: bold; color: var(--navy); }
-        select, input { padding: 9px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; font-family: inherit; outline: none; }
-        .btn-search { background: var(--gold); color: white; border: none; padding: 10px 25px; border-radius: 7px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
-
-        /* شبكة الشركات (البطاقات) */
+        select, input { padding: 9px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; outline: none; }
+        .btn-search { background: var(--gold); color: white; border: none; padding: 10px 25px; border-radius: 7px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
         .results { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; padding: 20px; }
-        .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-bottom: 4px solid var(--gold); transition: 0.3s; }
-        .card h3 { margin: 0; font-size: 1.1rem; color: var(--navy); }
-        .card p { font-size: 0.75rem; color: #777; margin: 5px 0; }
+        .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-bottom: 4px solid var(--gold); }
         .price { font-size: 1.4rem; color: var(--navy); font-weight: 800; margin: 12px 0; }
         .btn-book { width: 100%; padding: 9px; background: var(--navy); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="nav-btns">
             <a href="track.html" class="btn-action btn-outline">تتبع شحنة</a>
             <a href="admin.html" class="btn-action btn-gold">بوابة الشركات</a>
-            <a href="login.html" class="btn-action btn-gold">دخول الأفراد</a>
+            <a href="user-dashboard.html" class="btn-action btn-gold">دخول الأفراد</a>
         </div>
-        <div class="logo-area">
-            <span style="font-size: 1.4rem; font-weight: 900;">SHIHNAH</span>
-            <img src="icon.png" alt="Logo">
-        </div>
+        <div class="logo-area"><span style="font-size: 1.4rem; font-weight: 900;">SHIHNAH</span><img src="icon.png" alt="Logo"></div>
     </header>
 
-    <div class="hero">
-        <h1>المنصة الموحدة للنقل اللوجستي</h1>
-        <p>مستقبل النقل الذكي بين كافة مدن ومناطق المملكة</p>
-    </div>
+    <div class="hero"><h1>المنصة الموحدة للنقل اللوجستي</h1><p>مستقبل النقل الذكي بين كافة مدن ومناطق المملكة</p></div>
 
     <div class="search-box">
         <div class="field"><label>من مدينة:</label>
             <select id="from">
-                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option><option>بريدة</option><option>عنيزة</option></optgroup>
-                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>الطائف</option><option>ينبع</option></optgroup>
-                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option><option>الجبيل</option><option>الهفوف</option><option>حفر الباطن</option></optgroup>
-                <optgroup label="أخرى"><option>تبوك</option><option>أبها</option><option>جازان</option><option>نيوم (NEOM)</option><option>القدية</option></optgroup>
+                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
+                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة المكرمة</option></optgroup>
+                <option>نيوم (NEOM)</option><option>القدية</option>
             </select>
         </div>
         <div class="field"><label>إلى وجهة:</label>
-            <select id="to">
-                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option><option>بريدة</option><option>عنيزة</option></optgroup>
-                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>الطائف</option><option>ينبع</option></optgroup>
-                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option><option>الجبيل</option><option>الهفوف</option><option>حفر الباطن</option></optgroup>
-                <optgroup label="أخرى"><option>تبوك</option><option>أبها</option><option>جازان</option><option>نيوم (NEOM)</option><option>القدية</option></optgroup>
-            </select>
+            <select id="to"><option>جدة</option><option>الرياض</option></select>
         </div>
         <div class="field" style="flex:0.3"><label>الوزن:</label><input type="number" id="weight" value="1"></div>
-        <div class="field" style="flex:0.4"><label>الوحدة:</label>
-            <select id="unit"><option value="kg">كيلو (KG)</option><option value="g">جرام (g)</option></select>
-        </div>
         <button class="btn-search" onclick="calculateResults()">بحث الأسعار</button>
     </div>
 
     <div class="results" id="resultsGrid">
         <div class="card" data-rate="18"><h3>سبل (SPL)</h3><p>البريد السعودي الرسمي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="25"><h3>أرامكس</h3><p>توصيل سريع وموثوق</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-rate="30"><h3>سمسا (SMSA)</h3><p>أوسع انتشار محلي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-rate="20"><h3>المجدوعي</h3><p>حلول النقل الثقيل</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="15"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-rate="22"><h3>البسامي الدولية</h3><p>نقل المركبات والبضائع</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-rate="60"><h3>DHL</h3><p>الخيار العالمي السريع</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
+    </div>
+
+    <div id="chat-icon" onclick="toggleChat()" style="position: fixed; bottom: 20px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 2000;">💬</div>
+    <div id="chat-window" style="display: none; position: fixed; bottom: 80px; left: 20px; width: 280px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 2000; color: #333;">
+        <div style="background: var(--navy); color: white; padding: 10px; border-radius: 10px 10px 0 0;">مساعد شحنة</div>
+        <div id="chat-messages" style="height: 200px; padding: 10px; overflow-y: auto; font-size: 0.8rem;"></div>
+        <div style="padding: 10px; display: flex;"><input type="text" id="chatInput" style="flex:1;"><button onclick="sendMessage()">ارسالة</button></div>
     </div>
 
     <script>
         function calculateResults() {
-            let w = parseFloat(document.getElementById('weight').value);
-            let unit = document.getElementById('unit').value;
-            let weightInKg = (unit === 'g') ? w / 1000 : w;
-            
             document.querySelectorAll('.card').forEach(card => {
                 card.style.display = 'block';
-                let rate = parseFloat(card.getAttribute('data-rate'));
-                let total = (weightInKg * rate).toFixed(2);
-                card.querySelector('.price').innerText = (total < 10 ? 10 : total) + " ريال";
+                let rate = card.getAttribute('data-rate');
+                card.querySelector('.price').innerText = (rate * document.getElementById('weight').value) + " ريال";
             });
         }
+        function toggleChat() { let w = document.getElementById('chat-window'); w.style.display = w.style.display === 'none' ? 'block' : 'none'; }
+        function sendMessage() { alert('سيتم الرد عليك قريباً!'); }
     </script>
 </body>
 </html>
