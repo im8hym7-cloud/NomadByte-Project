@@ -2,25 +2,55 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>دخول الأفراد | NomadByte</title>
+    <title>تسجيل الدخول | SHIHNAH</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1000&q=80'); background-size: cover; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .login-card { background: white; padding: 40px; border-radius: 25px; width: 380px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
-        .logo-img { height: 55px; margin-bottom: 25px; }
-        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; }
-        button { width: 100%; padding: 14px; background: #f39c12; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; }
-        .links { margin-top: 20px; }
-        .links a { color: #0a2e5c; text-decoration: none; font-weight: bold; }
+        body { background: #0a192f; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { background: white; padding: 40px; border-radius: 15px; width: 350px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        h2 { color: #0a192f; margin-bottom: 25px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-login { background: #f39c12; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        .error-msg { color: #e74c3c; font-size: 0.8rem; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
-    <div class="login-card">
-        <img src="icon.png" class="logo-img">
-        <h2 style="color:#0a2e5c; margin-bottom:30px;">دخول الأفراد</h2>
-        <input type="text" placeholder="رقم الجوال أو البريد">
-        <input type="password" placeholder="كلمة المرور">
-        <button onclick="location.href='index.html'">دخول</button>
-        <div class="links"><a href="index.html">← العودة للرئيسية</a></div>
-    </div>
+
+<div class="login-box">
+    <h2>تسجيل الدخول</h2>
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button class="btn-login" onclick="handleLogin()">دخول</button>
+    <div id="error" class="error-msg">خطأ في البيانات، يرجى المحاولة مرة أخرى.</div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
+        authDomain: "sh7na-database.firebaseapp.com",
+        projectId: "sh7na-database",
+        appId: "1:334773528813:web:7ff9c93d44b8d4ef8dc4e4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.handleLogin = function() {
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('password').value;
+        
+        signInWithEmailAndPassword(auth, email, pass)
+            .then((userCredential) => {
+                // توجيه ذكي بناءً على الإيميل (مثال)
+                if(email.includes("admin")) window.location.href = "site-admin.html";
+                else if(email.includes("company")) window.location.href = "admin.html";
+                else window.location.href = "user-dashboard.html";
+            })
+            .catch((error) => {
+                document.getElementById('error').style.display = 'block';
+            });
+    }
+</script>
 </body>
 </html>
