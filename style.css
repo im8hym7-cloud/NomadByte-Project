@@ -1,4 +1,4 @@
-/* إعدادات الخط والخلفية */
+/* إعدادات عامة - NomadByte_KSA Project */
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -7,91 +7,103 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    direction: rtl;
 }
 
-/* الحاوية الرئيسية (الكارد) */
+/* الحاوية الرئيسية (الكارد) لصفحات الدخول والتتبع */
 .login-card {
     background: white;
     display: flex;
-    flex-direction: row;
-    width: 850px;
+    flex-direction: row-reverse; /* الصورة يسار والنص يمين */
+    width: 900px;
     max-width: 95%;
+    height: auto;
+    min-height: 500px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    overflow: hidden; /* لقص الزوايا الحادة */
+    overflow: hidden;
+    margin: 20px;
 }
 
-/* قسم الصورة */
+/* قسم الصورة - محمي من التمدد */
 .image-section {
     flex: 1;
-    background-color: #fdf2e9; /* لون خفيف متناسق مع البرتقالي */
+    background-color: #fdf2e9;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
+    max-width: 50%; /* لا يتجاوز نصف المساحة */
 }
 
 .image-section img {
-    max-width: 280px; /* تحديد حجم اللوجو لكي لا يطغى */
+    max-width: 100%;
+    max-height: 400px; /* يمنع الصورة من تغطية الشاشة */
     height: auto;
+    object-fit: contain;
 }
 
-/* قسم النموذج */
+/* قسم النموذج والنصوص */
 .form-section {
     flex: 1;
-    padding: 50px 40px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.form-section h2 { color: #333; margin-bottom: 5px; }
-.form-section p { color: #777; font-size: 0.9rem; margin-bottom: 30px; }
+.form-section h2 { color: #333; margin-bottom: 10px; }
+.form-section p { color: #777; font-size: 0.9rem; margin-bottom: 25px; }
 
-/* تنسيق المدخلات */
-.input-group { margin-bottom: 20px; text-align: right; }
-.input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+/* تنسيق الحقول (Inputs) */
+.input-group { margin-bottom: 15px; text-align: right; }
+.input-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
 
-.input-group input {
+.input-group input, .input-group select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
-    box-sizing: border-box; /* لضمان عدم خروج الحواف */
+    box-sizing: border-box;
 }
 
-/* زر الدخول */
+/* تأثير الوهج عند الضغط على الحقول */
+input:focus, select:focus {
+    border-color: #f39c12;
+    outline: none;
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.2);
+}
+
+/* الأزرار */
 .btn-login {
     width: 100%;
     padding: 13px;
-    background-color: #f39c12; /* لون برتقالي احترافي */
+    background-color: #f39c12; /* البرتقالي للأفراد */
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
     cursor: pointer;
     transition: 0.3s;
+    font-weight: bold;
 }
 
 .btn-login:hover { background-color: #e67e22; }
 
-/* الروابط السفلية */
-.footer-links { margin-top: 25px; font-size: 0.85rem; text-align: center; }
-.footer-links a { color: #3498db; text-decoration: none; }
+/* تمييز صفحة الشركاء باللون الأزرق */
+.admin-variant .image-section { background-color: #e3f2fd; }
+.admin-variant .btn-login { background-color: #2980b9; }
+.admin-variant .btn-login:hover { background-color: #21618c; }
 
-/* لجعل التصميم متجاوب مع الجوال */
+/* الروابط */
+.footer-links { margin-top: 20px; font-size: 0.85rem; text-align: center; }
+.footer-links a { color: #3498db; text-decoration: none; margin: 0 5px; }
+
+/* التوافق مع الجوال */
 @media (max-width: 768px) {
     .login-card { flex-direction: column; }
-    .image-section { padding: 20px; }
-    .image-section img { max-width: 150px; }
-}
-
-/* الألوان الخاصة بصفحة الشركاء */
-.admin-bg { background-color: #e3f2fd !important; } /* لون أزرق خفيف */
-.admin-btn { background-color: #2980b9 !important; } /* زر أزرق للشركات */
-.admin-btn:hover { background-color: #21618c !important; }
-
-/* تأثير بسيط عند وضع الماوس على الحقول */
-input:focus {
-    border-color: #f39c12;
-    outline: none;
-    box-shadow: 0 0 5px rgba(243, 156, 18, 0.2);
+    .image-section { max-width: 100%; padding: 20px; }
+    .image-section img { max-height: 200px; }
+    .form-section { padding: 20px; }
 }
