@@ -3,79 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHIHNAH | الرئيسية</title>
+    <title>SHIHNAH | المنصة اللوجستية الموحدة</title>
     <style>
-        :root { --navy: #0a2e5c; --gold: #f39c12; }
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--navy); color: white; }
-        header { padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 1000; }
-        .logo-area { display: flex; align-items: center; gap: 8px; }
-        .logo-area img { height: 38px; }
-        .nav-btns { display: flex; gap: 8px; }
-        .btn-action { padding: 7px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        :root { --navy: #0a2e5c; --gold: #f39c12; --light: #f4f7f6; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--navy); color: white; overflow-x: hidden; }
+        
+        /* الهيدر الاحترافي */
+        header { padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-area img { height: 40px; }
+        .nav-btns { display: flex; gap: 10px; }
+        .btn-action { padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
         .btn-gold { background: var(--gold); color: white; border: none; }
         .btn-outline { border: 1px solid white; color: white; }
-        .hero { text-align: center; padding: 70px 20px; background: linear-gradient(rgba(10,46,92,0.75), rgba(10,46,92,0.75)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
-        .search-box { background: white; padding: 22px; border-radius: 12px; display: flex; gap: 12px; max-width: 1050px; margin: -35px auto 40px; color: #333; box-shadow: 0 12px 25px rgba(0,0,0,0.3); align-items: flex-end; flex-wrap: wrap; }
-        .field { flex: 1; min-width: 130px; display: flex; flex-direction: column; gap: 4px; text-align: right; }
-        label { font-size: 0.8rem; font-weight: bold; color: var(--navy); }
-        select, input { padding: 9px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; outline: none; }
-        .btn-search { background: var(--gold); color: white; border: none; padding: 10px 25px; border-radius: 7px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
-        .results { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; padding: 20px; }
-        .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-bottom: 4px solid var(--gold); }
-        .price { font-size: 1.4rem; color: var(--navy); font-weight: 800; margin: 12px 0; }
-        .btn-book { width: 100%; padding: 9px; background: var(--navy); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; }
+
+        /* منطقة الهيرو */
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(rgba(10,46,92,0.7), rgba(10,46,92,0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
+
+        /* صندوق البحث الذكي */
+        .search-box { background: white; padding: 25px; border-radius: 15px; display: flex; gap: 15px; max-width: 1100px; margin: -40px auto 40px; color: #333; box-shadow: 0 15px 35px rgba(0,0,0,0.3); align-items: flex-end; flex-wrap: wrap; }
+        .field { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        label { font-size: 0.85rem; font-weight: bold; color: var(--navy); }
+        select, input { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; outline: none; }
+        .btn-search { background: var(--gold); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        /* كروت الشركات */
+        .results { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 20px; }
+        .card { background: white; color: #333; padding: 25px; border-radius: 18px; text-align: center; display: none; border-bottom: 5px solid var(--gold); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .price { font-size: 1.8rem; color: var(--navy); font-weight: 800; margin: 15px 0; }
+        .btn-book { width: 100%; padding: 10px; background: var(--navy); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        /* الشات بوت العائم */
+        #chat-icon { position: fixed; bottom: 25px; left: 25px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000; font-size: 24px; }
+        #chat-window { display: none; position: fixed; bottom: 90px; left: 25px; width: 300px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 2000; overflow: hidden; }
+        .chat-header { background: var(--navy); color: white; padding: 12px; text-align: center; font-weight: bold; }
+        .chat-body { height: 250px; padding: 15px; overflow-y: auto; color: #333; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
     </style>
 </head>
 <body>
+
     <header>
         <div class="nav-btns">
             <a href="track.html" class="btn-action btn-outline">تتبع شحنة</a>
             <a href="admin.html" class="btn-action btn-gold">بوابة الشركات</a>
             <a href="user-dashboard.html" class="btn-action btn-gold">دخول الأفراد</a>
         </div>
-        <div class="logo-area"><span style="font-size: 1.4rem; font-weight: 900;">SHIHNAH</span><img src="icon.png" alt="Logo"></div>
+        <div class="logo-area">
+            <span style="font-size: 1.6rem; font-weight: 900;">SHIHNAH</span>
+            <img src="icon.png" alt="Logo">
+        </div>
     </header>
 
-    <div class="hero"><h1>المنصة الموحدة للنقل اللوجستي</h1><p>مستقبل النقل الذكي بين كافة مدن ومناطق المملكة</p></div>
+    <div class="hero">
+        <h1>المنصة الموحدة للنقل اللوجستي</h1>
+        <p>مستقبل النقل الذكي بين كافة مدن ومناطق المملكة</p>
+    </div>
 
     <div class="search-box">
         <div class="field"><label>من مدينة:</label>
             <select id="from">
-                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
-                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة المكرمة</option></optgroup>
-                <option>نيوم (NEOM)</option><option>القدية</option>
+                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option><option>بريدة</option></optgroup>
+                <optgroup label="المنطقة الغربية"><option>جدة</option><option>مكة المكرمة</option><option>المدينة المنورة</option></optgroup>
+                <optgroup label="أخرى"><option>نيوم (NEOM)</option><option>القدية</option></optgroup>
             </select>
         </div>
         <div class="field"><label>إلى وجهة:</label>
-            <select id="to"><option>جدة</option><option>الرياض</option></select>
+            <select id="to">
+                <option>جدة</option><option>الرياض</option><option>مكة المكرمة</option><option>الدمام</option>
+            </select>
         </div>
-        <div class="field" style="flex:0.3"><label>الوزن:</label><input type="number" id="weight" value="1"></div>
-        <button class="btn-search" onclick="calculateResults()">بحث الأسعار</button>
+        <div class="field" style="flex: 0.4;"><label>الوزن:</label><input type="number" id="weight" value="1"></div>
+        <button class="btn-search" onclick="calculate()">بحث الأسعار</button>
     </div>
 
     <div class="results" id="resultsGrid">
         <div class="card" data-rate="18"><h3>سبل (SPL)</h3><p>البريد السعودي الرسمي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="25"><h3>أرامكس</h3><p>توصيل سريع وموثوق</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
         <div class="card" data-rate="15"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card" data-rate="30"><h3>سمسا (SMSA)</h3><p>أوسع انتشار محلي</p><div class="price">--</div><button class="btn-book">حجز الآن</button></div>
     </div>
 
-    <div id="chat-icon" onclick="toggleChat()" style="position: fixed; bottom: 20px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 2000;">💬</div>
-    <div id="chat-window" style="display: none; position: fixed; bottom: 80px; left: 20px; width: 280px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 2000; color: #333;">
-        <div style="background: var(--navy); color: white; padding: 10px; border-radius: 10px 10px 0 0;">مساعد شحنة</div>
-        <div id="chat-messages" style="height: 200px; padding: 10px; overflow-y: auto; font-size: 0.8rem;"></div>
-        <div style="padding: 10px; display: flex;"><input type="text" id="chatInput" style="flex:1;"><button onclick="sendMessage()">ارسالة</button></div>
+    <div id="chat-icon" onclick="toggleChat()">💬</div>
+    <div id="chat-window">
+        <div class="chat-header">مساعد SHIHNAH</div>
+        <div class="chat-body" id="chatMsgs"><div>أهلاً بك! كيف أخدمك؟</div></div>
+        <div style="padding: 10px; display: flex; gap: 5px; border-top: 1px solid #eee;">
+            <input type="text" id="chatInput" placeholder="اكتب سؤالك..." style="flex:1; padding: 5px;">
+            <button onclick="sendMsg()" style="background: var(--gold); border: none; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer;">إرسال</button>
+        </div>
     </div>
 
     <script>
-        function calculateResults() {
+        function calculate() {
+            let w = document.getElementById('weight').value;
             document.querySelectorAll('.card').forEach(card => {
                 card.style.display = 'block';
                 let rate = card.getAttribute('data-rate');
-                card.querySelector('.price').innerText = (rate * document.getElementById('weight').value) + " ريال";
+                card.querySelector('.price').innerText = (rate * w).toFixed(2) + " ريال";
+                card.querySelector('.btn-book').onclick = function() {
+                    alert('تم حفظ الشحنة بنجاح! يمكنك متابعتها من لوحة التحكم.');
+                };
             });
         }
-        function toggleChat() { let w = document.getElementById('chat-window'); w.style.display = w.style.display === 'none' ? 'block' : 'none'; }
-        function sendMessage() { alert('سيتم الرد عليك قريباً!'); }
+        function toggleChat() { 
+            let chat = document.getElementById('chat-window');
+            chat.style.display = chat.style.display === 'none' ? 'block' : 'none';
+        }
+        function sendMsg() {
+            let val = document.getElementById('chatInput').value;
+            if(!val) return;
+            document.getElementById('chatMsgs').innerHTML += `<div style="text-align:left; color:var(--navy); font-weight:bold;">أنت: ${val}</div>`;
+            document.getElementById('chatInput').value = "";
+            setTimeout(() => {
+                document.getElementById('chatMsgs').innerHTML += `<div style="color: #666;">المساعد: جاري معالجة طلبك...</div>`;
+            }, 500);
+        }
     </script>
 </body>
 </html>
