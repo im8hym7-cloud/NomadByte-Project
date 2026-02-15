@@ -1,37 +1,20 @@
-// NomadByte Project - Logic & Actions
+// تحديد وقت نهاية الـ Drop (مثلاً بعد 3 أيام من الآن)
+let dropDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
 
-// 1. وظيفة فتح وإغلاق نافذة إضافة شحنة
-function toggleModal() {
-    const modal = document.getElementById('shipmentModal');
-    modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
-}
+let timerFunc = setInterval(function() {
+    let now = new Date().getTime();
+    let distance = dropDate - now;
 
-// 2. برمجة حفظ الشحنة وإضافتها للجدول (المهمة 6 و 7)
-function saveShipment() {
-    // الحصول على القيم من الحقول
-    const id = document.getElementById('shipmentID').value;
-    const client = document.getElementById('clientName').value;
-    const status = document.getElementById('status').value;
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    if(id && client) {
-        // إضافة سطر جديد للجدول
-        const table = document.getElementById('shipmentTableBody');
-        const newRow = table.insertRow();
-        
-        newRow.innerHTML = `
-            <td>${id}</td>
-            <td>${client}</td>
-            <td><span class="status-badge">${status}</span></td>
-            <td>${new Date().toLocaleDateString()}</td>
-        `;
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
 
-        // إظهار رسالة نجاح
-        alert('✅ تم حفظ الشحنة بنجاح في نظام NomadByte!');
-        
-        // إغلاق النافذة وتفريغ الحقول
-        toggleModal();
-        document.getElementById('shipmentForm').reset();
-    } else {
-        alert('الرجاء تعبئة كافة الحقول!');
+    if (distance < 0) {
+        clearInterval(timerFunc);
+        document.getElementById("timer").innerHTML = "DROP IS LIVE!";
     }
-}
+}, 1000);
