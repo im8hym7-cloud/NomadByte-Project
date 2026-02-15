@@ -2,37 +2,51 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>NOMADBYTE | ADMIN</title>
+    <title>NOMADBYTE | ADMIN PANEL</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        .admin-box { max-width: 500px; margin: 50px auto; padding: 30px; background: #0d0d0d; border: 1px solid #1a1a1a; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #333; color: #fff; }
+        .admin-container { max-width: 600px; margin: 100px auto; background: #0d0d0d; padding: 40px; border: 1px solid #1a1a1a; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: #fff; }
+        .btn-group { display: flex; gap: 10px; }
     </style>
 </head>
 <body>
-    <div class="admin-box">
-        <h2 style="margin-bottom:20px;">إضافة قطعة جديدة</h2>
-        <input type="text" id="pName" placeholder="اسم المنتج (مثلاً: Core Hoodie)">
-        <input type="number" id="pPrice" placeholder="السعر (SAR)">
-        <input type="text" id="pImage" placeholder="رابط صورة المنتج">
-        <button onclick="saveProduct()" class="btn-primary" style="width:100%">نشر المنتج في المتجر</button>
-        <a href="index.html" style="display:block; margin-top:20px; color:#666; text-align:center;">العودة للمتجر</a>
+    <div class="admin-container">
+        <h2 style="margin-bottom: 20px; font-family: 'Inter';">إدارة المخزون</h2>
+        <input type="text" id="pName" placeholder="اسم القطعة">
+        <input type="number" id="pPrice" placeholder="السعر بالريال">
+        <input type="text" id="pImage" placeholder="رابط صورة المنتج (Unsplash أو غيره)">
+        
+        <div class="btn-group">
+            <button onclick="addProduct()" class="btn-primary" style="flex: 2;">نشر القطعة</button>
+            <button onclick="clearStore()" class="btn-primary" style="flex: 1; background: #cc0000;">تصفير المتجر</button>
+        </div>
+        
+        <a href="index.html" style="display:block; text-align:center; margin-top:20px; color:#666;">الذهاب للمتجر ←</a>
     </div>
 
     <script>
-        function saveProduct() {
-            const product = {
-                name: document.getElementById('pName').value,
-                price: document.getElementById('pPrice').value,
-                image: document.getElementById('pImage').value || 'https://via.placeholder.com/500x600/111/fff?text=NOMADBYTE'
-            };
-            
+        function addProduct() {
+            const name = document.getElementById('pName').value;
+            const price = document.getElementById('pPrice').value;
+            const image = document.getElementById('pImage').value || 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600';
+
+            if(!name || !price) { alert('بالله عب البيانات كاملة'); return; }
+
             let products = JSON.parse(localStorage.getItem('nomadProducts')) || [];
-            products.push(product);
+            products.push({ name, price, image });
             localStorage.setItem('nomadProducts', JSON.stringify(products));
             
-            alert('تم نشر القطعة بنجاح! تفقد المتجر الآن.');
+            alert('تم النشر! القطعة صارت لايف الآن.');
+            location.reload();
+        }
+
+        function clearStore() {
+            if(confirm('متأكد تبي تحذف كل المعروض؟')) {
+                localStorage.removeItem('nomadProducts');
+                alert('تم تصفير المتجر.');
+                location.reload();
+            }
         }
     </script>
 </body>
