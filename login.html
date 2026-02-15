@@ -3,37 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte - دخول الأفراد</title>
+    <title>NomadByte - تسجيل الدخول</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* إضافة بسيطة لضمان التوسط في الصفحة */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+        }
+    </style>
 </head>
 <body>
 
-<div class="login-card">
-    <div class="image-section">
-        <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" alt="Individual Login">
+    <div class="login-card">
+        <div class="image-section">
+            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" alt="NomadByte Logo">
+        </div>
+
+        <div class="form-section">
+            <h2>مرحباً بك مجدداً</h2>
+            <p>سجل دخولك الآمن لـ <strong>NomadByte_KSA</strong></p>
+            
+            <form id="loginForm" onsubmit="event.preventDefault(); window.location.href='index.html';">
+                <div class="input-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">كلمة السر</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-action">دخول</button>
+            </form>
+
+            <div class="footer-links">
+                <a href="#">نسيت كلمة السر؟</a>
+                <span> | </span>
+                <a href="index.html">العودة للرئيسية ←</a>
+            </div>
+        </div>
     </div>
-
-    <div class="form-section">
-        <h2>مرحباً بك مجدداً</h2>
-        <p>سجل دخولك لـ <strong>NomadByte_KSA</strong></p>
-        
-        <div class="input-group">
-            <label>اسم المستخدم</label>
-            <input type="text" placeholder="أدخل اسمك">
-        </div>
-
-        <div class="input-group">
-            <label>كلمة السر</label>
-            <input type="password" placeholder="••••••••">
-        </div>
-
-        <button class="btn-login" onclick="window.location.href='index.html'">دخول</button>
-
-        <div class="footer-links">
-            <a href="index.html">العودة للرئيسية ←</a>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>
