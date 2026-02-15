@@ -2,78 +2,96 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>NomadByte | الحلول اللوجستية المتكاملة</title>
+    <title>منصة شحنة | SHIHNAH - الحلول اللوجستية</title>
     <style>
-        :root { --primary: #0a2e5c; --accent: #f39c12; --eco: #27ae60; }
+        :root { --primary: #0a2e5c; --accent: #f39c12; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--primary); color: white; }
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
-        .logo-box { display: flex; align-items: center; gap: 12px; }
-        .logo-box img { height: 45px; }
-        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(10,46,92,0.7), rgba(10,46,92,0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
-        .search-area { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1100px; margin: -60px auto 40px; color: #333; box-shadow: 0 20px 40px rgba(0,0,0,0.4); align-items: flex-end; }
-        .input-group { flex: 1; display: flex; flex-direction: column; gap: 5px; text-align: right; }
-        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
-        .btn-calc { background: var(--accent); color: white; border: none; padding: 0 35px; border-radius: 10px; cursor: pointer; font-weight: bold; height: 48px; }
-        .results-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 20px; }
-        .company-card { background: white; color: #333; padding: 25px; border-radius: 15px; text-align: center; border-top: 6px solid var(--accent); display: none; }
-        .company-card.green { border-top-color: var(--eco); }
-        .price-tag { font-size: 2rem; color: var(--primary); font-weight: 800; margin: 15px 0; }
-        .eco-badge { background: #e8f5e9; color: var(--eco); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; }
+        
+        /* الهيدر */
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); }
+        .logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: bold; }
+        .logo-area img { height: 45px; }
+
+        /* منطقة الهيرو والخلفية */
+        .hero { text-align: center; padding: 100px 20px; 
+                background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), 
+                url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1350&q=80'); 
+                background-size: cover; background-position: center; }
+
+        /* منطقة البحث */
+        .search-container { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; max-width: 1100px; margin: -50px auto 40px; color: #333; box-shadow: 0 15px 30px rgba(0,0,0,0.3); align-items: flex-end; }
+        .field { flex: 1; display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; }
+        .btn-search { background: var(--accent); color: white; border: none; padding: 0 30px; border-radius: 8px; cursor: pointer; height: 45px; font-weight: bold; }
+
+        /* شبكة النتائج */
+        .results-grid { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 0 20px; }
+        .card { background: white; color: #333; padding: 20px; border-radius: 15px; text-align: center; display: none; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .price { font-size: 1.8rem; color: var(--primary); font-weight: bold; margin: 10px 0; }
+        .company-name { font-weight: bold; color: #555; }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo-box">
-            <img src="icon.png" alt="NomadByte Logo">
-            <span style="font-size: 1.5rem; font-weight: 900;">NomadByte</span>
+        <div class="nav-btns">
+            <a href="admin.html" style="color:var(--accent); text-decoration:none; margin-left:15px; font-weight:bold;">بوابة الشركات</a>
+            <a href="login.html" style="background:var(--accent); color:white; padding:8px 15px; border-radius:8px; text-decoration:none;">دخول الأفراد</a>
         </div>
-        <nav>
-            <a href="login.html" style="color:white; text-decoration:none; margin-left:20px; font-weight:bold;">دخول الأفراد</a>
-            <a href="admin.html" style="background:var(--accent); color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">بوابة الشركات</a>
-        </nav>
+        <div class="logo-area">
+            <span>شحنة</span>
+            <img src="icon.png" alt="Logo">
+        </div>
     </header>
 
     <div class="hero">
-        <h1>مستقبل النقل اللوجستي الذكي</h1>
-        <p>ربط مدن المملكة بأحدث حلول الشحن والنقل المستدام</p>
+        <h1>منصة "شحنة" اللوجستية</h1>
+        <p>نقل ذكي يربط كافة مدن المملكة</p>
     </div>
 
-    <div class="search-area">
-        <div class="input-group"><label>من مدينة:</label><select id="from"><option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option><option>المدينة</option></select></div>
-        <div class="input-group"><label>إلى وجهة:</label><select id="to"><option>نيوم (NEOM)</option><option>القدية</option><option>ذا لاين</option><option>أبها</option><option>تبوك</option></select></div>
-        <div class="input-group"><label>الوزن (KG):</label><input type="number" id="weight" value="1"></div>
-        <button class="btn-calc" onclick="showPrices()">استخراج الأسعار</button>
+    <div class="search-container">
+        <div class="field">
+            <label>من مدينة:</label>
+            <select id="fromCity">
+                <option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option><option>المدينة</option>
+                <option>تبوك</option><option>أبها</option><option>بريدة</option><option>الخبر</option><option>جازان</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>إلى وجهة:</label>
+            <select id="toCity">
+                <option>نيوم (NEOM)</option><option>القدية</option><option>ذا لاين</option><option>الرياض</option><option>جدة</option>
+                <option>الدمام</option><option>حائل</option><option>الجبيل</option><option>الهفوف</option><option>نجران</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>الوزن (KG):</label>
+            <input type="number" id="weight" value="1">
+        </div>
+        <button class="btn-search" onclick="calculatePrices()">بحث الأسعار</button>
     </div>
 
     <div class="results-grid" id="results">
-        <div class="company-card">
-            <h3 style="margin:0;">المجدوعي للوجستيات</h3>
-            <p style="color:#666; font-size:0.9rem;">نقل بري سريع</p>
-            <div class="price-tag" id="p1">--</div>
-            <button style="width:100%; padding:10px; background:var(--primary); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button>
-        </div>
-        <div class="company-card">
-            <h3 style="margin:0;">أرامكس (Aramex)</h3>
-            <p style="color:#666; font-size:0.9rem;">توصيل للمنزل</p>
-            <div class="price-tag" id="p2">--</div>
-            <button style="width:100%; padding:10px; background:var(--primary); color:white; border:none; border-radius:8px; cursor:pointer;">حجز الشحنة</button>
-        </div>
-        <div class="company-card green">
-            <span class="eco-badge">🍃 صديق للبيئة</span>
-            <h3 style="margin:5px 0 0 0;">Nomad Eco-Truck</h3>
-            <p style="color:#666; font-size:0.9rem;">نقل كهربائي (صفر انبعاثات)</p>
-            <div class="price-tag" id="p3" style="color:var(--eco);">--</div>
-            <button style="width:100%; padding:10px; background:var(--eco); color:white; border:none; border-radius:8px; cursor:pointer;">حجز أخضر</button>
-        </div>
+        <div class="card"><h3>المجدوعي</h3><p class="company-name">نقل ثقيل ولوجستي</p><div class="price">--</div></div>
+        <div class="card"><h3>البسامي</h3><p class="company-name">نقل مركبات وبضائع</p><div class="price">--</div></div>
+        <div class="card"><h3>سمسا (SMSA)</h3><p class="company-name">شحن سريع</p><div class="price">--</div></div>
+        <div class="card"><h3>أرامكس</h3><p class="company-name">توصيل اقتصادي</p><div class="price">--</div></div>
+        <div class="card"><h3>زاجل</h3><p class="company-name">شحن بري سريع</p><div class="price">--</div></div>
+        <div class="card"><h3>المستقبل</h3><p class="company-name">حلول نقليات متكاملة</p><div class="price">--</div></div>
+        <div class="card"><h3>شركة المزيد</h3><p class="company-name">خدمات لوجستية</p><div class="price">--</div></div>
+        <div class="card"><h3>DHL</h3><p class="company-name">شحن دولي/محلي</p><div class="price">--</div></div>
     </div>
 
     <script>
-        function showPrices() {
+        function calculatePrices() {
             let w = document.getElementById('weight').value;
-            document.getElementById('p1').innerText = (w * 22).toFixed(2) + " ريال";
-            document.getElementById('p2').innerText = (w * 28).toFixed(2) + " ريال";
-            document.getElementById('p3').innerText = (w * 18).toFixed(2) + " ريال";
-            document.querySelectorAll('.company-card').forEach(c => c.style.display = 'block');
+            let prices = [22, 25, 30, 28, 15, 40, 35, 60];
+            let cards = document.querySelectorAll('.card');
+            
+            cards.forEach((card, index) => {
+                card.style.display = 'block';
+                card.querySelector('.price').innerText = (w * prices[index]).toFixed(2) + " ريال";
+            });
         }
     </script>
 </body>
