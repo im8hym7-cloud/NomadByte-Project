@@ -2,28 +2,110 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تتبع الشحنة | SHIHNAH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMADBYTE | TRACK YOUR DROP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; font-family: sans-serif; background: #f0f2f5; }
-        header { background: #0a2e5c; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; color: white; }
-        .card { max-width: 500px; margin: 100px auto; background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .search-group { display: flex; justify-content: center; align-items: center; gap: 0; margin-top: 20px; }
-        input { padding: 12px; border: 1px solid #ddd; border-radius: 0 8px 8px 0; width: 60%; outline: none; }
-        .btn { background: #f39c12; color: white; border: none; padding: 12px 25px; border-radius: 8px 0 0 8px; cursor: pointer; font-weight: bold; }
+        .track-container {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .track-box {
+            background: #121212;
+            padding: 40px;
+            border: 1px solid #222;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .track-box h2 { font-family: 'Orbitron'; margin-bottom: 20px; }
+
+        .input-track {
+            width: 100%;
+            padding: 15px;
+            background: #080808;
+            border: 1px solid #333;
+            color: var(--accent-neon);
+            text-align: center;
+            font-family: 'Orbitron';
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .track-btn {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: black;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* حالة الطلب (تظهر بعد البحث) */
+        .status-display {
+            margin-top: 30px;
+            display: none; /* مخفي حتى يتم البحث */
+            text-align: right;
+        }
+
+        .status-step {
+            padding: 15px;
+            border-right: 2px solid #222;
+            position: relative;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .status-step.active {
+            border-right-color: var(--accent-neon);
+            color: white;
+        }
+
+        .status-step.active::after {
+            content: '●';
+            position: absolute;
+            right: -7px;
+            top: 15px;
+            color: var(--accent-neon);
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div style="font-weight:900; font-size:1.4rem;">SHIHNAH</div>
-        <a href="index.html" style="color:white; text-decoration:none; border:1px solid white; padding:5px 12px; border-radius:5px; font-size:0.8rem;">الرئيسية</a>
-    </header>
-    <div class="card">
-        <h2 style="color:#0a2e5c; margin:0;">تتبع بضائعك</h2>
-        <p style="color:#666; font-size:0.9rem; margin:10px 0 30px;">أدخل رقم الشحنة لمتابعة حالتها فوراً</p>
-        <div class="search-group">
-            <button class="btn" onclick="alert('جاري البحث عن شحنتك...')">تتبع</button>
-            <input type="text" placeholder="SH-XXXX">
+
+    <div class="track-container">
+        <div class="track-box">
+            <h2>TRACK ORDER</h2>
+            <p style="color: #888; font-size: 0.8rem; margin-bottom: 20px;">أدخل رقم الطلب المرسل لك عبر الرسائل النصية</p>
+            
+            <input type="text" class="input-track" placeholder="#NB-0000" id="orderNumber">
+            <button class="track-btn" onclick="trackOrder()">LOCATE PACKAGE</button>
+
+            <div id="statusDisplay" class="status-display">
+                <div class="status-step active">تم تأكيد الطلب - Confirmed</div>
+                <div class="status-step active">جاري التجهيز - Processing</div>
+                <div class="status-step">خرج للتوصيل - Out for Delivery</div>
+                <div class="status-step">تم الاستلام - Delivered</div>
+            </div>
         </div>
     </div>
+
+    <script>
+        function trackOrder() {
+            const order = document.getElementById('orderNumber').value;
+            if(order) {
+                document.getElementById('statusDisplay').style.display = 'block';
+            } else {
+                alert("يرجى إدخال رقم الطلب");
+            }
+        }
+    </script>
 </body>
 </html>
