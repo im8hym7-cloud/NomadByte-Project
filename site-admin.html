@@ -2,23 +2,53 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>إدارة المنصة | SHIHNAH</title>
+    <title>إدارة منصة شحنة | Admin</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: #1a1a2e; color: white; padding: 40px; }
-        .stats { display: flex; gap: 20px; margin-top: 30px; }
-        .box { background: #16213e; padding: 30px; flex: 1; border-radius: 15px; text-align: center; }
+        body { margin: 0; font-family: sans-serif; background: #0a192f; color: white; }
+        .header { background: #112240; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); }
+        .container { padding: 40px; }
+        .grid { display: flex; gap: 20px; margin-bottom: 40px; }
+        .box { background: #1d3557; padding: 30px; flex: 1; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
         span { font-size: 2.5rem; color: #f39c12; display: block; margin-top: 10px; font-weight: bold; }
-        .btn-home { position: fixed; top: 20px; left: 20px; background: #f39c12; color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; }
+        table { width: 100%; border-collapse: collapse; background: #112240; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 15px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        th { background: #233554; color: #f39c12; }
+        .status-badge { padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; background: #27ae60; }
     </style>
 </head>
 <body>
-    <a href="index.html" class="btn-home">الرئيسية</a>
-    <h1>إدارة منصة SHIHNAH 🛡️</h1>
-    <div class="stats">
-        <div class="box">إجمالي الشحنات <span>1,204</span></div>
-        <div class="box">المستخدمين <span>542</span></div>
-        <div class="box">الشركات المشتركة <span>08</span></div>
-        <div class="box">الأرباح اليومية <span>1,450 ر.س</span></div>
+    <div class="header">
+        <h2>لوحة التحكم الإدارية (Site Owner)</h2>
+        <a href="index.html" style="color:white; text-decoration:none;">← العودة للموقع</a>
+    </div>
+    <div class="container">
+        <div class="grid">
+            <div class="box">إجمالي العمليات<span>1,204</span></div>
+            <div class="box">الشركات المسجلة<span>7</span></div>
+            <div class="box">المستخدمين النشطين<span>542</span></div>
+        </div>
+
+        <h3>آخر الشحنات المحجوزة عبر المنصة</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>رقم العملية</th>
+                    <th>العميل</th>
+                    <th>شركة الشحن</th>
+                    <th>القيمة</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#OP-9901</td>
+                    <td>NomadByte_KSA</td>
+                    <td>المجدوعي</td>
+                    <td>22.00 ريال</td>
+                    <td><span class="status-badge">مؤكدة</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
