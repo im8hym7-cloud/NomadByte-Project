@@ -2,61 +2,24 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دخول الأفراد | NomadByte</title>
     <style>
-        body { 
-            margin: 0; font-family: 'Segoe UI', sans-serif; 
-            background: #fdf2e9; display: flex; justify-content: center; align-items: center; min-height: 100vh; 
-        }
-        .login-card {
-            background: white; padding: 40px; border-radius: 25px; width: 400px; 
-            box-shadow: 0 15px 40px rgba(243, 156, 18, 0.15); text-align: center;
-        }
-        .logo-section { margin-bottom: 25px; }
-        .logo-section img { height: 65px; }
-        .logo-section h2 { margin: 10px 0; color: #2c3e50; font-size: 1.5rem; }
-        
-        .input-group { text-align: right; margin-bottom: 15px; }
-        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        .input-group input { 
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; 
-            box-sizing: border-box; font-size: 1rem;
-        }
-
-        .btn-login { 
-            width: 100%; padding: 14px; background: #f39c12; color: white; border: none; 
-            border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1rem; margin-top: 10px;
-        }
-        
-        .back-home { 
-            display: inline-block; margin-top: 20px; color: #7f8c8d; text-decoration: none; font-size: 0.9rem;
-        }
-        .back-home:hover { color: #f39c12; }
+        body { margin: 0; font-family: sans-serif; background: #fdf2e9; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: white; padding: 40px; border-radius: 20px; width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        img { height: 60px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #f39c12; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        a { display: block; margin-top: 15px; color: #666; text-decoration: none; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-
-    <div class="login-card">
-        <div class="logo-section">
-            <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" alt="NomadByte Logo">
-            <h2>دخول الأفراد</h2>
-        </div>
-
-        <div class="input-group">
-            <label>اسم المستخدم</label>
-            <input type="text" placeholder="أدخل اسم المستخدم">
-        </div>
-
-        <div class="input-group">
-            <label>كلمة المرور</label>
-            <input type="password" placeholder="••••••••">
-        </div>
-
-        <button class="btn-login" onclick="location.href='index.html'">تسجيل الدخول</button>
-
-        <a href="index.html" class="back-home">← العودة للصفحة الرئيسية</a>
+    <div class="card">
+        <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png">
+        <h2>دخول الأفراد</h2>
+        <input type="text" placeholder="اسم المستخدم">
+        <input type="password" placeholder="كلمة المرور">
+        <button onclick="location.href='index.html'">دخول</button>
+        <a href="index.html">← الرجوع للرئيسية</a>
     </div>
-
 </body>
 </html>
