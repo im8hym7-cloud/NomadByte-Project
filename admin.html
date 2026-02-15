@@ -8,21 +8,23 @@
                background-image: linear-gradient(rgba(10,46,92,0.85), rgba(10,46,92,0.85)), 
                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80');
                background-size: cover; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 50px; border-radius: 30px; width: 420px; text-align: center; color: white; border: 1px solid rgba(255,255,255,0.2); }
-        .logo-img { height: 65px; margin-bottom: 30px; }
-        input { width: 100%; padding: 16px; margin: 12px 0; border: none; border-radius: 12px; background: rgba(255,255,255,0.15); color: white; box-sizing: border-box; }
-        button { width: 100%; padding: 16px; background: #2980b9; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; margin-top: 20px; }
+        .card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 50px; border-radius: 30px; width: 400px; text-align: center; color: white; border: 1px solid rgba(255,255,255,0.2); }
+        .logo-img { height: 60px; margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; margin: 12px 0; border: none; border-radius: 12px; background: rgba(255,255,255,0.15); color: white; box-sizing: border-box; font-size: 1rem; }
+        input::placeholder { color: #ddd; }
+        button { width: 100%; padding: 16px; background: #2980b9; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; margin-top: 15px; transition: 0.3s; }
+        button:hover { background: #3498db; }
     </style>
 </head>
 <body>
     <div class="card">
         <img src="icon.png" class="logo-img">
-        <h1 style="margin-top:0; letter-spacing:1px;">SHIHNAH</h1>
-        <h2 style="font-weight: 300; opacity: 0.9;">بوابة كبار الشركاء</h2>
+        <h1 style="margin:0; letter-spacing:1px; font-size: 2.2rem;">SHIHNAH</h1>
+        <p style="opacity:0.8; margin-bottom:30px;">بوابة الشركات والخدمات اللوجستية</p>
         <input type="text" placeholder="رقم السجل التجاري">
         <input type="password" placeholder="كلمة المرور">
-        <button onclick="location.href='index.html'">دخول المنصة</button>
-        <a href="index.html" style="color:#ccc; text-decoration:none; display:block; margin-top:20px;">← الرجوع للرئيسية</a>
+        <button onclick="location.href='index.html'">دخول الشركاء</button>
+        <a href="index.html" style="color:#ccc; text-decoration:none; display:block; margin-top:20px; font-size:0.9rem;">← العودة للموقع الرئيسي</a>
     </div>
 </body>
 </html>
