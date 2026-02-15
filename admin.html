@@ -2,44 +2,133 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>لوحة الشركات | SHIHNAH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMADBYTE | ADMIN PANEL</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --navy: #0a2e5c; --gold: #f39c12; }
-        body { margin: 0; font-family: sans-serif; background: #f4f7f9; display: flex; }
-        .sidebar { width: 240px; background: var(--navy); color: white; height: 100vh; padding: 25px; position: fixed; box-sizing: border-box; }
-        .main { margin-right: 240px; flex: 1; padding: 30px; }
-        .stats { display: flex; gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: white; padding: 20px; flex: 1; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .stat-card h5 { margin: 0; color: #888; font-size: 0.8rem; }
-        .stat-card p { margin: 10px 0 0; font-size: 1.8rem; font-weight: bold; color: var(--navy); }
-        table { width: 100%; background: white; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        th, td { padding: 15px; border-bottom: 1px solid #eee; text-align: center; font-size: 0.85rem; }
-        th { background: #fafafa; color: var(--navy); }
-        .btn-save { background: var(--navy); color: white; border: none; padding: 6px 15px; border-radius: 5px; cursor: pointer; }
+        .admin-wrapper { display: flex; min-height: 100vh; }
+        
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 250px;
+            background: #121212;
+            border-left: 1px solid #222;
+            padding: 30px 20px;
+        }
+
+        .sidebar h3 { font-family: 'Orbitron'; font-size: 0.9rem; color: var(--accent-neon); margin-bottom: 30px; }
+        
+        .admin-nav-link {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        /* المحتوى الرئيسي */
+        .admin-content { flex: 1; padding: 50px; }
+
+        .form-card {
+            background: #121212;
+            padding: 30px;
+            border: 1px solid #222;
+            max-width: 700px;
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        
+        label { display: block; font-size: 0.8rem; color: #888; margin-bottom: 8px; }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #080808;
+            border: 1px solid #333;
+            color: white;
+        }
+
+        .submit-btn {
+            background: var(--accent-neon);
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-weight: 900;
+            cursor: pointer;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2 style="font-size:1.2rem;">SHIHNAH Admin</h2>
-        <div style="margin-top:40px; background:var(--gold); padding:10px; border-radius:5px;">📦 إدارة الشحنات</div>
-        <p style="padding:10px; cursor:pointer;">📊 التقارير</p>
-        <p onclick="location.href='index.html'" style="padding:10px; margin-top:50px; cursor:pointer; opacity:0.7;">↩ خروج</p>
+
+    <div class="admin-wrapper">
+        <aside class="sidebar">
+            <h3>NOMADBYTE // MGMT</h3>
+            <a href="#" class="admin-nav-link">لوحة الإحصائيات</a>
+            <a href="#" class="admin-nav-link" style="color: var(--accent-neon);">+ إضافة منتج جديد</a>
+            <a href="#" class="admin-nav-link">إدارة الطلبات</a>
+            <a href="index.html" class="admin-nav-link">العودة للمتجر</a>
+        </aside>
+
+        <main class="admin-content">
+            <h1 style="font-family: 'Orbitron'; margin-bottom: 30px;">ADD NEW DROP</h1>
+            
+            <div class="form-card">
+                <form id="addProductForm">
+                    <div class="form-row">
+                        <div>
+                            <label>اسم القطعة (Product Name)</label>
+                            <input type="text" placeholder="مثلاً: Cyber Hoodie V1" required>
+                        </div>
+                        <div>
+                            <label>السعر (SAR)</label>
+                            <input type="number" placeholder="250" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label>المجموعة (Collection)</label>
+                            <select>
+                                <option>Drop 01</option>
+                                <option>Drop 02</option>
+                                <option>Limited Edition</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>المقاسات المتوفرة</label>
+                            <div style="display: flex; gap: 10px; padding-top: 10px;">
+                                <input type="checkbox"> S 
+                                <input type="checkbox"> M 
+                                <input type="checkbox"> L 
+                                <input type="checkbox"> XL
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label>رابط صورة المنتج (أو ارفع ملفاً)</label>
+                        <input type="text" placeholder="https://image-url.com/item.jpg">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label>وصف المنتج (Streetwear Vibe Description)</label>
+                        <textarea rows="4" placeholder="تكلم عن القصة، نوع القطن، القصة (Oversized)..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">PUBLISH PRODUCT</button>
+                </form>
+            </div>
+        </main>
     </div>
-    <div class="main">
-        <div class="stats">
-            <div class="stat-card"><h5>تم توصيلها اليوم</h5><p>28</p></div>
-            <div class="stat-card"><h5>بانتظار الاستلام</h5><p>5</p></div>
-            <div class="stat-card"><h5>شحنات نشطة</h5><p>12</p></div>
-        </div>
-        <h3 style="font-size:1rem; color:var(--navy);">قائمة الشحنات الجديدة</h3>
-        <table>
-            <thead><tr><th>رقم الشحنة</th><th>العميل</th><th>الوجهة</th><th>الحالة الحالية</th><th>تحديث الحالة</th><th>إجراء</th></tr></thead>
-            <tbody>
-                <tr><td>SH-4921</td><td>خالد محمد</td><td>الرياض ← جدة</td><td style="color:orange; font-weight:bold;">جاري التجهيز</td>
-                <td><select style="padding:4px;"><option>مع المندوب</option><option>تم التوصيل</option></select></td>
-                <td><button class="btn-save" onclick="alert('تم تحديث حالة الشحنة بنجاح')">حفظ</button></td></tr>
-            </tbody>
-        </table>
-    </div>
+
+    <script>
+        document.getElementById('addProductForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('تم نشر المنتج بنجاح في Drop 01! 🔥');
+        }
+    </script>
 </body>
 </html>
