@@ -5,36 +5,29 @@
     <title>تتبع الشحنة | NOMADBYTE</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .track-container { max-width: 500px; margin: 100px auto; background: #111; padding: 40px; border-radius: 15px; border: 1px solid var(--cyan); text-align: center; }
-        .input-field { width: 100%; padding: 15px; margin: 20px 0; background: #000; border: 1px solid #333; color: var(--cyan); font-family: 'Orbitron'; text-align: center; font-size: 1.2rem; }
+        .track-wrap { max-width: 500px; margin: 150px auto; padding: 40px; background: #111; border: 1px solid var(--cyan); border-radius: 15px; text-align: center; }
+        .t-input { width: 100%; padding: 15px; margin: 25px 0; background: #000; border: 1px solid #333; color: var(--cyan); font-family: 'Orbitron'; text-align: center; }
     </style>
 </head>
 <body>
-    <div class="track-container">
-        <h2 style="font-family:'Orbitron';">// TRACK ORDER</h2>
-        <input type="text" id="trackID" class="input-field" placeholder="NB-XXXX">
-        <button onclick="checkStatus()" class="btn-cyan" style="width:100%; border:none; cursor:pointer;">تتبع الآن</button>
-        
-        <div id="result" style="display:none; margin-top:30px; padding:20px; background:#1a1a1a; border-right:4px solid var(--cyan); text-align:right;">
-            <p style="color:gray; font-size:0.8rem;">الحالة الحالية:</p>
-            <span id="statusLabel" style="color:var(--cyan); font-weight:900; font-size:1.4rem;"></span>
-            <p id="custName" style="margin-top:10px; color:white;"></p>
+    <div class="track-wrap">
+        <h2 style="font-family:'Orbitron';">// TRACK SHIPMENT</h2>
+        <input type="text" id="tID" class="t-input" placeholder="NB-XXXX">
+        <button onclick="doTrack()" class="btn-glow" style="width:100%; border:none; cursor:pointer;">تتبع الآن</button>
+        <div id="res" style="display:none; margin-top:30px; padding:20px; background:#000; border-right:4px solid var(--cyan); text-align:right;">
+            <p style="color:#555; font-size:0.8rem;">الحالة:</p>
+            <span id="st" style="color:var(--cyan); font-weight:900; font-size:1.5rem;"></span>
         </div>
     </div>
-
     <script>
-        function checkStatus() {
-            const id = document.getElementById('trackID').value.trim();
-            const shipments = JSON.parse(localStorage.getItem('nomadShipments')) || [];
-            const found = shipments.find(s => s.id === id);
-
+        function doTrack() {
+            const id = document.getElementById('tID').value;
+            const data = JSON.parse(localStorage.getItem('nomadShipments')) || [];
+            const found = data.find(s => s.id === id);
             if(found) {
-                document.getElementById('result').style.display = "block";
-                document.getElementById('statusLabel').innerText = found.status;
-                document.getElementById('custName').innerText = "العميل: " + found.customer;
-            } else {
-                alert("رقم الشحنة غير مسجل.");
-            }
+                document.getElementById('res').style.display = "block";
+                document.getElementById('st').innerText = found.status;
+            } else { alert("الرقم غير موجود"); }
         }
     </script>
 </body>
