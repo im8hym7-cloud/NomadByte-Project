@@ -2,26 +2,25 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>دخول الأفراد | شحنة</title>
+    <title>دخول الأفراد | NomadByte</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1566633806327-68e152aaf26d?auto=format&fit=crop&w=1000&q=80'); background-size: cover; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; padding: 40px; border-radius: 30px; width: 380px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-        .icon-box { font-size: 60px; margin-bottom: 10px; }
-        .logo { height: 50px; margin-bottom: 20px; }
+        body { margin: 0; font-family: sans-serif; background: linear-gradient(rgba(10,46,92,0.8), rgba(10,46,92,0.8)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1000&q=80'); background-size: cover; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .login-card { background: white; padding: 40px; border-radius: 25px; width: 380px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .logo-img { height: 55px; margin-bottom: 25px; }
         input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; }
-        button { width: 100%; padding: 14px; background: #f39c12; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; }
-        a { display: block; margin-top: 15px; color: #0a2e5c; text-decoration: none; font-weight: bold; }
+        button { width: 100%; padding: 14px; background: #f39c12; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; }
+        .links { margin-top: 20px; }
+        .links a { color: #0a2e5c; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png" class="logo">
-        <div class="icon-box">📦</div>
-        <h2 style="color:#0a2e5c; margin-top:0;">دخول الأفراد</h2>
-        <input type="text" placeholder="اسم المستخدم">
+    <div class="login-card">
+        <img src="icon.png" class="logo-img">
+        <h2 style="color:#0a2e5c; margin-bottom:30px;">دخول الأفراد</h2>
+        <input type="text" placeholder="رقم الجوال أو البريد">
         <input type="password" placeholder="كلمة المرور">
         <button onclick="location.href='index.html'">دخول</button>
-        <a href="index.html">← الرجوع للرئيسية</a>
+        <div class="links"><a href="index.html">← العودة للرئيسية</a></div>
     </div>
 </body>
 </html>
