@@ -2,120 +2,33 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تتبع الشحنة | NOMADBYTE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-color: #050505;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-        }
-        .tracking-container { 
-            max-width: 500px; 
-            width: 90%;
-            padding: 50px; 
-            background: #111; 
-            border: 1px solid var(--cyan); 
-            border-radius: 20px; 
-            text-align: center;
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
-        }
-        .tracking-container h2 { 
-            font-family: 'Orbitron', sans-serif; 
-            color: white;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-        .track-input { 
-            width: 100%; 
-            padding: 18px; 
-            margin: 20px 0; 
-            background: #000; 
-            border: 1px solid #333; 
-            color: var(--cyan); 
-            border-radius: 10px; 
-            font-family: 'Orbitron'; 
-            text-align: center;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        .track-input:focus {
-            border-color: var(--cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
-            outline: none;
-        }
-        .status-box { 
-            margin-top: 35px; 
-            padding: 25px; 
-            border-radius: 12px; 
-            display: none; 
-            background: #1a1a1a; 
-            border-right: 5px solid var(--cyan); 
-            text-align: right; 
-            animation: fadeIn 0.5s ease;
-        }
-        .status-text { 
-            color: var(--cyan); 
-            font-weight: 900; 
-            font-size: 1.3rem; 
-            display: block;
-            margin-top: 5px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .track-box { max-width: 500px; margin: 100px auto; background: #111; padding: 40px; border-radius: 15px; border: 1px solid var(--cyan); text-align: center; }
+        .track-input { width: 100%; padding: 15px; margin: 20px 0; background: #000; border: 1px solid #333; color: var(--cyan); font-family: 'Orbitron'; text-align: center; }
     </style>
 </head>
 <body>
-
-    <div class="tracking-container">
-        <h2>// TRACK YOUR DROP</h2>
-        <p style="color: #666; font-size: 0.9rem;">أدخل رقم التتبع الخاص بطلبيتك</p>
-        
-        <input type="text" id="shipmentID" class="track-input" placeholder="NB-XXXX">
-        
-        <button onclick="trackOrder()" class="btn-cyan" style="width: 100%; border: none; cursor: pointer;">
-            تتبع الآن
-        </button>
-        
-        <div id="statusResult" class="status-box">
-            <p style="color: #aaa; font-size: 0.8rem; margin: 0;">حالة الشحنة:</p>
-            <span id="statusLabel" class="status-text"></span>
-            <p id="customerName" style="margin-top:15px; font-size:1rem; color: white;"></p>
+    <div class="track-box">
+        <h2 style="font-family:'Orbitron';">TRACK DROP</h2>
+        <input type="text" id="shipID" class="track-input" placeholder="NB-XXXX">
+        <button onclick="track()" class="glow-button" style="width: 100%;">تتبع الآن</button>
+        <div id="res" style="display:none; margin-top:20px; padding:20px; background:#1a1a1a; border-right:4px solid var(--cyan);">
+            <p id="st" style="color:var(--cyan); font-weight:900;"></p>
+            <p id="cu" style="color:white; margin-top:10px;"></p>
         </div>
     </div>
-
     <script>
-        function trackOrder() {
-            const idInput = document.getElementById('shipmentID').value.trim();
-            const resultBox = document.getElementById('statusResult');
-            const statusLabel = document.getElementById('statusLabel');
-            const customerDisp = document.getElementById('customerName');
-
-            // جلب البيانات الفعلية من الذاكرة (التي يتم تخزينها من Admin)
-            const savedShipments = JSON.parse(localStorage.getItem('nomadShipments')) || [];
-
-            // البحث عن الشحنة
-            const found = savedShipments.find(s => s.id === idInput);
-
-            if (found) {
-                resultBox.style.display = "block";
-                statusLabel.innerText = found.status;
-                customerDisp.innerText = "العميل: " + found.customer;
-                
-                // تأثير بصري للنجاح
-                resultBox.style.boxShadow = "0 0 20px rgba(0, 242, 255, 0.2)";
-            } else {
-                alert("رقم الشحنة [" + idInput + "] غير مسجل في نظامنا.");
-                resultBox.style.display = "none";
-            }
+        function track() {
+            const id = document.getElementById('shipID').value;
+            const data = JSON.parse(localStorage.getItem('nomadShipments')) || [];
+            const found = data.find(s => s.id === id);
+            if(found) {
+                document.getElementById('res').style.display = "block";
+                document.getElementById('st').innerText = found.status;
+                document.getElementById('cu').innerText = "العميل: " + found.customer;
+            } else { alert("رقم غير موجود"); }
         }
     </script>
 </body>
