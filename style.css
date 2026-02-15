@@ -1,110 +1,117 @@
-/* NomadByte Premium Streetwear Branding */
+/* NomadByte - Minimalist High-End Streetwear */
 :root {
-    --bg-black: #020202;
-    --accent-blue: #0066FF; /* الأزرق العصري الجديد */
-    --white: #ffffff;
-    --card-dark: #0D0D0D;
+    --bg-black: #050505;
+    --accent-blue: #0066FF; 
+    --text-pure: #FFFFFF;
+    --text-gray: #A0A0A0;
+    --card-bg: #0D0D0D;
 }
 
 body {
     background-color: var(--bg-black);
-    color: var(--white);
+    color: var(--text-pure);
     font-family: 'Inter', sans-serif;
     margin: 0;
-    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* شريط التنبيهات عريض جداً */
+/* شريط علوي أنيق وهادئ */
 .announcement-bar {
-    background: var(--accent-blue);
-    color: white;
-    padding: 20px 0;
-    font-weight: 900;
-    font-size: 1.1rem;
+    background: #000;
+    color: var(--accent-blue);
+    padding: 12px 0;
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 5px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #111;
 }
 
-/* واجهة الهيرو */
+/* الهيرو سكشن - توازن بين الضخامة والراحة */
 .hero {
-    height: 100vh;
+    height: 85vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+    background: linear-gradient(rgba(0,0,0,0.7), var(--bg-black)), 
                 url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    text-align: center;
 }
 
-/* العنوان العريض والضخم */
 .main-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 12vw; /* ضخم جداً */
+    font-size: 8vw; /* صغرنا الحجم قليلاً ليكون أرقى */
     font-weight: 900;
-    line-height: 0.8;
     color: transparent;
-    -webkit-text-stroke: 2px var(--white);
+    -webkit-text-stroke: 1.5px white;
     text-transform: uppercase;
-    margin: 0;
+    margin-bottom: 10px;
 }
 
 .main-title span {
     color: var(--accent-blue);
-    -webkit-text-stroke: 0px;
+    -webkit-text-stroke: 0;
 }
 
 .hero-tagline {
-    font-weight: 900;
-    letter-spacing: 10px;
-    margin-top: 20px;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    letter-spacing: 12px;
+    color: var(--text-gray);
     text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-/* الزر العريض والقوي */
+/* زر عصري مع انحناء بسيط */
 .btn-primary {
     background: var(--accent-blue);
     color: white;
-    padding: 25px 80px;
-    font-size: 1.5rem;
-    font-weight: 900;
+    padding: 18px 45px;
+    font-size: 1rem;
+    font-weight: 800;
     text-decoration: none;
-    margin-top: 40px;
+    border-radius: 4px;
+    transition: 0.4s;
     display: inline-block;
-    transition: 0.4s ease;
-    border: none;
 }
 
 .btn-primary:hover {
     background: white;
     color: black;
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
 }
 
-/* شبكة المنتجات */
-.products-section { padding: 100px 50px; }
-.section-title { font-family: 'Orbitron'; font-size: 2rem; border-bottom: 2px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 50px; }
+/* قسم المنتجات */
+.products-section { padding: 80px 10%; }
+
+.section-title {
+    font-family: 'Orbitron';
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent-blue);
+    padding-left: 15px;
+}
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
 .product-card {
-    background: var(--card-dark);
-    border: 1px solid #111;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
     transition: 0.3s;
+    border: 1px solid #111;
 }
 
-.product-card:hover { border-color: var(--accent-blue); }
+.product-card:hover {
+    border-color: #222;
+    transform: translateY(-5px);
+}
 
-.product-img img { width: 100%; display: block; }
-
-.product-info { padding: 30px; text-align: left; }
-.product-info h3 { font-size: 1.8rem; font-weight: 900; margin: 0; }
-.price { color: var(--accent-blue); font-size: 1.5rem; font-weight: bold; margin: 10px 0; }
+.product-info { padding: 25px; }
+.product-info h3 { font-size: 1.2rem; margin: 0; }
+.price { color: var(--accent-blue); font-weight: bold; margin-top: 5px; }
