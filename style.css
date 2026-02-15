@@ -1,61 +1,53 @@
-/* NomadByte_KSA - Modern CSS System */
+/* NomadByte Core CSS - الإصلاح الشامل */
 body {
-    margin: 0; padding: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f4f7f6;
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; direction: rtl;
+    margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5; direction: rtl;
 }
 
-/* الحاوية الرئيسية الذكية */
+/* تنسيق الحاسبة في الصفحة الرئيسية لضمان عملها */
+.main-container {
+    text-align: center; padding: 50px;
+}
+
+/* الحاوية الموحدة لصفحات الدخول والتتبع */
 .login-card {
-    background: #fff; width: 850px; max-width: 95%;
-    display: flex; flex-direction: row-reverse; /* الصورة يسار والنص يمين */
-    border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    overflow: hidden; min-height: 450px;
+    background: white; width: 850px; max-width: 95%;
+    display: flex; flex-direction: row-reverse; 
+    margin: 50px auto; border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;
 }
 
-/* قسم الصورة - يمنعها من الانفجار */
+/* السيطرة على الصور - أهم جزء */
 .image-section {
     flex: 1; background-color: #fdf2e9;
-    display: flex; justify-content: center; align-items: center; padding: 30px;
+    display: flex; justify-content: center; align-items: center; padding: 20px;
 }
 
 .image-section img {
-    max-width: 100%; height: auto; max-height: 300px; /* حجم مثالي */
+    max-width: 100%; max-height: 300px; /* حجم يمنع التغطية على الأزرار */
     object-fit: contain;
 }
 
 /* قسم البيانات */
 .form-section {
-    flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center;
+    flex: 1; padding: 40px; text-align: right;
 }
 
-.form-section h2 { margin: 0 0 10px; color: #333; }
-.form-section p { color: #666; font-size: 14px; margin-bottom: 25px; }
-
-/* المدخلات والأزرار */
-.input-group { margin-bottom: 15px; text-align: right; }
-.input-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-.input-group input {
-    width: 100%; padding: 12px; border: 1px solid #ddd;
-    border-radius: 8px; box-sizing: border-box;
+.input-group { margin-bottom: 15px; }
+.input-group input, .input-group select {
+    width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
 }
 
 .btn-action {
-    width: 100%; padding: 12px; border: none; border-radius: 8px;
-    background-color: #f39c12; color: white; font-weight: bold;
-    cursor: pointer; transition: 0.3s; font-size: 16px;
+    width: 100%; padding: 12px; background: #f39c12; color: white;
+    border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
 }
 
-.btn-action:hover { background-color: #d35400; }
-
-/* لمسة زرقاء للشركاء */
+/* تنسيق خاص للشركاء */
 .admin-variant .image-section { background-color: #e3f2fd; }
 .admin-variant .btn-action { background-color: #2980b9; }
 
-/* التوافق مع الجوال */
+/* للهواتف */
 @media (max-width: 768px) {
     .login-card { flex-direction: column; }
-    .image-section { padding: 20px; }
 }
