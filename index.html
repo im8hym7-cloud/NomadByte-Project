@@ -2,129 +2,53 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>شحنة | SHIHNAH - مستقبل اللوجستيات 2030</title>
+    <title>شحنة | SHIHNAH - المنصة اللوجستية الأولى</title>
     <style>
-        :root { --navy: #0a2e5c; --gold: #f39c12; --green: #27ae60; --light: #f4f7f6; }
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--navy); color: white; }
-        header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 2rem; color: var(--gold); text-decoration: none; }
-        .logo img { height: 55px; }
-        
-        .hero { text-align: center; padding: 120px 20px; background: linear-gradient(rgba(10,46,92,0.7), rgba(10,46,92,0.7)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; }
-        .hero h1 { font-size: 3.5rem; margin: 0; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.2rem; opacity: 0.9; margin-top: 10px; }
-
-        .search-bar { background: white; padding: 35px; border-radius: 25px; display: flex; gap: 15px; align-items: flex-end; max-width: 1200px; margin: -70px auto 50px; color: #333; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
-        .input-item { flex: 1; display: flex; flex-direction: column; gap: 8px; text-align: right; }
-        .input-item label { font-weight: bold; font-size: 0.85rem; color: var(--navy); }
-        select, input { padding: 15px; border: 1px solid #ddd; border-radius: 12px; font-size: 1rem; outline: none; transition: 0.3s; }
-        select:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(243, 156, 18, 0.2); }
-        
-        .btn-search { background: var(--gold); color: white; border: none; padding: 0 45px; border-radius: 12px; cursor: pointer; font-weight: bold; height: 55px; font-size: 1.2rem; transition: 0.3s; }
-        .btn-search:hover { transform: translateY(-3px); background: #e67e22; box-shadow: 0 10px 20px rgba(230, 126, 34, 0.4); }
-
-        .results { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 20px; }
-        .card { background: white; color: #333; padding: 30px; border-radius: 20px; display: none; border-top: 8px solid var(--gold); transition: 0.4s; box-shadow: 0 15px 30px rgba(0,0,0,0.15); position: relative; }
-        .card:hover { transform: translateY(-10px); }
+        :root { --navy: #0a2e5c; --gold: #f39c12; --green: #27ae60; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--navy); color: white; }
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 2rem; color: var(--gold); }
+        .logo img { height: 50px; }
+        .hero { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(10,46,92,0.7), rgba(10,46,92,0.7)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1350&q=80'); background-size: cover; }
+        .search-bar { background: white; padding: 30px; border-radius: 20px; display: flex; gap: 15px; align-items: flex-end; max-width: 1100px; margin: -60px auto 40px; color: #333; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .input-item { flex: 1; display: flex; flex-direction: column; gap: 5px; text-align: right; }
+        select, input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none; }
+        .btn-search { background: var(--gold); color: white; border: none; padding: 0 40px; border-radius: 10px; cursor: pointer; font-weight: bold; height: 45px; }
+        .results { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .card { background: white; color: #333; padding: 20px; border-radius: 15px; display: none; border-top: 6px solid var(--gold); }
         .card.eco { border-top-color: var(--green); }
-        .price { font-size: 2rem; color: var(--gold); font-weight: 800; margin: 15px 0; }
-        .eco-tag { background: #e8f5e9; color: var(--green); font-size: 0.8rem; padding: 5px 12px; border-radius: 8px; font-weight: bold; position: absolute; top: 15px; left: 15px; }
-        .btn-book { width: 100%; padding: 12px; border: none; background: var(--navy); color: white; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-book:hover { background: var(--gold); }
+        .price { font-size: 1.8rem; color: var(--gold); font-weight: 800; margin: 10px 0; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo"><img src="https://im8hym7-cloud.github.io/NomadByte-Project/img/logo.png"> شحنة</div>
         <nav>
-            <a href="login.html" style="color:white; text-decoration:none; margin-left:25px; font-weight:600;">دخول الأفراد</a>
-            <a href="admin.html" style="background:var(--gold); color:white; padding:12px 30px; border-radius:12px; text-decoration:none; font-weight:bold; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);">بوابة الشركات</a>
+            <a href="login.html" style="color:white; text-decoration:none; margin-left:20px;">دخول الأفراد</a>
+            <a href="admin.html" style="background:var(--gold); color:white; padding:10px 20px; border-radius:10px; text-decoration:none; font-weight:bold;">بوابة الشركات</a>
         </nav>
     </header>
-
-    <div class="hero">
-        <h1>منصة "شحنة" اللوجستية</h1>
-        <p>الخيار الأذكى لنقل البضائع والمعدات لجميع مدن ومشاريع المملكة</p>
-    </div>
-
+    <div class="hero"><h1>منصة "شحنة" اللوجستية</h1><p>نقل ذكي يربط كافة مدن المملكة</p></div>
     <div class="search-bar">
-        <div class="input-item">
-            <label>من مدينة:</label>
-            <select id="f">
-                <option>الرياض</option><option>جدة</option><option>الدمام</option>
-                <option>مكة المكرمة</option><option>المدينة المنورة</option><option>تبوك</option>
-                <option>أبها</option><option>حائل</option><option>جازان</option><option>القصيم</option>
-            </select>
-        </div>
-        <div class="input-item">
-            <label>إلى وجهة / مشروع:</label>
-            <select id="t">
-                <optgroup label="مشاريع الرؤية">
-                    <option>نيوم (NEOM)</option><option>ذا لاين (The Line)</option><option>القدية</option>
-                    <option>مشروع البحر الأحمر</option><option>أوكساجون</option><option>العلا</option>
-                </optgroup>
-                <optgroup label="المدن">
-                    <option>الرياض</option><option>جدة</option><option>الدمام</option><option>الجبيل</option>
-                </optgroup>
-            </select>
-        </div>
-        <div class="input-item">
-            <label>نوع النقل:</label>
-            <select id="ty">
-                <option value="all">الكل</option>
-                <option value="eco">نقل أخضر كهربائي 🌱</option>
-                <option value="cold">شحن مبرد ❄️</option>
-            </select>
-        </div>
-        <div class="input-item">
-            <label>الوزن (KG):</label>
-            <input type="number" id="w" value="1" min="1">
-        </div>
+        <div class="input-item"><label>من مدينة:</label><select id="f"><option>الرياض</option><option>جدة</option><option>الدمام</option><option>مكة</option><option>تبوك</option><option>أبها</option></select></div>
+        <div class="input-item"><label>إلى وجهة:</label><select id="t"><option>نيوم</option><option>القدية</option><option>ذا لاين</option><option>الرياض</option><option>جدة</option></select></div>
+        <div class="input-item"><label>الوزن (KG):</label><input type="number" id="w" value="1"></div>
         <button class="btn-search" onclick="find()">بحث الأسعار</button>
     </div>
-
     <div class="results" id="res">
-        <div class="card eco">
-            <span class="eco-tag">كهربائي 🌱</span>
-            <b>المجدوعي لوجستيك</b>
-            <p>توصيل آمن وصديق للبيئة</p>
-            <div class="price" id="p1">--</div>
-            <button class="btn-book">احجز الآن</button>
-        </div>
-        <div class="card">
-            <b>أرامكس (Aramex)</b>
-            <p>أسرع خيار شحن محلي</p>
-            <div class="price" id="p2">--</div>
-            <button class="btn-book">احجز الآن</button>
-        </div>
-        <div class="card">
-            <b>سمسا (SMSA Express)</b>
-            <p>موثوقية في كل زاوية</p>
-            <div class="price" id="p3">--</div>
-            <button class="btn-book">احجز الآن</button>
-        </div>
-        <div class="card">
-            <b>سبل (Saudi Post)</b>
-            <p>الانتشار الأوسع بالمملكة</p>
-            <div class="price" id="p4">--</div>
-            <button class="btn-book">احجز الآن</button>
-        </div>
+        <div class="card eco"><b>المجدوعي لوجستيك 🌱</b><div class="price" id="p1">--</div><button style="width:100%; padding:8px; background:var(--navy); color:white; border:none; border-radius:5px; cursor:pointer;">حجز</button></div>
+        <div class="card"><b>أرامكس</b><div class="price" id="p2">--</div><button style="width:100%; padding:8px; background:var(--navy); color:white; border:none; border-radius:5px; cursor:pointer;">حجز</button></div>
+        <div class="card"><b>سمسا</b><div class="price" id="p3">--</div><button style="width:100%; padding:8px; background:var(--navy); color:white; border:none; border-radius:5px; cursor:pointer;">حجز</button></div>
+        <div class="card"><b>سبل</b><div class="price" id="p4">--</div><button style="width:100%; padding:8px; background:var(--navy); color:white; border:none; border-radius:5px; cursor:pointer;">حجز</button></div>
     </div>
-
     <script>
         function find() {
             let weight = document.getElementById('w').value;
-            let type = document.getElementById('ty').value;
-            document.getElementById('p1').innerText = (weight * 18.5).toFixed(2) + " ريال";
-            document.getElementById('p2').innerText = (weight * 29.0).toFixed(2) + " ريال";
-            document.getElementById('p3').innerText = (weight * 25.0).toFixed(2) + " ريال";
-            document.getElementById('p4').innerText = (weight * 14.0).toFixed(2) + " ريال";
-            
+            document.getElementById('p1').innerText = (weight * 18).toFixed(2) + " ريال";
+            document.getElementById('p2').innerText = (weight * 28).toFixed(2) + " ريال";
+            document.getElementById('p3').innerText = (weight * 24).toFixed(2) + " ريال";
+            document.getElementById('p4').innerText = (weight * 15).toFixed(2) + " ريال";
             document.querySelectorAll('.card').forEach(c => c.style.display = 'block');
-            if(type === 'eco') {
-                document.querySelectorAll('.card:not(.eco)').forEach(c => c.style.display = 'none');
-            }
         }
     </script>
 </body>
