@@ -12,15 +12,12 @@
         .btn-black { border: 1px solid white; color: white; }
         .btn-gold { background: var(--gold); color: white; }
         .btn-red { background: #e74c3c; color: white; border: none; }
-        
         .hero { text-align: center; padding: 40px 20px; background: linear-gradient(rgba(10,46,92,0.6), rgba(10,46,92,0.6)), url('bg.jpg'); background-size: cover; }
-        
         .search-container { background: white; border-radius: 15px; padding: 20px; max-width: 1050px; margin: -30px auto 30px; display: flex; gap: 15px; align-items: flex-end; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .fld { flex: 1; display: flex; flex-direction: column; gap: 5px; }
         .fld label { font-size: 0.75rem; font-weight: bold; color: #0a2e5c; }
         select, input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-family: inherit; }
         .btn-search { background: var(--gold); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-
         .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
         .card { background: white; border-radius: 15px; padding: 25px; text-align: center; color: #0a2e5c; border-bottom: 5px solid var(--gold); position: relative; }
         .eco-tag { position: absolute; top: 10px; right: 10px; font-size: 1.2rem; }
@@ -48,25 +45,15 @@
     <div class="search-container">
         <div class="fld"><label>من مدينة:</label>
             <select id="from_city">
-                <optgroup label="المنطقة الوسطى">
-                    <option>الرياض</option>
-                    <option>الخرج</option>
-                </optgroup>
-                <optgroup label="المنطقة الغربية">
-                    <option>جدة</option>
-                    <option>مكة المكرمة</option>
-                </optgroup>
-                <optgroup label="المشاريع الكبرى">
-                    <option>نيوم (NEOM)</option>
-                    <option>القدية</option>
-                </optgroup>
+                <optgroup label="المنطقة الوسطى"><option>الرياض</option><option>الخرج</option></optgroup>
+                <optgroup label="المنطقة العربية (الغربية)"><option>جدة</option><option>مكة المكرمة</option></optgroup>
+                <optgroup label="المنطقة الشرقية"><option>الدمام</option><option>الخبر</option><option>الأحساء</option></optgroup>
+                <optgroup label="المشاريع الكبرى"><option>نيوم (NEOM)</option><option>القدية</option></optgroup>
             </select>
         </div>
         <div class="fld"><label>إلى وجهة:</label>
             <select id="to_city">
-                <option>جدة</option>
-                <option>الرياض</option>
-                <option>مكة المكرمة</option>
+                <option>جدة</option><option>الرياض</option><option>الدمام</option><option>مكة المكرمة</option>
             </select>
         </div>
         <div class="fld" style="flex: 0.4;"><label>الوزن:</label><input type="number" id="weight_val" value="1"></div>
@@ -80,42 +67,63 @@
     </div>
 
     <div class="results-grid" id="results-area">
-        <div class="card" data-base="22"><h3>المجدوعي</h3><p>نقل ثقيل ولوجستي</p><div class="price">22.00 ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-base="30"><h3>سمسا (SMSA)</h3><p>أوسع انتشار محلي</p><div class="price">30.00 ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-base="28" data-eco="true">
-            <span class="eco-tag">🌱</span><h3>أرامكس</h3><p>توصيل سريع ومرن</p>
-            <span class="eco-info">أسطول كهربائي متاح</span>
-            <div class="price">28.00 ريال</div><button class="btn-book">حجز الآن</button>
-        </div>
-        <div class="card" data-base="15"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">15.00 ريال</div><button class="btn-book">حجز الآن</button></div>
-        <div class="card" data-base="18" data-eco="true">
-            <span class="eco-tag">🌱</span><h3>سبل (SPL)</h3><p>البريد السعودي الرسمي</p>
-            <span class="eco-info">دعم مبادرة السعودية الخضراء</span>
-            <div class="price">18.00 ريال</div><button class="btn-book">حجز الآن</button>
-        </div>
-        <div class="card" data-base="60" data-eco="true">
-            <span class="eco-tag">🌱</span><h3>DHL</h3><p>الخيار العالمي السريع</p>
-            <span class="eco-info">خدمة GoGreen Zero Emissions</span>
-            <div class="price">60.00 ريال</div><button class="btn-book">حجز الآن</button>
-        </div>
-        <div class="card" data-base="25"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price">25.00 ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>المجدوعي</h3><p>نقل ثقيل ولوجستي</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>سمسا (SMSA)</h3><p>أوسع انتشار محلي</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><span class="eco-tag">🌱</span><h3>أرامكس</h3><p>توصيل سريع ومرن</p><span class="eco-info">أسطول كهربائي متاح</span><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>زاجل</h3><p>شحن بري اقتصادي</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><span class="eco-tag">🌱</span><h3>سبل (SPL)</h3><p>البريد السعودي الرسمي</p><span class="eco-info">دعم مبادرة السعودية الخضراء</span><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><span class="eco-tag">🌱</span><h3>DHL</h3><p>الخيار العالمي السريع</p><span class="eco-info">خدمة GoGreen Zero Emissions</span><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
+        <div class="card"><h3>البسامي الدولية</h3><p>نقل بضائع ومركبات</p><div class="price">--.-- ريال</div><button class="btn-book">حجز الآن</button></div>
     </div>
 
-    <script>
-        function updatePrices() {
-            let weight = parseFloat(document.getElementById('weight_val').value);
-            let unit = document.getElementById('unit_type').value;
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+
+      // مفاتيحك الخاصة
+      const firebaseConfig = {
+        apiKey: "AIzaSyA_BaYYI_ZC8EO5RRMxL1Wq-_oYBAHuT2M",
+        authDomain: "sh7na-database.firebaseapp.com",
+        databaseURL: "https://sh7na-database-default-rtdb.firebaseio.com",
+        projectId: "sh7na-database",
+        storageBucket: "sh7na-database.firebasestorage.app",
+        messagingSenderId: "334773528813",
+        appId: "1:334773528813:web:7ff9c93d44b8d4ef8dc4e4"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      window.updatePrices = function() {
+        const weight = parseFloat(document.getElementById('weight_val').value) || 1;
+        const unit = document.getElementById('unit_type').value;
+        const factor = (unit === "gm") ? 0.001 : 1;
+
+        const ratesRef = ref(db, 'shipping_rates');
+        onValue(ratesRef, (snapshot) => {
+            const rates = snapshot.val();
+            if (!rates) { alert("تأكد من إضافة الأسعار في Firebase تحت shipping_rates"); return; }
             
-            // تحويل الجرام لكيلو لتوحيد الحساب
-            let factor = (unit === "gm") ? 0.001 : 1;
-            
+            const mapping = {
+                "المجدوعي": rates.almajdouie,
+                "سمسا (SMSA)": rates.smsa,
+                "أرامكس": rates.aramex,
+                "زاجل": rates.zajel,
+                "سبل (SPL)": rates.spl,
+                "DHL": rates.dhl,
+                "البسامي الدولية": rates.albassami
+            };
+
             document.querySelectorAll('.card').forEach(card => {
-                let basePrice = parseFloat(card.getAttribute('data-base'));
-                let finalPrice = basePrice * weight * factor;
-                card.querySelector('.price').innerText = finalPrice.toFixed(2) + " ريال";
+                const name = card.querySelector('h3').innerText.trim();
+                const basePrice = mapping[name];
+                if (basePrice) {
+                    const finalPrice = basePrice * weight * factor;
+                    card.querySelector('.price').innerText = finalPrice.toFixed(2) + " ريال";
+                }
             });
-            alert("تم تحديث الأسعار بناءً على بيانات الشركات الموثقة");
-        }
+        }, { onlyOnce: true });
+      };
     </script>
 </body>
 </html>
