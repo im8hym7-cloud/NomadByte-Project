@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
-    runTimer();
+    startTimer();
 });
 
 function loadProducts() {
@@ -8,33 +8,31 @@ function loadProducts() {
     const data = JSON.parse(localStorage.getItem('nomadProducts')) || [];
 
     if (data.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; opacity: 0.3;">لا توجد قطع معروضة حالياً في الـ Drop..</p>`;
+        grid.innerHTML = '<p style="opacity:0.3; grid-column:1/-1; text-align:center;">No Products Found.</p>';
         return;
     }
 
     grid.innerHTML = data.map(p => `
         <div class="product-card">
-            <div class="img-container">
-                <img src="${p.image}" alt="${p.name}">
+            <div style="width:100%; aspect-ratio:1; background:#000; border-radius:10px; overflow:hidden;">
+                <img src="${p.image}" style="width:100%; height:100%; object-fit:cover;">
             </div>
-            <span class="card-label">PRODUCTS GRID // RECENT</span>
-            <h3 style="font-family:'Orbitron'; font-size: 1.1rem;">${p.name}</h3>
-            <div class="price-val">${p.price}.00</div>
-            <span class="price-sub">PRICE: SAR</span>
-            <button class="glow-button" style="width:100%; margin-top:20px; padding:12px; font-size:0.8rem;">ADD TO BAG</button>
+            <h3 style="margin-top:15px; font-family:'Orbitron'; font-size:1rem;">${p.name}</h3>
+            <span class="price-tag">${p.price}.00</span>
+            <p style="color:gray; font-size:0.7rem;">Price: SAR</p>
+            <button class="glow-button" style="width:100%; margin-top:15px; padding:10px; font-size:0.8rem;">ADD TO BAG</button>
         </div>
     `).join('');
 }
 
-function runTimer() {
-    let seconds = 259200; // 3 أيام
+function startTimer() {
+    let time = 259200;
     setInterval(() => {
-        seconds--;
-        let d = Math.floor(seconds / 86400);
-        let h = Math.floor((seconds % 86400) / 3600);
-        let m = Math.floor((seconds % 3600) / 60);
-        let s = seconds % 60;
-        document.getElementById('timer').innerText = 
-            `${String(d).padStart(2,'0')}D ${String(h).padStart(2,'0')}H ${String(m).padStart(2,'0')}M ${String(s).padStart(2,'0')}S`;
+        time--;
+        let d = Math.floor(time / 86400);
+        let h = Math.floor((time % 86400) / 3600);
+        let m = Math.floor((time % 3600) / 60);
+        let s = time % 60;
+        document.getElementById('timer').innerText = `${d}D ${h}H ${m}M ${s}S`;
     }, 1000);
 }
