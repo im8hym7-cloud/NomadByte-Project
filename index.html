@@ -5,192 +5,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NomadByte | Premium Magnetic Bag</title>
     <style>
-        /* NomadByte Brand Identity */
+        /* إعدادات البراند الأساسية */
         :root {
-            --primary-blue: #007bff;
-            --deep-black: #121212;
-            --soft-grey: #fdfdfd;
-            --text-dark: #333;
+            --accent-blue: #007aff; /* أزرق أبل */
+            --bg-white: #ffffff;
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --border-color: #d2d2d7;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--soft-grey);
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Navigation */
-        nav {
-            padding: 20px 5%;
-            background: white;
-            border-bottom: 1px solid #eee;
+        /* الهيدر النظيف */
+        header {
+            padding: 15px 10%;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
+        .brand-logo { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.5px; }
 
-        /* Main Product Section */
-        .product-section {
+        /* حاوية المنتج الرئيسية */
+        .main-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
             display: flex;
-            flex-wrap: wrap;
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 20px;
-            gap: 60px;
+            gap: 80px;
             align-items: flex-start;
         }
 
-        .image-container {
-            flex: 1.2;
-            min-width: 320px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        /* قسم الصور (على اليمين) */
+        .gallery-section {
+            flex: 1.5;
+            position: sticky;
+            top: 100px;
         }
 
-        .image-container img {
+        .main-image-wrapper {
+            background: #f5f5f7;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .main-image-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
             display: block;
+            mix-blend-mode: multiply; /* لجعل خلفية الصورة مدمجة */
         }
 
-        .details-container {
+        /* قسم التفاصيل (على اليسار) */
+        .info-section {
             flex: 1;
-            min-width: 320px;
+            padding-top: 20px;
         }
 
-        /* Typography & Pricing */
-        .badge {
-            display: inline-block;
-            background: #e7f3ff;
-            color: var(--primary-blue);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
+        .category-tag {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         h1 {
-            font-size: 2.8rem;
-            margin: 0 0 10px 0;
-            color: var(--deep-black);
-        }
-
-        .price-box {
-            margin: 25px 0;
-        }
-
-        .new-price {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-blue);
+            margin: 0 0 15px 0;
+            letter-spacing: -1px;
         }
 
-        .old-price {
-            font-size: 1.3rem;
-            text-decoration: line-through;
-            color: #aaa;
-            margin-right: 15px;
-        }
-
-        /* Specifications */
-        .specs-list {
-            margin: 30px 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .specs-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 1rem;
+        .price-wrapper {
+            margin: 25px 0;
             display: flex;
-            align-items: center;
+            align-items: baseline;
+            gap: 15px;
         }
 
-        .specs-list li::before {
-            content: "•";
-            color: var(--primary-blue);
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-left: 10px;
+        .price-new { font-size: 2rem; font-weight: 600; }
+        .price-old { color: var(--text-secondary); text-decoration: line-through; font-size: 1.2rem; }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        /* Purchase Button */
-        .cta-button {
-            display: block;
-            width: 100%;
-            background: var(--deep-black);
+        /* المواصفات الفنية */
+        .specs-grid {
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+            padding-top: 20px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f7;
+        }
+
+        .spec-label { color: var(--text-secondary); font-weight: 400; }
+        .spec-value { font-weight: 500; }
+
+        /* أزرار الأكشن */
+        .buy-button {
+            background: var(--text-main);
             color: white;
-            text-align: center;
+            width: 100%;
             padding: 20px;
-            font-size: 1.25rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin-top: 30px;
+            margin-top: 40px;
+            transition: all 0.2s ease;
         }
 
-        .cta-button:hover {
-            background: var(--primary-blue);
-            transform: translateY(-2px);
+        .buy-button:hover {
+            background: #000;
+            transform: scale(1.01);
         }
 
-        /* Responsive Layout */
-        @media (max-width: 800px) {
-            .product-section { flex-direction: column; }
-            h1 { font-size: 2.2rem; }
+        /* استجابة الموبايل */
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; gap: 40px; margin: 20px auto; }
+            .gallery-section { position: relative; top: 0; }
+            h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">NomadByte</div>
-    </nav>
+<header>
+    <div class="brand-logo">NomadByte</div>
+    <div class="nav-icons">🛒</div>
+</header>
 
-    <main class="product-section">
-        <div class="image-container">
-            <img src="./image_c0953a.png" alt="NomadByte Magnetic Gym Bag">
+<main class="main-container">
+    <div class="gallery-section">
+        <div class="main-image-wrapper">
+            <img src="./image_c0953a.png" alt="Magnetic Gym Bag" onerror="this.src='https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/image_c0953a.png'">
+        </div>
+    </div>
+
+    <div class="info-section">
+        <span class="category-tag">الابتكار الجديد في عالم الرياضة</span>
+        <h1>Magnetic Gym Bag</h1>
+        
+        <div class="price-wrapper">
+            <span class="price-new">249 SAR</span>
+            <span class="price-old">428 SAR</span>
         </div>
 
-        <div class="details-container">
-            <span class="badge">إصدار محدود (Limited Edition)</span>
-            <h1>Magnetic Gym Bag</h1>
-            
-            <div class="price-box">
-                <span class="new-price">249 SAR</span>
-                <span class="old-price">428 SAR</span>
+        <p class="description">
+            انتهى عصر البحث عن مكان لتصوير تمرينك. شنطة NomadByte مزودة بمغناطيس N52 فائق القوة لتثبيت جوالك على أي سطح معدني في الجيم فوراً. [cite: 2026-02-26]
+        </p>
+
+        <div class="specs-grid">
+            <div class="spec-row">
+                <span class="spec-label">المادة</span>
+                <span class="spec-value">TPU مقاوم للماء [cite: 2026-02-26]</span>
             </div>
-
-            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
-                الشنطة المغناطيسية الأصلية من TPU المقاوم للماء. صممت خصيصاً لتصوير تمرينك بجودة عالية وثبات مطلق بفضل مغناطيس N52 [cite: 2026-02-26].
-            </p>
-
-            <ul class="specs-list">
-                <li>خامة TPU المعالجة لمقاومة الماء [cite: 2026-02-26]</li>
-                <li>سعة تخزينية 1.36 لتر [cite: 2026-02-26]</li>
-                <li>مغناطيس N52 فائق القوة للتثبيت [cite: 2026-02-26]</li>
-                <li>وزن خفيف جداً: 0.69 كجم [cite: 2026-02-26]</li>
-            </ul>
-
-            <button class="cta-button">أضف للسلة - طلب سريع</button>
+            <div class="spec-row">
+                <span class="spec-label">السعة</span>
+                <span class="spec-value">1.36 لتر [cite: 2026-02-26]</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">نوع المغناطيس</span>
+                <span class="spec-value">N52 الصناعي [cite: 2026-02-26]</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">الوزن</span>
+                <span class="spec-value">0.69 كجم خفيف جداً [cite: 2026-02-26]</span>
+            </div>
         </div>
-    </main>
+
+        <button class="buy-button">أضف للسلة - توصيل مجاني</button>
+    </div>
+</main>
 
 </body>
 </html>
