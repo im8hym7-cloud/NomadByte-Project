@@ -3,71 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | الشنطة المغناطيسية</title>
+    <title>NomadByte | الشنطة المغناطيسية الأصلية</title>
     <style>
         :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
         body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); }
         
-        /* ضبط عرض الصفحة لمنع تمدد الصور بشكل ضخم */
-        .page-wrapper { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        /* ضبط العرض الأقصى لمنع تمدد الصفحة بشكل ضخم */
+        .wrapper { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 
-        /* تصغير حجم الصور وضبطها */
-        .image-gallery { width: 100%; }
-        .main-frame { background: var(--grey); border-radius: 15px; height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px; margin-bottom: 10px; }
-        .main-frame img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        /* معرض الصور - تم تحديد الارتفاع لضبط الحجم */
+        .gallery-container { width: 100%; }
+        .main-view { background: var(--grey); border-radius: 20px; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 15px; }
+        .main-view img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .thumb-nav { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; }
-        .thumb { background: var(--grey); border-radius: 4px; cursor: pointer; border: 1.5px solid transparent; aspect-ratio: 1/1; overflow: hidden; }
-        .thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .thumb.active { border-color: var(--blue); }
+        .thumb-list { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-top: 15px; }
+        .thumb-item { background: var(--grey); border-radius: 6px; cursor: pointer; border: 2px solid transparent; aspect-ratio: 1/1; overflow: hidden; }
+        .thumb-item.active { border-color: var(--blue); }
+        .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* تفاصيل المنتج */
-        .price { font-size: 2.2rem; font-weight: 800; color: var(--blue); margin: 15px 0; }
-        .price span { font-size: 1rem; text-decoration: line-through; color: #999; margin-right: 10px; }
+        .product-title { font-size: 2.5rem; margin: 0; font-weight: 800; }
+        .price-tag { font-size: 2.2rem; font-weight: 700; color: var(--blue); margin: 20px 0; }
+        .price-tag span { font-size: 1.1rem; text-decoration: line-through; color: #999; margin-right: 10px; }
         
-        .specs-list { margin-top: 20px; border-top: 1px solid #eee; }
-        .spec { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9f9f9; font-size: 0.95rem; }
+        .specs-grid { margin-top: 30px; border-top: 1px solid #eee; }
+        .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9f9f9; }
 
-        /* زر الدفع - الرابط المباشر من صورتك */
-        .checkout-btn { background: var(--black); color: #fff; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 20px; }
-        .checkout-btn:hover { background: var(--blue); }
+        /* زر الشراء المباشر */
+        .buy-now { background: var(--black); color: #fff; width: 100%; padding: 22px; border: none; border-radius: 16px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 25px; }
+        .buy-now:hover { background: var(--blue); transform: scale(1.02); }
 
-        @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } .main-frame { height: 280px; } }
+        /* استجابة الجوال */
+        @media (max-width: 850px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .main-view { height: 320px; }
+            .product-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
-<div class="page-wrapper">
+<div class="wrapper">
     <div class="product-grid">
-        <div class="image-gallery">
-            <div class="main-frame"><img id="view" src="1.jpg"></div>
-            <div class="thumb-nav">
-                <div class="thumb active" onclick="swap(this, '1.jpg')"><img src="1.jpg"></div>
-                <div class="thumb" onclick="swap(this, '2.jpg')"><img src="2.jpg"></div>
-                <div class="thumb" onclick="swap(this, '3.jpg')"><img src="3.jpg"></div>
-                <div class="thumb" onclick="swap(this, '4.jpg')"><img src="4.jpg"></div>
-                <div class="thumb" onclick="swap(this, '5.jpg')"><img src="5.jpg"></div>
-                <div class="thumb" onclick="swap(this, '6.jpg')"><img src="6.jpg"></div>
-                <div class="thumb" onclick="swap(this, '7.jpg')"><img src="7.jpg"></div>
-                <div class="thumb" onclick="swap(this, '8.jpg')"><img src="8.jpg"></div>
+        <div class="gallery-container">
+            <div class="main-view">
+                <img id="activeImg" src="1.jpg" alt="NomadByte Bag">
+            </div>
+            <div class="thumb-list">
+                <div class="thumb-item active" onclick="changeImg(this, '1.jpg')"><img src="1.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '2.jpg')"><img src="2.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '3.jpg')"><img src="3.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '4.jpg')"><img src="4.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '5.jpg')"><img src="5.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '6.jpg')"><img src="6.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '7.jpg')"><img src="7.jpg"></div>
+                <div class="thumb-item" onclick="changeImg(this, '8.jpg')"><img src="8.jpg"></div>
             </div>
         </div>
 
-        <div class="content">
-            <h1 style="margin:0; font-size: 2rem;">Magnetic Gym Bag</h1>
-            <div class="price">249 SAR <span>428 SAR</span></div>
-            <p style="color: #555; line-height: 1.6;">الشنطة المغناطيسية الأصلية لتصوير تمارينك بسهولة وثبات.</p>
+        <div class="info-container">
+            <h1 class="product-title">Magnetic Gym Bag</h1>
+            <div class="price-tag">249 SAR <span>428 SAR</span></div>
+            <p style="color: #666; line-height: 1.6;">الشنطة المغناطيسية الأصلية التي تسمح لك بتصوير تمارينك باحترافية تامة من أي زاوية.</p>
             
-            <div class="specs-list">
-                <div class="spec"><span>المادة</span><strong>TPU مقاوم للماء</strong></div>
-                <div class="spec"><span>المغناطيس</span><strong>N52 الصناعي</strong></div>
-                <div class="spec"><span>السعة</span><strong>1.36 لتر</strong></div>
-                <div class="spec"><span>الوزن</span><strong>0.69 كجم</strong></div>
+            <div class="specs-grid">
+                <div class="spec-item"><span>المادة</span><strong>TPU مقاوم للماء</strong></div>
+                <div class="spec-item"><span>المغناطيس</span><strong>N52 الصناعي</strong></div>
+                <div class="spec-item"><span>السعة</span><strong>1.36 لتر</strong></div>
+                <div class="spec-item"><span>الوزن</span><strong>0.69 كجم</strong></div>
             </div>
 
-            <button class="checkout-btn" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
+            <button class="buy-now" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
                 إتمام الشراء - دفع آمن 💳
             </button>
         </div>
@@ -75,9 +83,9 @@
 </div>
 
 <script>
-    function swap(el, s) {
-        document.getElementById('view').src = s;
-        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    function changeImg(el, s) {
+        document.getElementById('activeImg').src = s;
+        document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
     }
 </script>
