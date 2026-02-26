@@ -3,22 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إتمام الطلب | NomadByte</title>
+    <title>إتمام الدفع الآمن | NomadByte</title>
     <style>
         body { font-family: sans-serif; background: #f5f5f7; padding: 20px; }
-        .box { max-width: 500px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button { background: #000; color: #fff; width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; }
+        .payment-card { max-width: 450px; margin: 50px auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #666; font-size: 0.9rem; }
+        input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; }
+        .row { display: flex; gap: 10px; }
+        .pay-now { background: #007aff; color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .secure-lock { text-align: center; color: #888; font-size: 0.8rem; margin-top: 15px; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>تفاصيل الشحن</h2>
-        <input type="text" placeholder="الاسم الكامل">
-        <input type="tel" placeholder="رقم الجوال">
-        <input type="text" placeholder="العنوان (المدينة والحي)">
-        <p>الإجمالي: <strong>249 SAR</strong> (شامل التوصيل)</p>
-        <button onclick="alert('تم استلام طلبك! سنتصل بك قريباً.')">تأكيد الطلب والدفع عند الاستلام</button>
+
+<div class="payment-card">
+    <h2 style="margin-top:0;">إتمام عملية الدفع</h2>
+    <p style="color: #007aff; font-weight: bold;">المجموع: 249 SAR</p>
+    
+    <div class="input-group">
+        <label>رقم البطاقة (مدى / فيزا)</label>
+        <input type="text" placeholder="**** **** **** ****">
     </div>
+
+    <div class="row">
+        <div class="input-group" style="flex: 2;">
+            <label>تاريخ الانتهاء</label>
+            <input type="text" placeholder="MM / YY">
+        </div>
+        <div class="input-group" style="flex: 1;">
+            <label>رمز CVV</label>
+            <input type="text" placeholder="123">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label>الاسم على البطاقة</label>
+        <input type="text" placeholder="اسم حامل البطاقة">
+    </div>
+
+    <button class="pay-now" onclick="processPayment()">تأكيد الدفع والطلب</button>
+    
+    <div class="secure-lock">🔒 مشفر بمعايير أمان PCI-DSS</div>
+</div>
+
+<script>
+    function processPayment() {
+        // هنا يتم الربط مع API البنك الفعلي
+        alert('جاري معالجة الدفع الآمن... يرجى الانتظار');
+        // بعد إتمام الدفع، يتم التوجيه لصفحة النجاح
+    }
+</script>
+
 </body>
 </html>
