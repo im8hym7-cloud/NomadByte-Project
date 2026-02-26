@@ -3,117 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | الشنطة المغناطيسية الاحترافية</title>
+    <title>NomadByte | الشنطة المغناطيسية الأصلية</title>
     <style>
         :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
-        body { margin: 0; font-family: -apple-system, system-ui, sans-serif; background: #fff; color: var(--black); line-height: 1.5; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); }
+        header { padding: 20px 8%; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; font-weight: 900; }
+        .product-grid { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 0 5%; }
         
-        /* الهيدر */
-        header { padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
-        .logo { font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; }
-
-        /* حاوية المنتج */
-        .product-container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 0 5%; }
-
-        /* معرض الصور */
-        .gallery-section { display: flex; flex-direction: column; gap: 15px; }
-        .main-display { background: var(--grey); border-radius: 24px; padding: 20px; height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .main-display img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; transition: 0.3s; }
-        
-        .thumbnails-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
-        .thumb { background: var(--grey); border-radius: 10px; cursor: pointer; border: 2px solid transparent; aspect-ratio: 1/1; overflow: hidden; transition: 0.2s; }
+        /* المعرض */
+        .main-img { background: var(--grey); border-radius: 24px; padding: 20px; height: 480px; display: flex; align-items: center; justify-content: center; }
+        .main-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; }
+        .thumbs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 15px; }
+        .thumb { background: var(--grey); border-radius: 8px; cursor: pointer; border: 2px solid transparent; aspect-ratio: 1/1; overflow: hidden; }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .thumb.active { border-color: var(--blue); transform: scale(1.05); }
+        .thumb.active { border-color: var(--blue); }
 
-        /* تفاصيل المنتج */
-        .product-details .badge { color: var(--blue); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
-        .product-details h1 { font-size: 3rem; margin: 10px 0; font-weight: 800; }
-        .price-tag { font-size: 2.5rem; font-weight: 700; color: var(--blue); margin-bottom: 20px; }
-        .price-tag span { font-size: 1.2rem; text-decoration: line-through; color: #999; margin-right: 15px; }
-        
-        .description { font-size: 1.1rem; color: #424245; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-
-        /* جدول المواصفات النظيف */
-        .specs-list { margin-bottom: 30px; }
-        .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f5f5f7; }
+        /* التفاصيل */
+        .price { font-size: 2.5rem; font-weight: 700; color: var(--blue); margin: 15px 0; }
+        .price span { font-size: 1.2rem; text-decoration: line-through; color: #999; margin-right: 10px; }
+        .spec-table { margin: 30px 0; border-top: 1px solid #eee; }
+        .spec-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; }
         .spec-label { color: #86868b; }
-        .spec-value { font-weight: 600; }
+        
+        /* زر الدفع الحقيقي */
+        .pay-btn { background: var(--black); color: white; width: 100%; padding: 22px; border: none; border-radius: 16px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .pay-btn:hover { background: var(--blue); transform: translateY(-3px); }
+        .secure-info { text-align: center; font-size: 0.85rem; color: #888; margin-top: 15px; }
 
-        /* زر الشراء الحقيقي */
-        .buy-now-btn { background: var(--black); color: #fff; width: 100%; padding: 22px; border: none; border-radius: 16px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .buy-now-btn:hover { background: var(--blue); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,122,255,0.2); }
-
-        @media (max-width: 900px) {
-            .product-container { grid-template-columns: 1fr; }
-            .main-display { height: 350px; }
-            .thumbnails-grid { grid-template-columns: repeat(4, 1fr); }
-        }
+        @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } .main-img { height: 320px; } }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">NomadByte</div>
-</header>
+<header><div class="logo">NomadByte</div></header>
 
-<main class="product-container">
-    <section class="gallery-section">
-        <div class="main-display">
-            <img id="activeImage" src="1.jpg" alt="NomadByte Magnetic Bag">
+<main class="product-grid">
+    <div class="gallery">
+        <div class="main-img"><img id="view" src="1.jpg"></div>
+        <div class="thumbs">
+            <div class="thumb active" onclick="change(this, '1.jpg')"><img src="1.jpg"></div>
+            <div class="thumb" onclick="change(this, '2.jpg')"><img src="2.jpg"></div>
+            <div class="thumb" onclick="change(this, '3.jpg')"><img src="3.jpg"></div>
+            <div class="thumb" onclick="change(this, '4.jpg')"><img src="4.jpg"></div>
+            <div class="thumb" onclick="change(this, '5.jpg')"><img src="5.jpg"></div>
+            <div class="thumb" onclick="change(this, '6.jpg')"><img src="6.jpg"></div>
+            <div class="thumb" onclick="change(this, '7.jpg')"><img src="7.jpg"></div>
+            <div class="thumb" onclick="change(this, '8.jpg')"><img src="8.jpg"></div>
         </div>
-        <div class="thumbnails-grid">
-            <div class="thumb active" onclick="updateGallery(this, '1.jpg')"><img src="1.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '2.jpg')"><img src="2.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '3.jpg')"><img src="3.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '4.jpg')"><img src="4.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '5.jpg')"><img src="5.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '6.jpg')"><img src="6.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '7.jpg')"><img src="7.jpg"></div>
-            <div class="thumb" onclick="updateGallery(this, '8.jpg')"><img src="8.jpg"></div>
-        </div>
-    </section>
+    </div>
 
-    <section class="product-details">
-        <span class="badge">الابتكار الأصلي من NomadByte</span>
-        <h1>Magnetic Gym Bag</h1>
+    <div class="details">
+        <h1 style="font-size: 2.8rem; margin:0;">Magnetic Gym Bag</h1>
+        <div class="price">249 SAR <span>428 SAR</span></div>
+        <p style="font-size: 1.1rem; color: #444;">الحل المبتكر لتصوير تمارينك بثبات احترافي. مغناطيس N52 مدمج وخامات TPU الفاخرة.</p>
         
-        <div class="price-tag">
-            249 SAR <span>428 SAR</span>
+        <div class="spec-table">
+            <div class="spec-row"><span class="spec-label">المادة</span><strong>TPU مقاوم للماء</strong></div>
+            <div class="spec-row"><span class="spec-label">المغناطيس</span><strong>N52 الصناعي</strong></div>
+            <div class="spec-row"><span class="spec-label">السعة</span><strong>1.36 لتر</strong></div>
+            <div class="spec-row"><span class="spec-label">الوزن</span><strong>0.69 كجم</strong></div>
         </div>
 
-        <p class="description">
-            انتهى عصر البحث عن مكان لتصوير تمارينك. شنطة NomadByte مزودة بمغناطيس N52 فائق القوة لتثبيت جوالك على أي سطح معدني في الجيم فوراً وبأمان تام.
-        </p>
-
-        <div class="specs-list">
-            <div class="spec-item"><span class="spec-label">المادة</span><span class="spec-value">TPU عالي الجودة</span></div>
-            <div class="spec-item"><span class="spec-label">نوع المغناطيس</span><span class="spec-value">N52 الصناعي</span></div>
-            <div class="spec-item"><span class="spec-label">السعة</span><span class="spec-value">1.36 لتر</span></div>
-            <div class="spec-item"><span class="spec-label">الوزن</span><span class="spec-value">0.69 كجم (خفيف جداً)</span></div>
-        </div>
-
-        <button class="buy-now-btn" onclick="goToPayment()">
-            شراء الآن - دفع آمن 💳
+        <button class="pay-btn" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
+            شراء الآن عبر Apple Pay / مدى 💳
         </button>
-        <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 10px;">دعم كامل لـ Apple Pay و mada</p>
-    </section>
+        <div class="secure-info">🔒 دفع آمن ومشفر عبر PayTabs السعودية</div>
+    </div>
 </main>
 
 <script>
-    // وظيفة تبديل الصور في المعرض
-    function updateGallery(element, src) {
-        document.getElementById('activeImage').src = src;
-        // إزالة حالة النشاط من جميع الصور المصغرة
+    function change(el, src) {
+        document.getElementById('view').src = src;
         document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-        // إضافة حالة النشاط للصورة المختارة
-        element.classList.add('active');
-    }
-
-    // وظيفة التوجه لصفحة الدفع الحقيقية
-    function goToPayment() {
-        // استبدل الرابط أدناه بالرابط الذي نسخته من تطبيق Paymes
-        const paymesUrl = "https://paym.es/nomadbyte/249"; 
-        window.location.href = paymesUrl;
+        el.classList.add('active');
     }
 </script>
 
