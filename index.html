@@ -3,78 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | الشنطة المغناطيسية الأصلية</title>
+    <title>NomadByte | الشنطة المغناطيسية</title>
     <style>
-        :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
+        :root { --blue: #007aff; --black: #1d1d1f; }
         body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); }
-        header { padding: 20px 8%; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.6rem; font-weight: 900; }
-        .product-grid { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 0 5%; }
+        .container { max-width: 1100px; margin: 40px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 20px; }
         
-        /* المعرض */
-        .main-img { background: var(--grey); border-radius: 24px; padding: 20px; height: 480px; display: flex; align-items: center; justify-content: center; }
-        .main-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; }
-        .thumbs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 15px; }
-        .thumb { background: var(--grey); border-radius: 8px; cursor: pointer; border: 2px solid transparent; aspect-ratio: 1/1; overflow: hidden; }
-        .thumb img { width: 100%; height: 100%; object-fit: cover; }
+        /* معرض الصور الاحترافي */
+        .image-gallery { display: flex; flex-direction: column; gap: 15px; }
+        .main-img { background: #f5f5f7; border-radius: 20px; padding: 15px; height: 450px; display: flex; align-items: center; justify-content: center; }
+        .main-img img { max-width: 100%; max-height: 100%; border-radius: 10px; }
+        .thumbs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+        .thumb { border-radius: 6px; cursor: pointer; border: 2px solid transparent; overflow: hidden; aspect-ratio: 1/1; }
         .thumb.active { border-color: var(--blue); }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* التفاصيل */
-        .price { font-size: 2.5rem; font-weight: 700; color: var(--blue); margin: 15px 0; }
-        .price span { font-size: 1.2rem; text-decoration: line-through; color: #999; margin-right: 10px; }
-        .spec-table { margin: 30px 0; border-top: 1px solid #eee; }
-        .spec-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; }
-        .spec-label { color: #86868b; }
+        /* تفاصيل المنتج */
+        .price { font-size: 2.2rem; font-weight: 700; color: var(--blue); margin: 10px 0; }
+        .price span { font-size: 1.1rem; color: #999; text-decoration: line-through; margin-right: 10px; }
+        .specs { margin-top: 25px; border-top: 1px solid #eee; }
+        .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9f9f9; }
         
-        /* زر الدفع الحقيقي */
-        .pay-btn { background: var(--black); color: white; width: 100%; padding: 22px; border: none; border-radius: 16px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 20px; }
-        .pay-btn:hover { background: var(--blue); transform: translateY(-3px); }
-        .secure-info { text-align: center; font-size: 0.85rem; color: #888; margin-top: 15px; }
+        /* زر الدفع */
+        .buy-btn { background: var(--black); color: #fff; width: 100%; padding: 20px; border: none; border-radius: 14px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .buy-btn:hover { background: var(--blue); transform: translateY(-2px); }
 
-        @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } .main-img { height: 320px; } }
+        @media (max-width: 800px) { .container { grid-template-columns: 1fr; } .main-img { height: 300px; } }
     </style>
 </head>
 <body>
 
-<header><div class="logo">NomadByte</div></header>
-
-<main class="product-grid">
-    <div class="gallery">
-        <div class="main-img"><img id="view" src="1.jpg"></div>
+<div class="container">
+    <div class="image-gallery">
+        <div class="main-img"><img id="main" src="1.jpg"></div>
         <div class="thumbs">
-            <div class="thumb active" onclick="change(this, '1.jpg')"><img src="1.jpg"></div>
-            <div class="thumb" onclick="change(this, '2.jpg')"><img src="2.jpg"></div>
-            <div class="thumb" onclick="change(this, '3.jpg')"><img src="3.jpg"></div>
-            <div class="thumb" onclick="change(this, '4.jpg')"><img src="4.jpg"></div>
-            <div class="thumb" onclick="change(this, '5.jpg')"><img src="5.jpg"></div>
-            <div class="thumb" onclick="change(this, '6.jpg')"><img src="6.jpg"></div>
-            <div class="thumb" onclick="change(this, '7.jpg')"><img src="7.jpg"></div>
-            <div class="thumb" onclick="change(this, '8.jpg')"><img src="8.jpg"></div>
+            <div class="thumb active" onclick="chg(this, '1.jpg')"><img src="1.jpg"></div>
+            <div class="thumb" onclick="chg(this, '2.jpg')"><img src="2.jpg"></div>
+            <div class="thumb" onclick="chg(this, '3.jpg')"><img src="3.jpg"></div>
+            <div class="thumb" onclick="chg(this, '4.jpg')"><img src="4.jpg"></div>
+            <div class="thumb" onclick="chg(this, '5.jpg')"><img src="5.jpg"></div>
+            <div class="thumb" onclick="chg(this, '6.jpg')"><img src="6.jpg"></div>
+            <div class="thumb" onclick="chg(this, '7.jpg')"><img src="7.jpg"></div>
+            <div class="thumb" onclick="chg(this, '8.jpg')"><img src="8.jpg"></div>
         </div>
     </div>
 
     <div class="details">
-        <h1 style="font-size: 2.8rem; margin:0;">Magnetic Gym Bag</h1>
+        <h1 style="margin:0;">Magnetic Gym Bag</h1>
         <div class="price">249 SAR <span>428 SAR</span></div>
-        <p style="font-size: 1.1rem; color: #444;">الحل المبتكر لتصوير تمارينك بثبات احترافي. مغناطيس N52 مدمج وخامات TPU الفاخرة.</p>
+        <p style="color: #666;">شنطة الجيم المغناطيسية الأصلية من NomadByte. ثبات فائق لجوالك وتصميم عصري مقاوم للماء.</p>
         
-        <div class="spec-table">
-            <div class="spec-row"><span class="spec-label">المادة</span><strong>TPU مقاوم للماء</strong></div>
-            <div class="spec-row"><span class="spec-label">المغناطيس</span><strong>N52 الصناعي</strong></div>
-            <div class="spec-row"><span class="spec-label">السعة</span><strong>1.36 لتر</strong></div>
-            <div class="spec-row"><span class="spec-label">الوزن</span><strong>0.69 كجم</strong></div>
+        <div class="specs">
+            <div class="spec-item"><span>المادة</span><strong>TPU مقاوم للماء</strong></div>
+            <div class="spec-item"><span>المغناطيس</span><strong>N52 الصناعي</strong></div>
+            <div class="spec-item"><span>السعة</span><strong>1.36 لتر</strong></div>
+            <div class="spec-item"><span>الوزن</span><strong>0.69 كجم</strong></div>
         </div>
 
-        <button class="pay-btn" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
-            شراء الآن عبر Apple Pay / مدى 💳
+        <button class="buy-btn" onclick="window.location.href='رابط_PAYTABS_الخاص_بك'">
+            إتمام الشراء - دفع آمن 💳
         </button>
-        <div class="secure-info">🔒 دفع آمن ومشفر عبر PayTabs السعودية</div>
+        <p style="text-align: center; font-size: 0.8rem; color: #aaa; margin-top: 10px;">يدعم mada و Apple Pay</p>
     </div>
-</main>
+</div>
 
 <script>
-    function change(el, src) {
-        document.getElementById('view').src = src;
+    function chg(el, s) {
+        document.getElementById('main').src = s;
         document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
     }
