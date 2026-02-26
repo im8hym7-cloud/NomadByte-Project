@@ -3,192 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | Premium Magnetic Gym Bag</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>NomadByte | الشنطة المغناطيسية الاحترافية</title>
     <style>
+        /* نظام تصميم Allbirds & Apple Style */
         :root {
             --primary: #007aff;
-            --dark: #000000;
-            --grey-light: #f5f5f7;
-            --text-sec: #86868b;
+            --black: #000000;
+            --grey: #f5f5f7;
+            --text-muted: #86868b;
         }
 
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: var(--dark);
-            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #fff;
+            color: var(--black);
+            line-height: 1.5;
         }
 
-        /* ناف بار فخم */
-        nav {
+        /* ناف بار بسيط ونظيف */
+        header {
+            padding: 20px 8%;
+            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 8%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #e5e5e5;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
 
-        /* قسم المنتج */
-        .product-page {
+        /* حاوية المنتج الرئيسية */
+        .container {
             max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 5%;
+            margin: 40px auto;
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1.2fr 1fr; /* تقسيم احترافي */
             gap: 60px;
+            padding: 0 5%;
         }
 
-        /* معرض الصور التفاعلي */
-        .image-gallery {
-            position: sticky;
-            top: 100px;
-        }
-
-        .main-img-holder {
-            background: var(--grey-light);
-            border-radius: 24px;
+        /* قسم الصورة بلمسة Beardbrand */
+        .product-visual {
+            background: var(--grey);
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .main-img-holder:hover { transform: scale(1.02); }
-
-        .main-img-holder img {
+        .product-visual img {
             width: 100%;
             height: auto;
-            display: block;
+            mix-blend-mode: darken; /* لدمج خلفية الصورة مع الموقع */
         }
 
-        /* تفاصيل المنتج */
-        .product-info { padding-top: 1rem; }
+        /* قسم المعلومات */
+        .product-info {
+            padding: 20px 0;
+        }
 
-        .tag {
-            background: #eef6ff;
+        .brand-label {
             color: var(--primary);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
             font-weight: 700;
+            font-size: 0.9rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            margin: 1.5rem 0 1rem;
-            letter-spacing: -2px;
-            line-height: 1.1;
+            margin: 10px 0 20px 0;
+            letter-spacing: -1px;
         }
 
-        .price-tag {
+        .price-section {
+            margin-bottom: 30px;
+        }
+
+        .now { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+        .was { font-size: 1.4rem; text-decoration: line-through; color: var(--text-muted); margin-right: 15px; }
+
+        /* جدول المواصفات الفني */
+        .specs {
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+
+        .spec-item {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 2rem;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f7;
         }
 
-        .price-now { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
-        .price-was { font-size: 1.5rem; text-decoration: line-through; color: var(--text-sec); }
+        .spec-label { color: var(--text-muted); }
+        .spec-value { font-weight: 600; }
 
-        /* المواصفات - نظام البطاقات */
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 2.5rem 0;
-        }
-
-        .spec-card {
-            background: var(--grey-light);
-            padding: 15px;
-            border-radius: 14px;
-            font-size: 0.95rem;
-        }
-
-        .spec-card strong { display: block; margin-bottom: 4px; color: var(--text-sec); }
-
-        /* أزرار الأكشن - تعمل فعلياً */
-        .btn-primary {
-            background: var(--dark);
+        /* زر الأكشن الكبير */
+        .buy-now {
+            background: var(--black);
             color: white;
             width: 100%;
             padding: 22px;
-            border-radius: 16px;
-            font-size: 1.25rem;
+            border-radius: 14px;
+            font-size: 1.3rem;
             font-weight: 700;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            margin-top: 40px;
+            transition: 0.3s;
         }
 
-        .btn-primary:hover {
+        .buy-now:hover {
             background: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,122,255,0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,122,255,0.2);
         }
 
-        /* تحسينات الموبايل */
+        /* متجاوب مع الموبايل */
         @media (max-width: 900px) {
-            .product-page { grid-template-columns: 1fr; margin: 2rem auto; }
-            h1 { font-size: 2.5rem; }
-            .image-gallery { position: relative; top: 0; }
+            .container { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">NomadByte</div>
-        <div style="font-size: 1.5rem; cursor: pointer;">🛍️</div>
-    </nav>
+<header>
+    <div class="logo">NomadByte</div>
+</header>
 
-    <main class="product-page">
-        <section class="image-gallery">
-            <div class="main-img-holder">
-                <img src="./image_c0953a.png" alt="Magnetic Gym Bag" id="mainProductImage">
-            </div>
-        </section>
+<main class="container">
+    <section class="product-visual">
+        <img src="image_c0953a.png" alt="NomadByte Magnetic Bag" 
+             onerror="this.src='https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/image_c0953a.png'">
+    </section>
 
-        <section class="product-info">
-            <span class="tag">إصدار حصري - NomadByte_KSA</span>
-            <h1>Magnetic Gym Bag</h1>
-            
-            <div class="price-tag">
-                <span class="price-now">249 SAR</span>
-                <span class="price-was">428 SAR</span>
-            </div>
+    <section class="product-info">
+        <span class="brand-label">ابتكار NomadByte المعتمد</span>
+        <h1>Magnetic Gym Bag</h1>
+        
+        <div class="price-section">
+            <span class="now">249 SAR</span>
+            <span class="was">428 SAR</span>
+        </div>
 
-            <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-sec);">
-                ثورة في تصوير تمارين الجيم. شنطة مغناطيسية تلتصق بأي سطح معدني بفضل تقنية N52، مما يغنيك عن حامل الجوال التقليدي. [cite: 2026-02-26]
-            </p>
+        <p style="font-size: 1.1rem; color: #444;">
+            الحل النهائي لتصوير تمارينك. شنطة بمغناطيس N52 تلتصق بقوة على أجهزة الجيم، مصنوعة من خامة TPU المتينة.
+        </p>
 
-            <div class="specs-grid">
-                <div class="spec-card"><strong>الخامة</strong>TPU مقاوم للماء [cite: 2026-02-26]</div>
-                <div class="spec-card"><strong>السعة</strong>1.36 لتر للأغراض [cite: 2026-02-26]</div>
-                <div class="spec-card"><strong>المغناطيس</strong>N52 فائق القوة [cite: 2026-02-26]</div>
-                <div class="spec-card"><strong>الوزن</strong>0.69 كجم فقط [cite: 2026-02-26]</div>
-            </div>
+        <div class="specs">
+            <div class="spec-item"><span class="spec-label">المادة</span><span class="spec-value">TPU مقاوم للماء</span></div>
+            <div class="spec-item"><span class="spec-label">السعة</span><span class="spec-value">1.36 لتر</span></div>
+            <div class="spec-item"><span class="spec-label">المغناطيس</span><span class="spec-value">N52 الصناعي</span></div>
+            <div class="spec-item"><span class="spec-label">الوزن</span><span class="spec-value">0.69 كجم</span></div>
+        </div>
 
-            <button class="btn-primary" onclick="window.location.href='https://wa.me/9665XXXXXXXX'">اشتري الآن - دفع عند الاستلام 🚀</button>
-        </section>
-    </main>
+        <button class="buy-now" onclick="alert('جاري نقلك لصفحة الدفع الآمن...')">أضف للسلة - شراء الآن</button>
+    </section>
+</main>
 
-    <script>
-        // كود برمجي بسيط للتأكد من ظهور الصورة فوراً
-        document.getElementById('mainProductImage').onerror = function() {
-            this.src = 'https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/image_c0953a.png';
-        };
-    </script>
 </body>
 </html>
