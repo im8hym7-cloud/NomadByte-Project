@@ -4,36 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NomadByte | Premium Magnetic Bag</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); }
+        header { padding: 20px 8%; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; }
+        .container { max-width: 1200px; margin: 50px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 5%; align-items: center; }
+        
+        /* إطار الصورة المحسن */
+        .product-visual { background: var(--grey); border-radius: 30px; padding: 20px; text-align: center; }
+        .product-visual img { width: 100%; max-width: 500px; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .product-info h1 { font-size: 3.2rem; margin: 0; }
+        .price { font-size: 2.5rem; font-weight: 700; color: var(--blue); margin: 20px 0; }
+        .old-price { font-size: 1.4rem; text-decoration: line-through; color: #86868b; margin-right: 15px; }
+        
+        .specs-list { list-style: none; padding: 0; margin: 30px 0; border-top: 1px solid #eee; }
+        .specs-list li { padding: 15px 0; border-bottom: 1px solid #f5f5f7; display: flex; justify-content: space-between; }
+        .specs-list li span { color: #86868b; }
+
+        .buy-now-btn { 
+            background: var(--black); color: #fff; width: 100%; padding: 22px; 
+            border: none; border-radius: 14px; font-size: 1.3rem; font-weight: 700; 
+            cursor: pointer; transition: 0.3s; 
+        }
+        .buy-now-btn:hover { background: var(--blue); transform: translateY(-3px); }
+
+        @media (max-width: 900px) { .container { grid-template-columns: 1fr; text-align: center; } }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">NomadByte</div>
-    </header>
 
-    <main class="container">
-        <section class="product-visual">
-            <img src="1.jpg" alt="Magnetic Gym Bag" id="mainImage">
-        </section>
+<header><div class="logo">NomadByte</div></header>
 
-        <section class="product-info">
-            <span class="badge">إصدار محدود (Limited Edition)</span>
-            <h1>Magnetic Gym Bag</h1>
-            <div class="price">249 SAR <span class="old-price">428 SAR</span></div>
-            
-            <p class="description">
-                الشنطة المغناطيسية الأصلية من TPU المقاوم للماء. صممت خصيصاً لتصوير تمارينك بجودة عالية وثبات مطلق بفضل مغناطيس N52. [cite: 2026-02-26]
-            </p>
+<main class="container">
+    <section class="product-visual">
+        <img src="https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/1.jpg" alt="NomadByte Magnetic Bag">
+    </section>
 
-            <ul class="specs">
-                <li>خامة TPU المعالجة لمقاومة الماء [cite: 2026-02-26]</li>
-                <li>سعة تخزينية 1.36 لتر [cite: 2026-02-26]</li>
-                <li>مغناطيس N52 فائق القوة للتثبيت [cite: 2026-02-26]</li>
-                <li>وزن خفيف جداً: 0.69 كجم [cite: 2026-02-26]</li>
-            </ul>
+    <section class="product-info">
+        <span style="color: var(--blue); font-weight: 700; letter-spacing: 1px;">الابتكار الجديد في عالم الرياضة</span>
+        <h1>Magnetic Gym Bag</h1>
+        
+        <div class="price">249 SAR <span class="old-price">428 SAR</span></div>
 
-            <button class="buy-btn" onclick="window.location.href='checkout.html'">أضف للسلة - طلب سريع 🚀</button>
-        </section>
-    </main>
+        <p style="font-size: 1.15rem; color: #424245; line-height: 1.6;">
+            انتهى عصر البحث عن مكان لتصوير تمرينك. شنطة NomadByte مزودة بمغناطيس N52 فائق القوة لتثبيت جوالك على أي سطح معدني في الجيم فوراً [cite: 2026-02-26].
+        </p>
+
+        <ul class="specs-list">
+            <li><span>المادة</span><strong>TPU مقاوم للماء [cite: 2026-02-26]</strong></li>
+            <li><span>السعة</span><strong>1.36 لتر [cite: 2026-02-26]</strong></li>
+            <li><span>نوع المغناطيس</span><strong>N52 الصناعي [cite: 2026-02-26]</strong></li>
+            <li><span>الوزن</span><strong>0.69 كجم خفيف جداً [cite: 2026-02-26]</strong></li>
+        </ul>
+
+        <button class="buy-now-btn" onclick="window.location.href='checkout.html'">إتمام الشراء - دفع آمن 💳</button>
+    </section>
+</main>
+
 </body>
 </html>
