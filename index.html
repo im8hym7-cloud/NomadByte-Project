@@ -3,59 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | المتجر الرسمي</title>
+    <title>NomadByte | المتجر</title>
     <style>
-        :root { --blue: #007aff; --black: #1d1d1f; }
-        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; }
-        
-        /* هذا الجزء يمنع الصفحة من التمدد العرضي الكبير */
-        .page-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        
-        .product-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-top: 30px; }
-
-        /* ضبط حجم الصور ليكون احترافياً */
-        .image-box { background: #f5f5f7; border-radius: 24px; height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px; }
-        .image-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        .price { font-size: 2.3rem; font-weight: 800; color: var(--blue); margin: 15px 0; }
-        .price span { font-size: 1.1rem; text-decoration: line-through; color: #999; margin-right: 10px; }
-        
-        .specs { border-top: 1px solid #eee; margin-top: 20px; }
-        .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9f9f9; }
-
-        /* زر الدفع - تأكد من تحديث الرابط بداخله */
-        .pay-button { background: var(--black); color: #fff; width: 100%; padding: 20px; border: none; border-radius: 15px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .pay-button:hover { background: var(--blue); transform: scale(1.01); }
-
-        @media (max-width: 800px) { .product-section { grid-template-columns: 1fr; } .image-box { height: 320px; } }
+        body { margin: 0; font-family: sans-serif; background: #f8f8f8; display: flex; justify-content: center; padding: 20px; }
+        /* حاوية صغيرة ومرتبة للمنتج */
+        .card { background: white; max-width: 400px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; padding: 20px; text-align: center; }
+        .product-img { width: 100%; height: 250px; object-fit: contain; background: #f5f5f7; border-radius: 15px; }
+        h1 { font-size: 1.5rem; margin: 15px 0 5px; }
+        .price { color: #007aff; font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
+        .btn { background: #1d1d1f; color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; text-decoration: none; display: block; }
+        .btn:hover { background: #007aff; }
     </style>
 </head>
 <body>
 
-<div class="page-container">
-    <h2 style="text-align: center; color: var(--black); font-weight: 900;">NomadByte</h2>
+<div class="card">
+    <img src="1.jpg" class="product-img">
+    <h1>Magnetic Gym Bag</h1>
+    <div class="price">249 SAR</div>
     
-    <div class="product-section">
-        <div class="gallery">
-            <div class="image-box"><img id="main" src="1.jpg"></div>
-        </div>
-
-        <div class="details">
-            <h1 style="margin:0; font-size: 2.5rem;">Magnetic Gym Bag</h1>
-            <div class="price">249 SAR <span>428 SAR</span></div>
-            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">الابتكار الأصلي من NomadByte لتصوير تمارينك بثبات تام.</p>
-            
-            <div class="specs">
-                <div class="spec-item"><span>الخامة</span><strong>TPU مقاوم للماء</strong></div>
-                <div class="spec-item"><span>المغناطيس</span><strong>N52 الصناعي</strong></div>
-                <div class="spec-item"><span>السعة</span><strong>1.36 لتر</strong></div>
-            </div>
-
-            <button class="pay-button" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
-                شراء الآن - دفع آمن 💳
-            </button>
-        </div>
-    </div>
+    <a href="https://secure.paytabs.sa/payment/link/126427/1815194" class="btn">إتمام الشراء آمن 💳</a>
+    
+    <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">دفع مشفر وآمن 100%</p>
 </div>
 
 </body>
