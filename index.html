@@ -3,163 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | شنطة الجيم المغناطيسية</title>
+    <title>NomadByte | Premium Magnetic Bag</title>
     <style>
-        /* تنسيق NomadByte العالمي - أسلوب Minimalist */
+        /* NomadByte Brand Identity */
         :root {
-            --blue: #007bff;
-            --black: #1a1a1a;
-            --white: #ffffff;
-            --grey: #f8f9fa;
+            --primary-blue: #007bff;
+            --deep-black: #121212;
+            --soft-grey: #fdfdfd;
+            --text-dark: #333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: var(--white);
-            color: var(--black);
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--soft-grey);
+            color: var(--text-dark);
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 50px 20px;
+        /* Navigation */
+        nav {
+            padding: 20px 5%;
+            background: white;
+            border-bottom: 1px solid #eee;
             display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
+            justify-content: space-between;
             align-items: center;
         }
 
-        /* قسم الصورة */
-        .product-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
-        .product-image img {
-            max-width: 100%;
+        /* Main Product Section */
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .image-container {
+            flex: 1.2;
+            min-width: 320px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .image-container img {
+            width: 100%;
             height: auto;
-            border-radius: 15px;
-            /* استخدام الرابط المباشر من مستودعك لضمان الظهور */
+            border-radius: 8px;
+            display: block;
         }
 
-        /* قسم التفاصيل */
-        .product-details {
+        .details-container {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
         }
 
+        /* Typography & Pricing */
         .badge {
-            background: var(--blue);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
             display: inline-block;
+            background: #e7f3ff;
+            color: var(--primary-blue);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
             margin-bottom: 15px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin: 0 0 10px 0;
+            color: var(--deep-black);
         }
 
-        .price {
-            margin: 20px 0;
+        .price-box {
+            margin: 25px 0;
         }
 
-        .current-price {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: var(--blue);
+        .new-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
         }
 
         .old-price {
+            font-size: 1.3rem;
             text-decoration: line-through;
-            color: #999;
+            color: #aaa;
             margin-right: 15px;
-            font-size: 1.2rem;
         }
 
+        /* Specifications */
         .specs-list {
-            list-style: none;
-            padding: 0;
             margin: 30px 0;
+            padding: 0;
+            list-style: none;
         }
 
         .specs-list li {
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
+            font-size: 1rem;
             display: flex;
             align-items: center;
         }
 
         .specs-list li::before {
-            content: "✓";
-            color: var(--blue);
-            margin-left: 10px;
+            content: "•";
+            color: var(--primary-blue);
             font-weight: bold;
+            font-size: 1.5rem;
+            margin-left: 10px;
         }
 
-        .buy-btn {
-            background: var(--black);
-            color: white;
+        /* Purchase Button */
+        .cta-button {
+            display: block;
             width: 100%;
-            padding: 18px;
+            background: var(--deep-black);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
             border: none;
             border-radius: 8px;
-            font-size: 1.3rem;
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 30px;
         }
 
-        .buy-btn:hover {
-            background: var(--blue);
-            transform: translateY(-3px);
+        .cta-button:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
         }
 
-        /* للموبايل */
-        @media (max-width: 768px) {
-            .container { flex-direction: column; text-align: center; }
-            .specs-list li { justify-content: center; }
+        /* Responsive Layout */
+        @media (max-width: 800px) {
+            .product-section { flex-direction: column; }
+            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav style="padding: 20px 5%; border-bottom: 1px solid #eee;">
-        <strong style="font-size: 1.5rem;">NomadByte</strong>
+    <nav>
+        <div class="logo">NomadByte</div>
     </nav>
 
-    <div class="container">
-        <div class="product-image">
-            <img src="./image_c0953a.png" alt="Magnetic Gym Bag">
+    <main class="product-section">
+        <div class="image-container">
+            <img src="./image_c0953a.png" alt="NomadByte Magnetic Gym Bag">
         </div>
 
-        <div class="product-details">
-            <span class="badge">الأكثر طلباً في الجيم</span>
+        <div class="details-container">
+            <span class="badge">إصدار محدود (Limited Edition)</span>
             <h1>Magnetic Gym Bag</h1>
             
-            <div class="price">
-                <span class="current-price">249 SAR</span>
+            <div class="price-box">
+                <span class="new-price">249 SAR</span>
                 <span class="old-price">428 SAR</span>
             </div>
 
-            <p style="color: #666;">
-                الشنطة المغناطيسية الأصلية لتثبيت جوالك وتصوير تمرينك بجودة عالية دون الحاجة لمساعدة أحد. [cite: 2026-02-26]
+            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                الشنطة المغناطيسية الأصلية من TPU المقاوم للماء. صممت خصيصاً لتصوير تمرينك بجودة عالية وثبات مطلق بفضل مغناطيس N52 [cite: 2026-02-26].
             </p>
 
             <ul class="specs-list">
-                <li>خامة TPU مقاومة للماء [cite: 2026-02-26]</li>
-                <li>سعة 1.36 لتر للأغراض الشخصية [cite: 2026-02-26]</li>
-                <li>مغناطيس N52 فائق القوة [cite: 2026-02-26]</li>
-                <li>حزام قابل للتعديل (Adjustable Strap) [cite: 2026-02-26]</li>
+                <li>خامة TPU المعالجة لمقاومة الماء [cite: 2026-02-26]</li>
+                <li>سعة تخزينية 1.36 لتر [cite: 2026-02-26]</li>
+                <li>مغناطيس N52 فائق القوة للتثبيت [cite: 2026-02-26]</li>
+                <li>وزن خفيف جداً: 0.69 كجم [cite: 2026-02-26]</li>
             </ul>
 
-            <button class="buy-btn">أضف للسلة - طلب سريع 🚀</button>
+            <button class="cta-button">أضف للسلة - طلب سريع</button>
         </div>
-    </div>
+    </main>
 
 </body>
 </html>
