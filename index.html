@@ -3,129 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | الشنطة المغناطيسية الاحترافية</title>
+    <title>NomadByte | Premium Magnetic Bag</title>
     <style>
-        /* نظام تصميم Allbirds & Apple Style */
         :root {
-            --primary: #007aff;
-            --black: #000000;
-            --grey: #f5f5f7;
-            --text-muted: #86868b;
+            --primary-blue: #007aff;
+            --black-matte: #1d1d1f;
+            --soft-white: #f5f5f7;
+            --text-grey: #86868b;
         }
 
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #fff;
-            color: var(--black);
-            line-height: 1.5;
+            background-color: #fff;
+            color: var(--black-matte);
         }
 
-        /* ناف بار بسيط ونظيف */
         header {
             padding: 20px 8%;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e5e5e5;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo { font-size: 1.5rem; font-weight: 800; }
 
-        /* حاوية المنتج الرئيسية */
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr; /* تقسيم احترافي */
-            gap: 60px;
+            margin: 50px auto;
             padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
         }
 
-        /* قسم الصورة بلمسة Beardbrand */
         .product-visual {
-            background: var(--grey);
-            border-radius: 28px;
-            overflow: hidden;
+            background-color: var(--soft-white);
+            border-radius: 30px;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .product-visual img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
-            mix-blend-mode: darken; /* لدمج خلفية الصورة مع الموقع */
+            border-radius: 20px;
         }
 
-        /* قسم المعلومات */
-        .product-info {
-            padding: 20px 0;
-        }
-
-        .brand-label {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        h1 {
+        .product-info h1 {
             font-size: 3rem;
-            font-weight: 800;
-            margin: 10px 0 20px 0;
-            letter-spacing: -1px;
+            font-weight: 700;
+            margin: 0 0 10px;
         }
 
-        .price-section {
-            margin-bottom: 30px;
+        .price-tag {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .now { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
-        .was { font-size: 1.4rem; text-decoration: line-through; color: var(--text-muted); margin-right: 15px; }
+        .now { font-size: 2.5rem; font-weight: 700; color: var(--primary-blue); }
+        .was { font-size: 1.4rem; text-decoration: line-through; color: var(--text-grey); }
 
-        /* جدول المواصفات الفني */
-        .specs {
+        .specs-grid {
             border-top: 1px solid #eee;
             margin-top: 30px;
         }
 
-        .spec-item {
+        .spec-row {
             display: flex;
             justify-content: space-between;
             padding: 15px 0;
-            border-bottom: 1px solid #f5f5f7;
+            border-bottom: 1px solid #f9f9f9;
         }
 
-        .spec-label { color: var(--text-muted); }
-        .spec-value { font-weight: 600; }
+        .spec-label { color: var(--text-grey); }
 
-        /* زر الأكشن الكبير */
-        .buy-now {
-            background: var(--black);
+        /* الزر الاحترافي الذي ينقلك لصفحة الدفع */
+        .buy-now-btn {
+            background: var(--black-matte);
             color: white;
             width: 100%;
-            padding: 22px;
-            border-radius: 14px;
+            padding: 20px;
+            border: none;
+            border-radius: 15px;
             font-size: 1.3rem;
             font-weight: 700;
-            border: none;
             cursor: pointer;
             margin-top: 40px;
             transition: 0.3s;
         }
 
-        .buy-now:hover {
-            background: var(--primary);
+        .buy-now-btn:hover {
+            background: var(--primary-blue);
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,122,255,0.2);
+            box-shadow: 0 10px 20px rgba(0,122,255,0.2);
         }
 
-        /* متجاوب مع الموبايل */
         @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; }
-            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -137,31 +117,30 @@
 
 <main class="container">
     <section class="product-visual">
-        <img src="image_c0953a.png" alt="NomadByte Magnetic Bag" 
-             onerror="this.src='https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/image_c0953a.png'">
+        <img src="image_c0953a.png" alt="Magnetic Gym Bag" onerror="this.src='https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/image_c0953a.png'">
     </section>
 
     <section class="product-info">
-        <span class="brand-label">ابتكار NomadByte المعتمد</span>
+        <span style="color:var(--primary-blue); font-weight: 600;">NEW ARRIVAL</span>
         <h1>Magnetic Gym Bag</h1>
         
-        <div class="price-section">
+        <div class="price-tag">
             <span class="now">249 SAR</span>
             <span class="was">428 SAR</span>
         </div>
 
-        <p style="font-size: 1.1rem; color: #444;">
-            الحل النهائي لتصوير تمارينك. شنطة بمغناطيس N52 تلتصق بقوة على أجهزة الجيم، مصنوعة من خامة TPU المتينة.
+        <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">
+            شنطة الجيم المغناطيسية الأصلية بتصميم عصري من مادة TPU. مزودة بمغناطيس N52 فائق القوة لتثبيت جوالك وتصوير تمرينك باحترافية [cite: 2026-02-26].
         </p>
 
-        <div class="specs">
-            <div class="spec-item"><span class="spec-label">المادة</span><span class="spec-value">TPU مقاوم للماء</span></div>
-            <div class="spec-item"><span class="spec-label">السعة</span><span class="spec-value">1.36 لتر</span></div>
-            <div class="spec-item"><span class="spec-label">المغناطيس</span><span class="spec-value">N52 الصناعي</span></div>
-            <div class="spec-item"><span class="spec-label">الوزن</span><span class="spec-value">0.69 كجم</span></div>
+        <div class="specs-grid">
+            <div class="spec-row"><span class="spec-label">المادة</span><strong>TPU مقاوم للماء [cite: 2026-02-26]</strong></div>
+            <div class="spec-row"><span class="spec-label">المغناطيس</span><strong>N52 الصناعي [cite: 2026-02-26]</strong></div>
+            <div class="spec-row"><span class="spec-label">السعة</span><strong>1.36 لتر [cite: 2026-02-26]</strong></div>
+            <div class="spec-row"><span class="spec-label">الوزن</span><strong>0.69 كجم [cite: 2026-02-26]</strong></div>
         </div>
 
-        <button class="buy-now" onclick="alert('جاري نقلك لصفحة الدفع الآمن...')">أضف للسلة - شراء الآن</button>
+        <button class="buy-now-btn" onclick="window.location.href='checkout.html'">إتمام الشراء - دفع آمن 💳</button>
     </section>
 </main>
 
