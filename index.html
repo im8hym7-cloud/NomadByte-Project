@@ -4,40 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NomadByte | شنطة الجيم المغناطيسية</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* تنسيق NomadByte العالمي - أسلوب Minimalist */
+        :root {
+            --blue: #007bff;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --grey: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* قسم الصورة */
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            /* استخدام الرابط المباشر من مستودعك لضمان الظهور */
+        }
+
+        /* قسم التفاصيل */
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .badge {
+            background: var(--blue);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        .price {
+            margin: 20px 0;
+        }
+
+        .current-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--blue);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .specs-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .specs-list li::before {
+            content: "✓";
+            color: var(--blue);
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background: var(--black);
+            color: white;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: var(--blue);
+            transform: translateY(-3px);
+        }
+
+        /* للموبايل */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; text-align: center; }
+            .specs-list li { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">NomadByte</div>
+
+    <nav style="padding: 20px 5%; border-bottom: 1px solid #eee;">
+        <strong style="font-size: 1.5rem;">NomadByte</strong>
     </nav>
 
-    <main class="product-page">
-        <div class="product-container">
-            <div class="product-gallery">
-                <img src="image_c0953a.png" alt="NomadByte Magnetic Bag" class="main-img">
-            </div>
-
-            <div class="product-info">
-                <span class="badge">الأكثر مبيعاً</span>
-                <h1>Magnetic Gym Bag</h1>
-                <div class="price-tag">
-                    <span class="new-price">249 SAR</span>
-                    <span class="old-price">428 SAR</span>
-                </div>
-                
-                <p class="description">
-                    شنطة الجيم الذكية بمغناطيس N52 القوي، صممت لثبات جوالك وتصوير تمرينك باحترافية.
-                </p>
-
-                <div class="specs-grid">
-                    <div class="spec-item">💧 مقاوم للماء (TPU)</div>
-                    <div class="spec-item">📏 سعة 1.36 لتر</div>
-                    <div class="spec-item">🧲 مغناطيس N52</div>
-                </div>
-
-                <button class="buy-btn">أضف للسلة - شراء الآن</button>
-            </div>
+    <div class="container">
+        <div class="product-image">
+            <img src="https://raw.githubusercontent.com/im8hym7-cloud/NomadByte-Project/main/image_c0953a.png" alt="Magnetic Gym Bag">
         </div>
-    </main>
+
+        <div class="product-details">
+            <span class="badge">الأكثر طلباً في الجيم</span>
+            <h1>Magnetic Gym Bag</h1>
+            
+            <div class="price">
+                <span class="current-price">249 SAR</span>
+                <span class="old-price">428 SAR</span>
+            </div>
+
+            <p style="color: #666;">
+                الشنطة المغناطيسية الأصلية لتثبيت جوالك وتصوير تمرينك بجودة عالية دون الحاجة لمساعدة أحد. [cite: 2026-02-26]
+            </p>
+
+            <ul class="specs-list">
+                <li>خامة TPU مقاومة للماء [cite: 2026-02-26]</li>
+                <li>سعة 1.36 لتر للأغراض الشخصية [cite: 2026-02-26]</li>
+                <li>مغناطيس N52 فائق القوة [cite: 2026-02-26]</li>
+                <li>حزام قابل للتعديل (Adjustable Strap) [cite: 2026-02-26]</li>
+            </ul>
+
+            <button class="buy-btn">أضف للسلة - طلب سريع 🚀</button>
+        </div>
+    </div>
+
 </body>
 </html>
