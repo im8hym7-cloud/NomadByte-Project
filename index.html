@@ -3,92 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | الشنطة المغناطيسية الأصلية</title>
+    <title>NomadByte | المتجر الرسمي</title>
     <style>
-        :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
-        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); }
+        :root { --blue: #007aff; --black: #1d1d1f; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; }
         
-        /* ضبط العرض الأقصى لمنع تمدد الصفحة بشكل ضخم */
-        .wrapper { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        /* هذا الجزء يمنع الصفحة من التمدد العرضي الكبير */
+        .page-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
         
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .product-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-top: 30px; }
 
-        /* معرض الصور - تم تحديد الارتفاع لضبط الحجم */
-        .gallery-container { width: 100%; }
-        .main-view { background: var(--grey); border-radius: 20px; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 15px; }
-        .main-view img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        
-        .thumb-list { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-top: 15px; }
-        .thumb-item { background: var(--grey); border-radius: 6px; cursor: pointer; border: 2px solid transparent; aspect-ratio: 1/1; overflow: hidden; }
-        .thumb-item.active { border-color: var(--blue); }
-        .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+        /* ضبط حجم الصور ليكون احترافياً */
+        .image-box { background: #f5f5f7; border-radius: 24px; height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px; }
+        .image-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* تفاصيل المنتج */
-        .product-title { font-size: 2.5rem; margin: 0; font-weight: 800; }
-        .price-tag { font-size: 2.2rem; font-weight: 700; color: var(--blue); margin: 20px 0; }
-        .price-tag span { font-size: 1.1rem; text-decoration: line-through; color: #999; margin-right: 10px; }
+        .price { font-size: 2.3rem; font-weight: 800; color: var(--blue); margin: 15px 0; }
+        .price span { font-size: 1.1rem; text-decoration: line-through; color: #999; margin-right: 10px; }
         
-        .specs-grid { margin-top: 30px; border-top: 1px solid #eee; }
+        .specs { border-top: 1px solid #eee; margin-top: 20px; }
         .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9f9f9; }
 
-        /* زر الشراء المباشر */
-        .buy-now { background: var(--black); color: #fff; width: 100%; padding: 22px; border: none; border-radius: 16px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 25px; }
-        .buy-now:hover { background: var(--blue); transform: scale(1.02); }
+        /* زر الدفع - تأكد من تحديث الرابط بداخله */
+        .pay-button { background: var(--black); color: #fff; width: 100%; padding: 20px; border: none; border-radius: 15px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .pay-button:hover { background: var(--blue); transform: scale(1.01); }
 
-        /* استجابة الجوال */
-        @media (max-width: 850px) {
-            .product-grid { grid-template-columns: 1fr; }
-            .main-view { height: 320px; }
-            .product-title { font-size: 2rem; }
-        }
+        @media (max-width: 800px) { .product-section { grid-template-columns: 1fr; } .image-box { height: 320px; } }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="product-grid">
-        <div class="gallery-container">
-            <div class="main-view">
-                <img id="activeImg" src="1.jpg" alt="NomadByte Bag">
-            </div>
-            <div class="thumb-list">
-                <div class="thumb-item active" onclick="changeImg(this, '1.jpg')"><img src="1.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '2.jpg')"><img src="2.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '3.jpg')"><img src="3.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '4.jpg')"><img src="4.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '5.jpg')"><img src="5.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '6.jpg')"><img src="6.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '7.jpg')"><img src="7.jpg"></div>
-                <div class="thumb-item" onclick="changeImg(this, '8.jpg')"><img src="8.jpg"></div>
-            </div>
+<div class="page-container">
+    <h2 style="text-align: center; color: var(--black); font-weight: 900;">NomadByte</h2>
+    
+    <div class="product-section">
+        <div class="gallery">
+            <div class="image-box"><img id="main" src="1.jpg"></div>
         </div>
 
-        <div class="info-container">
-            <h1 class="product-title">Magnetic Gym Bag</h1>
-            <div class="price-tag">249 SAR <span>428 SAR</span></div>
-            <p style="color: #666; line-height: 1.6;">الشنطة المغناطيسية الأصلية التي تسمح لك بتصوير تمارينك باحترافية تامة من أي زاوية.</p>
+        <div class="details">
+            <h1 style="margin:0; font-size: 2.5rem;">Magnetic Gym Bag</h1>
+            <div class="price">249 SAR <span>428 SAR</span></div>
+            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">الابتكار الأصلي من NomadByte لتصوير تمارينك بثبات تام.</p>
             
-            <div class="specs-grid">
-                <div class="spec-item"><span>المادة</span><strong>TPU مقاوم للماء</strong></div>
+            <div class="specs">
+                <div class="spec-item"><span>الخامة</span><strong>TPU مقاوم للماء</strong></div>
                 <div class="spec-item"><span>المغناطيس</span><strong>N52 الصناعي</strong></div>
                 <div class="spec-item"><span>السعة</span><strong>1.36 لتر</strong></div>
-                <div class="spec-item"><span>الوزن</span><strong>0.69 كجم</strong></div>
             </div>
 
-            <button class="buy-now" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
-                إتمام الشراء - دفع آمن 💳
+            <button class="pay-button" onclick="window.location.href='https://secure.paytabs.sa/payment/link/126427/1815194'">
+                شراء الآن - دفع آمن 💳
             </button>
         </div>
     </div>
 </div>
-
-<script>
-    function changeImg(el, s) {
-        document.getElementById('activeImg').src = s;
-        document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
-    }
-</script>
 
 </body>
 </html>
