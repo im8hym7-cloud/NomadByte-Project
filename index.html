@@ -6,42 +6,32 @@
     <title>NomadByte | Premium Gym Bag</title>
     <style>
         :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
-        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); overflow-x: hidden; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background: #fff; color: var(--black); }
         header { padding: 15px 8%; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
-
+        .logo { font-size: 1.5rem; font-weight: 800; }
         .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; padding: 0 5%; }
-
-        /* نظام المعرض */
-        .product-gallery { display: flex; flex-direction: column; gap: 15px; }
-        .main-img-container { background: var(--grey); border-radius: 20px; padding: 15px; display: flex; align-items: center; justify-content: center; height: 500px; }
-        .main-img-container img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; transition: 0.3s ease; }
         
-        .thumb-list { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
-        .thumb-item { background: var(--grey); border-radius: 10px; cursor: pointer; border: 2px solid transparent; overflow: hidden; aspect-ratio: 1/1; transition: 0.2s; }
-        .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
-        .thumb-item:hover, .thumb-item.active { border-color: var(--blue); transform: scale(1.05); }
+        /* المعرض */
+        .gallery { display: flex; flex-direction: column; gap: 15px; }
+        .main-img { background: var(--grey); border-radius: 20px; padding: 20px; text-align: center; height: 450px; display: flex; align-items: center; justify-content: center; }
+        .main-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 10px; }
+        .thumbs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+        .thumb { background: var(--grey); border-radius: 8px; cursor: pointer; border: 2px solid transparent; aspect-ratio: 1/1; overflow: hidden; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .thumb.active { border-color: var(--blue); }
 
-        /* تفاصيل المنتج */
-        .product-info h1 { font-size: 2.8rem; margin: 0; font-weight: 700; }
-        .badge { color: var(--blue); font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; display: block; }
-        .price { font-size: 2.5rem; font-weight: 700; color: var(--blue); margin: 15px 0; display: flex; align-items: center; gap: 15px; }
-        .price .old { font-size: 1.2rem; text-decoration: line-through; color: #999; }
+        /* التفاصيل */
+        .info h1 { font-size: 2.8rem; margin: 0; }
+        .price { font-size: 2.5rem; font-weight: 700; color: var(--blue); margin: 15px 0; }
+        .price span { font-size: 1.2rem; text-decoration: line-through; color: #999; margin-right: 10px; }
+        .description { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 30px; }
+        .specs { border-top: 1px solid #eee; }
+        .spec { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; }
         
-        .description { font-size: 1.1rem; line-height: 1.6; color: #424245; margin-bottom: 30px; }
+        .buy-btn { background: var(--black); color: #fff; width: 100%; padding: 22px; border: none; border-radius: 12px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .buy-btn:hover { background: var(--blue); transform: translateY(-3px); }
 
-        .specs-table { border-top: 1px solid #eee; }
-        .spec-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f5f5f7; font-size: 1rem; }
-        .spec-label { color: #86868b; }
-
-        .buy-now-btn { background: var(--black); color: #fff; width: 100%; padding: 20px; border: none; border-radius: 14px; font-size: 1.25rem; font-weight: 700; cursor: pointer; margin-top: 30px; transition: 0.3s; }
-        .buy-now-btn:hover { background: var(--blue); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,122,255,0.15); }
-
-        @media (max-width: 900px) { 
-            .container { grid-template-columns: 1fr; }
-            .thumb-list { grid-template-columns: repeat(4, 1fr); }
-            .main-img-container { height: 350px; }
-        }
+        @media (max-width: 900px) { .container { grid-template-columns: 1fr; } .main-img { height: 300px; } }
     </style>
 </head>
 <body>
@@ -49,46 +39,41 @@
 <header><div class="logo">NomadByte</div></header>
 
 <main class="container">
-    <div class="product-gallery">
-        <div class="main-img-container">
-            <img id="mainDisplay" src="1.jpg" alt="NomadByte Premium View">
-        </div>
-        <div class="thumb-list">
-            <div class="thumb-item active" onclick="updateImg('1.jpg', this)"><img src="1.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('2.jpg', this)"><img src="2.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('3.jpg', this)"><img src="3.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('4.jpg', this)"><img src="4.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('5.jpg', this)"><img src="5.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('6.jpg', this)"><img src="6.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('7.jpg', this)"><img src="7.jpg"></div>
-            <div class="thumb-item" onclick="updateImg('8.jpg', this)"><img src="8.jpg"></div>
+    <div class="gallery">
+        <div class="main-img"><img id="mainView" src="1.jpg" alt="Bag"></div>
+        <div class="thumbs">
+            <div class="thumb active" onclick="change(this, '1.jpg')"><img src="1.jpg"></div>
+            <div class="thumb" onclick="change(this, '2.jpg')"><img src="2.jpg"></div>
+            <div class="thumb" onclick="change(this, '3.jpg')"><img src="3.jpg"></div>
+            <div class="thumb" onclick="change(this, '4.jpg')"><img src="4.jpg"></div>
+            <div class="thumb" onclick="change(this, '5.jpg')"><img src="5.jpg"></div>
+            <div class="thumb" onclick="change(this, '6.jpg')"><img src="6.jpg"></div>
+            <div class="thumb" onclick="change(this, '7.jpg')"><img src="7.jpg"></div>
+            <div class="thumb" onclick="change(this, '8.jpg')"><img src="8.jpg"></div>
         </div>
     </div>
 
-    <div class="product-info">
-        <span class="badge">الابتكار المغناطيسي الأول</span>
+    <div class="info">
+        <span style="color:var(--blue); font-weight:bold;">ابتكار NomadByte المعتمد</span>
         <h1>Magnetic Gym Bag</h1>
-        <div class="price">249 SAR <span class="old">428 SAR</span></div>
+        <div class="price">249 SAR <span>428 SAR</span></div>
+        <p class="description">الحل النهائي لتصوير تمارينك، شنطة بمغناطيس N52 تلتصق بقوة على أجهزة الجيم، مصنوعة من خامة TPU المتينة.</p>
         
-        <p class="description">
-            انتهى عصر البحث عن مكان لتصوير تمارينك. شنطة NomadByte مزودة بمغناطيس N52 فائق القوة لتثبيت جوالك على أي سطح معدني في الجيم فوراً.
-        </p>
-
-        <div class="specs-table">
-            <div class="spec-row"><span class="spec-label">المادة</span><strong>TPU عالي الجودة</strong></div>
-            <div class="spec-row"><span class="spec-label">نوع المغناطيس</span><strong>N52 الصناعي</strong></div>
-            <div class="spec-row"><span class="spec-label">السعة</span><strong>1.36 لتر</strong></div>
-            <div class="spec-row"><span class="spec-label">الوزن</span><strong>0.69 كجم خفيف جداً</strong></div>
+        <div class="specs">
+            <div class="spec"><span>المادة</span><strong>TPU مقاوم للماء</strong></div>
+            <div class="spec"><span>المغناطيس</span><strong>N52 الصناعي</strong></div>
+            <div class="spec"><span>السعة</span><strong>1.36 لتر</strong></div>
+            <div class="spec"><span>الوزن</span><strong>0.69 كجم</strong></div>
         </div>
 
-        <button class="buy-now-btn" onclick="window.location.href='checkout.html'">إتمام الشراء - دفع آمن 💳</button>
+        <button class="buy-btn" onclick="window.location.href='checkout.html'">شراء الآن - دفع إلكتروني آمن 💳</button>
     </div>
 </main>
 
 <script>
-    function updateImg(src, el) {
-        document.getElementById('mainDisplay').src = src;
-        document.querySelectorAll('.thumb-item').forEach(i => i.classList.remove('active'));
+    function change(el, src) {
+        document.getElementById('mainView').src = src;
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
     }
 </script>
