@@ -11,8 +11,8 @@
         /* تنسيق الحاوية الرئيسية */
         .wrapper { max-width: 1000px; width: 100%; margin: 20px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 
-        /* قسم الفيديو العوي */
-        .video-container { width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* قسم الفيديو "كشخة" ومناسب للشاشة */
+        .video-container { width: 100%; max-width: 500px; /* الحجم المناسب هنا */ margin: 20px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
         /* معرض الصور */
         .gallery { width: 100%; }
@@ -59,7 +59,7 @@
             <img src="2.jpg" onclick="swap(this)">
             <img src="3.jpg" onclick="swap(this)">
             <img src="4.jpg" onclick="swap(this)">
-            </div>
+        </div>
     </div>
 
     <div class="details">
@@ -84,7 +84,6 @@
 </div>
 
 <script>
-    // وظيفة تبديل الصور في المعرض
     function swap(el) {
         document.getElementById('display').src = el.src;
         document.querySelectorAll('.thumbs img').forEach(i => i.classList.remove('active'));
