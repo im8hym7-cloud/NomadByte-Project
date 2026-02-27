@@ -8,11 +8,11 @@
         :root { --blue: #007aff; --black: #1d1d1f; --grey: #f5f5f7; }
         body { margin: 0; font-family: -apple-system, system-ui, sans-serif; background: #fff; color: var(--black); display: flex; flex-direction: column; align-items: center; }
         
-        /* تنسيق الحاوية الرئيسية */
+        /* تحسين الحاوية الرئيسية للتجاوب */
         .wrapper { max-width: 1000px; width: 100%; margin: 20px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 
-        /* قسم الفيديو العوي */
-        .video-container { width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* تعديل حجم الفيديو ليناسب الشاشة */
+        .video-container { width: 100%; max-width: 500px; /* تم تصغير الحجم هنا */ margin: 20px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
         /* معرض الصور */
         .gallery { width: 100%; }
@@ -31,7 +31,7 @@
         .spec-list { margin-top: 20px; border-top: 1px solid #eee; }
         .spec-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; }
 
-        /* زر الشراء بالرابط الشغال */
+        /* زر الشراء */
         .checkout-btn { background: var(--black); color: white; width: 100%; padding: 22px; border-radius: 16px; font-size: 1.4rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 25px; text-decoration: none; display: block; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .checkout-btn:hover { background: var(--blue); transform: translateY(-3px); }
 
@@ -59,7 +59,7 @@
             <img src="2.jpg" onclick="swap(this)">
             <img src="3.jpg" onclick="swap(this)">
             <img src="4.jpg" onclick="swap(this)">
-            </div>
+        </div>
     </div>
 
     <div class="details">
@@ -84,7 +84,6 @@
 </div>
 
 <script>
-    // وظيفة تبديل الصور في المعرض
     function swap(el) {
         document.getElementById('display').src = el.src;
         document.querySelectorAll('.thumbs img').forEach(i => i.classList.remove('active'));
