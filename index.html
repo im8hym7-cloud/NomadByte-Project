@@ -7,68 +7,34 @@
     <style>
         :root {
             --primary-color: #007bff;
-            --accent-color: #ffcc00; /* لون أصفر يناسب الحقيبة */
             --dark-bg: #1a1a1a;
+            --accent-yellow: #ffcc00;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            margin: 0; padding: 0; background-color: #f9f9f9; color: #333;
         }
         .product-container {
-            max-width: 1100px;
-            margin: 20px auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 20px;
+            max-width: 1100px; margin: 20px auto; display: flex; flex-wrap: wrap; gap: 30px; padding: 20px;
         }
-        /* قسم الميديا (فيديو وصور) */
-        .media-section {
-            flex: 1.2;
-            min-width: 350px;
-        }
+        .media-section { flex: 1.2; min-width: 350px; }
         .main-video {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: #000;
+            width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;
         }
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 15px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px;
         }
         .image-grid img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: 0.3s;
+            width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; cursor: pointer;
+            border: 2px solid transparent; transition: 0.3s;
         }
         .image-grid img:hover { border-color: var(--primary-color); }
 
-        /* قسم تفاصيل المنتج */
         .details-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
+            flex: 1; min-width: 300px; padding: 20px; background: white; border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .badge {
-            background: var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+        .badge { background: var(--accent-yellow); padding: 5px 12px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; }
         h1 { font-size: 2.2rem; margin: 15px 0; color: var(--dark-bg); }
         .price-box { margin: 20px 0; }
         .current-price { color: var(--primary-color); font-size: 2rem; font-weight: bold; }
@@ -79,51 +45,36 @@
         .features-list li::before { content: "✅"; }
 
         .buy-now-btn {
-            background: var(--dark-bg);
-            color: white;
-            width: 100%;
-            padding: 18px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            background: var(--dark-bg); color: white; width: 100%; padding: 18px; border: none;
+            border-radius: 10px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: 0.3s;
         }
         .buy-now-btn:hover { background: #333; transform: translateY(-3px); }
 
-        @media (max-width: 768px) {
-            .product-container { flex-direction: column; }
-        }
+        @media (max-width: 768px) { .product-container { flex-direction: column; } }
     </style>
 </head>
 <body>
 
     <div class="product-container">
         <div class="media-section">
-            <video class="main-video" controls autoplay muted loop>
+            <video class="main-video" id="productVideo" controls autoplay muted loop>
                 <source src="حقيبة غسيل الأحذية.mp4" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو.
             </video>
             
             <div class="image-grid">
-                <img src="1.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="2.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="3.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="4.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="5.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="6.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="7.jpg" onclick="updateMainMedia(this.src, 'img')">
-                <img src="8.jpg" onclick="updateMainMedia(this.src, 'img')">
+                <img src="1.jpg" onclick="changeMedia('1.jpg')">
+                <img src="2.jpg" onclick="changeMedia('2.jpg')">
+                <img src="3.jpg" onclick="changeMedia('3.jpg')">
+                <img src="4.jpg" onclick="changeMedia('4.jpg')">
+                <img src="5.jpg" onclick="changeMedia('5.jpg')">
+                <img src="6.jpg" onclick="changeMedia('6.jpg')">
+                <img src="7.jpg" onclick="changeMedia('7.jpg')">
+                <img src="8.jpg" onclick="changeMedia('8.jpg')">
             </div>
         </div>
 
         <div class="details-section">
-            <span class="badge">الأكثر مبيعاً 🔥</span>
+            <span class="badge">NomadByte Original</span>
             <h1>حقيبة غسيل الأحذية الذكية</h1>
             
             <div class="price-box">
@@ -133,24 +84,25 @@
 
             <ul class="features-list">
                 <li>مصنوعة من نسيج الشانيل الكثيف للتنظيف العميق.</li>
-                <li>تحمي الغسالة من الصدمات والأوساخ.</li>
-                <li>تصميم يمنع تشابك أو تلف الأحذية أثناء الغسيل.</li>
-                <li>مثالية لجميع أنواع الأحذية الرياضية والقماشية.</li>
+                <li>تحمي الغسالة من الصدمات وتمنع تلف الأحذية.</li>
+                <li>سهلة الاستخدام وموفرة للوقت والمجهود.</li>
+                <li>مثالية للأحذية الرياضية والقماشية.</li>
             </ul>
 
-<button class="buy-now-btn" onclick="window.location.href='checkout.html'">
-    شراء الآن - دفع آمن 💳
-</button>            <p style="text-align: center; color: #777; font-size: 0.8rem; margin-top: 15px;">
+            <button class="buy-now-btn" onclick="window.location.href='checkout.html'">
+                شراء الآن - دفع آمن 💳
+            </button>
+
+            <p style="text-align: center; color: #777; font-size: 0.8rem; margin-top: 15px;">
                 توصيل سريع لكافة مناطق المملكة 🇸🇦
             </p>
         </div>
     </div>
 
     <script>
-        // دالة بسيطة لتغيير الصورة المعروضة (اختياري إذا أردت استبدال الفيديو بصورة عند النقر)
-        function updateMainMedia(src, type) {
-            // حالياً نكتفي بعرض الفيديو كعنصر رئيسي، لكن يمكنك تطويرها لاحقاً
-            console.log("تم اختيار: " + src);
+        function changeMedia(src) {
+            console.log("عرض الصورة: " + src);
+            // يمكن إضافة كود لاستبدال الفيديو بصورة هنا إذا رغبت مستقبلاً
         }
     </script>
 </body>
