@@ -3,61 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | حقيبة غسيل الأحذية</title>
+    <title>NomadByte | حقيبة غسيل الأحذية الذكية</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .product-header { padding: 20px; text-align: center; }
-        .badge { color: #e67e22; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-        h1 { margin: 10px 0; font-size: 28px; }
-        .price-section { margin: 15px 0; }
-        .current-price { font-size: 32px; color: #27ae60; font-weight: bold; }
-        .old-price { text-decoration: line-through; color: #999; margin-left: 10px; font-size: 18px; }
-        .main-image { width: 100%; display: block; }
-        .order-form { padding: 25px; background: #fff; }
-        .input-field { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .btn-buy { background-color: #1a1a1a; color: white; border: none; padding: 18px; width: 100%; border-radius: 10px; font-size: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-buy:hover { background-color: #333; }
-        .features { padding: 20px; text-align: right; background: #fdfdfd; font-size: 15px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .container { max-width: 500px; margin: auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .product-info { padding: 20px; text-align: center; }
+        .brand-name { color: #e67e22; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
+        h1 { margin: 10px 0; font-size: 24px; color: #1a1a1a; }
+        .price-box { margin: 15px 0; }
+        .new-price { font-size: 30px; color: #27ae60; font-weight: bold; }
+        .old-price { text-decoration: line-through; color: #999; margin-right: 10px; }
+        .product-img { width: 100%; height: auto; display: block; }
+        .order-section { padding: 20px; background: #fff; }
+        .form-control { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; text-align: right; }
+        .btn-order { background-color: #1a1a1a; color: white; border: none; padding: 18px; width: 100%; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .features-list { text-align: right; padding: 0 20px; font-size: 14px; color: #555; list-style: none; }
+        .features-list li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="product-header">
-        <span class="badge">NOMADBYTE ORIGINAL</span>
-        <h1>حقيبة غسيل الأحذية الذكية</h1>
-        <div class="price-section">
+    <div class="product-info">
+        <span class="brand-name">NOMADBYTE ORIGINAL</span>
+        <h1>حقيبة غسيل وحماية الأحذية</h1>
+        <div class="price-box">
             <span class="old-price">99 SAR</span>
-            <span class="current-price">49 SAR</span>
+            <span class="new-price">49 SAR</span>
         </div>
-        <p style="color: #666;">الحل المبتكر لحماية حذائك وغسالتك أثناء دورة الغسيل.</p>
     </div>
 
-    <img src="S59152822e94045e799d354f95f410bdbX.avif" alt="حقيبة غسيل الأحذية" class="main-image">
+    <img src="S59152822e94045e799d354f95f410bdbX.avif" alt="حقيبة غسيل الأحذية" class="product-img">
 
-    <div class="features">
-        <li>✅ تحمي الأحذية من التلف والتمزق.</li>
-        <li>✅ تمنع ضجيج ارتطام الحذاء بالغسالة.</li>
-        <li>✅ سحاب متين يضمن بقاء الحذاء داخل الحقيبة.</li>
-    </div>
+    <ul class="features-list">
+        <li>✅ غسيل آمن بدون إزعاج أو ضجيج في الغسالة.</li>
+        <li>✅ تحمي الأحذية الرياضية والقماشية من التمزق.</li>
+        <li>✅ ألياف تنظيف داخلية لنتائج مذهلة.</li>
+    </ul>
 
-    <div class="order-form">
-        <input type="text" class="input-field" id="name" placeholder="الاسم بالكامل">
-        <input type="tel" class="input-field" id="phone" placeholder="رقم الجوال">
-        <input type="text" class="input-field" id="address" placeholder="المدينة والحي">
-        <button class="btn-buy" id="orderButton">شراء الآن - دفع آمن 💳</button>
+    <div class="order-section">
+        <input type="text" id="custName" class="form-control" placeholder="الاسم بالكامل">
+        <input type="tel" id="custPhone" class="form-control" placeholder="رقم الجوال">
+        <input type="text" id="custAddr" class="form-control" placeholder="المدينة والحي">
+        <button class="btn-order" id="payBtn">إتمام الطلب - دفع آمن 💳</button>
     </div>
 </div>
 
 <script>
-    document.getElementById('orderButton').addEventListener('click', function() {
-        const name = document.getElementById('name').value;
-        if (!name) {
-            alert("يرجى إدخال البيانات لإتمام الطلب");
+    document.getElementById('payBtn').addEventListener('click', function() {
+        const name = document.getElementById('custName').value;
+        const phone = document.getElementById('custPhone').value;
+        if (!name || !phone) {
+            alert("فضلاً أدخل الاسم ورقم الجوال لتأكيد الطلب");
         } else {
-            // هنا سيتم الربط مع PayTabs لاحقاً عند الاطلاق
-            alert("شكراً لك " + name + "، سيتم تحويلك لبوابة الدفع قريباً.");
+            alert("شكراً لك " + name + ". سيتم نقلك لصفحة الدفع الآمن.");
+            // هنا سيتم الربط مع بوابة PayTabs لاحقاً
         }
     });
 </script>
