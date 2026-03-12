@@ -2,33 +2,136 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تتبع الشحنة | NOMADBYTE</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع شحنتك | NomadByte</title>
     <style>
-        .track-wrap { max-width: 500px; margin: 150px auto; padding: 40px; background: #111; border: 1px solid var(--cyan); border-radius: 15px; text-align: center; }
-        .t-input { width: 100%; padding: 15px; margin: 25px 0; background: #000; border: 1px solid #333; color: var(--cyan); font-family: 'Orbitron'; text-align: center; }
+        :root {
+            --primary: #007bff;
+            --gray: #e9ecef;
+            --success: #28a745;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .track-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .logo { color: var(--primary); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .btn-track {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-track:hover { background: #0056b3; }
+
+        /* ستايل خط التتبع */
+        .tracking-result { margin-top: 40px; display: none; text-align: right; }
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .step::before {
+            content: '';
+            position: absolute;
+            right: 7px;
+            top: 20px;
+            width: 2px;
+            height: 100%;
+            background: var(--gray);
+        }
+        .step:last-child::before { display: none; }
+        .dot {
+            width: 16px;
+            height: 16px;
+            background: var(--gray);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .active .dot { background: var(--success); box-shadow: 0 0 10px var(--success); }
+        .step-info h4 { margin: 0; font-size: 16px; }
+        .step-info p { margin: 5px 0; color: #777; font-size: 14px; }
     </style>
 </head>
 <body>
-    <div class="track-wrap">
-        <h2 style="font-family:'Orbitron';">// TRACK SHIPMENT</h2>
-        <input type="text" id="tID" class="t-input" placeholder="NB-XXXX">
-        <button onclick="doTrack()" class="btn-glow" style="width:100%; border:none; cursor:pointer;">تتبع الآن</button>
-        <div id="res" style="display:none; margin-top:30px; padding:20px; background:#000; border-right:4px solid var(--cyan); text-align:right;">
-            <p style="color:#555; font-size:0.8rem;">الحالة:</p>
-            <span id="st" style="color:var(--cyan); font-weight:900; font-size:1.5rem;"></span>
+
+<div class="track-container">
+    <div class="logo">NomadByte Tracking</div>
+    <p>أدخل رقم الشحنة لمتابعة حالتها فوراً</p>
+    
+    <input type="text" id="trackInput" placeholder="مثال: NB-1001">
+    <button class="btn-track" onclick="trackShipment()">تتبع الآن</button>
+
+    <div class="tracking-result" id="resultArea">
+        <h3 id="displayID" style="color: var(--primary);"></h3>
+        
+        <div class="step active">
+            <div class="dot"></div>
+            <div class="step-info">
+                <h4>تم استلام الطلب</h4>
+                <p>12 مارس 2026 - 09:00 ص</p>
+            </div>
+        </div>
+
+        <div class="step active">
+            <div class="dot"></div>
+            <div class="step-info">
+                <h4>جاري التجهيز في المستودع</h4>
+                <p>12 مارس 2026 - 02:30 م</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="dot"></div>
+            <div class="step-info">
+                <h4>خرجت مع المندوب</h4>
+                <p>قريباً</p>
+            </div>
         </div>
     </div>
-    <script>
-        function doTrack() {
-            const id = document.getElementById('tID').value;
-            const data = JSON.parse(localStorage.getItem('nomadShipments')) || [];
-            const found = data.find(s => s.id === id);
-            if(found) {
-                document.getElementById('res').style.display = "block";
-                document.getElementById('st').innerText = found.status;
-            } else { alert("الرقم غير موجود"); }
+</div>
+
+<script>
+    function trackShipment() {
+        const input = document.getElementById('trackInput').value;
+        if(input.trim() === "") {
+            alert("يرجى إدخال رقم الشحنة أولاً");
+            return;
         }
-    </script>
+        
+        // إظهار النتيجة (محاكاة)
+        document.getElementById('displayID').innerText = "شحنة رقم: " + input;
+        document.getElementById('resultArea').style.display = 'block';
+    }
+</script>
+
 </body>
 </html>
