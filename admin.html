@@ -3,64 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | حقيبة غسيل الأحذية الذكية</title>
+    <title>NomadByte | حقيبة غسيل الأحذية</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
-        .container { max-width: 500px; margin: auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .product-info { padding: 20px; text-align: center; }
-        .brand-name { color: #e67e22; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
-        h1 { margin: 10px 0; font-size: 24px; color: #1a1a1a; }
-        .price-box { margin: 15px 0; }
-        .new-price { font-size: 30px; color: #27ae60; font-weight: bold; }
-        .old-price { text-decoration: line-through; color: #999; margin-right: 10px; }
-        .product-img { width: 100%; height: auto; display: block; }
-        .order-section { padding: 20px; background: #fff; }
-        .form-control { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; text-align: right; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; text-align: center; }
+        .product-card { background: white; max-width: 500px; margin: auto; padding: 25px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .brand { color: #e67e22; font-weight: bold; font-size: 12px; }
+        h1 { font-size: 26px; margin: 10px 0; color: #333; }
+        .price-tag { margin: 15px 0; }
+        .new-price { font-size: 32px; color: #27ae60; font-weight: bold; }
+        .old-price { text-decoration: line-through; color: #999; margin-left: 10px; }
+        .product-image { width: 100%; border-radius: 10px; margin-bottom: 20px; }
+        .form-group { text-align: right; margin-bottom: 15px; }
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
         .btn-order { background-color: #1a1a1a; color: white; border: none; padding: 18px; width: 100%; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
-        .features-list { text-align: right; padding: 0 20px; font-size: 14px; color: #555; list-style: none; }
-        .features-list li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="product-info">
-        <span class="brand-name">NOMADBYTE ORIGINAL</span>
-        <h1>حقيبة غسيل وحماية الأحذية</h1>
-        <div class="price-box">
-            <span class="old-price">99 SAR</span>
-            <span class="new-price">49 SAR</span>
-        </div>
+<div class="product-card">
+    <span class="brand">NOMADBYTE ORIGINAL</span>
+    <h1>حقيبة غسيل وحماية الأحذية</h1>
+    
+    <div class="price-tag">
+        <span class="old-price">99 SAR</span>
+        <span class="new-price">49 SAR</span>
     </div>
 
-    <img src="S59152822e94045e799d354f95f410bdbX.avif" alt="حقيبة غسيل الأحذية" class="product-img">
+    <img src="S59152822e94045e799d354f95f410bdbX.avif" alt="حقيبة غسيل الأحذية" class="product-image">
 
-    <ul class="features-list">
-        <li>✅ غسيل آمن بدون إزعاج أو ضجيج في الغسالة.</li>
-        <li>✅ تحمي الأحذية الرياضية والقماشية من التمزق.</li>
-        <li>✅ ألياف تنظيف داخلية لنتائج مذهلة.</li>
-    </ul>
-
-    <div class="order-section">
-        <input type="text" id="custName" class="form-control" placeholder="الاسم بالكامل">
-        <input type="tel" id="custPhone" class="form-control" placeholder="رقم الجوال">
-        <input type="text" id="custAddr" class="form-control" placeholder="المدينة والحي">
-        <button class="btn-order" id="payBtn">إتمام الطلب - دفع آمن 💳</button>
+    <div class="form-group">
+        <input type="text" id="name" placeholder="الاسم بالكامل">
     </div>
+    <div class="form-group">
+        <input type="tel" id="phone" placeholder="رقم الجوال">
+    </div>
+    <div class="form-group">
+        <input type="text" id="address" placeholder="المدينة والحي">
+    </div>
+
+    <button class="btn-order" onclick="alert('شكراً لطلبك! سيتم تفعيل الدفع قريباً')">شراء الآن - دفع آمن 💳</button>
 </div>
-
-<script>
-    document.getElementById('payBtn').addEventListener('click', function() {
-        const name = document.getElementById('custName').value;
-        const phone = document.getElementById('custPhone').value;
-        if (!name || !phone) {
-            alert("فضلاً أدخل الاسم ورقم الجوال لتأكيد الطلب");
-        } else {
-            alert("شكراً لك " + name + ". سيتم نقلك لصفحة الدفع الآمن.");
-            // هنا سيتم الربط مع بوابة PayTabs لاحقاً
-        }
-    });
-</script>
 
 </body>
 </html>
