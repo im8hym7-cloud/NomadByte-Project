@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب | NomadByte</title>
+    <style>
+        :root {
+            --primary: #007bff;
+            --bg: #f4f7f6;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+        }
+        .checkout-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+        }
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        h2 { margin-top: 0; color: #333; font-size: 1.4rem; }
+        
+        /* الفورم */
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        /* ملخص الطلب */
+        .order-summary { text-align: center; }
+        .product-preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .total { font-size: 1.3rem; font-weight: bold; color: var(--primary); }
+
+        .confirm-btn {
+            background: #28a745;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .confirm-btn:hover { background: #218838; }
+
+        @media (max-width: 768px) {
+            .checkout-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <div class="box">
+            <h2>تفاصيل الشحن</h2>
+            <div class="form-group">
+                <label>الاسم الكامل:</label>
+                <input type="text" id="fullName" placeholder="أدخل اسمك الثلاثي">
+            </div>
+            <div class="form-group">
+                <label>رقم الجوال:</label>
+                <input type="tel" id="phone" placeholder="05xxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>المدينة:</label>
+                <select id="city">
+                    <option value="dammam">الدمام</option>
+                    <option value="khobar">الخبر</option>
+                    <option value="riyadh">الرياض</option>
+                    <option value="jeddah">جدة</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>العنوان الحي/الشارع:</label>
+                <input type="text" id="address" placeholder="اسم الحي ورقم الشارع">
+            </div>
+        </div>
+
+        <div class="box order-summary">
+            <h2>ملخص الطلب</h2>
+            <img src="1.jpg" class="product-preview" alt="Product">
+            <p>حقيبة غسيل الأحذية الذكية</p>
+            
+            <div class="price-row">
+                <span>سعر المنتج:</span>
+                <span>49 SAR</span>
+            </div>
+            <div class="price-row">
+                <span>التوصيل:</span>
+                <span>مجاني 🎁</span>
+            </div>
+            <div class="price-row total">
+                <span>الإجمالي:</span>
+                <span>49 SAR</span>
+            </div>
+
+            <button class="confirm-btn" onclick="confirmOrder()">تأكيد الطلب</button>
+        </div>
+    </div>
+
+    <script>
+        function confirmOrder() {
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            
+            if(name && phone) {
+                alert("شكراً لك يا " + name + "! تم استلام طلبك بنجاح وسنتواصل معك قريباً.");
+                // هنا يمكن ربط البيانات بقاعدة بيانات أو إرسالها لإيميلك
+            } else {
+                alert("يرجى إكمال البيانات المطلوبة");
+            }
+        }
+    </script>
+</body>
+</html>
