@@ -2,39 +2,41 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ADMIN | NOMADBYTE</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomadByte | حقيبة غسيل الأحذية</title>
     <style>
-        .admin-container { max-width: 500px; margin: 100px auto; background: #0d0d0d; padding: 40px; border: 1px solid #1a1a1a; border-radius: 8px; }
-        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 4px; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; text-align: center; }
+        .product-card { background: white; max-width: 400px; margin: auto; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .product-image { width: 100%; border-radius: 10px; }
+        h2 { color: #333; }
+        .price { font-size: 24px; color: #27ae60; font-weight: bold; margin: 15px 0; }
+        .input-group { text-align: right; margin-bottom: 10px; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .btn-order { background-color: #e67e22; color: white; border: none; padding: 15px; width: 100%; border-radius: 5px; font-size: 18px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="admin-container">
-        <h2 style="margin-bottom: 25px;">إضافة منتج للمتجر</h2>
-        <input type="text" id="pName" placeholder="اسم القطعة">
-        <input type="number" id="pPrice" placeholder="السعر (SAR)">
-        <input type="text" id="pImage" placeholder="رابط الصورة (URL)">
-        <button onclick="addProduct()" class="btn-primary" style="width:100%;">نشر الآن</button>
-        <button onclick="localStorage.removeItem('nomadProducts'); location.reload();" style="margin-top:10px; background:none; border:none; color:#555; cursor:pointer; width:100%;">تصفير المتجر</button>
-        <a href="index.html" style="display:block; text-align:center; margin-top:20px; color:var(--accent); text-decoration:none;">← العودة للمتجر</a>
+
+<div class="product-card">
+    <img src="S59152822e94045e799d354f95f410bdbX.avif" alt="حقيبة غسيل الأحذية" class="product-image">
+    
+    <h2>حقيبة غسيل الأحذية الذكية</h2>
+    <p>احمِ غسالتك وحذائك المفضل من التلف أثناء الغسيل.</p>
+    
+    <div class="price">49 ريال سعودي</div>
+
+    <div class="input-group">
+        <input type="text" id="custName" placeholder="الاسم بالكامل">
+    </div>
+    <div class="input-group">
+        <input type="tel" id="custPhone" placeholder="رقم الجوال">
+    </div>
+    <div class="input-group">
+        <input type="text" id="custCity" placeholder="المدينة والحي">
     </div>
 
-    <script>
-        function addProduct() {
-            const name = document.getElementById('pName').value;
-            const price = document.getElementById('pPrice').value;
-            const image = document.getElementById('pImage').value || 'https://via.placeholder.com/600x800/111/fff?text=NOMADBYTE';
+    <button class="btn-order">اطلب الآن (الدفع عند الاستلام/بطاقة)</button>
+</div>
 
-            if(!name || !price) { alert('عب البيانات يا بطل'); return; }
-
-            let products = JSON.parse(localStorage.getItem('nomadProducts')) || [];
-            products.push({ name, price, image });
-            localStorage.setItem('nomadProducts', JSON.stringify(products));
-            
-            alert('تم النشر بنجاح!');
-            window.location.href = 'index.html';
-        }
-    </script>
 </body>
 </html>
