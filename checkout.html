@@ -13,21 +13,24 @@
 
         <div class="checkout-layout">
             
-            <div class="order-summary">
-                <h3 style="margin-top: 0; color: var(--dark-color);">ملخص طلبك</h3>
-                <div class="product-item-small">
-                    <img src="8.jpg" alt="حقيبة غسيل الأحذية">
-                    <div class="product-info-text">
+            <div class="order-summary" style="background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 15px;">ملخص طلبك</h3>
+                
+                <div class="product-item-small" style="display: flex; align-items: center; gap: 15px; margin-top: 20px;">
+                    <img src="8.jpg" alt="حقيبة غسيل الأحذية" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover;">
+                    <div>
                         <p style="margin: 0; font-weight: bold;">حقيبة غسيل الأحذية الذكية</p>
                         <span style="color: var(--secondary-color); font-weight: bold;">49 SAR</span>
                     </div>
                 </div>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 18px; font-weight: bold;">المجموع النهائي:</span>
-                    <span class="price-now">49 SAR</span>
+
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #eee;">
+                    <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: 900;">
+                        <span>الإجمالي:</span>
+                        <span class="price-now">49 SAR</span>
+                    </div>
+                    <p style="color: #28a745; font-size: 14px; margin-top: 10px; font-weight: bold;">✅ شحن مجاني - دفع عند الاستلام</p>
                 </div>
-                <p style="color: #666; font-size: 14px; margin-top: 15px;">🚛 شامل ضريبة القيمة المضافة والشحن السريع.</p>
             </div>
 
             <div class="shipping-form">
@@ -50,16 +53,15 @@
                             <option value="khobar">الخبر</option>
                             <option value="riyadh">الرياض</option>
                             <option value="jeddah">جدة</option>
-                            <option value="other">مدينة أخرى</option>
                         </select>
                     </div>
 
                     <div class="input-group">
                         <label>العنوان بالتفصيل</label>
-                        <input type="text" id="address" placeholder="اسم الحي والشارع" required>
+                        <input type="text" id="address" placeholder="الحي، الشارع، رقم المنزل" required>
                     </div>
 
-                    <button type="submit" class="finish-btn">تأكيد الطلب - دفع عند الاستلام</button>
+                    <button type="submit" class="finish-btn">تأكيد الطلب الآن 🛒</button>
                 </form>
             </div>
 
