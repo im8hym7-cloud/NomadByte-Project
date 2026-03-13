@@ -10,26 +10,29 @@
     <div class="main-container">
         <div class="product-card">
             <div class="media-column">
-                <div class="main-display">
+                <div class="main-view">
                     <div id="videoContainer">
                         <video autoplay muted loop playsinline><source src="حقيبة%20غسيل%20الأحذية2.mp4" type="video/mp4"></video>
                     </div>
                     <img id="mainImage" src="" style="display: none;">
                 </div>
                 <div class="image-gallery">
-                    <img src="1.jpg"> <img src="2.jpg"> <img src="3.jpg"> <img src="4.jpg">
-                    <img src="5.jpg"> <img src="6.jpg"> <img src="7.jpg"> <img src="8.jpg">
+                    <img src="1.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="2.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="3.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="4.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="5.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="6.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="7.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
+                    <img src="8.jpg" onmouseover="showImg(this.src)" onclick="showImg(this.src)">
                 </div>
+                <button onclick="resetVideo()" style="margin-top:10px; background:none; border:1px solid #ddd; padding:5px; border-radius:5px; cursor:pointer;">🔄 العودة للفيديو</button>
             </div>
+            
             <div class="info-column">
-                <span class="brand-badge">NomadByte Original</span>
-                <h1 class="product-title">حقيبة غسيل الأحذية الذكية</h1>
-                <p class="price-now">49 SAR <span class="price-was" style="font-size: 18px; color: #999;">99 SAR</span></p>
-                <ul style="list-style: none; padding: 0;">
-                    <li>✅ نسيج شانيل كثيف للتنظيف</li>
-                    <li>✅ حماية كاملة للحذاء والغسالة</li>
-                </ul>
-                <a href="checkout.html" class="buy-btn">شراء الآن - دفع عند الاستلام</a>
+                <h1 style="font-size: 34px;">حقيبة غسيل الأحذية الذكية</h1>
+                <p style="font-size: 40px; color: var(--blue); font-weight: 900;">49 SAR</p>
+                <a href="checkout.html" class="buy-btn" id="buyNow">شراء الآن - دفع عند الاستلام 💳</a>
             </div>
         </div>
     </div>
