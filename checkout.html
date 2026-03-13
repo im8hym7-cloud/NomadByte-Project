@@ -8,59 +8,48 @@
 </head>
 <body>
 
-    <div class="checkout-container">
-        <h2 class="checkout-title">إتمام عملية الشراء</h2>
+    <div class="main-container checkout-container">
+        <h2 class="product-title" style="text-align: center; margin-bottom: 40px;">إتمام طلبك</h2>
 
         <div class="checkout-layout">
             
             <div class="order-summary">
-                <h3>ملخص الطلب</h3>
-                <div class="product-item">
-                    <img src="5.jpg" alt="حقيبة الأحذية">
-                    <div class="product-info">
-                        <p>حقيبة غسيل الأحذية الذكية</p>
-                        <span>49 SAR</span>
+                <h3 style="margin-top: 0;">ملخص السلة</h3>
+                <div class="product-item-small">
+                    <img src="5.jpg" alt="حقيبة غسيل الأحذية">
+                    <div>
+                        <p style="margin: 0; font-weight: bold;">حقيبة غسيل الأحذية الذكية</p>
+                        <span style="color: var(--secondary-color); font-weight: bold;">49 SAR</span>
                     </div>
                 </div>
-                <hr>
-                <div class="total-row">
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: bold;">
                     <span>الإجمالي:</span>
-                    <span class="total-price">49 SAR</span>
+                    <span class="price-now">49 SAR</span>
                 </div>
-                <p class="shipping-hint">🚛 شحن سريع لجميع مناطق المملكة</p>
             </div>
 
             <div class="shipping-form">
-                <h3>بيانات الشحن والتوصيل</h3>
                 <form id="checkoutForm">
-                    <label>الاسم الكامل</label>
-                    <input type="text" id="name" placeholder="أدخل اسمك الثلاثي" required>
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" name="name" placeholder="مثلاً: عبد الرحمن ..." required>
 
-                    <label>رقم الجوال</label>
-                    <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+                    <label for="phone">رقم الجوال</label>
+                    <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" required>
 
-                    <label>المدينة</label>
-                    <select id="city" required>
-                        <option value="">اختر المدينة</option>
+                    <label for="city">المدينة</label>
+                    <select id="city" name="city" required>
+                        <option value="">اختر مدينتك</option>
                         <option value="dammam">الدمام</option>
                         <option value="khobar">الخبر</option>
                         <option value="riyadh">الرياض</option>
                         <option value="jeddah">جدة</option>
-                        <option value="other">مدينة أخرى</option>
                     </select>
 
-                    <label>العنوان بالتفصيل</label>
-                    <input type="text" id="address" placeholder="الحي، الشارع، رقم المنزل" required>
+                    <label for="address">العنوان بالتفصيل</label>
+                    <input type="text" id="address" name="address" placeholder="اسم الحي والشارع" required>
 
-                    <div class="payment-methods">
-                        <p>وسائل الدفع المتاحة:</p>
-                        <div class="payment-icons">
-                            <span>💳 مدى / فيزا</span>
-                            <span> Pay</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="finish-btn">إتمام الطلب - 49 SAR</button>
+                    <button type="submit" class="finish-btn">تأكيد الطلب الآن</button>
                 </form>
             </div>
 
