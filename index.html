@@ -3,60 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte - حقيبة الأحذية الذكية</title>
+    <title>NomadByte | حقيبة غسيل الأحذية الذكية</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="product-card">
-        
-        <div class="visual-section">
-            <div class="main-video">
-                <video controls poster="icon.png">
-                    <source src="video.mp4" type="video/mp4">
-                    متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-            </div>
+    <div class="main-container">
+        <div class="product-card">
             
-            <div class="image-grid">
-                <img src="5.jpg" alt="Product 1">
-                <img src="6.jpg" alt="Product 2">
-                <img src="7.jpg" alt="Product 3">
-                <img src="8.jpg" alt="Product 4">
-                <img src="5.jpg" alt="Product 5">
-                <img src="6.jpg" alt="Product 6">
-                <img src="7.jpg" alt="Product 7">
-                <img src="8.jpg" alt="Product 8">
+            <div class="media-column">
+                <div class="video-wrapper">
+                    <video controls autoplay muted loop playsinline>
+                        <source src="حقيبة%20غسيل%20الأحذية٢.mp4" type="video/mp4">
+                        متصفحك لا يدعم تشغيل الفيديو.
+                    </video>
+                </div>
+
+                <div class="image-gallery">
+                    <img src="5.jpg" alt="صورة المنتج">
+                    <img src="6.jpg" alt="صورة المنتج">
+                    <img src="7.jpg" alt="صورة المنتج">
+                    <img src="8.jpg" alt="صورة المنتج">
+                </div>
             </div>
+
+            <div class="info-column">
+                <div class="brand-badge">NomadByte Original</div>
+                <h1 class="product-title">حقيبة غسيل الأحذية الذكية</h1>
+                
+                <div class="price-section">
+                    <span class="price-now">49 SAR</span>
+                    <span class="price-was">99 SAR</span>
+                </div>
+
+                <ul class="features-list">
+                    <li>✅ مصنوعة من نسيج الشانيل الكثيف للتنظيف العميق.</li>
+                    <li>✅ تحمي الغسالة من الصدمات وتمنع تلف الأحذية.</li>
+                    <li>✅ سهلة الاستخدام وموفرة للوقت والمجهود.</li>
+                    <li>✅ مثالية للأحذية الرياضية والقماشية.</li>
+                </ul>
+
+                <button class="buy-btn" onclick="location.href='checkout.html'">
+                    شراء الآن - دفع آمن 💳
+                </button>
+                
+                <p class="shipping-note">توصيل سريع لكافة مناطق المملكة SA</p>
+            </div>
+
         </div>
-
-        <div class="details-section">
-            <span class="badge">NomadByte Original</span>
-            <h1>حقيبة غسيل الأحذية الذكية</h1>
-            
-            <div class="price-tag">
-                <span class="current-price">49 SAR</span>
-                <span class="old-price">99 SAR</span>
-            </div>
-
-            <ul class="features">
-                <li>✅ مصنوعة من نسيج الشانيل الكثيف للتنظيف العميق.</li>
-                <li>✅ تحمي الغسالة من الصدمات وتمنع تلف الأحذية.</li>
-                <li>✅ سهلة الاستخدام وموفرة للوقت والمجهود.</li>
-                <li>✅ مثالية للأحذية الرياضية والقماشية.</li>
-            </ul>
-
-            <button class="cta-button" id="buyNow">
-                شراء الآن - دفع آمن 💳
-            </button>
-            
-            <p class="shipping-info">توصيل سريع لكافة مناطق المملكة SA</p>
-        </div>
-
     </div>
-</div>
 
-<script src="script.js"></script>
 </body>
 </html>
