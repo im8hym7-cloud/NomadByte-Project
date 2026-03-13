@@ -1,18 +1,14 @@
 function showImg(src) {
-    const videoCont = document.getElementById('videoContainer');
-    const imgCont = document.getElementById('mainImage');
-    if(videoCont && imgCont) {
-        videoCont.style.display = 'none';
-        imgCont.style.display = 'block';
-        imgCont.src = src;
+    const v = document.getElementById('videoBox');
+    const i = document.getElementById('imageBox');
+    if(v && i) {
+        v.style.display = 'none';
+        i.style.display = 'block';
+        i.src = src;
     }
 }
 
 function resetVideo() {
-    const videoCont = document.getElementById('videoContainer');
-    const imgCont = document.getElementById('mainImage');
-    if(videoCont && imgCont) {
-        videoCont.style.display = 'block';
-        imgCont.style.display = 'none';
-    }
+    document.getElementById('videoBox').style.display = 'block';
+    document.getElementById('imageBox').style.display = 'none';
 }
