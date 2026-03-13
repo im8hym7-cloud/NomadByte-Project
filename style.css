@@ -1,141 +1,141 @@
-/* تنسيقات عامة */
+/* تنسيقات الخط والصفحة */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
-    display: flex;
-    justify-content: center;
 }
 
-.container {
-    max-width: 1000px;
-    width: 100%;
+.main-container {
+    max-width: 1100px;
+    margin: 40px auto;
 }
 
-/* كارت المنتج */
+/* الكارت الرئيسي */
 .product-card {
-    background: white;
-    border-radius: 20px;
+    background: #fff;
+    border-radius: 25px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    grid-template-columns: 1.2fr 1fr; /* تقسيم الصفحة لعمودين */
+    gap: 40px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
 }
 
-/* قسم المرئيات (فيديو وصور) */
-.visual-section {
+/* عمود الفيديو والصور */
+.media-column {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.main-video video {
+.video-wrapper video {
     width: 100%;
     border-radius: 15px;
-    background: #000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.image-grid {
+.image-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
-.image-grid img {
+.image-gallery img {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #eee;
-    cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-.image-grid img:hover {
+.image-gallery img:hover {
+    transform: scale(1.05);
     border-color: #ffc107;
-    transform: translateY(-3px);
 }
 
-/* قسم التفاصيل */
-.details-section {
+/* عمود المعلومات */
+.info-column {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.badge {
+.brand-badge {
     background: #ffc107;
     color: #000;
-    padding: 5px 12px;
-    border-radius: 5px;
     font-weight: bold;
-    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 8px;
     width: fit-content;
-}
-
-h1 {
-    font-size: 28px;
-    color: #333;
-    margin: 15px 0;
-}
-
-.price-tag {
     margin-bottom: 20px;
 }
 
-.current-price {
+.product-title {
     font-size: 32px;
+    margin: 0 0 15px 0;
+    color: #222;
+}
+
+.price-section {
+    margin-bottom: 25px;
+}
+
+.price-now {
+    font-size: 36px;
     font-weight: bold;
     color: #007bff;
 }
 
-.old-price {
+.price-was {
     text-decoration: line-through;
-    color: #999;
-    margin-right: 10px;
+    color: #aaa;
+    margin-right: 15px;
+    font-size: 20px;
 }
 
-.features {
+.features-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
-.features li {
+.features-list li {
+    font-size: 17px;
     margin-bottom: 12px;
-    color: #555;
-    font-size: 16px;
+    color: #444;
 }
 
-.cta-button {
-    background: #1a1a1a;
-    color: white;
+/* زر الشراء */
+.buy-btn {
+    background: #111;
+    color: #fff;
     border: none;
-    padding: 18px;
-    border-radius: 12px;
-    font-size: 18px;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.cta-button:hover {
+.buy-btn:hover {
     background: #333;
-    transform: scale(1.02);
+    transform: translateY(-2px);
 }
 
-.shipping-info {
+.shipping-note {
     text-align: center;
     color: #888;
-    font-size: 14px;
     margin-top: 15px;
+    font-size: 14px;
 }
 
 /* التوافق مع الجوال */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .product-card {
         grid-template-columns: 1fr;
+        padding: 20px;
     }
 }
