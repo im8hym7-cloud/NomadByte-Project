@@ -3,74 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | حقيبة غسيل الأحذية الذكية</title>
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --dark-bg: #1a1a1a;
-            --accent-yellow: #ffcc00;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0; background-color: #f9f9f9; color: #333;
-        }
-        .product-container {
-            max-width: 1100px; margin: 20px auto; display: flex; flex-wrap: wrap; gap: 30px; padding: 20px;
-        }
-        .media-section { flex: 1.2; min-width: 350px; }
-        .main-video {
-            width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;
-        }
-        .image-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px;
-        }
-        .image-grid img {
-            width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; cursor: pointer;
-            border: 2px solid transparent; transition: 0.3s;
-        }
-        .image-grid img:hover { border-color: var(--primary-color); }
-
-        .details-section {
-            flex: 1; min-width: 300px; padding: 20px; background: white; border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .badge { background: var(--accent-yellow); padding: 5px 12px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; }
-        h1 { font-size: 2.2rem; margin: 15px 0; color: var(--dark-bg); }
-        .price-box { margin: 20px 0; }
-        .current-price { color: var(--primary-color); font-size: 2rem; font-weight: bold; }
-        .old-price { text-decoration: line-through; color: #999; margin-right: 15px; }
-        
-        .features-list { list-style: none; padding: 0; margin: 25px 0; }
-        .features-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .features-list li::before { content: "✅"; }
-
-        .buy-now-btn {
-            background: var(--dark-bg); color: white; width: 100%; padding: 18px; border: none;
-            border-radius: 10px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: 0.3s;
-        }
-        .buy-now-btn:hover { background: #333; transform: translateY(-3px); }
-
-        @media (max-width: 768px) { .product-container { flex-direction: column; } }
-    </style>
+    <title>NomadByte - حقيبة الأحذية الذكية</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="product-container">
-        <div class="media-section">
-            <video class="main-video" id="productVideo" controls autoplay muted loop>
-                <!-- تم تعديل اسم الملف هنا إلى العربي -->
-                <source src="حقيبة الأحذية ٢.mp4" type="video/mp4">
-            </video>
+<div class="container">
+    <div class="product-card">
+        
+        <div class="visual-section">
+            <div class="main-video">
+                <video controls poster="icon.png">
+                    <source src="video.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
             
             <div class="image-grid">
-                <img src="1.jpg" onclick="changeMedia('1.jpg')">
-                <img src="2.jpg" onclick="changeMedia('2.jpg')">
-                <img src="3.jpg" onclick="changeMedia('3.jpg')">
-                <img src="4.jpg" onclick="changeMedia('4.jpg')">
-                <img src="5.jpg" onclick="changeMedia('5.jpg')">
-                <img src="6.jpg" onclick="changeMedia('6.jpg')">
-                <img src="7.jpg" onclick="changeMedia('7.jpg')">
-                <img src="8.jpg" onclick="changeMedia('8.jpg')">
+                <img src="5.jpg" alt="Product 1">
+                <img src="6.jpg" alt="Product 2">
+                <img src="7.jpg" alt="Product 3">
+                <img src="8.jpg" alt="Product 4">
+                <img src="5.jpg" alt="Product 5">
+                <img src="6.jpg" alt="Product 6">
+                <img src="7.jpg" alt="Product 7">
+                <img src="8.jpg" alt="Product 8">
             </div>
         </div>
 
@@ -78,32 +35,28 @@
             <span class="badge">NomadByte Original</span>
             <h1>حقيبة غسيل الأحذية الذكية</h1>
             
-            <div class="price-box">
-                <span class="current-price">٤٩ <small>SAR</small></span>
-                <span class="old-price">٩٩ SAR</span>
+            <div class="price-tag">
+                <span class="current-price">49 SAR</span>
+                <span class="old-price">99 SAR</span>
             </div>
 
-            <ul class="features-list">
-                <li>مصنوعة من نسيج الشانيل الكثيف للتنظيف العميق.</li>
-                <li>تحمي الغسالة من الصدمات وتمنع تلف الأحذية.</li>
-                <li>سهلة الاستخدام وموفرة للوقت والمجهود.</li>
-                <li>مثالية للأحذية الرياضية والقماشية.</li>
+            <ul class="features">
+                <li>✅ مصنوعة من نسيج الشانيل الكثيف للتنظيف العميق.</li>
+                <li>✅ تحمي الغسالة من الصدمات وتمنع تلف الأحذية.</li>
+                <li>✅ سهلة الاستخدام وموفرة للوقت والمجهود.</li>
+                <li>✅ مثالية للأحذية الرياضية والقماشية.</li>
             </ul>
 
-            <button class="buy-now-btn" onclick="window.location.href='checkout.html'">
+            <button class="cta-button" id="buyNow">
                 شراء الآن - دفع آمن 💳
             </button>
-
-            <p style="text-align: center; color: #777; font-size: 0.8rem; margin-top: 15px;">
-                توصيل سريع لكافة مناطق المملكة 🇸🇦
-            </p>
+            
+            <p class="shipping-info">توصيل سريع لكافة مناطق المملكة SA</p>
         </div>
-    </div>
 
-    <script>
-        function changeMedia(src) {
-            console.log("عرض الصورة: " + src);
-        }
-    </script>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
