@@ -9,38 +9,29 @@
 <body>
     <div class="main-container">
         <div class="checkout-layout">
-            <div class="order-summary card">
+            <div class="order-summary card-box">
                 <h3>ملخص طلبك</h3>
                 <div class="product-item-small">
-                    <img src="5.jpg" alt="Product">
+                    <img src="5.jpg">
                     <div>
                         <p>حقيبة غسيل الأحذية الذكية</p>
-                        <span class="price-now">49 SAR</span>
+                        <strong class="price-now" style="font-size: 20px;">49 SAR</strong>
                     </div>
                 </div>
-                <div class="total-section">
-                    <span>الإجمالي النهائي:</span>
-                    <span>49 SAR</span>
-                </div>
+                <hr>
+                <p>الإجمالي: 49 SAR</p>
             </div>
-
-            <div class="shipping-form card">
+            <div class="shipping-form card-box">
                 <h3>بيانات الشحن</h3>
                 <form id="checkoutForm">
-                    <label>الاسم الكامل</label>
-                    <input type="text" placeholder="اسمك الثلاثي" required>
-                    <label>رقم الجوال</label>
-                    <input type="tel" placeholder="05xxxxxxxx" required>
-                    <label>المدينة</label>
+                    <input type="text" placeholder="الاسم الكامل" required>
+                    <input type="tel" placeholder="رقم الجوال" required>
                     <select required>
                         <option value="">اختر المدينة</option>
-                        <option>الدمام</option>
-                        <option>الرياض</option>
-                        <option>جدة</option>
+                        <option>الدمام</option><option>الرياض</option><option>جدة</option>
                     </select>
-                    <label>العنوان</label>
-                    <input type="text" placeholder="الحي والشارع" required>
-                    <button type="submit" class="finish-btn">تأكيد الطلب الآن</button>
+                    <input type="text" placeholder="العنوان بالتفصيل" required>
+                    <button type="submit" class="finish-btn">تأكيد الطلب</button>
                 </form>
             </div>
         </div>
