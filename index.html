@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NomadByte | حقيبة غسيل الأحذية الذكية</title>
+    <title>NomadByte | حقيبة غسيل الأحذية</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,48 +12,45 @@
         <div class="product-card">
             
             <div class="media-column">
-                <div class="video-wrapper">
-                    <video controls autoplay muted loop playsinline>
-                        <source src="حقيبة%20غسيل%20الأحذية2.mp4" type="video/mp4">
-                        متصفحك لا يدعم تشغيل الفيديو.
-                    </video>
+                <div class="main-display">
+                    <div id="videoContainer">
+                        <video id="mainVideo" controls autoplay muted loop playsinline>
+                            <source src="حقيبة%20غسيل%20الأحذية2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <img id="mainImage" src="" alt="عرض المنتج" style="display: none;">
                 </div>
 
-<div class="image-gallery">
-    <img src="1.jpg" alt="تفاصيل 1" onclick="changeMedia(this.src)">
-    <img src="2.jpg" alt="تفاصيل 2" onclick="changeMedia(this.src)">
-    <img src="3.jpg" alt="تفاصيل 3" onclick="changeMedia(this.src)">
-    <img src="4.jpg" alt="تفاصيل 4" onclick="changeMedia(this.src)">
-    <img src="5.jpg" alt="تفاصيل 5" onclick="changeMedia(this.src)">
-    <img src="6.jpg" alt="تفاصيل 6" onclick="changeMedia(this.src)">
-    <img src="7.jpg" alt="تفاصيل 7" onclick="changeMedia(this.src)">
-    <img src="8.jpg" alt="تفاصيل 8" onclick="changeMedia(this.src)">
-</div>
+                <div class="image-gallery">
+                    <img src="1.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="2.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="3.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="4.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="5.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="6.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="7.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="8.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                </div>
+                <button class="reset-video" onclick="resetToVideo()">🔄 العودة للفيديو</button>
             </div>
 
             <div class="info-column">
                 <div class="brand-badge">NomadByte Original</div>
                 <h1 class="product-title">حقيبة غسيل الأحذية الذكية</h1>
-                
                 <div class="price-section">
                     <span class="price-now">49 SAR</span>
                     <span class="price-was">99 SAR</span>
                 </div>
-
                 <ul class="features-list">
-                    <li>✅ مصنوعة من نسيج الشانيل الكثيف للتنظيف العميق.</li>
-                    <li>✅ تحمي الغسالة من الصدمات وتمنع تلف الأحذية.</li>
-                    <li>✅ سهلة الاستخدام وموفرة للوقت والمجهود.</li>
-                    <li>✅ مثالية للأحذية الرياضية والقماشية.</li>
+                    <li>✅ نسيج شانيل كثيف للتنظيف العميق.</li>
+                    <li>✅ حماية كاملة للحذاء والغسالة.</li>
+                    <li>✅ سحاب مخفي لضمان عدم الانفتاح.</li>
                 </ul>
-
-                <a href="checkout.html" class="buy-btn">شراء الآن - دفع آمن 💳</a>
-                
-                <p class="shipping-note">توصيل سريع لكافة مناطق المملكة SA</p>
+                <a href="checkout.html" class="buy-btn">شراء الآن - دفع عند الاستلام</a>
             </div>
-
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
