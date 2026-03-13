@@ -1,28 +1,44 @@
-/* تنسيقات الخط والصفحة */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 20px;
+/* =========================================
+   1. التنسيقات العامة والثوابت
+   ========================================= */
+:root {
+    --primary-color: #ffc107; /* لون هويتك الأصفر */
+    --secondary-color: #007bff; /* لون السعر الأزرق */
+    --dark-color: #111111;
+    --success-color: #28a745; /* لون زر الإتمام الأخضر */
+    --bg-color: #f8f9fa;
+    --white: #ffffff;
+    --text-muted: #888888;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. الصفحة الرئيسية (صفحة المنتج)
+   ========================================= */
 .main-container {
     max-width: 1100px;
     margin: 40px auto;
+    padding: 20px;
 }
 
-/* الكارت الرئيسي */
 .product-card {
-    background: #fff;
+    background: var(--white);
     border-radius: 25px;
     display: grid;
-    grid-template-columns: 1.2fr 1fr; /* تقسيم الصفحة لعمودين */
+    grid-template-columns: 1.2fr 1fr;
     gap: 40px;
     padding: 40px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.05);
 }
 
-/* عمود الفيديو والصور */
+/* عمود الميديا (فيديو وصور) */
 .media-column {
     display: flex;
     flex-direction: column;
@@ -33,6 +49,7 @@ body {
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: #000;
 }
 
 .image-gallery {
@@ -48,14 +65,15 @@ body {
     border-radius: 12px;
     border: 1px solid #eee;
     transition: 0.3s ease;
+    cursor: pointer;
 }
 
 .image-gallery img:hover {
     transform: scale(1.05);
-    border-color: #ffc107;
+    border-color: var(--primary-color);
 }
 
-/* عمود المعلومات */
+/* عمود معلومات المنتج */
 .info-column {
     display: flex;
     flex-direction: column;
@@ -63,7 +81,7 @@ body {
 }
 
 .brand-badge {
-    background: #ffc107;
+    background: var(--primary-color);
     color: #000;
     font-weight: bold;
     padding: 6px 15px;
@@ -85,7 +103,7 @@ body {
 .price-now {
     font-size: 36px;
     font-weight: bold;
-    color: #007bff;
+    color: var(--secondary-color);
 }
 
 .price-was {
@@ -107,9 +125,9 @@ body {
     color: #444;
 }
 
-/* زر الشراء */
+/* أزرار الإجراء (CTA) */
 .buy-btn {
-    background: #111;
+    background: var(--dark-color);
     color: #fff;
     border: none;
     padding: 20px;
@@ -118,6 +136,8 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    text-align: center;
+    text-decoration: none;
 }
 
 .buy-btn:hover {
@@ -125,17 +145,106 @@ body {
     transform: translateY(-2px);
 }
 
-.shipping-note {
-    text-align: center;
-    color: #888;
-    margin-top: 15px;
-    font-size: 14px;
+/* =========================================
+   3. صفحة الدفع (Checkout)
+   ========================================= */
+.checkout-container {
+    max-width: 950px;
+    margin: 30px auto;
+    padding: 20px;
 }
 
-/* التوافق مع الجوال */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 30px;
+}
+
+.order-summary {
+    background: #fdfdfd;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    height: fit-content;
+}
+
+.product-item-small {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.product-item-small img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* تنسيق حقول الإدخال (طلبك الخاص) */
+input[type="text"], 
+input[type="tel"], 
+input[type="email"], 
+select, 
+textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: 0.3s;
+    box-sizing: border-box; /* لضمان عدم خروج الحقول عن الحدود */
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
+}
+
+label {
+    font-weight: bold;
+    color: #444;
+    display: block;
+}
+
+/* زر إتمام الطلب الأخضر */
+.finish-btn {
+    background: var(--success-color);
+    color: white;
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.finish-btn:hover {
+    background: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* =========================================
+   4. التوافق مع شاشات الجوال (Responsive)
+   ========================================= */
 @media (max-width: 850px) {
-    .product-card {
+    .product-card, .checkout-layout {
         grid-template-columns: 1fr;
         padding: 20px;
+    }
+    
+    .order-summary {
+        order: -1; /* يظهر ملخص الطلب أولاً في الجوال */
+    }
+
+    .product-title {
+        font-size: 26px;
     }
 }
