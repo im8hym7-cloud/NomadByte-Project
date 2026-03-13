@@ -1,94 +1,88 @@
-/* الإعدادات الأساسية */
+/* الإعدادات العامة للمتجر */
 :root {
-    --primary: #ffc107;
+    --gold: #ffc107;
     --blue: #007bff;
     --success: #28a745;
-    --dark: #111;
-    --bg: #f8f9fa;
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --dark: #1a1a1a;
+    --gray: #f4f7f6;
+    --white: #ffffff;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: var(--bg);
+    background-color: var(--gray);
     margin: 0; padding: 0; direction: rtl;
 }
 
-.main-container {
+.container {
     max-width: 1100px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
-/* بطاقة المنتج الرئيسي */
+/* بطاقة المنتج (الصفحة الرئيسية) */
 .product-card {
-    background: white;
-    border-radius: 30px;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* تقسيم الصفحة لعمودين */
-    gap: 40px;
-    padding: 40px;
-    box-shadow: var(--shadow);
-}
-
-.main-view {
-    width: 100%;
-    height: 450px;
-    background: #000;
-    border-radius: 20px;
-    overflow: hidden;
+    background: var(--white);
+    border-radius: 25px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap; /* لجعلها متجاوبة مع الجوال */
+    gap: 30px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.main-view video, .main-view img {
-    width: 100%; height: 100%; object-fit: contain;
+.media-section { flex: 1.2; min-width: 300px; }
+.info-section { flex: 0.8; min-width: 300px; }
+
+.main-display {
+    width: 100%; height: 450px; background: #000;
+    border-radius: 20px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
 }
 
-/* معرض الصور الـ 8 */
-.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 صور في الصف الواحد */
-    gap: 12px;
-    margin-top: 15px;
+.main-display video, .main-display img { max-width: 100%; max-height: 100%; }
+
+.gallery {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-top: 15px;
 }
 
-.image-gallery img {
+.gallery img {
     width: 100%; aspect-ratio: 1/1; object-fit: cover;
     border-radius: 12px; cursor: pointer; border: 2px solid transparent;
-    transition: 0.3s;
 }
 
-.image-gallery img:hover { border-color: var(--primary); transform: scale(1.05); }
+.gallery img:hover { border-color: var(--gold); }
 
-/* صفحة الدفع (إصلاح تداخل الحقول) */
-.checkout-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
+/* تنسيق صفحة الدفع (Checkout) - حل مشكلة الحقول المتداخلة */
+.checkout-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
-.card-box {
-    background: white; padding: 30px; border-radius: 25px; box-shadow: var(--shadow);
+.box {
+    background: var(--white); padding: 30px;
+    border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
+
+.input-group { margin-bottom: 20px; }
+
+label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
 
 input, select {
-    width: 100%; padding: 18px; margin: 10px 0 20px 0;
-    border: 2px solid #eee; border-radius: 15px; font-size: 16px;
-    box-sizing: border-box; /* أهم سطر لمنع خروج الحقول عن الإطار */
+    width: 100%; padding: 15px;
+    border: 1px solid #ddd; border-radius: 12px;
+    font-size: 16px; box-sizing: border-box; /* يمنع الحقل من الخروج عن الإطار */
 }
 
-.buy-btn, .finish-btn {
-    display: block; width: 100%; padding: 20px; border-radius: 18px;
-    font-weight: bold; font-size: 20px; text-align: center;
-    text-decoration: none; border: none; cursor: pointer;
+.btn-primary {
+    background: var(--dark); color: white; border: none;
+    padding: 20px; width: 100%; border-radius: 15px;
+    font-weight: bold; font-size: 18px; cursor: pointer;
 }
 
-.buy-btn { background: var(--dark); color: white; margin-top: 20px; }
-.finish-btn { background: var(--success); color: white; }
+.btn-success { background: var(--success); color: white; }
 
-/* للهواتف */
 @media (max-width: 768px) {
-    .product-card, .checkout-layout { grid-template-columns: 1fr; }
+    .checkout-grid { grid-template-columns: 1fr; }
 }
