@@ -1,4 +1,4 @@
-/* الإعدادات العامة */
+/* الإعدادات الأساسية */
 :root {
     --primary: #ffc107;
     --blue: #007bff;
@@ -25,7 +25,7 @@ body {
     background: white;
     border-radius: 30px;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.1fr 0.9fr; /* تقسيم الصفحة لعمودين */
     gap: 40px;
     padding: 40px;
     box-shadow: var(--shadow);
@@ -49,7 +49,7 @@ body {
 /* معرض الصور الـ 8 */
 .image-gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 صور في الصف الواحد */
     gap: 12px;
     margin-top: 15px;
 }
@@ -62,7 +62,7 @@ body {
 
 .image-gallery img:hover { border-color: var(--primary); transform: scale(1.05); }
 
-/* صفحة الدفع (حل مشكلة التداخل) */
+/* صفحة الدفع (إصلاح تداخل الحقول) */
 .checkout-layout {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
@@ -76,7 +76,7 @@ body {
 input, select {
     width: 100%; padding: 18px; margin: 10px 0 20px 0;
     border: 2px solid #eee; border-radius: 15px; font-size: 16px;
-    box-sizing: border-box; /* يمنع الحقول من الخروج عن الإطار */
+    box-sizing: border-box; /* أهم سطر لمنع خروج الحقول عن الإطار */
 }
 
 .buy-btn, .finish-btn {
@@ -88,6 +88,7 @@ input, select {
 .buy-btn { background: var(--dark); color: white; margin-top: 20px; }
 .finish-btn { background: var(--success); color: white; }
 
+/* للهواتف */
 @media (max-width: 768px) {
     .product-card, .checkout-layout { grid-template-columns: 1fr; }
 }
