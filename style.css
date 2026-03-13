@@ -1,136 +1,104 @@
 /* =========================================
-   1. الإعدادات العامة
+   1. الثوابت والتنظيم العام
    ========================================= */
 :root {
-    --primary-color: #ffc107;
-    --secondary-color: #007bff;
-    --dark-color: #1a1a1a;
-    --success-color: #28a745;
-    --bg-color: #f4f7f6;
-    --white: #ffffff;
+    --primary: #ffc107;
+    --blue: #007bff;
+    --success: #28a745;
+    --dark: #111;
+    --bg: #f8f9fa;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--bg);
     margin: 0; padding: 0; direction: rtl;
 }
 
 .main-container {
     max-width: 1100px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 /* =========================================
-   2. الصفحة الرئيسية (المنتج)
+   2. الصفحة الرئيسية (index.html)
    ========================================= */
 .product-card {
-    background: var(--white);
-    border-radius: 25px;
+    background: white;
+    border-radius: 30px;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 40px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 40px;
+    box-shadow: var(--shadow);
 }
 
-.main-display {
+.main-view {
     width: 100%;
-    background: #000;
-    border-radius: 15px;
-    overflow: hidden;
     height: 450px;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.main-display video, .main-display img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+.main-view video, .main-view img {
+    width: 100%; height: 100%; object-fit: contain;
 }
 
 .image-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 12px;
     margin-top: 15px;
 }
 
 .image-gallery img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
+    width: 100%; aspect-ratio: 1/1; object-fit: cover;
+    border-radius: 12px; cursor: pointer; border: 2px solid transparent;
     transition: 0.3s;
 }
 
-.image-gallery img:hover {
-    border-color: var(--primary-color);
-    transform: scale(1.05);
-}
+.image-gallery img:hover { border-color: var(--primary); transform: scale(1.05); }
 
 /* =========================================
-   3. صفحة الدفع (Checkout) - الحل النهائي
+   3. صفحة الدفع (checkout.html)
    ========================================= */
 .checkout-layout {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: 30px;
-    align-items: start;
 }
 
 .card-box {
-    background: var(--white);
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background: white; padding: 30px; border-radius: 25px; box-shadow: var(--shadow);
 }
 
 .product-item-small {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 15px; margin-bottom: 20px;
 }
 
-.product-item-small img {
-    width: 80px;
-    height: 80px;
-    border-radius: 12px;
-    object-fit: cover;
-}
+.product-item-small img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
 
 /* تنسيق الحقول لمنع التداخل */
-.shipping-form input, .shipping-form select {
-    width: 100%;
-    padding: 15px;
-    margin: 8px 0 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    display: block; /* يضمن أن كل حقل في سطر مستقل */
-    box-sizing: border-box; /* يمنع الحقل من الخروج عن الإطار */
+input, select {
+    width: 100%; padding: 18px; margin: 10px 0 25px 0;
+    border: 2px solid #eee; border-radius: 15px; font-size: 16px;
+    box-sizing: border-box; /* هام جداً لمنع خروج الحقل عن الإطار */
 }
 
 .buy-btn, .finish-btn {
-    width: 100%;
-    padding: 20px;
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: block;
+    display: block; width: 100%; padding: 20px; border-radius: 18px;
+    font-weight: bold; font-size: 20px; text-align: center;
+    text-decoration: none; border: none; cursor: pointer; transition: 0.3s;
 }
 
-.buy-btn { background: var(--dark-color); color: white; }
-.finish-btn { background: var(--success-color); color: white; }
+.buy-btn { background: var(--dark); color: white; margin-top: 20px; }
+.finish-btn { background: var(--success); color: white; }
 
 @media (max-width: 768px) {
     .product-card, .checkout-layout { grid-template-columns: 1fr; }
