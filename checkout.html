@@ -8,48 +8,58 @@
 </head>
 <body>
 
-    <div class="main-container checkout-container">
-        <h2 class="product-title" style="text-align: center; margin-bottom: 40px;">إتمام طلبك</h2>
+    <div class="main-container">
+        <h2 class="product-title" style="text-align: center; margin-bottom: 40px;">إتمام عملية الشراء</h2>
 
         <div class="checkout-layout">
             
             <div class="order-summary">
-                <h3 style="margin-top: 0;">ملخص السلة</h3>
+                <h3 style="margin-top: 0; color: var(--dark-color);">ملخص طلبك</h3>
                 <div class="product-item-small">
-                    <img src="5.jpg" alt="حقيبة غسيل الأحذية">
-                    <div>
+                    <img src="8.jpg" alt="حقيبة غسيل الأحذية">
+                    <div class="product-info-text">
                         <p style="margin: 0; font-weight: bold;">حقيبة غسيل الأحذية الذكية</p>
                         <span style="color: var(--secondary-color); font-weight: bold;">49 SAR</span>
                     </div>
                 </div>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-                <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: bold;">
-                    <span>الإجمالي:</span>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 18px; font-weight: bold;">المجموع النهائي:</span>
                     <span class="price-now">49 SAR</span>
                 </div>
+                <p style="color: #666; font-size: 14px; margin-top: 15px;">🚛 شامل ضريبة القيمة المضافة والشحن السريع.</p>
             </div>
 
             <div class="shipping-form">
                 <form id="checkoutForm">
-                    <label for="name">الاسم الكامل</label>
-                    <input type="text" id="name" name="name" placeholder="أدخل اسمك هنا" required>
+                    <div class="input-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" id="name" placeholder="أدخل اسمك الثلاثي" required>
+                    </div>
 
-                    <label for="phone">رقم الجوال</label>
-                    <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" required>
+                    <div class="input-group">
+                        <label>رقم الجوال</label>
+                        <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+                    </div>
 
-                    <label for="city">المدينة</label>
-                    <select id="city" name="city" required>
-                        <option value="">اختر مدينتك</option>
-                        <option value="dammam">الدمام</option>
-                        <option value="khobar">الخبر</option>
-                        <option value="riyadh">الرياض</option>
-                        <option value="jeddah">جدة</option>
-                    </select>
+                    <div class="input-group">
+                        <label>المدينة</label>
+                        <select id="city" required>
+                            <option value="">اختر مدينة التوصيل</option>
+                            <option value="dammam">الدمام</option>
+                            <option value="khobar">الخبر</option>
+                            <option value="riyadh">الرياض</option>
+                            <option value="jeddah">جدة</option>
+                            <option value="other">مدينة أخرى</option>
+                        </select>
+                    </div>
 
-                    <label for="address">العنوان بالتفصيل</label>
-                    <input type="text" id="address" name="address" placeholder="اسم الحي والشارع" required>
+                    <div class="input-group">
+                        <label>العنوان بالتفصيل</label>
+                        <input type="text" id="address" placeholder="اسم الحي والشارع" required>
+                    </div>
 
-                    <button type="submit" class="finish-btn">تأكيد الطلب الآن</button>
+                    <button type="submit" class="finish-btn">تأكيد الطلب - دفع عند الاستلام</button>
                 </form>
             </div>
 
