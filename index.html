@@ -7,50 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="main-container">
         <div class="product-card">
-            
             <div class="media-column">
                 <div class="main-display">
                     <div id="videoContainer">
-                        <video id="mainVideo" controls autoplay muted loop playsinline>
-                            <source src="حقيبة%20غسيل%20الأحذية2.mp4" type="video/mp4">
-                        </video>
+                        <video autoplay muted loop playsinline><source src="حقيبة%20غسيل%20الأحذية2.mp4" type="video/mp4"></video>
                     </div>
-                    <img id="mainImage" src="" alt="عرض المنتج" style="display: none;">
+                    <img id="mainImage" src="" style="display: none;">
                 </div>
-
                 <div class="image-gallery">
-                    <img src="1.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="2.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="3.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="4.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="5.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="6.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="7.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
-                    <img src="8.jpg" onmouseover="showMedia(this.src)" onclick="showMedia(this.src)">
+                    <img src="1.jpg"> <img src="2.jpg"> <img src="3.jpg"> <img src="4.jpg">
+                    <img src="5.jpg"> <img src="6.jpg"> <img src="7.jpg"> <img src="8.jpg">
                 </div>
-                <button class="reset-video" onclick="resetToVideo()">🔄 العودة للفيديو</button>
             </div>
-
             <div class="info-column">
-                <div class="brand-badge">NomadByte Original</div>
+                <span class="brand-badge">NomadByte Original</span>
                 <h1 class="product-title">حقيبة غسيل الأحذية الذكية</h1>
-                <div class="price-section">
-                    <span class="price-now">49 SAR</span>
-                    <span class="price-was">99 SAR</span>
-                </div>
-                <ul class="features-list">
-                    <li>✅ نسيج شانيل كثيف للتنظيف العميق.</li>
-                    <li>✅ حماية كاملة للحذاء والغسالة.</li>
-                    <li>✅ سحاب مخفي لضمان عدم الانفتاح.</li>
+                <p class="price-now">49 SAR <span class="price-was" style="font-size: 18px; color: #999;">99 SAR</span></p>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✅ نسيج شانيل كثيف للتنظيف</li>
+                    <li>✅ حماية كاملة للحذاء والغسالة</li>
                 </ul>
                 <a href="checkout.html" class="buy-btn">شراء الآن - دفع عند الاستلام</a>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
