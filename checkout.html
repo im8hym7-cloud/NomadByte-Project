@@ -3,71 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إتمام الشراء | NomadByte</title>
+    <title>إتمام الطلب | NomadByte</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="main-container">
-        <h2 class="product-title" style="text-align: center; margin-bottom: 40px;">إتمام عملية الشراء</h2>
-
         <div class="checkout-layout">
-            
-            <div class="order-summary" style="background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <h3 style="margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 15px;">ملخص طلبك</h3>
-                
-                <div class="product-item-small" style="display: flex; align-items: center; gap: 15px; margin-top: 20px;">
-                    <img src="8.jpg" alt="حقيبة غسيل الأحذية" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover;">
+            <div class="order-summary card">
+                <h3>ملخص طلبك</h3>
+                <div class="product-item-small">
+                    <img src="5.jpg" alt="Product">
                     <div>
-                        <p style="margin: 0; font-weight: bold;">حقيبة غسيل الأحذية الذكية</p>
-                        <span style="color: var(--secondary-color); font-weight: bold;">49 SAR</span>
-                    </div>
-                </div>
-
-                <div style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #eee;">
-                    <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: 900;">
-                        <span>الإجمالي:</span>
+                        <p>حقيبة غسيل الأحذية الذكية</p>
                         <span class="price-now">49 SAR</span>
                     </div>
-                    <p style="color: #28a745; font-size: 14px; margin-top: 10px; font-weight: bold;">✅ شحن مجاني - دفع عند الاستلام</p>
+                </div>
+                <div class="total-section">
+                    <span>الإجمالي النهائي:</span>
+                    <span>49 SAR</span>
                 </div>
             </div>
 
-            <div class="shipping-form">
+            <div class="shipping-form card">
+                <h3>بيانات الشحن</h3>
                 <form id="checkoutForm">
-                    <div class="input-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" id="name" placeholder="أدخل اسمك الثلاثي" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label>رقم الجوال</label>
-                        <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label>المدينة</label>
-                        <select id="city" required>
-                            <option value="">اختر مدينة التوصيل</option>
-                            <option value="dammam">الدمام</option>
-                            <option value="khobar">الخبر</option>
-                            <option value="riyadh">الرياض</option>
-                            <option value="jeddah">جدة</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label>العنوان بالتفصيل</label>
-                        <input type="text" id="address" placeholder="الحي، الشارع، رقم المنزل" required>
-                    </div>
-
-                    <button type="submit" class="finish-btn">تأكيد الطلب الآن 🛒</button>
+                    <label>الاسم الكامل</label>
+                    <input type="text" placeholder="اسمك الثلاثي" required>
+                    <label>رقم الجوال</label>
+                    <input type="tel" placeholder="05xxxxxxxx" required>
+                    <label>المدينة</label>
+                    <select required>
+                        <option value="">اختر المدينة</option>
+                        <option>الدمام</option>
+                        <option>الرياض</option>
+                        <option>جدة</option>
+                    </select>
+                    <label>العنوان</label>
+                    <input type="text" placeholder="الحي والشارع" required>
+                    <button type="submit" class="finish-btn">تأكيد الطلب الآن</button>
                 </form>
             </div>
-
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
