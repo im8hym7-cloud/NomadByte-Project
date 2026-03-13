@@ -2,60 +2,72 @@
    1. التنسيقات العامة والثوابت
    ========================================= */
 :root {
-    --primary-color: #ffc107; /* لون هويتك الأصفر */
-    --secondary-color: #007bff; /* لون السعر الأزرق */
-    --dark-color: #111111;
-    --success-color: #28a745; /* لون زر الإتمام الأخضر */
-    --bg-color: #f8f9fa;
+    --primary-color: #ffc107; /* اللون الأصفر الخاص بك */
+    --secondary-color: #007bff;
+    --dark-color: #1a1a1a;
+    --success-color: #28a745;
+    --bg-color: #f4f7f6;
     --white: #ffffff;
-    --text-muted: #888888;
+    --text-main: #333333;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    color: var(--text-main);
 }
 
 /* =========================================
    2. الصفحة الرئيسية (صفحة المنتج)
    ========================================= */
 .main-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 20px;
+    max-width: 1150px;
+    margin: 50px auto;
+    padding: 0 20px;
 }
 
 .product-card {
     background: var(--white);
-    border-radius: 25px;
+    border-radius: 30px;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
     padding: 40px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow);
+    align-items: start;
 }
 
-/* عمود الميديا (فيديو وصور) */
+/* عمود الميديا - تحسين لعرض الفيديو الطولي والعرضي */
 .media-column {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    width: 100%;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    line-height: 0; /* لإزالة أي فراغ تحت الفيديو */
 }
 
 .video-wrapper video {
     width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    background-color: #000;
+    max-height: 550px; /* تحديد أقصى ارتفاع لضمان عدم خروج الفيديو عن الشاشة */
+    object-fit: contain; /* لضمان ظهور الفيديو كاملاً دون قص الأطراف */
 }
 
 .image-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 12px;
 }
 
 .image-gallery img {
@@ -63,188 +75,144 @@ body {
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 12px;
-    border: 1px solid #eee;
-    transition: 0.3s ease;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .image-gallery img:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
     border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.2);
 }
 
-/* عمود معلومات المنتج */
+/* معلومات المنتج */
 .info-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-top: 10px;
 }
 
 .brand-badge {
     background: var(--primary-color);
     color: #000;
-    font-weight: bold;
-    padding: 6px 15px;
-    border-radius: 8px;
-    width: fit-content;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    display: inline-block;
     margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 .product-title {
-    font-size: 32px;
-    margin: 0 0 15px 0;
-    color: #222;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--dark-color);
 }
 
 .price-section {
-    margin-bottom: 25px;
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
 .price-now {
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 42px;
+    font-weight: 900;
     color: var(--secondary-color);
 }
 
 .price-was {
     text-decoration: line-through;
-    color: #aaa;
-    margin-right: 15px;
-    font-size: 20px;
+    color: #bbb;
+    font-size: 22px;
 }
 
 .features-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .features-list li {
-    font-size: 17px;
-    margin-bottom: 12px;
-    color: #444;
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* أزرار الإجراء (CTA) */
+/* الأزرار */
 .buy-btn {
+    display: block;
     background: var(--dark-color);
     color: #fff;
-    border: none;
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    padding: 22px;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: 700;
     text-align: center;
     text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .buy-btn:hover {
-    background: #333;
-    transform: translateY(-2px);
+    background: #000;
+    transform: scale(1.02);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
 }
 
 /* =========================================
    3. صفحة الدفع (Checkout)
    ========================================= */
-.checkout-container {
-    max-width: 950px;
-    margin: 30px auto;
-    padding: 20px;
-}
-
 .checkout-layout {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 30px;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
 }
 
-.order-summary {
-    background: #fdfdfd;
-    padding: 25px;
-    border-radius: 20px;
-    border: 1px solid #eee;
-    height: fit-content;
-}
-
-.product-item-small {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.product-item-small img {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-/* تنسيق حقول الإدخال (طلبك الخاص) */
-input[type="text"], 
-input[type="tel"], 
-input[type="email"], 
-select, 
-textarea {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    font-size: 16px;
-    transition: 0.3s;
-    box-sizing: border-box; /* لضمان عدم خروج الحقول عن الحدود */
+input[type="text"], input[type="tel"], select {
+    background: #fcfcfc;
+    border: 2px solid #eee;
+    padding: 18px;
+    margin-top: 8px;
+    margin-bottom: 25px;
+    font-weight: 500;
 }
 
 input:focus, select:focus {
     border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
+    background: #fff;
 }
 
-label {
-    font-weight: bold;
-    color: #444;
-    display: block;
-}
-
-/* زر إتمام الطلب الأخضر */
 .finish-btn {
-    background: var(--success-color);
-    color: white;
-    width: 100%;
-    padding: 20px;
-    border: none;
-    border-radius: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
-}
-
-.finish-btn:hover {
-    background: #218838;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    padding: 22px;
+    border-radius: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* =========================================
-   4. التوافق مع شاشات الجوال (Responsive)
+   4. التوافق مع الجوال (Responsive)
    ========================================= */
-@media (max-width: 850px) {
-    .product-card, .checkout-layout {
+@media (max-width: 992px) {
+    .product-card {
         grid-template-columns: 1fr;
-        padding: 20px;
+        gap: 30px;
+        padding: 25px;
     }
     
-    .order-summary {
-        order: -1; /* يظهر ملخص الطلب أولاً في الجوال */
+    .main-container {
+        margin: 20px auto;
     }
 
     .product-title {
-        font-size: 26px;
+        font-size: 28px;
+    }
+
+    .image-gallery {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
