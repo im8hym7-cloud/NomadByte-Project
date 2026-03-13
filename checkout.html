@@ -3,187 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إتمام الطلب | NomadByte</title>
-    <style>
-        :root {
-            --primary: #007bff;
-            --bg: #f4f7f6;
-            --success: #28a745;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            margin: 0;
-            padding: 20px;
-        }
-        .checkout-container {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 20px;
-        }
-        .box {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        h2 { margin-top: 0; color: #333; font-size: 1.4rem; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
-        
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
-
-        .order-summary { text-align: center; }
-        .product-preview {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #eee;
-        }
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-        .total { font-size: 1.4rem; font-weight: bold; color: var(--primary); margin-top: 15px; }
-
-        .confirm-btn {
-            background: var(--success);
-            color: white;
-            width: 100%;
-            padding: 18px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-        }
-        .confirm-btn:hover { background: #218838; transform: translateY(-2px); }
-
-        @media (max-width: 768px) {
-            .checkout-container { grid-template-columns: 1fr; }
-        }
-    </style>
+    <title>إتمام الشراء | NomadByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="checkout-container">
-        <div class="box">
-            <h2>تفاصيل الشحن والتوصيل</h2>
-            <div class="form-group">
-                <label>الاسم الكامل:</label>
-                <input type="text" id="fullName" placeholder="أدخل اسمك الثلاثي">
-            </div>
-            <div class="form-group">
-                <label>رقم الجوال:</label>
-                <input type="tel" id="phone" placeholder="05xxxxxxxx">
-            </div>
-            <div class="form-group">
-                <label>المدينة:</label>
-                <select id="city">
-                    <option value="الدمام">الدمام</option>
-                    <option value="الخبر">الخبر</option>
-                    <option value="الظهران">الظهران</option>
-                    <option value="الرياض">الرياض</option>
-                    <option value="جدة">جدة</option>
-                    <option value="مكة">مكة</option>
-                    <option value="المدينة">المدينة المنورة</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>العنوان (الحي / الشارع):</label>
-                <input type="text" id="address" placeholder="مثال: حي النزهة - شارع الملك فهد">
-            </div>
-        </div>
+        <h2 class="checkout-title">إتمام عملية الشراء</h2>
 
-        <div class="box order-summary">
-            <h2>ملخص الطلب</h2>
-            <img src="1.jpg" class="product-preview" alt="Product">
-            <p style="font-weight: bold; font-size: 1.1rem;">حقيبة غسيل الأحذية الذكية</p>
+        <div class="checkout-layout">
             
-            <div class="price-row">
-                <span>سعر المنتج:</span>
-                <span>49 SAR</span>
-            </div>
-            <div class="price-row">
-                <span>التوصيل:</span>
-                <span style="color: var(--success);">مجاني 🎁</span>
-            </div>
-            <div class="price-row total">
-                <span>الإجمالي:</span>
-                <span>49 SAR</span>
+            <div class="order-summary">
+                <h3>ملخص الطلب</h3>
+                <div class="product-item">
+                    <img src="5.jpg" alt="حقيبة الأحذية">
+                    <div class="product-info">
+                        <p>حقيبة غسيل الأحذية الذكية</p>
+                        <span>49 SAR</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="total-row">
+                    <span>الإجمالي:</span>
+                    <span class="total-price">49 SAR</span>
+                </div>
+                <p class="shipping-hint">🚛 شحن سريع لجميع مناطق المملكة</p>
             </div>
 
-            <button class="confirm-btn" onclick="confirmOrder()">تأكيد الطلب الآن</button>
-            <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">الدفع عند الاستلام 🤝</p>
+            <div class="shipping-form">
+                <h3>بيانات الشحن والتوصيل</h3>
+                <form id="checkoutForm">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك الثلاثي" required>
+
+                    <label>رقم الجوال</label>
+                    <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+
+                    <label>المدينة</label>
+                    <select id="city" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="dammam">الدمام</option>
+                        <option value="khobar">الخبر</option>
+                        <option value="riyadh">الرياض</option>
+                        <option value="jeddah">جدة</option>
+                        <option value="other">مدينة أخرى</option>
+                    </select>
+
+                    <label>العنوان بالتفصيل</label>
+                    <input type="text" id="address" placeholder="الحي، الشارع، رقم المنزل" required>
+
+                    <div class="payment-methods">
+                        <p>وسائل الدفع المتاحة:</p>
+                        <div class="payment-icons">
+                            <span>💳 مدى / فيزا</span>
+                            <span> Pay</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="finish-btn">إتمام الطلب - 49 SAR</button>
+                </form>
+            </div>
+
         </div>
     </div>
 
-    <script>
-        async function confirmOrder() {
-            // 1. سحب البيانات من الحقول
-            const name = document.getElementById('fullName').value;
-            const phone = document.getElementById('phone').value;
-            const city = document.getElementById('city').value;
-            const address = document.getElementById('address').value;
-            
-            // 2. التحقق من البيانات الأساسية
-            if(name.trim() === "" || phone.trim() === "") {
-                alert("يرجى إدخال الاسم ورقم الجوال لإتمام الطلب");
-                return;
-            }
-
-            // 3. رابط جوجل سكريبت (استبدله لاحقاً بالرابط الخاص بك لحفظ البيانات تلقائياً)
-            const scriptURL = 'ضع_رابط_جوجل_سكريبت_الخاص_بك_هنا'; 
-            
-            try {
-                // إرسال البيانات للخلفية (صامت)
-                if (scriptURL !== 'ضع_رابط_جوجل_سكريبت_الخاص_بك_هنا') {
-                    await fetch(scriptURL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        body: JSON.stringify({ name, phone, city, address, product: "حقيبة غسيل الأحذية" })
-                    });
-                }
-            } catch (e) { 
-                console.error("خطأ في حفظ البيانات", e); 
-            }
-
-            // 4. تجهيز رسالة الواتساب
-            const message = `طلب جديد من NomadByte %0A` +
-                            `--------------------%0A` +
-                            `المنتج: حقيبة غسيل الأحذية %0A` +
-                            `الاسم: ${name} %0A` +
-                            `الجوال: ${phone} %0A` +
-                            `المدينة: ${city} %0A` +
-                            `العنوان: ${address} %0A` +
-                            `الإجمالي: 49 SAR`;
-
-            // رقم جوالك الذي تم تأكيده
-            const myPhoneNumber = "966534727718"; 
-            
-            // فتح الواتساب
-            const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
-            
-            alert("شكراً لك! سيتم توجيهك للواتساب لتأكيد الطلب.");
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
